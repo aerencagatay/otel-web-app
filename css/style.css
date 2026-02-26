@@ -125,8 +125,18 @@ img { max-width: 100%; }
 .topbar a { transition: color 0.2s; }
 .topbar a:hover { color: var(--gold) !important; }
 
+/* Topbar sabit, yükseklik navbar için boşluk bırakıyor */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+  min-height: 42px;
+}
+
 /* ===== NAVBAR ===== */
-.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+.header { position: fixed; top: 42px; left: 0; right: 0; z-index: 1000; }
 
 .topbar-fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
 
