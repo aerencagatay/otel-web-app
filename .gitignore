@@ -1,0 +1,12 @@
+# Editor / IDE
+.cursor/
+.claude/
+.vscode/
+*.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Lock / local config (proje dosyaları değil)
+skills-lock.json
