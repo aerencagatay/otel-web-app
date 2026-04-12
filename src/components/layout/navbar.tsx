@@ -44,7 +44,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-7">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -56,6 +56,14 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/reservation"
+              className={`nav-cta ml-2 no-underline ${
+                scrolled || menuOpen ? "nav-cta--on-light" : "nav-cta--on-dark"
+              }`}
+            >
+              Rezervasyon
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -85,6 +93,13 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/reservation"
+              className="btn-cta-solid block mt-3 text-center no-underline"
+              onClick={() => setMenuOpen(false)}
+            >
+              Rezervasyon
+            </Link>
           </div>
         )}
       </nav>

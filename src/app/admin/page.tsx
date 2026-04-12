@@ -100,13 +100,22 @@ export default function AdminDashboard() {
   ).length;
 
   return (
-    <div className="min-h-screen bg-warm">
+    <div className="min-h-screen bg-[var(--color-ivory)]">
       {/* Header */}
-      <div className="bg-dark text-white px-6 py-4 flex items-center justify-between">
+      <div
+        className="text-white px-6 py-5 flex items-center justify-between border-b border-white/10"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--color-dark) 0%, var(--color-olive) 100%)",
+        }}
+      >
         <div>
-          <h1 className="font-heading text-[20px]">Admin Panel</h1>
-          <p className="text-white/50 text-[12px]">
-            Assos Karadut Taş Otel · Rezervasyon Yönetimi
+          <p className="text-[10px] tracking-[0.28em] uppercase text-white/50 m-0 mb-1">
+            Yönetim
+          </p>
+          <h1 className="font-heading text-[22px] font-semibold m-0">Rezervasyonlar</h1>
+          <p className="text-white/55 text-[12px] m-0 mt-1">
+            Assos Karadut Taş Otel
           </p>
         </div>
         <div className="flex items-center gap-4">
@@ -129,41 +138,47 @@ export default function AdminDashboard() {
 
       {/* Stats */}
       <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="bg-white border border-border p-5">
-            <div className="flex items-center gap-3">
-              <Clock size={20} className="text-yellow-500" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div className="bg-white border border-border p-6 shadow-[0_1px_0_rgba(26,28,24,0.04)] rounded-sm">
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 rounded-sm bg-amber-100 flex items-center justify-center shrink-0">
+                <Clock size={20} className="text-amber-800" strokeWidth={1.5} />
+              </div>
               <div>
-                <div className="text-[12px] text-text-light uppercase tracking-wide">
-                  Bekleyen
+                <div className="text-[11px] text-text-light uppercase tracking-[0.15em]">
+                  Kapora bekliyor
                 </div>
-                <div className="text-[24px] font-bold text-dark">
+                <div className="font-heading text-[28px] font-semibold text-dark leading-none mt-1">
                   {pendingCount}
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-white border border-border p-5">
-            <div className="flex items-center gap-3">
-              <CheckCircle size={20} className="text-green-500" />
+          <div className="bg-white border border-border p-6 shadow-[0_1px_0_rgba(26,28,24,0.04)] rounded-sm">
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 rounded-sm bg-emerald-100 flex items-center justify-center shrink-0">
+                <CheckCircle size={20} className="text-emerald-800" strokeWidth={1.5} />
+              </div>
               <div>
-                <div className="text-[12px] text-text-light uppercase tracking-wide">
-                  Onaylanan
+                <div className="text-[11px] text-text-light uppercase tracking-[0.15em]">
+                  Onaylı
                 </div>
-                <div className="text-[24px] font-bold text-dark">
+                <div className="font-heading text-[28px] font-semibold text-dark leading-none mt-1">
                   {confirmedCount}
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-white border border-border p-5">
-            <div className="flex items-center gap-3">
-              <BedDouble size={20} className="text-gold" />
+          <div className="bg-white border border-border p-6 shadow-[0_1px_0_rgba(26,28,24,0.04)] rounded-sm">
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 rounded-sm bg-dark/5 flex items-center justify-center shrink-0">
+                <BedDouble size={20} className="text-gold-dark" strokeWidth={1.5} />
+              </div>
               <div>
-                <div className="text-[12px] text-text-light uppercase tracking-wide">
-                  Toplam
+                <div className="text-[11px] text-text-light uppercase tracking-[0.15em]">
+                  Toplam kayıt
                 </div>
-                <div className="text-[24px] font-bold text-dark">
+                <div className="font-heading text-[28px] font-semibold text-dark leading-none mt-1">
                   {reservations.length}
                 </div>
               </div>
@@ -183,10 +198,10 @@ export default function AdminDashboard() {
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`px-4 py-2 text-[12px] tracking-wide uppercase font-bold transition-colors ${
+              className={`px-4 py-2.5 text-[11px] tracking-[0.12em] uppercase font-bold transition-colors rounded-sm ${
                 tab === t.key
-                  ? "bg-gold text-white"
-                  : "bg-white text-text-light border border-border hover:border-gold"
+                  ? "bg-dark text-white"
+                  : "bg-white text-text-light border border-border hover:border-dark/20"
               }`}
             >
               {t.label} ({t.count})
@@ -209,7 +224,7 @@ export default function AdminDashboard() {
             {filtered.map((res) => (
               <div
                 key={res.reservationId}
-                className="bg-white border border-border p-5 hover:border-gold transition-colors"
+                className="bg-white border border-border p-6 hover:shadow-[0_12px_40px_rgba(26,28,24,0.06)] transition-all rounded-sm"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex-1">
@@ -218,13 +233,13 @@ export default function AdminDashboard() {
                         {res.reservationId}
                       </span>
                       <span
-                        className={`text-[10px] tracking-wide uppercase font-bold px-2 py-0.5 ${
+                        className={
                           res.status === "pending"
-                            ? "bg-yellow-100 text-yellow-700"
+                            ? "admin-badge admin-badge--pending"
                             : res.status === "confirmed"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-red-100 text-red-700"
-                        }`}
+                              ? "admin-badge admin-badge--confirmed"
+                              : "admin-badge admin-badge--cancelled"
+                        }
                       >
                         {res.status === "pending"
                           ? "Bekliyor"

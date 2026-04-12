@@ -39,21 +39,30 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-warm flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gold/15 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Lock size={28} className="text-gold" />
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-12"
+      style={{
+        background:
+          "linear-gradient(165deg, var(--color-ivory) 0%, var(--color-warm) 45%, #e8e4dc 100%)",
+      }}
+    >
+      <div className="w-full max-w-[420px]">
+        <div className="text-center mb-10">
+          <div className="w-14 h-14 border border-border bg-white flex items-center justify-center mx-auto mb-5 rounded-sm shadow-sm">
+            <Lock size={24} className="text-gold-dark" strokeWidth={1.5} />
           </div>
-          <h1 className="font-heading text-[28px] text-dark">Admin Girişi</h1>
-          <p className="text-text-light text-[14px] mt-2">
-            Assos Karadut Taş Otel Yönetim Paneli
+          <p className="text-[10px] tracking-[0.3em] uppercase text-gold-dark font-semibold m-0 mb-2">
+            Yönetim
+          </p>
+          <h1 className="font-heading text-[30px] font-semibold text-dark m-0">Giriş</h1>
+          <p className="text-text-light text-[14px] mt-2 m-0">
+            Rezervasyon paneli
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white border border-border p-8"
+          className="premium-trip-card p-8 md:p-9"
         >
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 mb-4 text-[14px]">
@@ -65,7 +74,7 @@ export default function AdminLoginPage() {
             <label className="form-label">E-posta</label>
             <input
               type="email"
-              className="form-input"
+              className="form-input rounded-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@example.com"
@@ -77,7 +86,7 @@ export default function AdminLoginPage() {
             <label className="form-label">Şifre</label>
             <input
               type="password"
-              className="form-input"
+              className="form-input rounded-sm"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
@@ -87,7 +96,7 @@ export default function AdminLoginPage() {
 
           <button
             type="submit"
-            className="btn-gold w-full border-none"
+            className="btn-gold w-full border-none py-3.5 text-[11px] tracking-[0.18em]"
             disabled={loading}
           >
             {loading ? (

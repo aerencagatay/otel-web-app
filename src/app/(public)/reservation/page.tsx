@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import BookingFlow from "@/components/booking/booking-flow";
 import {
   Phone,
@@ -22,18 +23,20 @@ export default function ReservationPage() {
     <>
       {/* Hero */}
       <div style={{ paddingTop: "38px" }}>
-        <div className="res-hero">
+        <div className="res-hero relative z-[1]">
           <div className="max-w-7xl mx-auto px-4">
-            <span className="eyebrow text-gold-light">Online Rezervasyon</span>
+            <span className="eyebrow text-white/70">Rezervasyon</span>
             <h1
-              className="text-white mb-4"
-              style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
+              className="text-white mb-4 font-heading font-semibold tracking-tight"
+              style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}
             >
-              Online Rezervasyon Yapın
+              Tarih seçin, odayı seçin,
+              <br className="hidden sm:block" />
+              <span className="text-white/85 font-normal italic"> kapora ile kesinleştirin.</span>
             </h1>
-            <p className="text-white/65 text-[15px] max-w-[520px] mx-auto mb-9">
-              Tarih ve oda tipinizi seçin, müsaitliği kontrol edin.
-              Kapora ödemenizi tamamlayarak rezervasyonunuzu kesinleştirin.
+            <p className="text-white/70 text-[15px] max-w-[540px] mx-auto mb-2 leading-relaxed">
+              Müsaitlik anında kontrol edilir. Talebiniz kapora onayından sonra kesin rezervasyona
+              dönüşür.
             </p>
           </div>
         </div>
@@ -79,8 +82,15 @@ export default function ReservationPage() {
             ))}
           </div>
 
-          {/* Booking form component */}
-          <BookingFlow />
+          <Suspense
+            fallback={
+              <div className="state-surface state-surface--muted py-20">
+                <p className="text-text-light m-0">Rezervasyon formu yükleniyor…</p>
+              </div>
+            }
+          >
+            <BookingFlow />
+          </Suspense>
         </div>
       </section>
 
