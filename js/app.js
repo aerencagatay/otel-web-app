@@ -4,6 +4,16 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ===== Online rezervasyon linkleri (Next.js; GitHub Pages’de değil) ===== */
+  var bookingUrl = typeof window.KARADUT_BOOKING_URL === 'string'
+    ? window.KARADUT_BOOKING_URL.trim()
+    : '';
+  if (bookingUrl) {
+    document.querySelectorAll('a[data-karadut-booking]').forEach(function (a) {
+      a.setAttribute('href', bookingUrl);
+    });
+  }
+
   /* ===== AOS INIT ===== */
   if (typeof AOS !== 'undefined') {
     AOS.init({
