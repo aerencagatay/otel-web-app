@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -32,15 +31,11 @@ export default function Navbar() {
         className={`navbar-base ${scrolled || menuOpen ? "navbar-scrolled" : ""}`}
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <Link href="/">
-            <Image
-              src="/img/otel_logo.png"
-              alt="Assos Karadut Taş Otel"
-              width={220}
-              height={120}
-              className="navbar-logo"
-              priority
-            />
+          <Link
+            href="/"
+            className="navbar-brand-text shrink-0 no-underline max-w-[min(100%,220px)]"
+          >
+            Assos Karadut Taş Otel
           </Link>
 
           {/* Desktop nav */}

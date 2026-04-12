@@ -288,19 +288,23 @@ img {
   width: 100%;
 }
 
-.navbar-logo {
-  height: 120px;
-  width: auto;
-  max-width: 220px;
-  object-fit: contain;
-  clip-path: inset(22% 5% 22% 5%);
-  margin: -26px -8px;
-  mix-blend-mode: multiply;
-  transition: all 0.3s ease;
+.navbar-brand-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  line-height: 1.2;
+  transition: color 0.3s ease;
 }
-.navbar-scrolled .navbar-logo {
-  height: 110px;
-  mix-blend-mode: normal;
+.navbar-scrolled .navbar-brand-text {
+  color: var(--color-dark);
+}
+.navbar-brand-text:hover {
+  color: var(--color-gold-light);
+}
+.navbar-scrolled .navbar-brand-text:hover {
+  color: var(--color-gold-dark);
 }
 
 /* ===== MOTION ===== */
