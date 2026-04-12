@@ -10,3 +10,23 @@ Thumbs.db
 
 # Lock / local config (proje dosyaları değil)
 skills-lock.json
+
+# Dependencies & build (binlerce dosya — repoya girmez)
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Env (gizli anahtarlar)
+.env
+.env*.local
+
+# Debug / cache
+*.tsbuildinfo
+.turbo
+.vercel
+
+# Test / coverage
+coverage/
+.nyc_output/
