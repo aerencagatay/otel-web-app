@@ -57,3 +57,22 @@ git push
 ```
 
 Push'tan sonra GitHub Pages birkaç dakika içinde güncellenir.
+
+---
+
+## 5. Online rezervasyon (Next.js) — Vercel şart
+
+GitHub Pages **Next.js sunucusu çalıştırmaz**; `/reservation`, `/api/*`, Google Sheets ve e-posta sadece **Vercel** (veya benzeri Node/serverless) üzerinde çalışır.
+
+1. [vercel.com](https://vercel.com) → giriş yap → **Add New… → Project**.
+2. GitHub reponuzu seçin (`otel-web-app` vb.) → **Import**.
+3. **Framework Preset:** Next.js otomatik seçilir → **Deploy** deyin.
+4. Deploy bitince üstte çıkan adresi kopyalayın (örn. `https://xxx.vercel.app`).  
+   Bu adres, import sırasında verdiğiniz **proje adına** göre oluşur; `otel-web-app.vercel.app` diye bir deployment yoksa ekranda gördüğünüz URL farklı olur.
+5. Statik sitedeki butonların doğru yere gitmesi için `js/booking-config.js` içindeki  
+   `KARADUT_BOOKING_URL` değerini şu şekilde güncelleyin:  
+   `https://SIZIN-VERCEL-ADRESINIZ.vercel.app/reservation`
+6. Vercel’de **Environment Variables** bölümüne `.env.example` dosyasındaki gibi  
+   `GOOGLE_*`, `ADMIN_*`, mail ve `SESSION_SECRET` değerlerini ekleyin; yoksa rezervasyon API’leri çalışmaz.
+
+**`DEPLOYMENT_NOT_FOUND` hatası:** O `.vercel.app` adresinde hiç proje yok demektir — önce yukarıdaki gibi deploy edin, sonra `booking-config.js`’i gerçek production URL ile güncelleyin.
