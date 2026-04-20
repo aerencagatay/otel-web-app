@@ -7,8 +7,12 @@ export interface SessionData {
   email?: string;
 }
 
+if (!process.env.SESSION_SECRET) {
+  throw new Error("SESSION_SECRET environment variable is required");
+}
+
 const sessionOptions = {
-  password: process.env.SESSION_SECRET || "complex_password_at_least_32_characters_long_1234",
+  password: process.env.SESSION_SECRET,
   cookieName: "karadut-admin-session",
   cookieOptions: {
     secure: process.env.NODE_ENV === "production",
