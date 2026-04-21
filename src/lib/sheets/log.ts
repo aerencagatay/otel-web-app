@@ -1,6 +1,8 @@
+import type { sheets_v4 } from "googleapis";
 import { getSheetsClient, getSheetId } from "./client";
 
 const LOG_TAB = "Web_Reservations";
+export const LOG_TAB_NAME = LOG_TAB;
 
 export interface ReservationLog {
   reservationId: string;
@@ -23,16 +25,8 @@ export interface ReservationLog {
   cancelledAt: string;
 }
 
-/**
- * Append a new reservation log entry.
- */
-export async function appendReservationLog(
-  log: ReservationLog
-): Promise<void> {
-  const sheets = getSheetsClient();
-  const sheetId = getSheetId();
-
-  const row = [
+function logToRow(log: ReservationLog): (string | number)[] {
+  return [
     log.reservationId,
     log.status,
     log.checkIn,
@@ -52,12 +46,52 @@ export async function appendReservationLog(
     log.confirmedAt || "",
     log.cancelledAt || "",
   ];
+}
+
+/**
+ * Build an `appendCells` batchUpdate request that appends the log row to the
+ * Web_Reservations tab. Used so the log write can ride inside the same atomic
+ * batchUpdate as the monthly cell writes (closes the K3 desync window).
+ */
+export function buildLogAppendRequest(
+  log: ReservationLog,
+  logSheetGid: number
+): sheets_v4.Schema$Request {
+  const row = logToRow(log);
+  return {
+    appendCells: {
+      sheetId: logSheetGid,
+      rows: [
+        {
+          values: row.map((v) => ({
+            userEnteredValue:
+              typeof v === "number"
+                ? { numberValue: v }
+                : { stringValue: String(v) },
+          })),
+        },
+      ],
+      fields: "userEnteredValue",
+    },
+  };
+}
+
+/**
+ * Append a log row via values.append. Kept as a fallback for admin manual
+ * inserts; the standard reservation flow now writes the log inside the same
+ * batchUpdate as the monthly cells.
+ */
+export async function appendReservationLog(
+  log: ReservationLog
+): Promise<void> {
+  const sheets = getSheetsClient();
+  const sheetId = getSheetId();
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
     range: `'${LOG_TAB}'!A:R`,
     valueInputOption: "RAW",
-    requestBody: { values: [row] },
+    requestBody: { values: [logToRow(log)] },
   });
 }
 

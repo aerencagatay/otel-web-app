@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { reservationSchema } from "@/lib/utils/validation";
 import { writePendingReservation } from "@/lib/sheets/reservations";
-import { appendReservationLog } from "@/lib/sheets/log";
+import type { ReservationLog } from "@/lib/sheets/log";
 import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { generateReservationId } from "@/lib/utils/ids";
 import { nightCount, isPastDate } from "@/lib/utils/dates";
@@ -44,37 +44,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Write to sheet (optimistic locking via re-check)
-    const guestName = `${data.firstName} ${data.lastName}`;
-    const result = await writePendingReservation(
-      data.checkIn,
-      data.checkOut,
-      data.roomType,
-      guestName
-    );
-
-    if (!result) {
-      return NextResponse.json(
-        {
-          error:
-            "Seçtiğiniz tarihler için müsait oda kalmamıştır. Lütfen farklı tarih veya oda tipi deneyin.",
-        },
-        { status: 409 }
-      );
-    }
-
+    // Generate reservationId BEFORE the sheet write so it can be embedded in
+    // the cell text as an idempotency marker (the post-write verifier in
+    // writePendingReservation reads the cell back and checks for this id).
     const reservationId = generateReservationId();
     const nights = nightCount(data.checkIn, data.checkOut);
+    const guestName = `${data.firstName} ${data.lastName}`;
 
-    // Log to sheet
-    await appendReservationLog({
+    const log: ReservationLog = {
       reservationId,
       status: "pending",
       checkIn: data.checkIn,
       checkOut: data.checkOut,
       nights,
       roomType: data.roomType,
-      roomLabel: result.roomLabel,
+      roomLabel: "", // filled in by writePendingReservation
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -86,7 +70,29 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
       confirmedAt: "",
       cancelledAt: "",
-    });
+    };
+
+    // Single atomic batchUpdate: monthly cells (value+format) + log row.
+    // Returns null if no room available OR if a concurrent request won the
+    // post-write verification race.
+    const result = await writePendingReservation(
+      data.checkIn,
+      data.checkOut,
+      data.roomType,
+      guestName,
+      reservationId,
+      log
+    );
+
+    if (!result) {
+      return NextResponse.json(
+        {
+          error:
+            "Seçtiğiniz tarihler için müsait oda kalmamıştır. Lütfen farklı tarih veya oda tipi deneyin.",
+        },
+        { status: 409 }
+      );
+    }
 
     // Send email
     try {
