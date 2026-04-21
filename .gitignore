@@ -1,6 +1,6 @@
 # Editor / IDE
 .cursor/
-.claude/
+.claude/*
 !.claude/skills/
 .vscode/*
 !.vscode/settings.json

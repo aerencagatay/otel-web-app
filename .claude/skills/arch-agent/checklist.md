@@ -1,5 +1,9 @@
 ## Mimari İnceleme Odak Noktaları
 
+### ⚠️ Bilinen False Positive'ler — RAPOR ETME
+
+- **`src/proxy.ts` middleware olarak çalışıyor.** Next.js 16'da `middleware` deprecated, adı `proxy` oldu. `src/proxy.ts` doğru dosya adı. Eski `middleware.ts` aramaya gerek yok. Detay: `node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md`. Bir incelemeye başlamadan önce her zaman `AGENTS.md`'yi oku — bu projede Next.js 16 breaking changes var.
+
 ### Race Condition
 - createReservation() içinde server-side double availability check var mı?
 - Sheet yazma operasyonu atomik mi yoksa iki ayrı API çağrısı mı?

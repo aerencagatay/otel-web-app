@@ -14,7 +14,9 @@ description: Backend mimari analizi. Kod yazmaz. Mevcut kodu inceler, Kritik/Ön
 
 ## Görev
 
-Explore subagent ile tüm src/ klasörünü tara. Özellikle:
+**Adım 0 (zorunlu):** Önce `AGENTS.md` ve `CLAUDE.md` dosyalarını oku. Bu projede Next.js 16 breaking changes var (`middleware` → `proxy` rename gibi). Eğitim verilerine güvenip "şu dosya eksik" raporu yazmadan önce mevcut dosya yapısının kasıtlı olduğunu doğrula.
+
+Ardından Explore subagent ile tüm src/ klasörünü tara. Özellikle:
 - src/lib/sheets/ — tüm dosyalar
 - src/lib/mail/ — tüm dosyalar
 - src/lib/auth/ — tüm dosyalar
