@@ -233,6 +233,8 @@ export default function BookingFlow() {
                 <RoomCard
                   key={room.roomType}
                   room={room}
+                  checkIn={search.checkIn}
+                  checkOut={search.checkOut}
                   onSelect={() => handleSelectRoom(room)}
                 />
               ))}

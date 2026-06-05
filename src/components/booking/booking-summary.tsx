@@ -1,5 +1,6 @@
 import type { SearchParams, RoomResult } from "./booking-flow";
 import { CalendarDays, Users, BedDouble, ShieldCheck } from "lucide-react";
+import { calculateStayTotal } from "@/lib/config/pricing";
 
 interface Props {
   search: SearchParams;
@@ -22,6 +23,7 @@ function formatDate(dateStr: string) {
 
 export default function BookingSummary({ search, room }: Props) {
   const nights = nightCount(search.checkIn, search.checkOut);
+  const stay = calculateStayTotal(room.roomType, search.checkIn, search.checkOut);
 
   return (
     <aside className="premium-trip-card lg:sticky lg:top-[120px]">
@@ -81,6 +83,36 @@ export default function BookingSummary({ search, room }: Props) {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Konaklama bedeli (toplam) */}
+      <div className="mt-1 mb-4 pt-4 border-t border-border">
+        {stay.total != null ? (
+          <>
+            <div className="flex justify-between items-center text-[13px] text-text mb-2">
+              <span>
+                {stay.uniform && stay.fromPrice != null
+                  ? `${stay.fromPrice.toLocaleString("tr-TR")} ₺ × ${stay.nights} gece`
+                  : `${stay.nights} gece konaklama`}
+              </span>
+              <span className="font-medium text-dark">
+                {stay.total.toLocaleString("tr-TR")} ₺
+              </span>
+            </div>
+            <div className="flex justify-between items-baseline">
+              <span className="text-[11px] uppercase tracking-[0.18em] text-text-light font-semibold">
+                Toplam (KDV dahil)
+              </span>
+              <span className="font-heading text-[1.45rem] font-semibold text-dark leading-none">
+                {stay.total.toLocaleString("tr-TR")} ₺
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="text-[13px] text-text-light leading-relaxed">
+            Bu tarihler için toplam fiyat bilgisi almak üzere lütfen bizi arayın.
+          </div>
+        )}
       </div>
 
       <div className="premium-trip-card__deposit">

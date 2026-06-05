@@ -2,14 +2,18 @@ import Image from "next/image";
 import type { RoomResult } from "./booking-flow";
 import { BedDouble, Users, Sparkles } from "lucide-react";
 import { getRoomTypeImage } from "@/lib/config/room-images";
+import { calculateStayTotal } from "@/lib/config/pricing";
 
 interface Props {
   room: RoomResult;
+  checkIn: string;
+  checkOut: string;
   onSelect: () => void;
 }
 
-export default function RoomCard({ room, onSelect }: Props) {
+export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
   const img = getRoomTypeImage(room.roomType);
+  const stay = calculateStayTotal(room.roomType, checkIn, checkOut);
 
   return (
     <article className="room-select-card group">
@@ -45,12 +49,36 @@ export default function RoomCard({ room, onSelect }: Props) {
         </p>
       </div>
       <div className="room-select-card__aside">
-        <div className="text-[10px] uppercase tracking-[0.22em] text-text-light mb-2 font-semibold">
-          Kapora
-        </div>
-        <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-5 leading-none">
-          {room.depositAmount.toLocaleString("tr-TR")} <span className="text-base font-body font-semibold">₺</span>
-        </div>
+        {stay.total != null ? (
+          <>
+            <div className="text-[10px] uppercase tracking-[0.22em] text-text-light mb-1 font-semibold">
+              Toplam · {stay.nights} gece
+            </div>
+            <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-1 leading-none">
+              {stay.total.toLocaleString("tr-TR")} <span className="text-base font-body font-semibold">₺</span>
+            </div>
+            <div className="text-[11px] text-text-light mb-3">
+              {stay.uniform && stay.fromPrice != null
+                ? `${stay.fromPrice.toLocaleString("tr-TR")} ₺ / gece · KDV dahil`
+                : "KDV dahil"}
+            </div>
+            <div className="text-[11px] text-text-light mb-4">
+              Kapora:{" "}
+              <span className="font-semibold text-dark">
+                {room.depositAmount.toLocaleString("tr-TR")} ₺
+              </span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="text-[10px] uppercase tracking-[0.22em] text-text-light mb-2 font-semibold">
+              Kapora
+            </div>
+            <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-5 leading-none">
+              {room.depositAmount.toLocaleString("tr-TR")} <span className="text-base font-body font-semibold">₺</span>
+            </div>
+          </>
+        )}
         <button
           type="button"
           onClick={onSelect}
