@@ -25,8 +25,8 @@ export default function HeroHome() {
         >
           Taşın kalbinde,
           <br />
-          <span className="text-white/[0.88] font-normal italic font-heading">
-            Ege&apos;nin üstünde.
+          <span className="text-white font-normal italic font-heading">
+            Assos&apos;un gözdesi.
           </span>
         </h1>
         <p
