@@ -6,7 +6,10 @@ import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { generateReservationId } from "@/lib/utils/ids";
 import { nightCount, isPastDate } from "@/lib/utils/dates";
 import { getMailService } from "@/lib/mail";
-import { pendingReservationEmail } from "@/lib/mail/templates";
+import {
+  pendingReservationEmail,
+  adminNotificationEmail,
+} from "@/lib/mail/templates";
 
 export async function POST(request: NextRequest) {
   try {
@@ -94,9 +97,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email
+    const mail = getMailService();
+
+    // Guest pending email
     try {
-      const mail = getMailService();
       const template = pendingReservationEmail({
         reservationId,
         firstName: data.firstName,
@@ -109,8 +113,33 @@ export async function POST(request: NextRequest) {
       });
       await mail.send({ to: data.email, ...template });
     } catch (mailErr) {
-      console.error("Failed to send email:", mailErr);
+      console.error("Failed to send guest email:", mailErr);
       // Don't fail the reservation if email fails
+    }
+
+    // Admin notification email (so the hotel can confirm after deposit arrives)
+    try {
+      const adminEmail = process.env.ADMIN_EMAIL;
+      if (adminEmail) {
+        const adminTemplate = adminNotificationEmail({
+          reservationId,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          checkIn: data.checkIn,
+          checkOut: data.checkOut,
+          nights,
+          roomLabel: result.roomLabel,
+          adults: data.adults,
+          children: data.children,
+          depositAmount: config.depositAmount,
+          notes: data.notes,
+        });
+        await mail.send({ to: adminEmail, ...adminTemplate });
+      }
+    } catch (mailErr) {
+      console.error("Failed to send admin notification:", mailErr);
     }
 
     return NextResponse.json({

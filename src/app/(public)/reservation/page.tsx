@@ -136,8 +136,8 @@ export default function ReservationPage() {
                   <Baby className="inline w-4 h-4 mr-2 text-gold" />
                   Çocuk Politikası
                 </strong>
-                0-6 yaş arası çocuklar ücretsiz. 7-12 yaş arası için ayrı
-                fiyatlandırma uygulanabilir.
+                Çocuklu konaklamalarınız için fiyat ve uygunluk bilgisi almak
+                üzere lütfen bizimle iletişime geçin.
               </div>
             </div>
 
