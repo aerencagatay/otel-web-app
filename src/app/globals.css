@@ -938,6 +938,38 @@ img {
   display: inline-block;
 }
 
+/* ===== AMBIENT SOUND TOGGLE ===== */
+.ambient-toggle {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  width: 46px;
+  height: 46px;
+  background: rgba(26, 28, 24, 0.82);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1003;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.25s, transform 0.2s;
+}
+.ambient-toggle:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-2px);
+}
+/* On mobile lift above the sticky reserve CTA; keep on the left (back-to-top is right) */
+@media (max-width: 1023px) {
+  .ambient-toggle {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    left: 16px;
+  }
+}
+
 /* ===== BACK TO TOP ===== */
 .back-to-top {
   position: fixed;

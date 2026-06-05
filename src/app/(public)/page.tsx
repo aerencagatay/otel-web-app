@@ -6,10 +6,12 @@ import AmenitiesGrid from "@/components/home/amenities-grid";
 import CtaBanner from "@/components/home/cta-banner";
 import LocationSection from "@/components/home/location-section";
 import GalleryStrip from "@/components/home/gallery-strip";
+import AmbientSound from "@/components/home/ambient-sound";
 
 export default function HomePage() {
   return (
     <>
+      <AmbientSound />
       <HeroHome />
       <StatsBar />
       <AboutSnippet />
