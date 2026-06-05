@@ -208,13 +208,18 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <Image
-                src="https://cdng.jollytur.com/files/cms/media/hotel/d022dfb6-a865-48e2-b1d6-00b90c094170-300.jpeg"
-                alt="Assos Karadut Taş Otel"
-                width={600}
-                height={480}
+              <video
                 className="w-full h-[480px] object-cover"
-              />
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="https://cdng.jollytur.com/files/cms/media/hotel/d022dfb6-a865-48e2-b1d6-00b90c094170-300.jpeg"
+                aria-label="Assos Karadut Taş Otel tanıtım videosu"
+              >
+                <source src="/img/otel-video.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </div>
@@ -290,13 +295,18 @@ export default function AboutPage() {
               </ul>
             </div>
             <div className="order-1 lg:order-2">
-              <Image
-                src="https://cdng.jollytur.com/files/cms/media/hotel/18566b59-f980-4010-8909-24f21d811b3c-300.jpeg"
-                alt="Otel Havuzu"
-                width={600}
-                height={480}
+              <video
                 className="w-full h-[480px] object-cover"
-              />
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="https://cdng.jollytur.com/files/cms/media/hotel/18566b59-f980-4010-8909-24f21d811b3c-300.jpeg"
+                aria-label="Otel havuzu videosu"
+              >
+                <source src="/img/havuz-video.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </div>
