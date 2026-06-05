@@ -109,7 +109,12 @@ export default function Footer() {
           <div>
             <h6 className="footer-heading">İletişim</h6>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 text-white/55 text-[13.5px]">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Assos+Karadut+Taş+Otel+Büyükhusun+Ayvacık"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 text-white/55 text-[13.5px] no-underline hover:text-gold transition-colors"
+              >
                 <MapPin
                   size={15}
                   className="text-gold mt-0.5 flex-shrink-0"
@@ -119,7 +124,7 @@ export default function Footer() {
                   <br />
                   Ayvacık, Çanakkale 17860
                 </span>
-              </div>
+              </a>
               <div className="flex items-start gap-3 text-white/55 text-[13.5px]">
                 <Phone size={15} className="text-gold mt-0.5 flex-shrink-0" />
                 <a
@@ -150,7 +155,7 @@ export default function Footer() {
       <div className="border-t border-white/10 py-5 mt-13 text-center text-white/35 text-[12.5px]">
         <div className="max-w-7xl mx-auto px-4">
           <span>
-            © 2024{" "}
+            © 2026{" "}
             <Link href="/" className="text-white/50 no-underline hover:text-gold">
               Assos Karadut Taş Otel
             </Link>
