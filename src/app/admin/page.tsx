@@ -249,7 +249,7 @@ export default function AdminDashboard() {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[13px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-[13px]">
                       <div className="flex items-center gap-1.5">
                         <Users size={13} className="text-gold" />
                         <span>
@@ -286,23 +286,22 @@ export default function AdminDashboard() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex gap-2 shrink-0">
+                  <div className="flex flex-col sm:flex-row gap-2 shrink-0 w-full md:w-auto">
                     {res.status === "pending" && (
                       <>
                         <button
                           onClick={() => handleConfirm(res.reservationId)}
                           disabled={actionLoading === res.reservationId}
-                          className="px-4 py-2 bg-green-600 text-white text-[11px] tracking-wide uppercase font-bold hover:bg-green-700 transition-colors disabled:opacity-50"
+                          className="flex-1 md:flex-none px-5 py-3 bg-green-600 text-white text-[12px] tracking-wide uppercase font-bold hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-1.5 min-h-[44px]"
                         >
                           {actionLoading === res.reservationId ? (
                             <Loader2
-                              size={14}
-                              className="animate-spin inline"
+                              size={15}
+                              className="animate-spin"
                             />
                           ) : (
                             <CheckCircle
-                              size={14}
-                              className="inline mr-1"
+                              size={15}
                             />
                           )}
                           Onayla
@@ -310,9 +309,9 @@ export default function AdminDashboard() {
                         <button
                           onClick={() => handleCancel(res.reservationId)}
                           disabled={actionLoading === res.reservationId}
-                          className="px-4 py-2 bg-red-600 text-white text-[11px] tracking-wide uppercase font-bold hover:bg-red-700 transition-colors disabled:opacity-50"
+                          className="flex-1 md:flex-none px-5 py-3 bg-red-600 text-white text-[12px] tracking-wide uppercase font-bold hover:bg-red-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-1.5 min-h-[44px]"
                         >
-                          <XCircle size={14} className="inline mr-1" />
+                          <XCircle size={15} />
                           İptal
                         </button>
                       </>
@@ -321,9 +320,9 @@ export default function AdminDashboard() {
                       <button
                         onClick={() => handleCancel(res.reservationId)}
                         disabled={actionLoading === res.reservationId}
-                        className="px-4 py-2 border border-red-300 text-red-600 text-[11px] tracking-wide uppercase font-bold hover:bg-red-50 transition-colors disabled:opacity-50"
+                        className="flex-1 md:flex-none px-5 py-3 border border-red-300 text-red-600 text-[12px] tracking-wide uppercase font-bold hover:bg-red-50 transition-colors disabled:opacity-50 flex items-center justify-center gap-1.5 min-h-[44px]"
                       >
-                        <XCircle size={14} className="inline mr-1" />
+                        <XCircle size={15} />
                         İptal Et
                       </button>
                     )}

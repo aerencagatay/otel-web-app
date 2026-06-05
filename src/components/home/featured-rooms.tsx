@@ -61,7 +61,7 @@ export default function FeaturedRooms() {
               key={i}
               href="/reservation"
               className={`room-card group block ${room.wide ? "lg:col-span-7" : "lg:col-span-5"}`}
-              style={{ height: room.wide ? "min(520px, 70vh)" : "min(440px, 58vh)" }}
+              style={{ height: room.wide ? "clamp(340px, 50vw, 520px)" : "clamp(300px, 42vw, 440px)" }}
             >
               <Image
                 src={room.image}

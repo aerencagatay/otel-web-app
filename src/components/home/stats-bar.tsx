@@ -13,7 +13,7 @@ export default function StatsBar() {
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="text-center text-white py-4 px-3 md:border-r md:border-white/10 md:last:border-r-0 [&:nth-child(2)]:max-md:border-r-0"
+              className="text-center text-white py-4 px-3 border-b border-white/10 md:border-b-0 md:border-r md:last:border-r-0 last:border-b-0 [&:nth-child(odd)]:max-md:border-r [&:nth-child(odd)]:max-md:border-white/10"
             >
               <span className="stat-number">{stat.value}</span>
               <span className="stat-label">{stat.label}</span>

@@ -63,7 +63,7 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <button
-            className={`lg:hidden p-1 ${
+            className={`lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center ${
               scrolled || menuOpen ? "text-dark" : "text-white"
             }`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -80,7 +80,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block py-2 text-dark text-[11.5px] tracking-[1.8px] uppercase font-bold no-underline ${
+                className={`block py-3 text-dark text-[11.5px] tracking-[1.8px] uppercase font-bold no-underline ${
                   pathname === link.href ? "text-gold" : ""
                 }`}
                 onClick={() => setMenuOpen(false)}

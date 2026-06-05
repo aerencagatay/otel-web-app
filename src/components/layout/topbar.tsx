@@ -7,7 +7,7 @@ export default function Topbar() {
         <div className="flex justify-between items-center">
           <p className="mb-0 text-white text-[12.5px]">
             <Phone className="inline w-3 h-3 mr-2 text-gold" />
-            Rezervasyon için bizi arayın:&nbsp;
+            <span className="hidden sm:inline">Rezervasyon için bizi arayın:&nbsp;</span>
             <a
               href="tel:+905010913417"
               className="text-white no-underline font-semibold"
@@ -15,7 +15,7 @@ export default function Topbar() {
               +90 501 091 34 17
             </a>
           </p>
-          <p className="mb-0 text-[12px]">
+          <p className="hidden sm:block mb-0 text-[12px]">
             <span className="text-white mr-1">TR</span>
             <span className="text-gray-500">|</span>
             <span className="text-white ml-1">EN</span>

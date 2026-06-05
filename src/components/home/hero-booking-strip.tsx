@@ -54,13 +54,13 @@ export default function HeroBookingStrip() {
           <h2 className="hero-booking-title m-0">
             Konaklama tarihleri
           </h2>
-          <p className="text-[13px] text-text-light mt-3 mb-0 leading-relaxed">
+          <p className="hidden xl:block text-[13px] text-text-light mt-3 mb-0 leading-relaxed">
             Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır.
           </p>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex-1 w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-3 items-end"
+          className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 lg:gap-3 items-end"
         >
           <div className="col-span-1">
             <label className="form-label flex items-center gap-1.5">
@@ -118,7 +118,7 @@ export default function HeroBookingStrip() {
               ))}
             </select>
           </div>
-          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <label className="form-label">Oda</label>
             <select
               className="form-input"
@@ -132,7 +132,7 @@ export default function HeroBookingStrip() {
               ))}
             </select>
           </div>
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <button type="submit" className="btn-cta-solid w-full py-3.5 border-0">
               Müsaitlik
               <ArrowRight className="w-4 h-4" strokeWidth={2} />

@@ -721,7 +721,7 @@ img {
 /* ===== ROOM LIST CARD (rooms page) ===== */
 .room-list-card {
   display: grid;
-  grid-template-columns: 480px 1fr;
+  grid-template-columns: minmax(0, 480px) 1fr;
   min-height: 280px;
   border: 1px solid var(--color-border);
   overflow: hidden;
@@ -1306,11 +1306,17 @@ img {
   .hero-home { min-height: 100svh; }
   .page-hero { height: 280px; }
   .gallery-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  /* O3: prevent iOS Safari auto-zoom on focus (requires font-size >= 16px on mobile) */
+  .form-input { font-size: 16px; }
 }
 
 @media (max-width: 1023px) {
   .back-to-top {
-    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    /* D5: sticky-book-cta already absorbs safe-area in its own padding;
+       adding it again here caused double-offset on notched iPhones.
+       72px clears the CTA bar on notch-less devices; the CTA bar's own
+       growth on notched devices naturally pushes content up enough. */
+    bottom: 72px;
   }
 }
 

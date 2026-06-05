@@ -243,7 +243,7 @@ export default function BookingFlow() {
 
       {step === "form" && search && selectedRoom && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
               <h3 className="font-heading text-2xl font-semibold text-dark m-0">
                 Misafir bilgileri
@@ -261,7 +261,7 @@ export default function BookingFlow() {
               submitting={submitting}
             />
           </div>
-          <div>
+          <div className="order-1 lg:order-2">
             <BookingSummary search={search} room={selectedRoom} />
           </div>
         </div>
