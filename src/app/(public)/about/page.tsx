@@ -110,38 +110,14 @@ const attractions = [
 ];
 
 const galleryImages = [
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-    label: "Deluxe Tam Deniz Manzaralı",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/room/2dc440f7-fe20-42bc-98c7-e796e41ea0a6-600.jpeg",
-    label: "Oda Detay",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-    label: "Traditional Kısmi Deniz Manzaralı",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-    label: "Aile Suit Deniz Manzaralı",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/d022dfb6-a865-48e2-b1d6-00b90c094170-300.jpeg",
-    label: "Otel Genel",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/18566b59-f980-4010-8909-24f21d811b3c-300.jpeg",
-    label: "Açık Havuz",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/room/e95a6f29-0b97-4617-9ede-37e2d0ed9f00-300.jpeg",
-    label: "Oda İçi",
-  },
-  {
-    src: "https://cdng.jollytur.com/files/cms/media/hotel/room/412c6b53-32d0-428a-aecb-089d4da3cd45-600.jpeg",
-    label: "Aile Suit Deniz Manzaralı",
-  },
+  { src: "/img/dis-cephe.jpg", label: "Dış Cephe" },
+  { src: "/img/balkon.JPG", label: "Balkon" },
+  { src: "/img/bahce.webp", label: "Bahçe" },
+  { src: "/img/havuz.webp", label: "Havuz" },
+  { src: "/img/hero.JPG", label: "Deniz Manzarası" },
+  { src: "/img/hotel.JPG", label: "Otel" },
+  { src: "/img/hotel-2.JPG", label: "Taş Mimari" },
+  { src: "/img/aile_odası.webp", label: "Aile Suit Deniz Manzaralı" },
 ];
 
 export default function AboutPage() {
@@ -389,6 +365,18 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Assos+Karadut+Taş+Otel+Büyükhusun+Ayvacık"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold no-underline inline-flex items-center justify-center gap-2"
+            >
+              <Star size={15} className="fill-current" />
+              Google&apos;da Tüm Yorumları Gör
+            </a>
           </div>
         </div>
       </section>
