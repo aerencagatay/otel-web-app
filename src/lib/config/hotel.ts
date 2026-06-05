@@ -10,3 +10,10 @@ export const HOTEL = {
   iban: "TR96 0001 5001 5800 7314 2776 85",
   ibanHolder: "NÜKHET DİLARA KAYABALI",
 } as const;
+
+/**
+ * How long a pending (unconfirmed) reservation is held before it is
+ * automatically cancelled and its dates freed. Used by the expiry cron and
+ * shown in guest-facing copy (keep them in sync via this single source).
+ */
+export const RESERVATION_HOLD_HOURS = 3;

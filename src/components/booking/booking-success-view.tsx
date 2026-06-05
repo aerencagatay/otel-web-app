@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2, Phone, ArrowLeft, Mail, Clock } from "lucide-react";
-import { HOTEL } from "@/lib/config/hotel";
+import { HOTEL, RESERVATION_HOLD_HOURS } from "@/lib/config/hotel";
 
 export default function BookingSuccessView() {
   const searchParams = useSearchParams();
@@ -50,8 +50,9 @@ export default function BookingSuccessView() {
 
             <p className="text-[15px] text-text leading-relaxed mb-8 text-left">
               Özet ve talimatlar e-posta adresinize gönderilmiştir.{" "}
-              <strong className="text-dark">24 saat içinde</strong> aşağıdaki IBAN&apos;a kapora
-              göndermeniz gerekir. Havale açıklamasına rezervasyon numaranızı yazın.
+              <strong className="text-dark">{RESERVATION_HOLD_HOURS} saat içinde</strong> aşağıdaki
+              IBAN&apos;a kapora göndermeniz gerekir. Havale açıklamasına rezervasyon numaranızı yazın.
+              Bu süre içinde onaylanmazsa rezervasyon otomatik iptal olur.
             </p>
 
             <div className="text-left border border-border bg-white/80 p-6 mb-6 rounded-sm">

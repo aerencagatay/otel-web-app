@@ -1,0 +1,21 @@
+name: Expire pending reservations
+
+# Vercel Hobby cron only runs once a day, so we trigger the expiry endpoint
+# from GitHub Actions every ~15 minutes instead. The endpoint itself decides
+# what is actually expired (older than RESERVATION_HOLD_HOURS), so the exact
+# firing time does not need to be precise.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {} # allow manual trigger from the Actions tab
+
+jobs:
+  expire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call expire-reservations endpoint
+        run: |
+          curl -fsS -X GET \
+            "https://www.karaduttasotel.com/api/cron/expire-reservations" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"

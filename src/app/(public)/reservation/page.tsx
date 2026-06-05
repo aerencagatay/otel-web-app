@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import BookingFlow from "@/components/booking/booking-flow";
+import { RESERVATION_HOLD_HOURS } from "@/lib/config/hotel";
 import {
   Phone,
   Mail,
@@ -247,7 +248,7 @@ function FaqAccordion() {
     },
     {
       q: "Kapora ne zaman ödenmeli?",
-      a: "Rezervasyon oluşturduktan sonra 24 saat içinde kapora ödemesini IBAN'a yapmanız beklenir. Ödeme onaylandıktan sonra rezervasyonunuz kesinleşir.",
+      a: `Rezervasyon oluşturduktan sonra ${RESERVATION_HOLD_HOURS} saat içinde kapora ödemesini IBAN'a yapmanız beklenir. Bu süre içinde onaylanmazsa rezervasyon talebiniz otomatik iptal edilir. Ödeme onaylandıktan sonra rezervasyonunuz kesinleşir.`,
     },
   ];
 

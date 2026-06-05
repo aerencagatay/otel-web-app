@@ -1,4 +1,4 @@
-import { HOTEL } from "../config/hotel";
+import { HOTEL, RESERVATION_HOLD_HOURS } from "../config/hotel";
 import { formatDateTR } from "../utils/dates";
 
 export function pendingReservationEmail(data: {
@@ -21,7 +21,7 @@ export function pendingReservationEmail(data: {
         <div style="padding:32px;border:1px solid #e8e2d9;border-top:none;">
           <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">Rezervasyonunuz Alındı</h2>
           <p>Sayın ${data.firstName} ${data.lastName},</p>
-          <p>Rezervasyon talebiniz başarıyla oluşturulmuştur. Kesinleşmesi için aşağıdaki kapora ödemesini <strong>24 saat içinde</strong> yapmanız gerekmektedir.</p>
+          <p>Rezervasyon talebiniz başarıyla oluşturulmuştur. Kesinleşmesi için aşağıdaki kapora ödemesini <strong>${RESERVATION_HOLD_HOURS} saat içinde</strong> yapmanız gerekmektedir. Bu süre içinde kapora onaylanmazsa rezervasyonunuz otomatik olarak iptal edilir.</p>
 
           <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
             <table style="width:100%;font-size:14px;">
@@ -45,6 +45,33 @@ export function pendingReservationEmail(data: {
 
           <p style="color:#c00;font-size:13px;">⚠ Havale açıklamasına mutlaka rezervasyon numaranızı yazınız.</p>
 
+          <p>Sorularınız için: <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;">${HOTEL.phone}</a></p>
+        </div>
+        <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
+          ${HOTEL.name} · ${HOTEL.address}
+        </div>
+      </div>
+    `,
+  };
+}
+
+export function expiredReservationEmail(data: {
+  reservationId: string;
+  firstName: string;
+  lastName: string;
+}): { subject: string; html: string } {
+  return {
+    subject: `Rezervasyon talebiniz iptal edildi - ${data.reservationId} | ${HOTEL.name}`,
+    html: `
+      <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
+        <div style="background:#1a1a1a;padding:32px;text-align:center;">
+          <h1 style="color:#e4a00e;font-family:'Playfair Display',Georgia,serif;margin:0;">${HOTEL.name}</h1>
+        </div>
+        <div style="padding:32px;border:1px solid #e8e2d9;border-top:none;">
+          <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">Rezervasyon Talebiniz İptal Edildi</h2>
+          <p>Sayın ${data.firstName} ${data.lastName},</p>
+          <p><strong>${data.reservationId}</strong> numaralı rezervasyon talebiniz, ${RESERVATION_HOLD_HOURS} saat içinde kapora ödemesi onaylanmadığı için otomatik olarak iptal edilmiştir. Seçtiğiniz tarihler yeniden müsait hale gelmiştir.</p>
+          <p>Konaklamak isterseniz tekrar rezervasyon yapabilir veya doğrudan bizimle iletişime geçebilirsiniz.</p>
           <p>Sorularınız için: <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;">${HOTEL.phone}</a></p>
         </div>
         <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
