@@ -24,6 +24,8 @@ function formatDate(dateStr: string) {
 export default function BookingSummary({ search, room }: Props) {
   const nights = nightCount(search.checkIn, search.checkOut);
   const stay = calculateStayTotal(room.roomType, search.checkIn, search.checkOut);
+  // Deposit (kapora) = one night's price for the check-in season.
+  const deposit = stay.fromPrice ?? room.depositAmount;
 
   return (
     <aside className="premium-trip-card lg:sticky lg:top-[120px]">
@@ -116,9 +118,9 @@ export default function BookingSummary({ search, room }: Props) {
       </div>
 
       <div className="premium-trip-card__deposit">
-        <div className="premium-trip-card__deposit-label">Ödenecek kapora</div>
+        <div className="premium-trip-card__deposit-label">Ödenecek kapora (1 gecelik ücret)</div>
         <div className="premium-trip-card__deposit-amount">
-          {room.depositAmount.toLocaleString("tr-TR")} ₺
+          {deposit.toLocaleString("tr-TR")} ₺
         </div>
       </div>
 

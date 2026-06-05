@@ -26,6 +26,17 @@ export const ROOM_PRICING: Record<string, Record<string, number>> = {
   },
 };
 
+/**
+ * Nightly price for a room type on a given date (by its month), or null if
+ * that month has no defined price. The deposit (kapora) equals one night,
+ * so this is also the deposit amount for a stay starting on `date`.
+ */
+export function getNightlyPrice(roomType: string, date: string): number | null {
+  const table = ROOM_PRICING[roomType];
+  if (!table) return null;
+  return table[date.substring(0, 7)] ?? null;
+}
+
 export interface StayPrice {
   nights: number;
   /** Total stay price, or null if any night's month has no defined price. */

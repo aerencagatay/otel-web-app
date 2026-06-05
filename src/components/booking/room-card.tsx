@@ -63,9 +63,9 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
                 : "KDV dahil"}
             </div>
             <div className="text-[11px] text-text-light mb-4">
-              Kapora:{" "}
+              Kapora (1 gece):{" "}
               <span className="font-semibold text-dark">
-                {room.depositAmount.toLocaleString("tr-TR")} ₺
+                {(stay.fromPrice ?? room.depositAmount).toLocaleString("tr-TR")} ₺
               </span>
             </div>
           </>

@@ -3,6 +3,7 @@ import { reservationSchema } from "@/lib/utils/validation";
 import { writePendingReservation } from "@/lib/sheets/reservations";
 import type { ReservationLog } from "@/lib/sheets/log";
 import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
+import { getNightlyPrice } from "@/lib/config/pricing";
 import { generateReservationId } from "@/lib/utils/ids";
 import { nightCount, isPastDate } from "@/lib/utils/dates";
 import { getMailService } from "@/lib/mail";
@@ -52,6 +53,10 @@ export async function POST(request: NextRequest) {
     // writePendingReservation reads the cell back and checks for this id).
     const reservationId = generateReservationId();
     const nights = nightCount(data.checkIn, data.checkOut);
+    // Deposit (kapora) = one night's price for the check-in season; falls
+    // back to the room's configured amount for months without set pricing.
+    const deposit =
+      getNightlyPrice(data.roomType, data.checkIn) ?? config.depositAmount;
     const guestName = `${data.firstName} ${data.lastName}`;
 
     const log: ReservationLog = {
@@ -68,7 +73,7 @@ export async function POST(request: NextRequest) {
       phone: data.phone,
       adults: data.adults,
       children: data.children,
-      depositAmount: config.depositAmount,
+      depositAmount: deposit,
       notes: data.notes || "",
       createdAt: new Date().toISOString(),
       confirmedAt: "",
@@ -109,7 +114,7 @@ export async function POST(request: NextRequest) {
         checkOut: data.checkOut,
         nights,
         roomLabel: result.roomLabel,
-        depositAmount: config.depositAmount,
+        depositAmount: deposit,
       });
       await mail.send({ to: data.email, ...template });
     } catch (mailErr) {
@@ -133,7 +138,7 @@ export async function POST(request: NextRequest) {
           roomLabel: result.roomLabel,
           adults: data.adults,
           children: data.children,
-          depositAmount: config.depositAmount,
+          depositAmount: deposit,
           notes: data.notes,
         });
         await mail.send({ to: adminEmail, ...adminTemplate });
