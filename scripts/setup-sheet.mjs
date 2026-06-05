@@ -29,14 +29,17 @@ import { google } from "googleapis";
 //   "1+1 Premium"     → premium_family
 //   "1+1 5 kisi"      → premium_family
 //
-// Total 34 rooms — adjust the per-type counts as you like.
+// Total 28 rooms. Labels must contain the substrings room-types.ts matches:
+//   "1+0 Deluxe"     → deluxe_sea_view   (Deluxe Tam Deniz Manzaralı)
+//   "1+0 Traditional"→ traditional_room  (Traditional Kısmi Deniz Manzaralı)
+//   "1+1 Aile Suit"  → premium_family    (Aile Suit Deniz Manzaralı)
 const ROOMS = [
-  // Deluxe Deniz Manzaralı (Panaromic)
-  ...range(1, 12).map((n) => `1+0 Panaromic ${100 + n}`),
-  // Traditional
-  ...range(1, 12).map((n) => `1+0 Traditional ${200 + n}`),
-  // 1+1 Premium (Aile)
-  ...range(1, 10).map((n) => `1+1 Premium ${300 + n}`),
+  // Deluxe Tam Deniz Manzaralı — 4
+  ...range(1, 4).map((n) => `1+0 Deluxe ${100 + n}`),
+  // Traditional Kısmi Deniz Manzaralı — 14
+  ...range(1, 14).map((n) => `1+0 Traditional ${200 + n}`),
+  // Aile Suit Deniz Manzaralı — 10
+  ...range(1, 10).map((n) => `1+1 Aile Suit ${300 + n}`),
 ];
 
 // How many months to pre-create (current + N-1)
@@ -113,36 +116,56 @@ if (existingSheetId) {
 
   const meta = await sheets.spreadsheets.get({ spreadsheetId });
   url = meta.data.spreadsheetUrl;
+
+  const existing = new Map();
   for (const s of meta.data.sheets ?? []) {
     if (s.properties?.title != null && typeof s.properties.sheetId === "number") {
-      gidByTitle.set(s.properties.title, s.properties.sheetId);
+      existing.set(s.properties.title, s.properties.sheetId);
     }
   }
 
-  // Add only the tabs that don't exist yet
-  const toAdd = targetTabs.filter((t) => !gidByTitle.has(t));
-  if (toAdd.length) {
-    console.log(`Adding ${toAdd.length} missing tab(s)…`);
-    const addReqs = toAdd.map((title) => ({
-      addSheet: {
-        properties: {
-          title,
-          ...(title === "Web_Reservations" ? {} : { gridProperties: monthGrid }),
-        },
-      },
-    }));
-    const addRes = await sheets.spreadsheets.batchUpdate({
+  const monthlyTitles = months.map((m) => m.title);
+
+  // Clean rebuild: delete existing monthly tabs so no stale rooms/marks remain.
+  // Web_Reservations (the log) is preserved.
+  const deleteReqs = monthlyTitles
+    .filter((t) => existing.has(t))
+    .map((t) => ({ deleteSheet: { sheetId: existing.get(t) } }));
+  if (deleteReqs.length) {
+    console.log(`Rebuilding: deleting ${deleteReqs.length} existing monthly tab(s)…`);
+    await sheets.spreadsheets.batchUpdate({
       spreadsheetId,
-      requestBody: { requests: addReqs },
+      requestBody: { requests: deleteReqs },
     });
-    for (const reply of addRes.data.replies ?? []) {
-      const p = reply.addSheet?.properties;
-      if (p?.title != null && typeof p.sheetId === "number") {
-        gidByTitle.set(p.title, p.sheetId);
-      }
+  }
+
+  // Re-add all monthly tabs fresh (+ Web_Reservations only if missing).
+  const toAdd = [
+    ...(existing.has("Web_Reservations") ? [] : ["Web_Reservations"]),
+    ...monthlyTitles,
+  ];
+  console.log(`Adding ${toAdd.length} tab(s)…`);
+  const addReqs = toAdd.map((title) => ({
+    addSheet: {
+      properties: {
+        title,
+        ...(title === "Web_Reservations" ? {} : { gridProperties: monthGrid }),
+      },
+    },
+  }));
+  const addRes = await sheets.spreadsheets.batchUpdate({
+    spreadsheetId,
+    requestBody: { requests: addReqs },
+  });
+  for (const reply of addRes.data.replies ?? []) {
+    const p = reply.addSheet?.properties;
+    if (p?.title != null && typeof p.sheetId === "number") {
+      gidByTitle.set(p.title, p.sheetId);
     }
-  } else {
-    console.log("All target tabs already present — repopulating headers.");
+  }
+  // Keep the existing Web_Reservations gid if we didn't recreate it.
+  if (existing.has("Web_Reservations") && !gidByTitle.has("Web_Reservations")) {
+    gidByTitle.set("Web_Reservations", existing.get("Web_Reservations"));
   }
 } else {
   // ---- Create a brand-new spreadsheet (needs Drive API) -------------------

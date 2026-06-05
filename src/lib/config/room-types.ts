@@ -7,20 +7,20 @@ export interface RoomTypeConfig {
 
 export const ROOM_TYPE_MAP: Record<string, RoomTypeConfig> = {
   deluxe_sea_view: {
-    publicLabel: "Deluxe Deniz Manzaralı",
-    sheetLabels: ["1+0 Panaromic"],
+    publicLabel: "Deluxe Tam Deniz Manzaralı",
+    sheetLabels: ["1+0 Deluxe"],
     maxGuests: 2,
     depositAmount: 5000,
   },
   traditional_room: {
-    publicLabel: "Traditional Oda",
+    publicLabel: "Traditional Kısmi Deniz Manzaralı",
     sheetLabels: ["1+0 Traditional"],
     maxGuests: 2,
     depositAmount: 5000,
   },
   premium_family: {
-    publicLabel: "1+1 Premium",
-    sheetLabels: ["1+1 Premium", "1+1 5 kisi"],
+    publicLabel: "Aile Suit Deniz Manzaralı",
+    sheetLabels: ["1+1 Aile Suit"],
     maxGuests: 4,
     depositAmount: 7000,
   },

@@ -4,8 +4,8 @@ import { Ruler, Users, Waves, Wifi } from "lucide-react";
 
 const rooms = [
   {
-    name: "Deluxe Deniz Manzaralı",
-    price: "3.500 ₺'den / gece",
+    name: "Deluxe Tam Deniz Manzaralı",
+    price: "Fiyat için iletişim",
     image:
       "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
     features: [
@@ -16,7 +16,7 @@ const rooms = [
     wide: true,
   },
   {
-    name: "Deluxe Kısmi Deniz Manzaralı",
+    name: "Traditional Kısmi Deniz Manzaralı",
     price: "Fiyat için iletişim",
     image:
       "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
@@ -28,7 +28,7 @@ const rooms = [
     wide: false,
   },
   {
-    name: "Aile Odası",
+    name: "Aile Suit Deniz Manzaralı",
     price: "Fiyat için iletişim",
     image:
       "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",

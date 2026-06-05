@@ -37,7 +37,7 @@ export default function AboutSnippet() {
             </h2>
             <div className="divider-gold" />
             <p className="text-[15px] leading-[1.85] text-text mb-4">
-              34 oda kapasitesi ile Büyükhusun Köyü&apos;nde, Assos&apos;un
+              28 oda kapasitesi ile Büyükhusun Köyü&apos;nde, Assos&apos;un
               eşsiz doğası içinde konumlanan otelimiz; kahvaltı dahil ve yarım
               pansiyon seçenekleriyle misafirlerine hizmet vermektedir.
               Geleneksel taş mimarisinin sıcaklığı, modern konfor anlayışıyla

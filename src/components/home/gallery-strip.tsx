@@ -10,8 +10,8 @@ const items = [
   },
   {
     src: "/img/aile_odası.webp",
-    alt: "Aile odası",
-    title: "Aile odası",
+    alt: "Aile Suit",
+    title: "Aile Suit",
     desc: "Geniş alan",
     mosaicClass: "gallery-mosaic__a",
   },

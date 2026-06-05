@@ -6,9 +6,9 @@ import { CalendarRange, Users, ArrowRight } from "lucide-react";
 
 const roomTypes = [
   { value: "", label: "Tüm tipler" },
-  { value: "deluxe_sea_view", label: "Deluxe deniz" },
-  { value: "traditional_room", label: "Traditional" },
-  { value: "premium_family", label: "Aile" },
+  { value: "deluxe_sea_view", label: "Deluxe tam deniz" },
+  { value: "traditional_room", label: "Traditional kısmi" },
+  { value: "premium_family", label: "Aile suit" },
 ];
 
 function fmt(d: Date) {

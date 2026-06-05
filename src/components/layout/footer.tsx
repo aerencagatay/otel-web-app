@@ -89,9 +89,9 @@ export default function Footer() {
             <h6 className="footer-heading">Odalar</h6>
             <ul className="list-none p-0 space-y-2.5">
               {[
-                "Deluxe Deniz Manzaralı",
-                "Deluxe Kısmi Manzaralı",
-                "Aile Odası",
+                "Deluxe Tam Deniz Manzaralı",
+                "Traditional Kısmi Deniz Manzaralı",
+                "Aile Suit Deniz Manzaralı",
               ].map((room) => (
                 <li key={room}>
                   <Link

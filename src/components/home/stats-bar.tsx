@@ -1,8 +1,8 @@
 const stats = [
   { value: "9.6", label: "Misafir puanı / 10" },
-  { value: "34", label: "Butik oda" },
+  { value: "28", label: "Butik oda" },
   { value: "5 km", label: "Kadırga koyu" },
-  { value: "3.500 ₺", label: "Gece başlangıç" },
+  { value: "7.200 ₺", label: "Gece başlangıç" },
 ];
 
 export default function StatsBar() {

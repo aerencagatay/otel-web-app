@@ -28,14 +28,14 @@ import {
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "Assos Karadut Taş Otel hakkında bilgi edinin. 34 oda, A La Carte restoran, açık havuz, Kadırga Koyu'na 5 km. 9.6/10 misafir puanı.",
+    "Assos Karadut Taş Otel hakkında bilgi edinin. 28 oda, A La Carte restoran, açık havuz, Kadırga Koyu'na 5 km. 9.6/10 misafir puanı.",
 };
 
 const ratingStats = [
   { label: "ZenHotels · Olağanüstü", value: "9.6" },
   { label: "TripAdvisor Puanı", value: "5/5" },
   { label: "Büyükhusun'da Sıralama", value: "#2" },
-  { label: "Özenle Tasarlanmış Oda", value: "34" },
+  { label: "Özenle Tasarlanmış Oda", value: "28" },
 ];
 
 const reviews = [
@@ -112,7 +112,7 @@ const attractions = [
 const galleryImages = [
   {
     src: "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-    label: "Deluxe Deniz Manzaralı",
+    label: "Deluxe Tam Deniz Manzaralı",
   },
   {
     src: "https://cdng.jollytur.com/files/cms/media/hotel/room/2dc440f7-fe20-42bc-98c7-e796e41ea0a6-600.jpeg",
@@ -120,11 +120,11 @@ const galleryImages = [
   },
   {
     src: "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-    label: "Kısmi Deniz Manzaralı",
+    label: "Traditional Kısmi Deniz Manzaralı",
   },
   {
     src: "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-    label: "Aile Odası",
+    label: "Aile Suit Deniz Manzaralı",
   },
   {
     src: "https://cdng.jollytur.com/files/cms/media/hotel/d022dfb6-a865-48e2-b1d6-00b90c094170-300.jpeg",
@@ -140,7 +140,7 @@ const galleryImages = [
   },
   {
     src: "https://cdng.jollytur.com/files/cms/media/hotel/room/412c6b53-32d0-428a-aecb-089d4da3cd45-600.jpeg",
-    label: "Aile Odası",
+    label: "Aile Suit Deniz Manzaralı",
   },
 ];
 
@@ -186,7 +186,7 @@ export default function AboutPage() {
               <p className="text-[15px] leading-[1.9]">
                 Assos Karadut Taş Otel, Büyükhusun Köyü&apos;nün sessiz
                 güzelliğinde, Ege&apos;nin mavisine açılan eşsiz bir konumda
-                yükseliyor. 34 odası ile kahvaltı dahil ve yarım pansiyon
+                yükseliyor. 28 odası ile kahvaltı dahil ve yarım pansiyon
                 seçenekleri sunan otelimiz, geleneksel taş mimarisini modern
                 konfor anlayışıyla harmanlıyor.
               </p>
@@ -400,11 +400,14 @@ export default function AboutPage() {
             <div className="lg:col-span-5">
               <Image
                 src="/img/chairperson.JPG"
-                alt="Otel Yönetimi"
+                alt="Bilgi İşlem Sorumlumuz"
                 width={500}
                 height={480}
                 className="w-full h-[480px] object-cover"
               />
+              <p className="text-center text-[11px] tracking-[0.25em] uppercase text-gold-dark font-semibold mt-3">
+                Bilgi İşlem Sorumlumuz
+              </p>
             </div>
             <div className="lg:col-span-7">
               <span className="eyebrow">Ekibimiz</span>

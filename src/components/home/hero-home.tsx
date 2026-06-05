@@ -32,7 +32,7 @@ export default function HeroHome() {
         <p
           className="type-lede text-white/80 max-w-[34rem] mx-auto mb-2 font-normal animate-fade-up animate-fade-up-delay-2"
         >
-          Butik konaklama · 34 oda · havuz · A La Carte · Kadırga&apos;ya dakikalar
+          Butik konaklama · 28 oda · havuz · A La Carte · Kadırga&apos;ya dakikalar
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mt-10 animate-fade-up animate-fade-up-delay-2 max-w-md sm:max-w-none mx-auto">
           <Link href="/reservation" className="btn-cta-solid no-underline text-center">

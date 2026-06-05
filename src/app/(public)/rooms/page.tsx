@@ -26,13 +26,13 @@ import {
 export const metadata: Metadata = {
   title: "Odalarımız",
   description:
-    "Assos Karadut Taş Otel oda tipleri: Deluxe Deniz Manzaralı, Deluxe Kısmi Deniz Manzaralı ve Aile Odası. Tüm odalarda klima, TV, Wi-Fi, minibar.",
+    "Assos Karadut Taş Otel oda tipleri: Deluxe Tam Deniz Manzaralı, Traditional Kısmi Deniz Manzaralı ve Aile Suit Deniz Manzaralı. Tüm odalarda klima, TV, Wi-Fi, minibar.",
 };
 
 const rooms = [
   {
-    name: "Deluxe Oda Deniz Manzaralı",
-    price: "3.500 ₺'den",
+    name: "Deluxe Tam Deniz Manzaralı",
+    price: "Fiyat için arayın",
     priceSub: "/ Gece · Kahvaltı Dahil",
     desc: "Ege'nin muhteşem mavisine açılan pencereleriyle sabahları deniz manzarasıyla uyanacağınız odamız. 24 m² alanda modern konfor anlayışıyla tasarlanmış, klima ile tüm mevsimlerde konforlu bir konaklama sunmaktadır.",
     mainImage:
@@ -55,7 +55,7 @@ const rooms = [
     layout: "image-left",
   },
   {
-    name: "Deluxe Oda Kısmi Deniz Manzaralı",
+    name: "Traditional Kısmi Deniz Manzaralı",
     price: "Fiyat için arayın",
     priceSub: "/ Gece · Kahvaltı Dahil",
     desc: "22 m² alana sahip bu odamız, kısmen Ege manzarası sunarken tüm standart konfor olanaklarına sahiptir. Klima, TV ve minibarıyla rahat bir konaklama arayan misafirlerimiz için ideal bir seçimdir.",
@@ -79,7 +79,7 @@ const rooms = [
     layout: "image-right",
   },
   {
-    name: "Aile Odası",
+    name: "Aile Suit Deniz Manzaralı",
     price: "Fiyat için arayın",
     priceSub: "/ Gece · Kahvaltı Dahil",
     desc: "44 m² ile otelimizin en geniş odası. Ailenizle birlikte geniş ve rahat bir tatil için tasarlanan bu odamız, 4 kişiye kadar konaklama kapasitesine sahiptir. Ayrı oturma alanı ve açık havada yemek masasıyla tam bir aile tatili konforunu sunar.",
@@ -131,7 +131,7 @@ export default function RoomsPage() {
       {/* Intro */}
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <span className="eyebrow">34 Oda · 3 Tip</span>
+          <span className="eyebrow">28 Oda · 3 Tip</span>
           <h2>Konforun Taştaki Adresi</h2>
           <div className="divider-gold-center" />
           <p className="max-w-[640px] mx-auto text-[15px] text-text-light">
@@ -261,7 +261,7 @@ export default function RoomsPage() {
             {[
               { icon: LogIn, label: "Giriş Saati", value: "14:00" },
               { icon: LogOut, label: "Çıkış Saati", value: "12:00" },
-              { icon: BedDouble, label: "Toplam Oda", value: "34" },
+              { icon: BedDouble, label: "Toplam Oda", value: "28" },
             ].map((item, i) => (
               <div key={i} className="p-8 border border-border">
                 <item.icon size={24} className="text-gold mx-auto mb-3" />

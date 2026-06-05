@@ -12,9 +12,9 @@ interface Props {
 
 const roomTypes = [
   { value: "", label: "Tüm Oda Tipleri" },
-  { value: "deluxe_sea_view", label: "Deluxe Deniz Manzaralı" },
-  { value: "traditional_room", label: "Traditional Oda" },
-  { value: "premium_family", label: "1+1 Premium (Aile)" },
+  { value: "deluxe_sea_view", label: "Deluxe Tam Deniz Manzaralı" },
+  { value: "traditional_room", label: "Traditional Kısmi Deniz Manzaralı" },
+  { value: "premium_family", label: "Aile Suit Deniz Manzaralı" },
 ];
 
 export default function AvailabilitySearch({
