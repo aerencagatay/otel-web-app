@@ -7,7 +7,6 @@ export const HOTEL = {
   checkOut: "12:00",
   totalRooms: 34,
   website: "https://karaduttasotel.com",
-  iban: "TR__ ____ ____ ____ ____ ____ __", // To be filled by hotel
-  ibanHolder: "Karadut Taş Otel", // To be filled by hotel
-  bankName: "Banka Adı", // To be filled by hotel
+  iban: "TR96 0001 5001 5800 7314 2776 85",
+  ibanHolder: "NÜKHET DİLARA KAYABALI",
 } as const;

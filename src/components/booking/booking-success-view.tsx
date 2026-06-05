@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2, Phone, ArrowLeft, Mail, Clock } from "lucide-react";
+import { HOTEL } from "@/lib/config/hotel";
 
 export default function BookingSuccessView() {
   const searchParams = useSearchParams();
@@ -59,18 +60,14 @@ export default function BookingSuccessView() {
               </h3>
               <div className="space-y-3 text-[14px]">
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
-                  <span className="text-text-light">Banka</span>
-                  <span className="font-medium text-dark">(Otel tarafından güncellenecek)</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
                   <span className="text-text-light">IBAN</span>
                   <span className="font-mono font-medium text-dark text-[13px]">
-                    TR__ ____ ____ ____ ____ ____ __
+                    {HOTEL.iban}
                   </span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
                   <span className="text-text-light">Alıcı</span>
-                  <span className="font-medium text-dark">(Otel tarafından güncellenecek)</span>
+                  <span className="font-medium text-dark">{HOTEL.ibanHolder}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
                   <span className="text-text-light">Açıklama</span>
