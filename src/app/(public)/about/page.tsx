@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 const ratingStats = [
-  { label: "ZenHotels · Olağanüstü", value: "9.6" },
+  { label: "Google Puanı · 157 yorum", value: "4.9" },
   { label: "TripAdvisor Puanı", value: "5/5" },
   { label: "Büyükhusun'da Sıralama", value: "#2" },
   { label: "Özenle Tasarlanmış Oda", value: "28" },
@@ -40,16 +40,19 @@ const ratingStats = [
 
 const reviews = [
   {
-    text: '"Odalar gayet güzel, son derece temiz. Asıl önemli olan personelin güleryüzü ve ilgisiydi. Uzun zamandır bir otelden bu kadar güzel hizmet almamıştık."',
-    author: "Türk Misafir",
+    text: `Buraya kesinlikle bayıldık 2 gece konakladık bugün çıkacağız ama resmen buradan ayrılacağım için üzülüyorum. Böyle güzel manzara bu kadar huzurlu bir yer bulup 2 günümüzü geçirmek inanılmaz güzel bir tecrübeydi. Biz 1+1'lerde konakladık; odalardaki ince dekoratif ayrıntılar, Midilli'ye karşı muhteşem manzara kesinlikle çok güzeldi. Odada şömine bile vardı ama odamızın o kadar güzel manzarası vardı ki biz hep balkonda vakit geçirmek istedik. Otelin sahipleri en ince ayrıntıya kadar düşünmüşler; resmen bir otel değil de kendi evlerini tasarlar gibi yapmışlar. Kahvaltısı da gayet yeterli ve güzeldi. Otelin maskotları Ares'le Tarçın çok cana yakın ve eğitimli köpekler, onlarla da çok güzel vakit geçirdik. Eşsiz güzel manzara, muhteşem huzur — kesinlikle tavsiye ediyoruz.`,
+    author: "Kmrozlm7777",
+    meta: "Google · 7 ay önce · Çift",
   },
   {
-    text: '"Very friendly owners and staff. Delicious breakfast. Amazing place and it was also very clean. The views are consistently beautiful."',
-    author: "Yabancı Misafir · Hotels.com",
+    text: `Ailecek, 1+1 odalarında 2 gece konakladığımız Karadut Taş Otel beklentilerimizin üzerinde bir deneyim sundu. İlgili, güler yüzlü çalışanlar, temiz ve konforlu odalar, muhteşem bir manzara ve sessizlik, dinlenmek için müthiş bir konum gerçek anlamda 5 yıldızı hak ediyor. Otel sahilden 7-8 dakika uzakta olsa da, kendilerine ait pansiyonun Kadırga Koyu'ndaki plajından ücretsiz yararlandırmaları da müthiş. Sonuç olarak; ben böyle bir işletmemiz olduğu için gurur duydum; bundan sonra mümkünse her yıl birkaç günü bu otelde geçirip kendimi yenilemek isterim. Emeği geçen herkese teşekkürlerimle.`,
+    author: "Bahar",
+    meta: "Google · 10 ay önce · Aile",
   },
   {
-    text: '"Kahvaltı gerçekten ortalamanın üzerinde, Türk lezzetli. Resepsiyonda her zaman İngilizce bilen, süper yardımsever ve güleryüzlü personel mevcut."',
-    author: "Türk Misafir · ZenHotels",
+    text: `Karadut Otel, Assos tatilimizde tercih ettiğimiz konaklama lokasyonumuz oldu. Burası çok şirin bir aile işletmesi. Yağız Bey ve ailesi hem çok samimi hem de çok profesyonel; tüm ihtiyaçlarımızı sabırla karşıladılar. Odalar temiz ve ferah, daireler arası mesafe mahremiyet için yeterli. Sonsuzluk havuzuna da bayıldık; mükemmel bir manzaraya sahip. Çocuk havuzu da mevcut, havuz tertemiz ve bakımlıydı. Telefonla rezervasyon yaptırdığımızda internetten çok daha uygun bir fiyat aldık — iletişim numarasından ulaşmanızı öneririm.`,
+    author: "İrem İnci",
+    meta: "Google · 8 ay önce · Arkadaşlar",
   },
 ];
 
@@ -300,9 +303,9 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <div className="rating-badge inline-flex">
               <div>
-                <div className="rating-score">9.6</div>
+                <div className="rating-score">4.9</div>
                 <div className="text-[12px] tracking-wide text-text-light">
-                  / 10
+                  / 5
                 </div>
               </div>
               <div className="text-left">
@@ -316,7 +319,7 @@ export default function AboutPage() {
                   ))}
                 </div>
                 <div className="text-[14px] text-text-light">
-                  Birden fazla platform
+                  157 Google yorumu
                 </div>
                 <div className="text-[13px] font-bold text-gold">
                   Olağanüstü
@@ -343,9 +346,12 @@ export default function AboutPage() {
                 <p className="text-white/80 text-[14px] leading-[1.8] italic">
                   {r.text}
                 </p>
-                <div className="mt-4 text-[12px] text-white/45 tracking-wide uppercase">
+                <div className="mt-4 text-[12px] text-white/55 tracking-wide uppercase font-semibold">
                   — {r.author}
                 </div>
+                {r.meta && (
+                  <div className="text-[11px] text-white/35 mt-1">{r.meta}</div>
+                )}
               </div>
             ))}
           </div>
