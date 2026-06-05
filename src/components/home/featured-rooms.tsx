@@ -55,13 +55,13 @@ export default function FeaturedRooms() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
           {rooms.map((room, i) => (
             <Link
               key={i}
               href="/reservation"
-              className={`room-card group block ${room.wide ? "lg:col-span-7" : "lg:col-span-5"}`}
-              style={{ height: room.wide ? "clamp(340px, 50vw, 520px)" : "clamp(300px, 42vw, 440px)" }}
+              className="room-card group block"
+              style={{ height: "clamp(380px, 34vw, 460px)" }}
             >
               <Image
                 src={room.image}
