@@ -35,10 +35,6 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
-  icons: {
-    icon: "/img/restauran_logo.png",
-    apple: "/img/restauran_logo.png",
-  },
   robots: { index: true, follow: true },
 };
 
