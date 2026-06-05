@@ -5,6 +5,18 @@ import HeroBookingStrip from "./hero-booking-strip";
 export default function HeroHome() {
   return (
     <section className="hero-home">
+      <video
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/img/hero.JPG"
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src="/img/otel-video.mp4" type="video/mp4" />
+      </video>
       <div className="hero-home-inner">
         <span className="hero-tag animate-fade-up">Assos · Çanakkale</span>
         <h1
