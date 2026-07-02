@@ -1,3 +1,8 @@
+# [GEÇERSİZ — YERİNE: 2026-07-02-quiet-luxury-nextjs-design.md]
+# Bu spec yanlış hedefe (legacy statik HTML) yazılmıştı; işi revert edildi
+# (commit 4603d64). Canlı site Next.js uygulamasıdır (src/). Bu dosya yalnızca
+# tarihsel kayıt olarak durmaktadır — UYGULANMAZ.
+
 # "Assos Sessizliği" — Sessiz Lüks Yeniden Tasarımı (Design Spec)
 
 **Tarih:** 2026-07-02
