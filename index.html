@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://karaduttasotel.com/">
   <meta property="og:title" content="Assos Karadut Taş Otel – Ayvacık, Çanakkale">
   <meta property="og:description" content="Assos Karadut Taş Otel, Ayvacık'ın tarihi güzelliği içinde eşsiz bir konaklama deneyimi sunar. Kadırga Plajı'na 5 dakika, Assos Antik Kenti'ne 7 dakika.">
-  <meta property="og:image" content="https://karaduttasotel.com/img/hero.JPG">
+  <meta property="og:image" content="https://karaduttasotel.com/img/hero-poster.jpg">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:site_name" content="Assos Karadut Taş Otel">
 
@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Assos Karadut Taş Otel – Ayvacık, Çanakkale">
   <meta name="twitter:description" content="Assos Karadut Taş Otel, Ayvacık'ın tarihi güzelliği içinde eşsiz bir konaklama deneyimi sunar.">
-  <meta name="twitter:image" content="https://karaduttasotel.com/img/hero.JPG">
+  <meta name="twitter:image" content="https://karaduttasotel.com/img/hero-poster.jpg">
 
   <!-- Extra SEO -->
   <meta name="robots" content="index, follow">
@@ -34,11 +34,7 @@
     "name": "Assos Karadut Taş Otel",
     "alternateName": "Karadut Taş Otel",
     "url": "https://karaduttasotel.com",
-    "image": [
-      "https://karaduttasotel.com/img/hero.JPG",
-      "https://karaduttasotel.com/img/hotel.JPG",
-      "https://karaduttasotel.com/img/hotel-2.JPG"
-    ],
+    "image": "https://karaduttasotel.com/img/hero-poster.jpg",
     "description": "Assos Karadut Taş Otel, Ayvacık Çanakkale'de geleneksel taş mimarisiyle buluşan lüks bir konaklama deneyimi sunar. 34 oda, kahvaltı dahil.",
     "address": {
       "@type": "PostalAddress",
@@ -87,425 +83,174 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-  <!-- AOS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/quiet.css">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/restauran_logo.png">
   <link rel="apple-touch-icon" href="img/restauran_logo.png">
 </head>
 <body>
 
-<!-- ===== TOPBAR ===== -->
-<div class="topbar py-2 border-bottom border-secondary">
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg q-nav" id="mainNav">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <p class="mb-0 text-white" style="font-size:12.5px;">
-        <i class="fas fa-phone-alt me-2 text-gold" style="color:#e4a00e;"></i>
-        Rezervasyon için bizi arayın:&nbsp;
-        <a href="tel:+905010913417" class="text-white text-decoration-none fw-semibold">+90 501 091 34 17</a>
-      </p>
-      <p class="mb-0" style="font-size:12px;">
-        <a href="#" class="text-decoration-none text-white me-1">TR</a>
-        <span class="text-secondary">|</span>
-        <a href="#" class="text-decoration-none text-white ms-1">EN</a>
-      </p>
+    <a class="navbar-brand q-brand" href="index.html">Assos Karadut Taş Otel</a>
+    <button class="navbar-toggler q-nav-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarMain" aria-controls="navbarMain"
+      aria-expanded="false" aria-label="Menüyü aç">
+      <span class="q-toggler-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-lg-auto mb-3 mb-lg-0 gap-lg-4 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Anasayfa</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">Hakkımızda</a></li>
+        <li class="nav-item"><a class="nav-link" href="rooms.html">Odalarımız</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Rezervasyon</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+      </ul>
+      <a href="tel:+905010913417" class="nav-phone">+90 501 091 34 17</a>
     </div>
   </div>
-</div>
+</nav>
 
-<!-- ===== NAVBAR ===== -->
-<section class="header">
-  <nav class="navbar navbar-expand-lg" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        Assos Karadut Taş Otel
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarMain" aria-controls="navbarMain"
-        aria-expanded="false" aria-label="Menüyü aç">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Anasayfa</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">Hakkımızda</a></li>
-          <li class="nav-item"><a class="nav-link" href="rooms.html">Odalarımız</a></li>
-          <li class="nav-item"><a class="nav-link" href="reservation.html">Rezervasyon</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+<!-- ===== HERO ===== -->
+<section class="q-hero">
+  <img class="q-hero-poster" src="img/hero-poster.jpg" alt="" fetchpriority="high">
+  <video id="heroVideo" class="q-hero-video" data-video-src="img/otel-video.mp4"
+         muted loop playsinline preload="none" aria-hidden="true"></video>
+  <div class="q-hero-overlay"></div>
+  <div class="q-hero-content">
+    <p class="q-eyebrow q-eyebrow--light">ASSOS · ÇANAKKALE</p>
+    <h1>Taşın, zeytinin ve denizin sessizliği</h1>
+    <a href="rooms.html" class="q-btn-ghost">Odaları Keşfedin</a>
+  </div>
+</section>
+
+<!-- ===== MANİFESTO ===== -->
+<section class="q-manifesto reveal">
+  <div class="q-manifesto-inner">
+    <p class="q-eyebrow">ASSOS · ÇANAKKALE</p>
+    <p class="q-manifesto-text">
+      Büyükhusun Köyü'nün taşından yükselen otelimiz, zeytin ağaçlarının
+      arasında Assos'un bin yıllık sessizliğini korur. Kahvaltı dahil
+      konaklamamızda amacımız tek bir şey: yolun sizi bıraktığı yerde,
+      gerçek bir dinlenmeye kavuşmanız.
+    </p>
+  </div>
+</section>
+
+<!-- ===== HAVUZ BANDI ===== -->
+<section class="q-pool reveal" aria-label="Otel havuzu">
+  <video class="q-pool-video" src="img/havuz-video.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+  <img class="q-pool-fallback" src="img/havuz.webp" alt="Assos Karadut Taş Otel açık yüzme havuzu" loading="lazy">
+</section>
+
+<!-- ===== ODALAR ===== -->
+<section class="q-rooms">
+  <div class="container">
+    <div class="q-section-head reveal">
+      <p class="q-eyebrow">KONAKLAMA</p>
+      <h2>Odalar</h2>
+    </div>
+
+    <div class="q-room-row reveal">
+      <div class="q-room-photo">
+        <img src="https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg"
+          alt="Deluxe Oda Deniz Manzaralı - tam deniz manzaralı yatak odası" loading="lazy">
+      </div>
+      <div class="q-room-info">
+        <h3>Deluxe Oda Deniz Manzaralı</h3>
+        <span class="q-room-meta">24 m² · 2 Kişi · Tam Deniz Manzarası</span>
+        <p class="q-room-desc">Balkonundan ufka kadar uzanan enginmavi, sabahın ilk ışığıyla odaya dolar.</p>
+        <a href="rooms.html" class="q-link-arrow">Detaylar <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="q-room-row q-room-row--reverse reveal">
+      <div class="q-room-photo">
+        <img src="https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg"
+          alt="Deluxe Oda Kısmi Deniz Manzaralı - yatak odası" loading="lazy">
+      </div>
+      <div class="q-room-info">
+        <h3>Deluxe Oda Kısmi Deniz Manzaralı</h3>
+        <span class="q-room-meta">22 m² · 2 Kişi · Kısmi Deniz Manzarası</span>
+        <p class="q-room-desc">Zeytin ağaçları arasından süzülen deniz manzarası, sakin bir öğleden sonranın habercisi.</p>
+        <a href="rooms.html" class="q-link-arrow">Detaylar <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="q-room-row reveal">
+      <div class="q-room-photo">
+        <img src="img/aile_odası.webp" alt="Aile Odası - oturma grubu ve geniş yaşam alanı" loading="lazy">
+      </div>
+      <div class="q-room-info">
+        <h3>Aile Odası</h3>
+        <span class="q-room-meta">44 m² · 4 Kişi · Oturma Grubu</span>
+        <p class="q-room-desc">Geniş oturma grubuyla, ailenizin kendi ritmini bulabileceği ferah bir alan.</p>
+        <a href="rooms.html" class="q-link-arrow">Detaylar <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DENEYİM ===== -->
+<section class="q-experience">
+  <div class="container">
+    <div class="q-experience-grid reveal">
+      <div class="q-experience-photo">
+        <img src="img/bahce.webp" alt="Zeytin ağaçları arasında otel bahçesi" loading="lazy">
+      </div>
+      <div class="q-experience-info">
+        <p class="q-eyebrow">DENEYİM</p>
+        <h2>Sadelikte Konfor</h2>
+        <ul class="q-list">
+          <li>Kahvaltı dahil</li>
+          <li>Açık yüzme havuzu</li>
+          <li>A la carte restoran</li>
+          <li>Ücretsiz otopark</li>
+          <li>Kadırga Koyu'na 5 km</li>
+          <li>7/24 resepsiyon</li>
         </ul>
       </div>
     </div>
-  </nav>
-</section>
-
-<!-- ===== HERO ===== -->
-<section class="hero-home">
-  <div class="hero-content">
-    <span class="hero-tag">Assos · Çanakkale · Türkiye</span>
-    <h1>Taşın Kalbinde<br>Huzurun Adresi</h1>
-    <p class="hero-subtitle">Tarihi Assos'un eşsiz doğasında,<br>geleneksel taş mimarisiyle buluşan lüks konaklama deneyimi.</p>
-    <div class="hero-cta">
-      <a href="https://otel-web-app.vercel.app/reservation" data-karadut-booking class="btn-gold">Online rezervasyon</a>
-      <a href="rooms.html" class="btn-outline-light-custom">Odalarımızı keşfet</a>
-      <a href="tel:+905010913417" class="btn-outline-light-custom">
-        <i class="fas fa-phone-alt me-2"></i>Rezervasyon hattı
-      </a>
-    </div>
-  </div>
-  <div class="scroll-indicator">
-    <span>Kaydır</span>
-    <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- ===== STATS BAR ===== -->
-<div class="stats-bar">
+<!-- ===== REZERVASYON BANDI ===== -->
+<section class="q-reserve reveal">
   <div class="container">
-    <div class="row">
-      <div class="col-6 col-md-3 stat-item">
-        <span class="stat-number">9.6</span>
-        <span class="stat-label">Misafir Puanı / 10</span>
-      </div>
-      <div class="col-6 col-md-3 stat-item">
-        <span class="stat-number" data-count="34">34</span>
-        <span class="stat-label">Oda</span>
-      </div>
-      <div class="col-6 col-md-3 stat-item">
-        <span class="stat-number" data-count="5">5</span>
-        <span class="stat-label">km. Kadırga Koyu'na</span>
-      </div>
-      <div class="col-6 col-md-3 stat-item">
-        <span class="stat-number">3.500 ₺</span>
-        <span class="stat-label">den Başlayan / Gece</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== ABOUT SNIPPET ===== -->
-<section class="section-py bg-white">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6" data-aos="fade-right">
-        <div class="about-image-wrap">
-          <img src="img/hotel.JPG" alt="Assos Karadut Taş Otel" style="width:100%;height:520px;object-fit:cover;">
-          <div class="about-accent"></div>
-        </div>
-      </div>
-      <div class="col-lg-6" data-aos="fade-left">
-        <div class="about-body">
-          <span class="eyebrow">Hakkımızda</span>
-          <h2>Assos'un Taş<br>Mirası ile Konfor</h2>
-          <div class="divider-gold"></div>
-          <p>
-            34 oda kapasitesi ile Büyükhusun Köyü'nde, Assos'un eşsiz doğası içinde
-            konumlanan otelimiz; kahvaltı dahil ve yarım pansiyon seçenekleriyle
-            misafirlerine hizmet vermektedir. Geleneksel taş mimarisinin sıcaklığı,
-            modern konfor anlayışıyla buluşuyor.
-          </p>
-          <p>
-            Kadırga Koyu'na 5 km, Antik Assos'a dakikalar mesafede yer alan otelimiz;
-            denizi, tarihi ve doğayı bir arada yaşamak isteyenler için eşsiz bir
-            konaklama üssüdür.
-          </p>
-          <ul class="about-highlights">
-            <li><i class="fas fa-check-circle"></i> Açık yüzme havuzu</li>
-            <li><i class="fas fa-check-circle"></i> A La Carte Restoran</li>
-            <li><i class="fas fa-check-circle"></i> Kahvaltı dahil seçenek</li>
-            <li><i class="fas fa-check-circle"></i> Ücretsiz açık otopark</li>
-          </ul>
-          <a href="about.html" class="btn-gold">Daha Fazla Bilgi</a>
-        </div>
-      </div>
-    </div>
+    <p class="q-eyebrow q-eyebrow--light">REZERVASYON</p>
+    <a href="tel:+905010913417" class="q-reserve-phone">+90 501 091 34 17</a>
+    <p class="q-reserve-note">14:00 giriş · 12:00 çıkış · 3.500 TL'den başlayan · kahvaltı dahil</p>
+    <a href="https://otel-web-app.vercel.app/reservation" data-karadut-booking class="q-btn-ghost">Online Rezervasyon</a>
   </div>
 </section>
 
-<!-- ===== FEATURED ROOMS ===== -->
-<section class="section-py bg-warm">
-  <div class="container">
-    <div class="section-header text-center" data-aos="fade-up">
-      <span class="eyebrow">Konfor &amp; Şıklık</span>
-      <h2>Odalarımız</h2>
-      <div class="divider-gold"></div>
-      <p>Her oda, Ege'nin ruhunu yansıtacak şekilde özene tasarlandı.</p>
-    </div>
-    <div class="row g-3">
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-        <a href="rooms.html" class="room-card">
-          <img src="https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg" alt="Deluxe Oda Deniz Manzaralı">
-          <div class="room-overlay"></div>
-          <div class="room-info">
-            <div class="room-name">Deluxe Deniz Manzaralı</div>
-            <div class="room-price">3.500 ₺'den / Gece</div>
-            <div class="room-features">
-              <span><i class="fa fa-ruler-combined me-1"></i>24 m²</span>
-              <span><i class="fa fa-users me-1"></i>2 Kişi</span>
-              <span><i class="fa fa-water me-1"></i>Deniz Manzarası</span>
-            </div>
-            <span class="room-btn btn-gold" style="font-size:10px;padding:10px 20px;">
-              İncele
-            </span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <a href="rooms.html" class="room-card">
-          <img src="https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg" alt="Deluxe Kısmi Deniz Manzaralı">
-          <div class="room-overlay"></div>
-          <div class="room-info">
-            <div class="room-name">Deluxe Kısmi Deniz Manzaralı</div>
-            <div class="room-price">Fiyat için arayın</div>
-            <div class="room-features">
-              <span><i class="fa fa-ruler-combined me-1"></i>22 m²</span>
-              <span><i class="fa fa-users me-1"></i>2 Kişi</span>
-              <span><i class="fa fa-wifi me-1"></i>Wi-Fi</span>
-            </div>
-            <span class="room-btn btn-gold" style="font-size:10px;padding:10px 20px;">
-              İncele
-            </span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <a href="rooms.html" class="room-card">
-          <img src="https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg" alt="Aile Odası">
-          <div class="room-overlay"></div>
-          <div class="room-info">
-            <div class="room-name">Aile Odası</div>
-            <div class="room-price">Fiyat için arayın</div>
-            <div class="room-features">
-              <span><i class="fa fa-ruler-combined me-1"></i>44 m²</span>
-              <span><i class="fa fa-users me-1"></i>4 Kişiye Kadar</span>
-              <span><i class="fa fa-wifi me-1"></i>Wi-Fi</span>
-            </div>
-            <span class="room-btn btn-gold" style="font-size:10px;padding:10px 20px;">
-              İncele
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="text-center mt-5" data-aos="fade-up">
-      <a href="rooms.html" class="btn-dark-sq">Tüm Odaları Gör</a>
-    </div>
+<!-- ===== KONUM ===== -->
+<section class="q-location">
+  <img class="q-location-bg" src="img/otel-kusbakısı.png" alt="Assos Karadut Taş Otel kuşbakışı görünümü" loading="lazy">
+  <div class="q-location-overlay"></div>
+  <div class="q-location-content reveal">
+    <p class="q-eyebrow q-eyebrow--light">KONUM</p>
+    <h2>Sessizliğin Tam Ortasında</h2>
+    <p>Büyükhusun Köyü Namazgah Mevkii No:26, Ayvacık, Çanakkale 17860</p>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Assos+Karadut+Taş+Otel+Büyükhusun+Ayvacık"
+      target="_blank" rel="noopener" class="q-btn-ghost">Yol Tarifi Al</a>
   </div>
 </section>
-
-<!-- ===== AMENITIES ===== -->
-<section class="section-py bg-white">
-  <div class="container">
-    <div class="section-header text-center" data-aos="fade-up">
-      <span class="eyebrow">Olanaklar</span>
-      <h2>Otel Özellikleri</h2>
-      <div class="divider-gold"></div>
-      <p>Size en iyi konaklama deneyimini sunmak için tasarlanmış olanaklarımız.</p>
-    </div>
-    <div class="row g-0">
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-swimming-pool"></i></div>
-          <h5>Açık Havuz</h5>
-          <p>Deniz manzaralı yüzme havuzu</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-swimmer"></i></div>
-          <h5>Çocuk Havuzu</h5>
-          <p>Küçük misafirlerimiz için ayrı havuz</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="160">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-utensils"></i></div>
-          <h5>A La Carte Restoran</h5>
-          <p>Deniz manzaralı özgün Ege mutfağı</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="240">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-coffee"></i></div>
-          <h5>Kahvaltı Dahil</h5>
-          <p>08:30–10:30 ısmarlamalı servis</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-glass-martini-alt"></i></div>
-          <h5>Bar</h5>
-          <p>Havuz başı ve lounge bar</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-fire"></i></div>
-          <h5>Firepit Alanı</h5>
-          <p>Deniz manzaralı açık hava ateş köşesi</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="240">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-wifi"></i></div>
-          <h5>Ücretsiz Wi-Fi</h5>
-          <p>Tüm alanlarda kesintisiz internet</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-parking"></i></div>
-          <h5>Ücretsiz Otopark</h5>
-          <p>Geniş açık otopark alanı</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-leaf"></i></div>
-          <h5>Bahçe</h5>
-          <p>Huzurlu peyzajlı bahçe alanı</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="160">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-suitcase"></i></div>
-          <h5>Bagaj Muhafazası</h5>
-          <p>Erken/geç çıkışlar için emanet</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="240">
-        <div class="amenity-card">
-          <div class="amenity-icon"><i class="fas fa-concierge-bell"></i></div>
-          <h5>7/24 Resepsiyon</h5>
-          <p>Her an yanınızdayız</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA / PHONE BANNER ===== -->
-<section class="cta-banner" data-aos="fade">
-  <div class="container">
-    <span class="eyebrow" style="color:#f0b830;">Rezervasyon</span>
-    <h2>Hayalinizdeki Tatil<br>Bir Tık Uzağınızda</h2>
-    <p>Tarih seçin, müsait odaları görün, bilgilerinizi girin.<br>Kapora talimatı e-postanıza gelir; isterseniz resepsiyon da yanınızda.</p>
-    <a href="https://otel-web-app.vercel.app/reservation" data-karadut-booking class="btn-gold d-inline-block px-4 py-3 mb-3 text-decoration-none" style="font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;">
-      <i class="fas fa-calendar-check me-2"></i>Online rezervasyon
-    </a>
-    <br>
-    <a href="tel:+905010913417" class="phone-display">
-      +90 501 091 34 17
-    </a>
-    <br>
-    <a href="reservation.html" class="btn-outline-light-custom" style="margin-top:12px;">
-      Rezervasyon bilgisi &amp; telefon
-    </a>
-  </div>
-</section>
-
-<!-- ===== LOCATION ===== -->
-<section class="section-py bg-white">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6" data-aos="fade-right">
-        <span class="eyebrow">Konum</span>
-        <h2>Her Şeye<br>Yakın, Gürültüden<br>Uzak</h2>
-        <div class="divider-gold"></div>
-        <p class="mb-4" style="font-size:15px;color:var(--text);">
-          Büyükhusun Köyü'nün sakin atmosferinde, Ege'nin en gözde noktalarına
-          dakikalar mesafedeyiz.
-        </p>
-        <div class="location-item">
-          <div class="location-num">5</div>
-          <div>
-            <h6>Kadırga Koyu</h6>
-            <p>km · Berrak Ege sularında serinleme</p>
-          </div>
-        </div>
-        <div class="location-item">
-          <div class="location-num">10</div>
-          <div>
-            <h6>Antik Assos (Behramkale)</h6>
-            <p>dk · Aristo'nun kenti, Athena Tapınağı</p>
-          </div>
-        </div>
-        <div class="location-item">
-          <div class="location-num">10</div>
-          <div>
-            <h6>Assos Limanı</h6>
-            <p>dk · Balık restoranları ve tekneler</p>
-          </div>
-        </div>
-        <div class="location-item">
-          <div class="location-num">11</div>
-          <div>
-            <h6>Ayvacık Merkez</h6>
-            <p>km · En yakın ilçe merkezi</p>
-          </div>
-        </div>
-        <div class="location-item">
-          <div class="location-num">37</div>
-          <div>
-            <h6>Kazdağı Milli Parkı</h6>
-            <p>km · Ida Dağı doğa yürüyüşleri</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6" data-aos="fade-left">
-        <img src="img/konum.png" alt="Otel konumu - Harita"
-          style="width:100%;height:480px;object-fit:cover;">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== GALLERY STRIP ===== -->
-<div class="gallery-grid" data-aos="fade-up">
-  <div class="gallery-item">
-    <img src="img/hotel-2.JPG" alt="Odalarımız - Taş mimarisi">
-    <div class="gallery-overlay"><div class="gallery-overlay-inner"><h5>Odalarımız</h5><p>Taş mimarisi ile konfor</p></div></div>
-  </div>
-  <div class="gallery-item">
-    <img src="img/aile_odası.webp" alt="Aile Odası">
-    <div class="gallery-overlay"><div class="gallery-overlay-inner"><h5>Aile Odası</h5><p>Geniş ve ferah</p></div></div>
-  </div>
-  <div class="gallery-item">
-    <img src="img/hero.JPG" alt="Manzara">
-    <div class="gallery-overlay"><div class="gallery-overlay-inner"><h5>Manzara</h5><p>Ege'nin güzelliği</p></div></div>
-  </div>
-  <div class="gallery-item">
-    <img src="img/havuz.webp" alt="Havuz">
-    <div class="gallery-overlay"><div class="gallery-overlay-inner"><h5>Havuz</h5><p>Serinleme ve keyif</p></div></div>
-  </div>
-</div>
 
 <!-- ===== FOOTER ===== -->
-<footer class="site-footer">
+<footer class="q-footer">
   <div class="container">
-    <div class="row g-5">
-      <!-- Brand -->
-      <div class="col-lg-4 col-md-6">
-        <p class="footer-about" style="color:rgba(255,255,255,0.55);font-size:13.5px;line-height:1.85;">
-          Assos Karadut Taş Otel, Ayvacık'ın tarihi güzelliği içinde
-          geleneksel taş mimarisiyle modern konforu buluşturuyor.
-          Misafirlerimize unutulmaz bir Ege deneyimi sunuyoruz.
-        </p>
-        <div class="footer-socials">
-          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/karaduttasotel/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" title="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
-        </div>
+    <div class="q-footer-grid">
+      <div class="q-footer-brand">
+        <p class="q-footer-name">Assos Karadut Taş Otel</p>
+        <p>Büyükhusun Köyü Namazgah Mevkii No:26,<br>Ayvacık, Çanakkale 17860</p>
       </div>
-      <!-- Links -->
-      <div class="col-lg-2 col-md-6 col-6">
-        <h6 class="footer-heading">Sayfalar</h6>
-        <ul class="footer-links">
+      <div class="q-footer-links">
+        <p class="q-footer-heading">Sayfalar</p>
+        <ul>
           <li><a href="index.html">Anasayfa</a></li>
           <li><a href="about.html">Hakkımızda</a></li>
           <li><a href="rooms.html">Odalarımız</a></li>
@@ -513,55 +258,29 @@
           <li><a href="contact.html">İletişim</a></li>
         </ul>
       </div>
-      <!-- Rooms -->
-      <div class="col-lg-2 col-md-6 col-6">
-        <h6 class="footer-heading">Odalar</h6>
-        <ul class="footer-links">
-          <li><a href="rooms.html">Panoramic Oda</a></li>
-          <li><a href="rooms.html">Deniz Manzaralı</a></li>
-          <li><a href="rooms.html">Suite Oda</a></li>
-          <li><a href="rooms.html">Aile Odası</a></li>
-          <li><a href="rooms.html">Bahçe Manzaralı</a></li>
-        </ul>
-      </div>
-      <!-- Contact -->
-      <div class="col-lg-4 col-md-6">
-        <h6 class="footer-heading">İletişim</h6>
-        <div class="footer-contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Büyükhusun Köyü Namazgah Mevkii No:26,<br>Ayvacık, Çanakkale 17860</span>
-        </div>
-        <div class="footer-contact-item">
-          <i class="fas fa-phone-alt"></i>
-          <a href="tel:+905010913417">+90 501 091 34 17</a>
-        </div>
-        <div class="footer-contact-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:karaduttas@gmail.com">karaduttas@gmail.com</a>
-        </div>
-        <div class="footer-contact-item">
-          <i class="fas fa-clock"></i>
-          <span>7/24 Resepsiyon Hizmeti</span>
-        </div>
+      <div class="q-footer-contact">
+        <p class="q-footer-heading">İletişim</p>
+        <p><a href="tel:+905010913417">+90 501 091 34 17</a></p>
+        <p><a href="mailto:karaduttas@gmail.com">karaduttas@gmail.com</a></p>
+        <p>7/24 Resepsiyon</p>
+        <p><a href="https://www.instagram.com/karaduttasotel/" target="_blank" rel="noopener">Instagram</a></p>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="container">
-      <span>© 2024 <a href="index.html">Assos Karadut Taş Otel</a>. Tüm hakları saklıdır.</span>
-    </div>
+  <div class="q-footer-bottom">
+    <p>© 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921</p>
   </div>
 </footer>
 
 <!-- Back to Top -->
-<a href="#" class="back-to-top" id="backToTop" title="Yukarı Çık">
-  <i class="fas fa-chevron-up"></i>
+<a href="#" class="back-to-top" id="backToTop" title="Yukarı Çık" aria-label="Yukarı çık">
+  <span aria-hidden="true">↑</span>
 </a>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/booking-config.js"></script>
 <script src="js/app.js"></script>
+<script src="js/quiet.js"></script>
 </body>
 </html>
