@@ -33,10 +33,14 @@ body {
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: var(--font-heading);
-  color: var(--color-dark);
-  line-height: 1.25;
+/* In @layer base so Tailwind text-* utilities (e.g. text-white) can override
+   the default heading color — otherwise white headings render dark. */
+@layer base {
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    color: var(--color-dark);
+    line-height: 1.25;
+  }
 }
 
 a {
