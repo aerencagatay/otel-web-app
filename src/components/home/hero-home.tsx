@@ -11,7 +11,7 @@ export default function HeroHome() {
         muted
         loop
         playsInline
-        poster="/img/hero.JPG"
+        poster="/img/hero-poster.jpg"
         preload="auto"
         aria-hidden="true"
       >

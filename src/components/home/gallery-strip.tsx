@@ -49,7 +49,7 @@ export default function GalleryStrip() {
             <div
               className="w-12 h-px mt-4"
               style={{
-                background: "linear-gradient(90deg, rgba(196,176,138,0.9), transparent)",
+                background: "rgba(255,255,255,0.35)",
               }}
             />
           </div>

@@ -74,16 +74,16 @@ export default function AmenitiesGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
           {amenities.map((a, i) => (
-            <div key={i} className="amenity-card">
-              <div className="amenity-icon">
-                <a.icon size={26} className="text-gold transition-colors" />
-              </div>
-              <h5 className="text-[13px] tracking-[1.2px] uppercase mb-2">
+            <div
+              key={i}
+              className="flex items-baseline justify-between gap-6 py-4 border-b border-border"
+            >
+              <h5 className="text-[13px] tracking-[1.2px] uppercase text-dark m-0 font-semibold">
                 {a.title}
               </h5>
-              <p className="text-[13px] text-text-light m-0">{a.desc}</p>
+              <p className="text-[13px] text-text-light m-0 text-right">{a.desc}</p>
             </div>
           ))}
         </div>

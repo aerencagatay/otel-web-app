@@ -13,7 +13,6 @@ const rooms = [
       { icon: Users, text: "2 kişi" },
       { icon: Waves, text: "Deniz manzarası" },
     ],
-    wide: true,
   },
   {
     name: "Traditional Kısmi Deniz Manzaralı",
@@ -25,7 +24,6 @@ const rooms = [
       { icon: Users, text: "2 kişi" },
       { icon: Wifi, text: "Wi-Fi" },
     ],
-    wide: false,
   },
   {
     name: "Aile Suit Deniz Manzaralı",
@@ -37,7 +35,6 @@ const rooms = [
       { icon: Users, text: "4 kişiye kadar" },
       { icon: Wifi, text: "Wi-Fi" },
     ],
-    wide: false,
   },
 ];
 
@@ -55,46 +52,66 @@ export default function FeaturedRooms() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
-          {rooms.map((room, i) => (
-            <Link
-              key={i}
-              href="/reservation"
-              className="room-card group block"
-              style={{ height: "clamp(380px, 34vw, 460px)" }}
-            >
-              <Image
-                src={room.image}
-                alt={room.name}
-                width={800}
-                height={560}
-                className="w-full h-full object-cover"
-              />
-              <div className="room-overlay" />
-              <div className="room-info text-left">
-                <div className="font-heading text-[clamp(1.25rem,2.2vw,1.65rem)] text-white mb-1 font-semibold">
+        <div className="flex flex-col">
+          {rooms.map((room, i) => {
+            const media = (
+              <div className="room-row__media">
+                <Image
+                  src={room.image}
+                  alt={room.name}
+                  width={800}
+                  height={600}
+                  className="w-full h-[280px] md:h-[380px] object-cover"
+                />
+              </div>
+            );
+            const body = (
+              <div className="flex flex-col">
+                <h3
+                  className="font-heading font-semibold text-dark mb-1"
+                  style={{ fontSize: "clamp(1.5rem, 2.6vw, 2.15rem)" }}
+                >
                   {room.name}
-                </div>
-                <div className="text-gold-light/95 text-[12px] font-semibold tracking-[0.15em] uppercase mb-3">
+                </h3>
+                <p className="text-gold-dark text-[12px] font-semibold tracking-[0.15em] uppercase mb-4">
                   {room.price}
-                </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 text-[12px] text-white/75 mb-5">
+                </p>
+                <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-text-light mb-7">
                   {room.features.map((f, j) => (
                     <span key={j} className="flex items-center gap-1.5">
-                      <f.icon size={13} strokeWidth={1.5} />
+                      <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
                       {f.text}
                     </span>
                   ))}
                 </div>
-                <span className="room-btn inline-block btn-gold text-[10px] py-2.5 px-6 tracking-[0.2em]">
-                  Müsaitlik & rezervasyon
+                <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
+                  Müsaitlik &amp; rezervasyon
                 </span>
               </div>
-            </Link>
-          ))}
+            );
+            return (
+              <Link
+                key={room.name}
+                href="/reservation"
+                className="room-row group grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center py-10 md:py-14 no-underline"
+              >
+                {i % 2 === 1 ? (
+                  <>
+                    <div className="md:order-2">{media}</div>
+                    <div className="md:order-1">{body}</div>
+                  </>
+                ) : (
+                  <>
+                    {media}
+                    {body}
+                  </>
+                )}
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center mt-12">
+        <div className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center mt-4 md:mt-6 pt-10 border-t border-border">
           <Link href="/rooms" className="btn-dark-sq no-underline">
             Tüm detaylar
           </Link>
