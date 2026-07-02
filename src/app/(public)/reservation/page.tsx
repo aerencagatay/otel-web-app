@@ -235,10 +235,6 @@ function FaqAccordion() {
       a: "Evet, fiyatlarımıza sabah kahvaltısı dahildir. Her gün taze hazırlanan açık büfe kahvaltımız misafirlerimize sunulmaktadır.",
     },
     {
-      q: "Evcil hayvan getirebilir miyim?",
-      a: "Evet, otelimiz evcil hayvan dostudur. Ek bilgi için lütfen rezervasyon sırasında belirtin.",
-    },
-    {
       q: "Otopark ücretsiz mi?",
       a: "Evet, misafirlerimize özel ücretsiz otopark alanımız mevcuttur.",
     },
