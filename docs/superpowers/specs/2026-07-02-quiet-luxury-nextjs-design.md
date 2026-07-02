@@ -15,6 +15,16 @@ Canlı Next.js sitesinin görsel dilini daha modern ve klas bir seviyeye taşım
 Mimari, rezervasyon sistemi, mail akışı ve içerik yapısı DEĞİŞMEZ — bu yalnızca
 görsel/tasarım katmanı işidir.
 
+## İÇERİK DOKUNULMAZDIR (kullanıcı düzeltmesi, 2026-07-02)
+
+Sitedeki tüm içerik zaten doğrudur ve tasarım işi kapsamında DEĞİŞTİRİLMEZ:
+istatistik değer/etiketleri ("3.500 ₺", "Gece başlangıç" vb.), oda adları,
+fiyatlar, oda fotoğrafları ve tüm görsel kaynakları, başlık/paragraf metinleri,
+CTA yazıları. §3 tablosundaki "kopya sadeleşir" ve "kanonik adlar" ifadeleri bu
+düzeltmeyle GEÇERSİZDİR — yalnızca görsel katman (renk, tipografi ölçeği,
+boşluk, düzen, className/CSS) değişir. Tek istisna: hero `poster` özniteliğinin
+optimize kopyaya bağlanması (performans işi, görünen içerik aynı).
+
 ## Onaylanmış kararlar
 
 | Karar | Seçim |

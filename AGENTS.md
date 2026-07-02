@@ -14,7 +14,7 @@ Bu bölüm iş bilgilerinin kanonik kaynağıdır. Bir agent tanımı veya sayfa
 - **E-posta:** karaduttas@gmail.com
 - **Check-in / Check-out:** 14:00 / 12:00
 - **Toplam oda:** 34
-- **Başlangıç fiyatı:** 3.500 TL/gece (kahvaltı dahil)
+- **Başlangıç fiyatı:** 7.200 TL/gece — NOT: fiyat/istatistik gibi değerlerde CANLI SİTEDEKİ (src/) değer esastır; bu dosya canlı siteyle çelişirse siteyi değiştirme, bu dosyayı güncelle
 - **Turizm Lisansı:** 24921
 - **Konum notu:** Kadırga Koyu'na 5 km
 - **Rezervasyon modeli:** Telefon öncelikli; online ödeme YOK. Dinamik rezervasyon (kapora akışı) Vercel/Next.js üzerinde planlı.
