@@ -51,6 +51,9 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a href="tel:+905010913417" className="nav-phone">
+              +90 501 091 34 17
+            </a>
             <Link
               href="/reservation"
               className={`nav-cta ml-2 no-underline ${
@@ -88,6 +91,13 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="tel:+905010913417"
+              className="nav-phone block py-3"
+              onClick={() => setMenuOpen(false)}
+            >
+              +90 501 091 34 17
+            </a>
             <Link
               href="/reservation"
               className="btn-cta-solid block mt-3 text-center no-underline"
