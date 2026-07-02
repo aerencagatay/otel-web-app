@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Premium boutique palette: ink, olive, stone, ivory, muted gold */
-  --color-gold: #a38b5f;
-  --color-gold-dark: #7d6a48;
-  --color-gold-light: #c4b08a;
-  --color-olive: #3a3f36;
-  --color-stone: #c9c2b4;
-  --color-ivory: #f7f5f0;
-  --color-dark: #1a1c18;
-  --color-dark-2: #232520;
+  /* Assos Sessizliği: deniz & taş palette — tek vurgu (derin Ege mavisi) */
+  --color-gold: #2e4a5c;
+  --color-gold-dark: #223a49;
+  --color-gold-light: #4a6b80;
+  --color-olive: #3a4440;
+  --color-stone: #cfc8bb;
+  --color-ivory: #f4f2ee;
+  --color-dark: #22211f;
+  --color-dark-2: #2b2a27;
   --color-text: #4a4842;
   --color-text-light: #7a776d;
-  --color-warm: #f4f1eb;
-  --color-border: #e0dbd1;
+  --color-warm: #efece6;
+  --color-border: #d9d2c5;
 
   --font-heading: "Cormorant Garamond", serif;
   --font-body: "DM Sans", sans-serif;
@@ -239,24 +239,23 @@ img {
 
 .header-nav {
   position: fixed;
-  top: 42px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
 }
 
 .navbar-base {
-  padding: 20px 0;
+  padding: 22px 0;
   transition: all 0.4s ease;
   background: transparent;
 }
 
 .navbar-scrolled {
-  background: rgba(255,255,255,0.97) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 10px 0;
-  box-shadow: 0 2px 30px rgba(0,0,0,0.12);
+  background: var(--color-ivory) !important;
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 0;
+  box-shadow: none;
 }
 
 .nav-link-custom {
@@ -311,6 +310,44 @@ img {
   color: var(--color-gold-dark);
 }
 
+/* Navbar phone link — quiet hairline-separated affordance, not a CTA */
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11.5px;
+  letter-spacing: 1.4px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  padding-left: 20px;
+  margin-left: 4px;
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+  transition: color 0.3s, border-color 0.3s;
+}
+.nav-phone:hover { color: #fff; }
+.navbar-scrolled .nav-phone {
+  color: var(--color-text);
+  border-left-color: var(--color-border);
+}
+.navbar-scrolled .nav-phone:hover { color: var(--color-gold-dark); }
+
+/* Mobile menu: nav-phone renders inside the stacked link list, not beside
+   the desktop bar — drop the divider/indent so it matches sibling links. */
+@media (max-width: 1023px) {
+  .nav-phone {
+    display: block;
+    color: var(--color-dark);
+    font-size: 11.5px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .nav-phone:hover { color: var(--color-gold-dark); }
+}
+
 /* ===== MOTION ===== */
 @keyframes fade-up {
   from {
@@ -335,7 +372,7 @@ img {
 .hero-home {
   min-height: 100svh;
   min-height: 100vh;
-  background: url('/img/hero.JPG') no-repeat center center / cover;
+  background: url('/img/hero-poster.jpg') no-repeat center center / cover;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -344,7 +381,7 @@ img {
   padding: clamp(104px, 15vh, 168px) clamp(16px, 4vw, 48px) clamp(24px, 5vh, 48px);
 }
 /* Background video (autoplay/muted/loop) — sits under the dark overlay so
-   hero text stays legible. hero.JPG poster shows while it loads / on failure. */
+   hero text stays legible. hero-poster.jpg shows while it loads / on failure. */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -378,7 +415,7 @@ img {
   bottom: clamp(200px, 32vh, 340px);
   width: min(120px, 18vw);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 176, 138, 0.85), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
   z-index: 2;
   pointer-events: none;
   opacity: 0.9;
@@ -410,23 +447,19 @@ img {
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* Floating booking bar (homepage) */
+/* Floating booking bar (homepage) — hairline, quiet, no colored top bar */
 .hero-booking-shell {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 1040px;
   margin: clamp(16px, 3vh, 32px) auto 0;
-  background: rgba(252, 251, 248, 0.97);
-  border: 1px solid rgba(26, 28, 24, 0.08);
-  border-top: 3px solid var(--color-gold-dark);
-  box-shadow:
-    0 32px 90px rgba(12, 14, 12, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 24px 64px rgba(15, 17, 15, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: clamp(20px, 2.8vw, 28px) clamp(20px, 3vw, 32px);
-  border-radius: 1px;
 }
 
 .hero-booking-shell .form-label {
@@ -439,7 +472,6 @@ img {
 .hero-booking-shell select.form-input {
   background: #fff;
   border-color: var(--color-border);
-  border-radius: 2px;
 }
 
 .hero-booking-title {
@@ -487,56 +519,23 @@ img {
   z-index: -1;
 }
 
-/* ===== ROOM CARDS ===== */
-.room-card {
-  position: relative;
-  overflow: hidden;
-  height: 420px;
+/* ===== FEATURED ROOMS (editorial zigzag rows) ===== */
+.room-row {
   display: block;
-  cursor: pointer;
   text-decoration: none;
+  border-top: 1px solid var(--color-border);
 }
-.room-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.room-row:first-child { border-top: none; }
+.room-row__media {
+  overflow: hidden;
 }
-.room-card:hover img { transform: scale(1.1); }
+.room-row__media img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.room-row:hover .room-row__media img { transform: scale(1.045); }
 
-.room-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.1) 55%);
-  transition: all 0.4s;
-}
-.room-card:hover .room-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 100%);
-}
-
-.room-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 32px;
-  color: #fff;
-  transform: translateY(56px);
-  transition: transform 0.42s ease;
-}
-.room-card:hover .room-info { transform: translateY(0); }
-
-.room-btn {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease 0.08s;
-}
-.room-card:hover .room-btn { opacity: 1; transform: translateY(0); }
-
-/* Touch / no-hover: always show CTA & copy (conversion + mobile UX) */
-@media (hover: none), (max-width: 1023px) {
-  .room-info { transform: translateY(0); padding-bottom: 28px; }
-  .room-btn { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .room-row:hover .room-row__media img { transform: none; }
 }
 
 /* ===== AMENITY CARD ===== */
@@ -567,18 +566,12 @@ img {
 .amenity-card:hover .amenity-icon { background: var(--color-gold); }
 .amenity-card:hover .amenity-icon svg { color: #fff; }
 
-/* ===== CTA BANNER ===== */
+/* ===== CTA BANNER — solid Ege blue field, no photo/overlay ===== */
 .cta-banner {
-  background: url('/img/hotel-2.JPG') no-repeat center center / cover;
+  background: var(--color-gold);
   position: relative;
-  padding: 110px 0;
+  padding: clamp(80px, 12vw, 128px) 0;
   text-align: center;
-}
-.cta-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(20,14,5,0.88);
 }
 
 .phone-display {
@@ -592,6 +585,11 @@ img {
   transition: opacity 0.2s;
 }
 .phone-display:hover { opacity: 0.82; color: var(--color-gold); }
+
+/* On the solid-blue CTA banner the shared phone-display accent color would
+   disappear into the background — override to white for this context only. */
+.cta-banner .phone-display { color: #fff; margin: 20px 0 28px; }
+.cta-banner .phone-display:hover { color: #fff; opacity: 0.82; }
 
 /* ===== LOCATION ===== */
 .location-item {
@@ -665,7 +663,7 @@ img {
   color: #fff;
   margin: 0 0 0.35rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(196, 176, 138, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
   display: inline-block;
   min-width: min(100%, 200px);
 }
@@ -755,7 +753,7 @@ img {
 }
 .room-list-card:hover {
   box-shadow: 0 24px 60px rgba(26, 28, 24, 0.1);
-  border-color: rgba(163, 139, 95, 0.45);
+  border-color: rgba(46, 74, 92, 0.45);
   transform: translateY(-2px);
 }
 
@@ -793,7 +791,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(163, 139, 95, 0.12) 0%, transparent 55%);
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(46, 74, 92, 0.12) 0%, transparent 55%);
   pointer-events: none;
 }
 
@@ -861,7 +859,7 @@ img {
 }
 .contact-info-card:hover {
   border-color: var(--color-gold);
-  box-shadow: 0 10px 40px rgba(228,160,14,0.12);
+  box-shadow: 0 10px 40px rgba(46, 74, 92,0.12);
   transform: translateY(-5px);
 }
 
@@ -900,14 +898,14 @@ img {
   opacity: 0.75;
 }
 .form-input:hover {
-  border-color: rgba(163, 139, 95, 0.45);
+  border-color: rgba(46, 74, 92, 0.45);
 }
 .form-input:focus {
   background: #fff;
   border-color: var(--color-gold-dark);
   box-shadow:
     inset 0 1px 2px rgba(26, 28, 24, 0.03),
-    0 0 0 3px rgba(163, 139, 95, 0.18);
+    0 0 0 3px rgba(46, 74, 92, 0.18);
 }
 
 .form-label {
@@ -994,7 +992,7 @@ img {
   z-index: 1003;
   text-decoration: none;
   font-size: 17px;
-  box-shadow: 0 4px 18px rgba(228,160,14,0.45);
+  box-shadow: 0 4px 18px rgba(46, 74, 92,0.45);
 }
 .back-to-top.show { opacity: 1; visibility: visible; }
 .back-to-top:hover {
@@ -1044,7 +1042,7 @@ img {
 }
 .booking-card:hover {
   box-shadow: 0 28px 64px rgba(26, 28, 24, 0.07);
-  border-color: rgba(163, 139, 95, 0.25);
+  border-color: rgba(46, 74, 92, 0.25);
 }
 
 /* Booking funnel — stepped timeline */
@@ -1183,7 +1181,7 @@ img {
   transition: border-color 0.3s, box-shadow 0.35s, transform 0.35s;
 }
 .room-select-card:hover {
-  border-color: rgba(163, 139, 95, 0.5);
+  border-color: rgba(46, 74, 92, 0.5);
   box-shadow: 0 24px 56px rgba(26, 28, 24, 0.09);
   transform: translateY(-2px);
 }
