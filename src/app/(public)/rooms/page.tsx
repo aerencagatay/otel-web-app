@@ -14,9 +14,6 @@ import {
   Sofa,
   Armchair,
   Phone,
-  LogIn,
-  LogOut,
-  BedDouble,
   Bath,
   Shirt,
   Shield,
@@ -176,22 +173,22 @@ export default function RoomsPage() {
                   >
                     {room.name}
                   </h3>
-                  <div className="text-gold text-[20px] font-bold mb-4 tracking-wide">
+                  <div className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase mb-4">
                     {room.price}{" "}
-                    <span className="text-[13px] text-text-light font-normal">
+                    <span className="text-text-light font-normal normal-case tracking-normal">
                       {room.priceSub}
                     </span>
                   </div>
-                  <p className="text-[14px] text-text leading-[1.8] mb-5">
+                  <p className="text-[14px] text-text leading-[1.8] mb-6">
                     {room.desc}
                   </p>
-                  <div className="flex flex-wrap gap-x-6 gap-y-2.5 mb-6">
+                  <div className="flex flex-wrap gap-x-6 gap-y-2.5 mb-7 pt-5 border-t border-border">
                     {room.features.map((f, j) => (
                       <span
                         key={j}
                         className="text-[12.5px] text-text-light flex items-center gap-1.5"
                       >
-                        <f.icon size={14} className="text-gold" />
+                        <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
                         {f.text}
                       </span>
                     ))}
@@ -255,39 +252,34 @@ export default function RoomsPage() {
       </section>
 
       {/* Check-in/out banner */}
-      <section className="section-sm bg-white">
+      <div className="bg-ivory border-y border-border py-10 md:py-11">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { icon: LogIn, label: "Giriş Saati", value: "14:00" },
-              { icon: LogOut, label: "Çıkış Saati", value: "12:00" },
-              { icon: BedDouble, label: "Toplam Oda", value: "28" },
+              { label: "Giriş Saati", value: "14:00" },
+              { label: "Çıkış Saati", value: "12:00" },
+              { label: "Toplam Oda", value: "28" },
             ].map((item, i) => (
-              <div key={i} className="p-8 border border-border">
-                <item.icon size={24} className="text-gold mx-auto mb-3" />
-                <h6 className="text-[11px] tracking-[2px] uppercase text-text-light">
-                  {item.label}
-                </h6>
-                <p className="font-heading text-[32px] text-dark font-bold m-0">
-                  {item.value}
-                </p>
+              <div
+                key={i}
+                className="text-center py-4 px-3 border-r border-border last:border-r-0"
+              >
+                <span className="stat-number">{item.value}</span>
+                <span className="stat-label">{item.label}</span>
               </div>
             ))}
-            <div className="p-8 bg-gold border border-gold">
-              <Phone size={24} className="text-white mx-auto mb-3" />
-              <h6 className="text-[11px] tracking-[2px] uppercase text-white/75">
-                Rezervasyon
-              </h6>
+            <div className="text-center py-4 px-3">
               <a
                 href="tel:+905010913417"
-                className="font-heading text-[18px] text-white no-underline font-bold block"
+                className="font-heading text-[24px] text-gold no-underline font-semibold tracking-wide block leading-none hover:opacity-80 transition-opacity"
               >
                 +90 501 091 34 17
               </a>
+              <span className="stat-label mt-2">Rezervasyon</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* CTA */}
       <section className="cta-banner">

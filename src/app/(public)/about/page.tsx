@@ -113,13 +113,13 @@ const attractions = [
 ];
 
 const galleryImages = [
-  { src: "/img/dis-cephe.jpg", label: "Dış Cephe" },
-  { src: "/img/balkon.JPG", label: "Balkon" },
+  { src: "/img/dis-cephe-web.jpg", label: "Dış Cephe" },
+  { src: "/img/balkon-web.jpg", label: "Balkon" },
   { src: "/img/bahce.webp", label: "Bahçe" },
   { src: "/img/havuz.webp", label: "Havuz" },
-  { src: "/img/hero.JPG", label: "Deniz Manzarası" },
-  { src: "/img/hotel.JPG", label: "Otel" },
-  { src: "/img/hotel-2.JPG", label: "Taş Mimari" },
+  { src: "/img/hero-poster.jpg", label: "Deniz Manzarası" },
+  { src: "/img/hotel-web.jpg", label: "Otel" },
+  { src: "/img/hotel-2-web.jpg", label: "Taş Mimari" },
   { src: "/img/aile_odası.webp", label: "Aile Suit Deniz Manzaralı" },
 ];
 
@@ -133,15 +133,18 @@ export default function AboutPage() {
       />
 
       {/* Rating Banner */}
-      <div className="bg-dark py-8">
+      <div className="bg-dark py-9">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6">
             {ratingStats.map((s, i) => (
-              <div key={i}>
+              <div
+                key={i}
+                className="text-center px-3 md:border-l md:border-white/10 md:first:border-l-0"
+              >
                 <div className="font-heading text-[42px] text-gold font-bold leading-none">
                   {s.value}
                 </div>
-                <div className="text-[11px] tracking-[2px] uppercase text-white/55 mt-1.5">
+                <div className="text-[11px] tracking-[2px] uppercase text-white/55 mt-2">
                   {s.label}
                 </div>
               </div>
@@ -162,14 +165,14 @@ export default function AboutPage() {
                 Taşıyan Bir Otel
               </h2>
               <div className="divider-gold" />
-              <p className="text-[15px] leading-[1.9]">
+              <p className="text-[15px] leading-[1.9] mb-4">
                 Assos Karadut Taş Otel, Büyükhusun Köyü&apos;nün sessiz
                 güzelliğinde, Ege&apos;nin mavisine açılan eşsiz bir konumda
                 yükseliyor. 28 odası ile kahvaltı dahil ve yarım pansiyon
                 seçenekleri sunan otelimiz, geleneksel taş mimarisini modern
                 konfor anlayışıyla harmanlıyor.
               </p>
-              <p className="text-[15px] leading-[1.9]">
+              <p className="text-[15px] leading-[1.9] mb-4">
                 Kadırga Koyu&apos;na 5 km mesafede, Antik Assos ve Assos
                 Limanı&apos;na dakikalar uzaklıkta konumlanan otelimiz;
                 Ege&apos;nin tarihini, doğasını ve denizini tek bir tatilde bir
@@ -251,12 +254,12 @@ export default function AboutPage() {
                 Özen
               </h2>
               <div className="divider-gold" />
-              <p className="text-[15px] leading-[1.9]">
+              <p className="text-[15px] leading-[1.9] mb-4">
                 Deniz manzaralı açık yüzme havuzumuz ve ayrı çocuk havuzumuz
                 ile tüm yaş gruplarına hitap ediyoruz. Havuz başındaki bar,
                 sizi serinletirken keyfini de artırıyor.
               </p>
-              <p className="text-[15px] leading-[1.9]">
+              <p className="text-[15px] leading-[1.9] mb-4">
                 A La Carte restoranımızda taze yerel malzemelerle hazırlanan
                 Ege lezzetleri ve ısmarlamalı kahvaltı servisi (08:30–10:30)
                 sunulmaktadır.
@@ -356,17 +359,16 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 mt-10 text-center">
             {highlightRatings.map((h, i) => (
               <div
                 key={i}
-                className="bg-gold/10 border border-gold/25 py-5 px-3"
+                className="py-2 px-3 md:border-l md:border-white/10 md:first:border-l-0"
               >
-                <h.icon size={24} className="text-gold mx-auto mb-2" />
-                <div className="text-[12px] tracking-[1.5px] uppercase text-white/70">
+                <div className="text-[11px] tracking-[0.2em] uppercase text-white/55 mb-2">
                   {h.label}
                 </div>
-                <div className="font-heading text-[28px] text-gold font-bold">
+                <div className="font-heading text-[30px] text-gold font-semibold">
                   {h.score}
                 </div>
               </div>
@@ -393,7 +395,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5">
               <Image
-                src="/img/chairperson.JPG"
+                src="/img/chairperson-web.jpg"
                 alt="Bilgi İşlem Sorumlumuz"
                 width={500}
                 height={480}
@@ -411,13 +413,13 @@ export default function AboutPage() {
                 Güleryüzlü Hizmet
               </h2>
               <div className="divider-gold" />
-              <p className="text-[15px] leading-[1.9]">
+              <p className="text-[15px] leading-[1.9] mb-4">
                 Assos Karadut Taş Otel&apos;de hizmet anlayışımız, kurumsal
                 soğukluğun ötesindedir. Sahipleri ve ekibi, her misafiriyle
                 birebir ilgilenerek onların ihtiyaçlarını önceden sezmeye
                 çalışır.
               </p>
-              <p className="text-[15px] leading-[1.9]">
+              <p className="text-[15px] leading-[1.9] mb-2">
                 Bölgeyi iyi tanıyan ekibimiz; Assos çevresindeki gizli
                 koyları, yürüyüş rotalarını ve en taze deniz ürünleri sunan
                 restoranları sizinle paylaşmaktan mutluluk duyar.
