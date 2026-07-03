@@ -13,15 +13,19 @@ Bu bölüm iş bilgilerinin kanonik kaynağıdır. Bir agent tanımı veya sayfa
 - **Telefon:** +90 501 091 34 17
 - **E-posta:** karaduttas@gmail.com
 - **Check-in / Check-out:** 14:00 / 12:00
-- **Toplam oda:** 34
+- **Toplam oda:** 28
 - **Başlangıç fiyatı:** 7.200 TL/gece — NOT: fiyat/istatistik gibi değerlerde CANLI SİTEDEKİ (src/) değer esastır; bu dosya canlı siteyle çelişirse siteyi değiştirme, bu dosyayı güncelle
 - **Turizm Lisansı:** 24921
 - **Konum notu:** Kadırga Koyu'na 5 km
 - **Rezervasyon modeli:** Telefon öncelikli; online ödeme YOK. Dinamik rezervasyon (kapora akışı) Vercel/Next.js üzerinde planlı.
 - **Rezervasyon URL konfigürasyonu:** `js/booking-config.js` → `window.KARADUT_BOOKING_URL`
 
-## Oda tipleri (tüm sayfalarda bu adlar aynen kullanılır)
+## Oda tipleri (tüm sayfalarda bu adlar aynen kullanılır — kullanıcı onayı 2026-07-03)
 
-1. **Deluxe Oda Deniz Manzaralı** — 24m², max 2 kişi, tam deniz manzarası
-2. **Deluxe Oda Kısmi Deniz Manzaralı** — 22m², max 2 kişi
-3. **Aile Odası** — 44m², max 4 kişi, oturma grubu
+1. **Deluxe Tam Deniz Manzaralı** — 24m², max 2 kişi, deniz manzarası
+2. **Traditional Kısmi Deniz Manzaralı** — 22m², max 2 kişi
+3. **Aile Suit Deniz Manzaralı** — 44m², max 4 kişi
+
+Anasayfada gecelik başlangıç fiyatı GÖSTERİLMEZ (kullanıcı kararı 2026-07-03);
+oda kartlarında "Fiyat için iletişim" kullanılır. `src/lib/config/pricing.ts`
+rezervasyon sisteminin fonksiyonel verisidir, pazarlama kopyası değildir.
