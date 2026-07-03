@@ -10,7 +10,7 @@ export default function BookingSuccessView() {
   const id = searchParams.get("id");
 
   return (
-    <div style={{ paddingTop: "42px" }}>
+    <div style={{ paddingTop: "38px" }}>
       <section className="section-py min-h-[72vh] flex items-center bg-[var(--color-ivory)]">
         <div className="max-w-lg mx-auto px-4 w-full">
           <div className="premium-trip-card text-center">

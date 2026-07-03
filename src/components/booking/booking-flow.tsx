@@ -170,14 +170,7 @@ export default function BookingFlow() {
       </div>
 
       {error && (
-        <div
-          className="border px-4 py-3 mb-6 text-[14px] rounded-sm"
-          style={{
-            background: "rgba(127, 29, 29, 0.06)",
-            borderColor: "rgba(127, 29, 29, 0.25)",
-            color: "#7f1d1d",
-          }}
-        >
+        <div className="border border-red-700/25 bg-red-50 text-red-700 px-4 py-3 mb-6 text-[14px] rounded-sm">
           {error}
         </div>
       )}
@@ -190,7 +183,7 @@ export default function BookingFlow() {
             prefill={prefill}
           />
           {loading && (
-            <div className="absolute inset-0 bg-white/70 flex items-center justify-center z-10 backdrop-blur-[2px]">
+            <div className="absolute inset-0 bg-[var(--color-ivory)]/85 flex items-center justify-center z-10 backdrop-blur-[2px]">
               <Loader2 className="animate-spin text-gold" size={32} />
               <span className="ml-3 text-text-light text-[14px]">
                 Müsaitlik kontrol ediliyor…
@@ -212,7 +205,7 @@ export default function BookingFlow() {
                 setStep("search");
                 setRooms([]);
               }}
-              className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline bg-transparent border-0 cursor-pointer p-0"
+              className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4 transition-colors bg-transparent border-0 cursor-pointer p-0"
             >
               ← Tarihleri değiştir
             </button>
@@ -253,7 +246,7 @@ export default function BookingFlow() {
               <button
                 type="button"
                 onClick={() => setStep("select")}
-                className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline bg-transparent border-0 cursor-pointer p-0"
+                className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4 transition-colors bg-transparent border-0 cursor-pointer p-0"
               >
                 ← Oda değiştir
               </button>

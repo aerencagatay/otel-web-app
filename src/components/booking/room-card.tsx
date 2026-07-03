@@ -51,7 +51,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
       <div className="room-select-card__aside">
         {stay.total != null ? (
           <>
-            <div className="text-[10px] uppercase tracking-[0.22em] text-text-light mb-1 font-semibold">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-text-light mb-1 font-semibold">
               Toplam · {stay.nights} gece
             </div>
             <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-1 leading-none">
@@ -71,7 +71,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
           </>
         ) : (
           <>
-            <div className="text-[10px] uppercase tracking-[0.22em] text-text-light mb-2 font-semibold">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-text-light mb-2 font-semibold">
               Kapora
             </div>
             <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-5 leading-none">
@@ -82,7 +82,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
         <button
           type="button"
           onClick={onSelect}
-          className="btn-cta-solid w-full justify-center text-[9px] py-3.5 border-0"
+          className="btn-cta-solid w-full justify-center text-[10px] py-3.5 border-0"
         >
           Bu odayı seç
         </button>

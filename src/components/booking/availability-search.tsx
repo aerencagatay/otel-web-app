@@ -73,7 +73,7 @@ export default function AvailabilitySearch({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div className="form-field">
           <label className="form-label">Giriş tarihi</label>
           <input
@@ -126,7 +126,7 @@ export default function AvailabilitySearch({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
         <div className="form-field">
           <label className="form-label">Oda tipi (isteğe bağlı)</label>
           <select
