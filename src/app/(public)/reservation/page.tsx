@@ -55,7 +55,7 @@ export default function ReservationPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
             {[
               {
                 num: 1,
@@ -98,7 +98,7 @@ export default function ReservationPage() {
       {/* Conditions + Contact */}
       <section className="section-py bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
               <span className="eyebrow">Bilmeniz Gerekenler</span>
               <h2 className="mb-4">
@@ -184,13 +184,16 @@ export default function ReservationPage() {
                     </span>
                   ),
                 },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 mb-4">
-                  <div className="w-[52px] h-[52px] bg-gold/15 rounded-full flex items-center justify-center shrink-0">
-                    <item.icon size={20} className="text-gold" />
-                  </div>
+              ].map((item, i, arr) => (
+                <div
+                  key={i}
+                  className={`flex items-center gap-4 py-4 ${
+                    i !== arr.length - 1 ? "border-b border-white/10" : ""
+                  }`}
+                >
+                  <item.icon size={18} className="text-gold-light shrink-0" />
                   <div>
-                    <div className="text-[11px] tracking-[2px] uppercase text-white/50 mb-1">
+                    <div className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-1">
                       {item.label}
                     </div>
                     {item.content}
@@ -198,7 +201,7 @@ export default function ReservationPage() {
                 </div>
               ))}
 
-              <hr className="border-white/10 my-8" />
+              <hr className="border-white/10 mt-8 mb-8" />
               <a
                 href="tel:+905010913417"
                 className="btn-gold w-full text-center block"
@@ -255,13 +258,13 @@ function FaqAccordion() {
           key={i}
           className="border-b border-border group"
         >
-          <summary className="cursor-pointer py-4 text-[14px] font-semibold text-dark list-none flex justify-between items-center">
+          <summary className="cursor-pointer py-5 text-[14px] font-semibold text-dark list-none flex justify-between items-center gap-4">
             {faq.q}
-            <span className="text-gold ml-4 transition-transform group-open:rotate-45 text-xl">
+            <span className="text-gold ml-4 transition-transform group-open:rotate-45 text-xl shrink-0">
               +
             </span>
           </summary>
-          <div className="pb-4 text-[14px] text-text-light">{faq.a}</div>
+          <div className="pb-5 text-[14px] text-text-light leading-relaxed">{faq.a}</div>
         </details>
       ))}
     </div>

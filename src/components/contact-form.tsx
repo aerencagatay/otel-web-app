@@ -17,7 +17,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label className="form-label">Ad Soyad</label>
           <input
@@ -35,7 +35,7 @@ export default function ContactForm() {
           />
         </div>
       </div>
-      <div className="mt-3">
+      <div className="mt-5">
         <label className="form-label">E-posta</label>
         <input
           type="email"
@@ -43,7 +43,7 @@ export default function ContactForm() {
           placeholder="ornek@email.com"
         />
       </div>
-      <div className="mt-3">
+      <div className="mt-5">
         <label className="form-label">Konu</label>
         <select className="form-input" defaultValue="">
           <option value="" disabled>
@@ -56,7 +56,7 @@ export default function ContactForm() {
           <option>Diğer</option>
         </select>
       </div>
-      <div className="mt-3">
+      <div className="mt-5">
         <label className="form-label">Mesajınız</label>
         <textarea
           className="form-input"
@@ -64,7 +64,7 @@ export default function ContactForm() {
           placeholder="Mesajınızı buraya yazın..."
         />
       </div>
-      <div className="mt-3">
+      <div className="mt-6">
         <button
           type="submit"
           className="btn-gold w-full border-none cursor-pointer"

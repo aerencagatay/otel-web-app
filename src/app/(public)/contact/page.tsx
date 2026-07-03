@@ -84,11 +84,11 @@ export default function ContactPage() {
       {/* Contact Cards */}
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {contactCards.map((card, i) => (
               <div key={i} className="contact-info-card">
                 <div className="contact-icon">
-                  <card.icon size={26} className="text-gold transition-colors" />
+                  <card.icon size={24} className="text-gold transition-colors" />
                 </div>
                 <h5 className="text-[14px] tracking-wide uppercase mb-2.5">
                   {card.title}
@@ -118,7 +118,7 @@ export default function ContactPage() {
       {/* Form + Map */}
       <section className="section-py bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
             {/* Form */}
             <div>
               <span className="eyebrow">Mesaj Gönderin</span>
@@ -135,9 +135,9 @@ export default function ContactPage() {
               <span className="eyebrow">Konumumuz</span>
               <h2 className="mb-4">Nasıl Gelinir?</h2>
 
-              <div className="w-full h-[300px] bg-warm border border-border flex items-center justify-center mb-7">
-                <div className="text-center p-4">
-                  <MapPin size={36} className="text-gold mx-auto mb-3" />
+              <div className="w-full h-[clamp(260px,32vw,340px)] bg-warm border border-border flex items-center justify-center mb-8">
+                <div className="text-center p-6">
+                  <MapPin size={28} className="text-gold mx-auto mb-4" />
                   <p className="text-[14px] text-text-light m-0">
                     Büyükhusun Köyü Namazgah Mevkii No:26,
                     <br />
@@ -147,7 +147,7 @@ export default function ContactPage() {
                     href="https://maps.google.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-gold inline-block mt-3 text-[10px] py-2.5 px-5"
+                    className="btn-gold inline-block mt-5 text-[10px] py-2.5 px-5"
                   >
                     Google Haritalar&apos;da Aç
                   </a>
@@ -200,11 +200,11 @@ export default function ContactPage() {
             <h2>Yakın Aktiviteler</h2>
             <div className="divider-gold-center" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {nearbyPlaces.map((p, i) => (
-              <div key={i} className="amenity-card bg-white">
+              <div key={i} className="amenity-card">
                 <div className="amenity-icon">
-                  <p.icon size={26} className="text-gold" />
+                  <p.icon size={24} className="text-gold" />
                 </div>
                 <h5 className="text-[13px] tracking-[1.2px] uppercase mb-2">
                   {p.title}
