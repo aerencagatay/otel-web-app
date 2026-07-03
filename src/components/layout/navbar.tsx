@@ -17,6 +17,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  // Üstünde koyu hero olmayan sayfalarda şeffaf navbar beyaz metniyle okunmaz;
+  // bu rotalarda navbar her zaman opak (scrolled) stiliyle başlar.
+  const solidNav = pathname.startsWith("/booking-success");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 48);
@@ -28,7 +31,7 @@ export default function Navbar() {
   return (
     <div className="header-nav">
       <nav
-        className={`navbar-base ${scrolled || menuOpen ? "navbar-scrolled" : ""}`}
+        className={`navbar-base ${scrolled || menuOpen || solidNav ? "navbar-scrolled" : ""}`}
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <Link
@@ -57,7 +60,7 @@ export default function Navbar() {
             <Link
               href="/reservation"
               className={`nav-cta ml-2 no-underline ${
-                scrolled || menuOpen ? "nav-cta--on-light" : "nav-cta--on-dark"
+                scrolled || menuOpen || solidNav ? "nav-cta--on-light" : "nav-cta--on-dark"
               }`}
             >
               Rezervasyon
@@ -67,7 +70,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             className={`lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center ${
-              scrolled || menuOpen ? "text-dark" : "text-white"
+              scrolled || menuOpen || solidNav ? "text-dark" : "text-white"
             }`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menü"

@@ -23,7 +23,7 @@ export default function ReservationPage() {
   return (
     <>
       {/* Hero */}
-      <div style={{ paddingTop: "38px" }}>
+      <div>
         <div className="res-hero relative z-[1]">
           <div className="max-w-7xl mx-auto px-4">
             <span className="eyebrow text-white/70">Rezervasyon</span>
