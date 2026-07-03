@@ -52,65 +52,69 @@ export default function FeaturedRooms() {
           </p>
         </div>
 
-        {/* Oda videosu — orijinal kalite, sessiz döngü; hareket azaltmada statik foto */}
-        <div className="mb-10 md:mb-14 border-y border-border">
-          <video
-            className="w-full h-[300px] md:h-[440px] object-cover block motion-reduce:hidden"
-            src="/img/oda-video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-          />
-          <Image
-            src="/img/aile_odası.webp"
-            alt="Assos Karadut Taş Otel odaları"
-            width={1600}
-            height={900}
-            className="w-full h-[300px] md:h-[440px] object-cover hidden motion-reduce:block"
-          />
-        </div>
+        {/* Sol: oda videosu (720x1280, doğal 9:16 oranında) — Sağ: 3 oda */}
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_1fr] gap-10 md:gap-14 items-stretch">
+          <div className="border border-border self-start">
+            <video
+              className="w-full aspect-[9/16] object-cover block motion-reduce:hidden"
+              src="/img/oda-video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            />
+            <Image
+              src="/img/aile_odası.webp"
+              alt="Assos Karadut Taş Otel odaları"
+              width={720}
+              height={1280}
+              className="w-full aspect-[9/16] object-cover hidden motion-reduce:block"
+            />
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {rooms.map((room) => (
-            <Link
-              key={room.name}
-              href="/reservation"
-              className="group flex flex-col no-underline"
-            >
-              <div className="overflow-hidden mb-5">
-                <Image
-                  src={room.image}
-                  alt={room.name}
-                  width={600}
-                  height={450}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                />
-              </div>
-              <h3
-                className="font-heading font-semibold text-dark m-0 mb-1"
-                style={{ fontSize: "clamp(1.25rem, 1.8vw, 1.55rem)" }}
+          <div className="flex flex-col justify-between gap-8 md:gap-6">
+            {rooms.map((room) => (
+              <Link
+                key={room.name}
+                href="/reservation"
+                className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border-b border-border last:border-b-0 pb-8 md:pb-6 last:pb-0"
               >
-                {room.name}
-              </h3>
-              <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-3">
-                {room.price}
-              </p>
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-4">
-                {room.features.map((f, j) => (
-                  <span key={j} className="flex items-center gap-1.5">
-                    <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
-                    {f.text}
+                <div className="overflow-hidden sm:w-[45%] shrink-0">
+                  <Image
+                    src={room.image}
+                    alt={room.name}
+                    width={600}
+                    height={450}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <h3
+                    className="font-heading font-semibold text-dark m-0 mb-1"
+                    style={{ fontSize: "clamp(1.2rem, 1.6vw, 1.45rem)" }}
+                  >
+                    {room.name}
+                  </h3>
+                  <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2.5">
+                    {room.price}
+                  </p>
+                  <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3.5">
+                    {room.features.map((f, j) => (
+                      <span key={j} className="flex items-center gap-1.5">
+                        <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
+                        {f.text}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
+                    Müsaitlik &amp; rezervasyon
                   </span>
-                ))}
-              </div>
-              <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
-                Müsaitlik &amp; rezervasyon
-              </span>
-            </Link>
-          ))}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center mt-10 md:mt-12 pt-10 border-t border-border">
