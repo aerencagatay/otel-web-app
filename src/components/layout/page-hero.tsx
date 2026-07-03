@@ -18,16 +18,17 @@ export default function PageHero({
         style={{ backgroundImage: `url('${backgroundImage}')` }}
       >
         <div className="relative z-2 text-white px-4">
-          <p className="text-[10px] tracking-[0.35em] uppercase text-white/60 mb-3 m-0">
+          <p className="text-[10px] tracking-[0.35em] uppercase text-white/60 mb-4 m-0">
             Assos Karadut
           </p>
           <h1
-            className="text-white mb-5 font-heading font-semibold tracking-tight m-0"
+            className="text-white mb-6 font-heading font-semibold tracking-tight m-0"
             style={{ fontSize: "clamp(1.85rem, 4.5vw, 3rem)" }}
           >
             {title}
           </h1>
-          <nav className="flex justify-center gap-2 text-[11px] tracking-[0.12em] uppercase">
+          <span className="block w-10 h-px bg-white/25 mx-auto mb-6" aria-hidden="true" />
+          <nav className="flex justify-center gap-3 text-[11px] tracking-[0.12em] uppercase">
             <Link href="/" className="text-white/55 no-underline hover:text-white transition-colors">
               Anasayfa
             </Link>
