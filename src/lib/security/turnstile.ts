@@ -2,11 +2,15 @@
  * Cloudflare Turnstile server-side verification helper.
  *
  * Generic on purpose: used by the reservation API and (per Task 03) the
- * contact form backend as well. If TURNSTILE_SECRET_KEY is not configured,
- * verification is bypassed with a console warning — this keeps local dev
- * and `npm run build` working without Cloudflare credentials. In
- * production, missing the env var is treated as a misconfiguration and the
- * caller should still fail closed by checking `NODE_ENV`.
+ * contact form backend as well.
+ *
+ * Missing TURNSTILE_SECRET_KEY:
+ * - Development/test: verification is bypassed with a one-time console
+ *   warning, so local dev and `npm run build` work without Cloudflare
+ *   credentials.
+ * - Production: FAIL CLOSED — the request is rejected with reason
+ *   "no-secret-configured", so a forgotten env var can't silently disable
+ *   bot protection. Callers should map this reason to a 503.
  */
 
 const VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -29,9 +33,10 @@ export type TurnstileVerifyResult = {
  * Verifies a Turnstile token against Cloudflare's siteverify endpoint.
  *
  * Behavior:
- * - No `TURNSTILE_SECRET_KEY` configured -> bypass (success: true) with a
- *   one-time warning. Intended for local dev only.
- * - Token missing/empty -> fails (unless bypassed above).
+ * - No `TURNSTILE_SECRET_KEY` configured:
+ *   - production -> fails closed (reason: "no-secret-configured").
+ *   - otherwise  -> bypass (success: true) with a one-time warning.
+ * - Token missing/empty -> fails (reason: "missing-token").
  * - Cloudflare rejects the token, or the request itself errors -> fails.
  */
 export async function verifyTurnstileToken(
@@ -41,6 +46,13 @@ export async function verifyTurnstileToken(
   const secret = process.env.TURNSTILE_SECRET_KEY;
 
   if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      // Misconfiguration: never silently disable bot protection in prod.
+      console.error(
+        "[turnstile] TURNSTILE_SECRET_KEY prod ortamında tanımlı değil — istek reddediliyor (fail-closed)."
+      );
+      return { success: false, reason: "no-secret-configured" };
+    }
     warnOnce();
     return { success: true, reason: "no-secret-configured" };
   }
@@ -71,9 +83,4 @@ export async function verifyTurnstileToken(
     console.error("Turnstile verification error:", err);
     return { success: false, reason: "network-error" };
   }
-}
-
-/** Whether Turnstile enforcement should be treated as active (prod-like). */
-export function isTurnstileEnforced(): boolean {
-  return Boolean(process.env.TURNSTILE_SECRET_KEY);
 }

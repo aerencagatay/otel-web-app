@@ -47,6 +47,17 @@ export async function POST(request: NextRequest) {
       ip
     );
     if (!turnstileResult.success) {
+      // "no-secret-configured" in production means the server itself is
+      // misconfigured (helper fails closed) — surface as 503, not user error.
+      if (turnstileResult.reason === "no-secret-configured") {
+        return NextResponse.json(
+          {
+            error:
+              "Rezervasyon sistemi şu anda geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin veya bizi telefonla arayın.",
+          },
+          { status: 503 }
+        );
+      }
       return NextResponse.json(
         {
           error:
