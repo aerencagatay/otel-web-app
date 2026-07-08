@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Ruler, Users, Waves, Wifi } from "lucide-react";
-import { getRoomImages } from "@/lib/config/room-images";
+import { getRoomCoverImage, getRoomHoverImage } from "@/lib/config/room-images";
 import { getStartingPriceLabel } from "@/lib/config/pricing";
 
 const rooms = [
@@ -102,8 +102,8 @@ export default function FeaturedRooms() {
 
           <div className="grid grid-rows-3 gap-5 md:gap-4 h-full">
             {rooms.map((room) => {
-              const images = getRoomImages(room.roomType);
-              const hoverImage = images.gallery[1] ?? images.cover;
+              const coverImage = getRoomCoverImage(room.roomType);
+              const hoverImage = getRoomHoverImage(room.roomType);
               const priceLabel = getStartingPriceLabel(room.roomType);
               return (
                 <Link
@@ -113,8 +113,8 @@ export default function FeaturedRooms() {
                 >
                   <div className="relative overflow-hidden rounded-[var(--radius-sm)] sm:w-[42%] shrink-0 aspect-[4/3]">
                     <Image
-                      src={images.cover.src}
-                      alt={images.cover.alt}
+                      src={coverImage.src}
+                      alt={coverImage.alt}
                       fill
                       sizes="(max-width: 640px) 100vw, 300px"
                       className="object-cover transition-opacity duration-500 group-hover:opacity-0"

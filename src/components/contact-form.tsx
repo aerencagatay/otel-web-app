@@ -6,11 +6,13 @@ import { Send, CheckCircle, AlertCircle, MessageCircle } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { trackEvent } from "@/lib/analytics";
 import { CONTACT_SUBJECTS } from "@/lib/utils/validation";
+import { HOTEL } from "@/lib/config/hotel";
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+const PHONE_DIGITS = HOTEL.phone.replace(/\D/g, "");
 const WHATSAPP_URL =
-  "https://wa.me/905010913417?text=" +
-  encodeURIComponent("Merhaba, Assos Karadut Taş Otel hakkında bilgi almak istiyorum.");
+  `https://wa.me/${PHONE_DIGITS}?text=` +
+  encodeURIComponent(`Merhaba, ${HOTEL.name} hakkında bilgi almak istiyorum.`);
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -73,7 +75,7 @@ export default function ContactForm() {
           <p className="font-semibold m-0 mb-1">Mesajınız iletildi</p>
           <p className="text-[13.5px] m-0">
             En kısa sürede size dönüş yapacağız. Acil durumlar için bizi doğrudan
-            arayabilirsiniz: <a href="tel:+905010913417" className="underline">+90 501 091 34 17</a>.
+            arayabilirsiniz: <a href={`tel:+${PHONE_DIGITS}`} className="underline">{HOTEL.phone}</a>.
           </p>
           <button
             type="button"

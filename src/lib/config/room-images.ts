@@ -34,6 +34,11 @@ export const ROOM_IMAGES: Record<string, RoomImageSet> = {
       { src: "/img/rooms/deluxe/deluxe-4.webp", alt: "Deluxe Tam Deniz Manzaralı oda - banyo" },
       { src: "/img/rooms/deluxe/deluxe-5.webp", alt: "Deluxe Tam Deniz Manzaralı oda - detay" },
       { src: "/img/rooms/deluxe/deluxe-6.webp", alt: "Deluxe Tam Deniz Manzaralı oda - manzara" },
+      { src: "/img/rooms/deluxe/deluxe-7.webp", alt: "Deluxe Tam Deniz Manzaralı oda - iç mekân detayı" },
+      { src: "/img/rooms/deluxe/deluxe-8.webp", alt: "Deluxe Tam Deniz Manzaralı oda - farklı açıdan görünüm" },
+      { src: "/img/rooms/deluxe/deluxe-9.webp", alt: "Deluxe Tam Deniz Manzaralı oda - dekorasyon detayı" },
+      { src: "/img/rooms/deluxe/deluxe-10.webp", alt: "Deluxe Tam Deniz Manzaralı oda - balkondan manzara" },
+      { src: "/img/rooms/deluxe/deluxe-11.webp", alt: "Deluxe Tam Deniz Manzaralı oda - genel iç görünüm" },
     ],
   },
   traditional_room: {
@@ -45,6 +50,8 @@ export const ROOM_IMAGES: Record<string, RoomImageSet> = {
       { src: "/img/rooms/traditional/traditional-4.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - banyo" },
       { src: "/img/rooms/traditional/traditional-5.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - detay" },
       { src: "/img/rooms/traditional/traditional-6.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - manzara" },
+      { src: "/img/rooms/traditional/traditional-7.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - iç mekân detayı" },
+      { src: "/img/rooms/traditional/traditional-8.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - farklı açıdan görünüm" },
     ],
   },
   premium_family: {
@@ -56,6 +63,9 @@ export const ROOM_IMAGES: Record<string, RoomImageSet> = {
       { src: "/img/rooms/aile-suit/aile-suit-4.webp", alt: "Aile Suit Deniz Manzaralı oda - balkon ve deniz manzarası" },
       { src: "/img/rooms/aile-suit/aile-suit-5.webp", alt: "Aile Suit Deniz Manzaralı oda - açık hava yemek masası" },
       { src: "/img/rooms/aile-suit/aile-suit-6.webp", alt: "Aile Suit Deniz Manzaralı oda - banyo" },
+      { src: "/img/rooms/aile-suit/aile-suit-7.webp", alt: "Aile Suit Deniz Manzaralı oda - iç mekân detayı" },
+      { src: "/img/rooms/aile-suit/aile-suit-8.webp", alt: "Aile Suit Deniz Manzaralı oda - farklı açıdan görünüm" },
+      { src: "/img/rooms/aile-suit/aile-suit-9.webp", alt: "Aile Suit Deniz Manzaralı oda - genel iç görünüm" },
     ],
   },
 };
