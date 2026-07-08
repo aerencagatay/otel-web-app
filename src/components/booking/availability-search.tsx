@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Search, CalendarDays } from "lucide-react";
 import type { SearchParams } from "./booking-flow";
 
@@ -35,14 +35,19 @@ export default function AvailabilitySearch({
   const [children, setChildren] = useState(0);
   const [roomType, setRoomType] = useState("");
 
-  useEffect(() => {
-    if (!prefill?.checkIn || !prefill?.checkOut) return;
-    setCheckIn(prefill.checkIn);
-    setCheckOut(prefill.checkOut);
-    if (typeof prefill.adults === "number") setAdults(prefill.adults);
-    if (typeof prefill.children === "number") setChildren(prefill.children);
-    if (prefill.roomType !== undefined) setRoomType(prefill.roomType || "");
-  }, [prefill]);
+  // Prop değişince state'i render sırasında ayarla (React'in önerdiği
+  // "adjusting state when a prop changes" deseni — effect'te setState yok).
+  const [appliedPrefill, setAppliedPrefill] = useState(prefill);
+  if (prefill !== appliedPrefill) {
+    setAppliedPrefill(prefill);
+    if (prefill?.checkIn && prefill?.checkOut) {
+      setCheckIn(prefill.checkIn);
+      setCheckOut(prefill.checkOut);
+      if (typeof prefill.adults === "number") setAdults(prefill.adults);
+      if (typeof prefill.children === "number") setChildren(prefill.children);
+      if (prefill.roomType !== undefined) setRoomType(prefill.roomType || "");
+    }
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
