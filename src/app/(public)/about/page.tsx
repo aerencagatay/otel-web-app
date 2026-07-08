@@ -120,7 +120,7 @@ const galleryImages = [
   { src: "/img/hero-poster.jpg", label: "Deniz Manzarası" },
   { src: "/img/hotel-web.jpg", label: "Otel" },
   { src: "/img/hotel-2-web.jpg", label: "Taş Mimari" },
-  { src: "/img/aile_odası.webp", label: "Aile Suit Deniz Manzaralı" },
+  { src: "/img/aile-suit.webp", label: "Aile Suit Deniz Manzaralı" },
 ];
 
 export default function AboutPage() {
