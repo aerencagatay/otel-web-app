@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { RoomImage } from "@/lib/config/room-images";
@@ -11,14 +11,36 @@ interface Props {
 }
 
 /**
- * Minimal dependency-free lightbox for a room's mini gallery (4-6 photos).
+ * Minimal dependency-free lightbox for a room's photo gallery.
  * Grid of thumbnails -> full-screen modal with prev/next + Escape to close.
+ *
+ * Keyboard access: the dialog container is programmatically focused when it
+ * opens (so its Escape/arrow onKeyDown handlers actually receive events),
+ * and focus is returned to the thumbnail that opened it on close.
  */
 export default function RoomGalleryLightbox({ images, roomName }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  const isOpen = openIndex != null;
+
+  useEffect(() => {
+    if (isOpen) {
+      dialogRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  function open(index: number, trigger: HTMLElement) {
+    triggerRef.current = trigger;
+    setOpenIndex(index);
+  }
 
   function close() {
     setOpenIndex(null);
+    // Return focus to the thumbnail that opened the dialog.
+    triggerRef.current?.focus();
+    triggerRef.current = null;
   }
 
   function show(delta: number) {
@@ -36,7 +58,7 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
           <button
             key={img.src}
             type="button"
-            onClick={() => setOpenIndex(i)}
+            onClick={(e) => open(i, e.currentTarget)}
             className="gallery-item block w-full border-0 p-0 cursor-pointer bg-transparent"
             style={{ aspectRatio: "4/3" }}
             aria-label={`${roomName} fotoğrafı ${i + 1} - büyüt`}
@@ -59,7 +81,8 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
 
       {openIndex != null && (
         <div
-          className="fixed inset-0 z-[100] bg-dark/95 flex items-center justify-center p-4"
+          ref={dialogRef}
+          className="fixed inset-0 z-[100] bg-dark/95 flex items-center justify-center p-4 outline-none"
           role="dialog"
           aria-modal="true"
           aria-label={`${roomName} galerisi`}
