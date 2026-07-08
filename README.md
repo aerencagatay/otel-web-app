@@ -43,3 +43,35 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## SEO / Yapılandırılmış Veri (JSON-LD)
+
+Site şu şemaları yayınlar (`src/components/seo/json-ld.tsx`):
+
+- Tüm sayfalar: `Hotel` (ad, adres, geo, olanaklar, check-in/out, fiyat aralığı)
+- `/rooms`: her oda tipi için `HotelRoom` + `Offer` (fiyat `pricing.ts`'ten)
+- `/contact`: `ContactPage`
+
+Deploy sonrası manuel doğrulama:
+
+1. [Google Rich Results Test](https://search.google.com/test/rich-results) — ana sayfa (`Hotel`) ve `/rooms` (`HotelRoom`+`Offer`) hatasız çıkmalı.
+2. [Schema Markup Validator](https://validator.schema.org/) — genel şema doğrulaması.
+3. [opengraph.xyz](https://www.opengraph.xyz/) — `og.jpg` önizlemesi (≤200KB) hızlı gelmeli.
+
+Not: `reviews.ts` (Task 03) dolduğunda `AggregateRating` alanı
+`hotelJsonLd()` içine koşullu eklenmelidir — yorum verisi yokken eklemeyin.
+
+## Medya optimizasyonu
+
+```bash
+node scripts/optimize-images.mjs          # idempotent; sadece bayat türevleri üretir
+node scripts/optimize-images.mjs --force  # her şeyi yeniden üret
+```
+
+Ham (5-8MB) fotoğraf kaynakları `assets-raw/img/` altında tutulur ve
+`.vercelignore` ile deploy dışıdır; sayfalar yalnızca `-web` türevlerini kullanır.
+
+## Analytics / Hata izleme
+
+- Plausible: `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` env değişkeni tanımlıysa yüklenir (cookie'siz).
+- Sentry (yalnızca server): `SENTRY_DSN` tanımlıysa aktif; yoksa tamamen devre dışı.

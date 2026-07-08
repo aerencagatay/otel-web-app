@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/layout/page-hero";
 import ContactForm from "@/components/contact-form";
+import JsonLd, { contactJsonLd } from "@/components/seo/json-ld";
 import {
   MapPin,
   Phone,
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   title: "İletişim",
   description:
     "Assos Karadut Taş Otel iletişim: +90 501 091 34 17 | karaduttas@gmail.com | Büyükhusun Köyü Namazgah Mevkii No:26, Ayvacık, Çanakkale.",
+  alternates: { canonical: "/contact" },
 };
 
 const contactCards = [
@@ -79,6 +81,7 @@ const nearbyPlaces = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactJsonLd()} />
       <PageHero title="İletişim" breadcrumb="İletişim" />
 
       {/* Contact Cards */}

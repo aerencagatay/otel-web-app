@@ -7,6 +7,7 @@ import { getNightlyPrice } from "@/lib/config/pricing";
 import { generateReservationId } from "@/lib/utils/ids";
 import { nightCount, isPastDate } from "@/lib/utils/dates";
 import { getMailService } from "@/lib/mail";
+import { reportServerError } from "@/lib/monitoring";
 import {
   pendingReservationEmail,
   adminNotificationEmail,
@@ -160,6 +161,7 @@ export async function POST(request: NextRequest) {
       await mail.send({ to: data.email, ...template });
     } catch (mailErr) {
       console.error("Failed to send guest email:", mailErr);
+      await reportServerError(mailErr, { stage: "guest_email", reservationId });
       // Don't fail the reservation if email fails
     }
 
@@ -186,6 +188,7 @@ export async function POST(request: NextRequest) {
       }
     } catch (mailErr) {
       console.error("Failed to send admin notification:", mailErr);
+      await reportServerError(mailErr, { stage: "admin_email", reservationId });
     }
 
     return NextResponse.json({
@@ -195,6 +198,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     console.error("Reservation create error:", err);
+    await reportServerError(err, { stage: "reservation_create" });
     return NextResponse.json(
       { error: "Rezervasyon oluşturulurken bir hata oluştu." },
       { status: 500 }

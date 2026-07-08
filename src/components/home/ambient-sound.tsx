@@ -7,14 +7,21 @@ import { Volume2, VolumeX } from "lucide-react";
  * User-controlled ambient nature sound (CC0 sea waves).
  * Off by default — browsers block autoplay-with-sound and it's better UX.
  * The guest opts in via the floating button.
+ *
+ * Audio nesnesi DOM'a hiç yazılmaz ve ancak ilk tıklamada oluşturulur:
+ * kullanıcı sesi açmadıkça ambient.mp3 (~2.3MB) asla indirilmez.
  */
 export default function AmbientSound() {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
 
   function toggle() {
-    const audio = audioRef.current;
-    if (!audio) return;
+    let audio = audioRef.current;
+    if (!audio) {
+      audio = new Audio("/audio/ambient.mp3");
+      audio.loop = true;
+      audioRef.current = audio;
+    }
     if (playing) {
       audio.pause();
       setPlaying(false);
@@ -29,7 +36,6 @@ export default function AmbientSound() {
 
   return (
     <>
-      <audio ref={audioRef} src="/audio/ambient.mp3" loop preload="none" />
       <button
         type="button"
         onClick={toggle}

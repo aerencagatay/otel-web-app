@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const items = [
   {
-    src: "/img/hotel-2.JPG",
+    src: "/img/hotel-2-web.jpg",
     alt: "Otel ve çevre",
     title: "Mekân",
     desc: "Taş ve Ege ışığı",
@@ -16,7 +16,7 @@ const items = [
     mosaicClass: "gallery-mosaic__a",
   },
   {
-    src: "/img/hero.JPG",
+    src: "/img/hero-web.jpg",
     alt: "Manzara",
     title: "Manzara",
     desc: "Deniz ve gökyüzü",

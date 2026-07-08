@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    trackEvent("contact_submitted");
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

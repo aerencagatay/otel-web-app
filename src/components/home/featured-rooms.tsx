@@ -91,8 +91,8 @@ export default function FeaturedRooms() {
               muted
               loop
               playsInline
-              preload="metadata"
-              poster="/img/aile_odası.webp"
+              preload="none"
+              poster="/img/oda-video-poster.jpg"
               aria-hidden="true"
             />
             <Image

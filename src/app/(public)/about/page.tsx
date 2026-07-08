@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
     "Assos Karadut Taş Otel hakkında bilgi edinin. 28 oda, A La Carte restoran, açık havuz, Kadırga Koyu'na 5 km. 9.6/10 misafir puanı.",
+  alternates: { canonical: "/about" },
 };
 
 const ratingStats = [
@@ -196,8 +197,8 @@ export default function AboutPage() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
-                poster="https://cdng.jollytur.com/files/cms/media/hotel/d022dfb6-a865-48e2-b1d6-00b90c094170-300.jpeg"
+                preload="none"
+                poster="/img/otel-video-poster.jpg"
                 aria-label="Assos Karadut Taş Otel tanıtım videosu"
               >
                 <source src="/img/otel-video.mp4" type="video/mp4" />
@@ -283,8 +284,8 @@ export default function AboutPage() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
-                poster="https://cdng.jollytur.com/files/cms/media/hotel/18566b59-f980-4010-8909-24f21d811b3c-300.jpeg"
+                preload="none"
+                poster="/img/havuz-video-poster.jpg"
                 aria-label="Otel havuzu videosu"
               >
                 <source src="/img/havuz-video.mp4" type="video/mp4" />

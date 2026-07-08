@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/layout/page-hero";
+import JsonLd, { roomsJsonLd } from "@/components/seo/json-ld";
 import {
   Ruler,
   Users,
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
   title: "Odalarımız",
   description:
     "Assos Karadut Taş Otel oda tipleri: Deluxe Tam Deniz Manzaralı, Traditional Kısmi Deniz Manzaralı ve Aile Suit Deniz Manzaralı. Tüm odalarda klima, TV, Wi-Fi, minibar.",
+  alternates: { canonical: "/rooms" },
 };
 
 const rooms = [
@@ -119,6 +121,7 @@ const allAmenities = [
 export default function RoomsPage() {
   return (
     <>
+      <JsonLd data={roomsJsonLd()} />
       <PageHero
         title="Odalarımız"
         breadcrumb="Odalarımız"

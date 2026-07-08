@@ -7,6 +7,7 @@ import RoomCard from "./room-card";
 import BookingForm from "./booking-form";
 import BookingSummary from "./booking-summary";
 import { Loader2 } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export type RoomResult = {
   roomType: string;
@@ -82,6 +83,12 @@ export default function BookingFlow() {
 
       setRooms(data.rooms || []);
       setStep("select");
+      trackEvent("availability_search", {
+        check_in: params.checkIn,
+        check_out: params.checkOut,
+        guests: params.adults + params.children,
+        results: (data.rooms || []).length,
+      });
     } catch {
       setError("Bağlantı hatası. Lütfen tekrar deneyin.");
     } finally {
@@ -108,6 +115,7 @@ export default function BookingFlow() {
   function handleSelectRoom(room: RoomResult) {
     setSelectedRoom(room);
     setStep("form");
+    trackEvent("room_selected", { room_type: room.roomType });
   }
 
   async function handleBookingSubmit(formData: {
@@ -140,13 +148,26 @@ export default function BookingFlow() {
       const data = await res.json();
 
       if (!res.ok) {
+        trackEvent("reservation_failed", {
+          room_type: selectedRoom.roomType,
+          status: res.status,
+        });
         setError(data.error || "Rezervasyon oluşturulamadı.");
         setSubmitting(false);
         return;
       }
 
+      trackEvent("reservation_submitted", {
+        room_type: selectedRoom.roomType,
+        check_in: search.checkIn,
+        check_out: search.checkOut,
+      });
       router.push(`/booking-success?id=${data.reservationId}`);
     } catch {
+      trackEvent("reservation_failed", {
+        room_type: selectedRoom.roomType,
+        status: "network",
+      });
       setError("Bağlantı hatası. Lütfen tekrar deneyin.");
       setSubmitting(false);
     }

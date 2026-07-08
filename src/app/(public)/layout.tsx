@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import BackToTop from "@/components/layout/back-to-top";
 import StickyBookingCta from "@/components/layout/sticky-booking-cta";
+import PlausibleAnalytics from "@/components/analytics/plausible";
 
 export default function PublicLayout({
   children,
@@ -15,6 +16,7 @@ export default function PublicLayout({
       <Footer />
       <BackToTop />
       <StickyBookingCta />
+      <PlausibleAnalytics />
     </>
   );
 }

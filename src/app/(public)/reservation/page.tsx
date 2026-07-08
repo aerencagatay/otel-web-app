@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "Rezervasyon",
   description:
     "Assos Karadut Taş Otel online rezervasyon. Tarih seçin, müsaitliği kontrol edin ve kolayca rezervasyon yapın.",
+  alternates: { canonical: "/reservation" },
 };
 
 export default function ReservationPage() {

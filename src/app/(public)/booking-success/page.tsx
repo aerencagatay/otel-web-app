@@ -5,6 +5,8 @@ import BookingSuccessView from "@/components/booking/booking-success-view";
 export const metadata: Metadata = {
   title: "Rezervasyon Başarılı",
   description: "Rezervasyon talebiniz alındı. Kapora talimatları e-posta ile iletilir.",
+  // Kişiye özel onay sayfası — arama sonuçlarında yer almamalı.
+  robots: { index: false, follow: false },
 };
 
 function SuccessFallback() {
