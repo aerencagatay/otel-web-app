@@ -77,11 +77,13 @@ export default function FeaturedRooms() {
           </p>
         </div>
 
-        {/* Sol: oda videosu (3:4) — Sağ: 3 eşit yükseklikte oda kartı.
-            items-stretch + sağ sütunun grid-rows-3 h-full olması, video ile
-            kart sütununu piksel düzeyinde eşitler (1440px'te doğrulanmalı). */}
+        {/* Sol: oda videosu (masaüstünde sabit 3:4) — Sağ: 3 eşit yükseklikte
+            oda kartı. Video hücresi kendi aspect-ratio'suyla satırın "auto"
+            yüksekliğini belirler (en büyük içerik); sağ sütun grid-rows-3 +
+            h-full ile bu yüksekliğe stretch olur — CSS Grid'in standart
+            "iki sütunu eşitleme" kalıbı (1440px'te doğrulanmalı). */}
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_1fr] gap-10 md:gap-14 items-stretch">
-          <div className="rounded-[var(--radius-md)] overflow-hidden border border-border aspect-video md:aspect-auto">
+          <div className="rounded-[var(--radius-md)] overflow-hidden border border-border aspect-video md:aspect-[3/4]">
             <video
               ref={videoRef}
               className="w-full h-full object-cover block motion-reduce:hidden"
@@ -102,7 +104,7 @@ export default function FeaturedRooms() {
             />
           </div>
 
-          <div className="grid grid-rows-3 gap-5 md:gap-4">
+          <div className="grid grid-rows-3 gap-5 md:gap-4 h-full">
             {rooms.map((room) => (
               <Link
                 key={room.name}
