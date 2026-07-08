@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, CalendarDays } from "lucide-react";
 import type { SearchParams } from "./booking-flow";
+import DateRangePicker from "./date-range-picker";
 
 interface Props {
   onSearch: (params: SearchParams) => void;
@@ -35,9 +36,9 @@ export default function AvailabilitySearch({
   const [children, setChildren] = useState(0);
   const [roomType, setRoomType] = useState("");
 
-  // Sync incoming prefill into local state during render (React's
-  // recommended "adjust state when props change" pattern) instead of a
-  // setState-in-effect, which triggers cascading renders.
+  // URL'den gelen prefill değiştiğinde state'i senkronize et. Effect yerine
+  // render sırasında güncelleme (React'in "adjusting state when a prop
+  // changes" deseni) kullanılıyor — cascading render lint uyarısını da önler.
   const [appliedPrefill, setAppliedPrefill] = useState<
     Partial<SearchParams> | undefined
   >(undefined);
@@ -82,32 +83,48 @@ export default function AvailabilitySearch({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="form-field">
-          <label className="form-label">Giriş tarihi</label>
-          <input
-            type="date"
-            className="form-input rounded-sm"
-            value={checkIn}
-            onChange={(e) => setCheckIn(e.target.value)}
-            min={fmt(new Date())}
-            required
-          />
-        </div>
-        <div className="form-field">
-          <label className="form-label">Çıkış tarihi</label>
-          <input
-            type="date"
-            className="form-input rounded-sm"
-            value={checkOut}
-            onChange={(e) => setCheckOut(e.target.value)}
-            min={checkIn}
-            required
-          />
-        </div>
+        <DateRangePicker
+          checkIn={checkIn}
+          checkOut={checkOut}
+          numberOfMonths={2}
+          onChange={(ci, co) => {
+            setCheckIn(ci);
+            if (co) setCheckOut(co);
+          }}
+          className="grid grid-cols-2 gap-5 md:col-span-2"
+          renderTrigger={({ checkInLabel, checkOutLabel, open, openPicker }) => (
+            <>
+              <div className="form-field">
+                <label className="form-label">Giriş tarihi</label>
+                <button
+                  type="button"
+                  className="form-input text-left"
+                  onClick={openPicker}
+                  aria-expanded={open}
+                  aria-haspopup="dialog"
+                >
+                  {checkInLabel}
+                </button>
+              </div>
+              <div className="form-field">
+                <label className="form-label">Çıkış tarihi</label>
+                <button
+                  type="button"
+                  className="form-input text-left"
+                  onClick={openPicker}
+                  aria-expanded={open}
+                  aria-haspopup="dialog"
+                >
+                  {checkOutLabel}
+                </button>
+              </div>
+            </>
+          )}
+        />
         <div className="form-field">
           <label className="form-label">Yetişkin</label>
           <select
-            className="form-input rounded-sm"
+            className="form-input"
             value={adults}
             onChange={(e) => setAdults(Number(e.target.value))}
           >
@@ -121,7 +138,7 @@ export default function AvailabilitySearch({
         <div className="form-field">
           <label className="form-label">Çocuk</label>
           <select
-            className="form-input rounded-sm"
+            className="form-input"
             value={children}
             onChange={(e) => setChildren(Number(e.target.value))}
           >
@@ -138,7 +155,7 @@ export default function AvailabilitySearch({
         <div className="form-field">
           <label className="form-label">Oda tipi (isteğe bağlı)</label>
           <select
-            className="form-input rounded-sm"
+            className="form-input"
             value={roomType}
             onChange={(e) => setRoomType(e.target.value)}
           >

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Ruler, Users, Waves, Wifi } from "lucide-react";
@@ -39,6 +42,28 @@ const rooms = [
 ];
 
 export default function FeaturedRooms() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Bant genişliğini korumak için video yalnızca görünür alana girince
+  // oynatılır (autoplay yerine IntersectionObserver ile tetiklenir).
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="section-py bg-white">
       <div className="max-w-7xl mx-auto px-4">
@@ -52,55 +77,60 @@ export default function FeaturedRooms() {
           </p>
         </div>
 
-        {/* Sol: oda videosu (720x1280, doğal 9:16 oranında) — Sağ: 3 oda */}
+        {/* Sol: oda videosu (masaüstünde sabit 3:4) — Sağ: 3 eşit yükseklikte
+            oda kartı. Video hücresi kendi aspect-ratio'suyla satırın "auto"
+            yüksekliğini belirler (en büyük içerik); sağ sütun grid-rows-3 +
+            h-full ile bu yüksekliğe stretch olur — CSS Grid'in standart
+            "iki sütunu eşitleme" kalıbı (1440px'te doğrulanmalı). */}
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_1fr] gap-10 md:gap-14 items-stretch">
-          <div className="border border-border self-start">
+          <div className="rounded-[var(--radius-md)] overflow-hidden border border-border aspect-video md:aspect-[3/4]">
             <video
-              className="w-full aspect-[9/16] object-cover block motion-reduce:hidden"
+              ref={videoRef}
+              className="w-full h-full object-cover block motion-reduce:hidden"
               src="/img/oda-video.mp4"
-              autoPlay
               muted
               loop
               playsInline
               preload="metadata"
+              poster="/img/aile_odası.webp"
               aria-hidden="true"
             />
             <Image
               src="/img/aile-suit.webp"
               alt="Assos Karadut Taş Otel odaları"
               width={720}
-              height={1280}
-              className="w-full aspect-[9/16] object-cover hidden motion-reduce:block"
+              height={960}
+              className="w-full h-full object-cover hidden motion-reduce:block"
             />
           </div>
 
-          <div className="flex flex-col justify-between gap-8 md:gap-6">
+          <div className="grid grid-rows-3 gap-5 md:gap-4 h-full">
             {rooms.map((room) => (
               <Link
                 key={room.name}
                 href="/reservation"
-                className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border-b border-border last:border-b-0 pb-8 md:pb-6 last:pb-0"
+                className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border border-border rounded-[var(--radius-md)] p-4 sm:p-5 transition-[border-color,box-shadow,transform] duration-300 hover:border-gold hover:shadow-[var(--shadow-lift)] hover:-translate-y-0.5"
               >
-                <div className="overflow-hidden sm:w-[45%] shrink-0">
+                <div className="overflow-hidden rounded-[var(--radius-sm)] sm:w-[42%] shrink-0">
                   <Image
                     src={room.image}
                     alt={room.name}
                     width={600}
                     height={450}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-[400ms] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col min-w-0">
                   <h3
                     className="font-heading font-semibold text-dark m-0 mb-1"
-                    style={{ fontSize: "clamp(1.2rem, 1.6vw, 1.45rem)" }}
+                    style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.3rem)" }}
                   >
                     {room.name}
                   </h3>
-                  <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2.5">
+                  <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2">
                     {room.price}
                   </p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3.5">
+                  <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3">
                     {room.features.map((f, j) => (
                       <span key={j} className="flex items-center gap-1.5">
                         <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />

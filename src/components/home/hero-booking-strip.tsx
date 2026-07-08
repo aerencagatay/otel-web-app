@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { CalendarRange, Users, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import DateRangePicker from "@/components/booking/date-range-picker";
 
 const roomTypes = [
   { value: "", label: "Tüm tipler" },
@@ -46,54 +47,59 @@ export default function HeroBookingStrip() {
 
   return (
     <div className="hero-booking-shell animate-fade-up animate-fade-up-delay-3">
-      <div className="flex flex-col xl:flex-row xl:items-end gap-6 xl:gap-10">
-        <div className="flex-1 text-left xl:max-w-[340px] shrink-0">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-gold-dark font-semibold mb-2">
-            Hızlı arama
-          </p>
-          <h2 className="hero-booking-title m-0">
-            Konaklama tarihleri
-          </h2>
-          <p className="hidden xl:block text-[13px] text-text-light mt-3 mb-0 leading-relaxed">
-            Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır.
-          </p>
+      <div className="mb-4">
+        <p className="text-[10px] tracking-[0.3em] uppercase text-gold-dark font-semibold mb-1.5">
+          Hızlı arama
+        </p>
+        <h2 className="hero-booking-title m-0">Konaklama tarihleri</h2>
+      </div>
+
+      <form onSubmit={handleSubmit} className="hero-booking-bar">
+        <div className="hero-booking-bar__field">
+          <DateRangePicker
+            checkIn={checkIn}
+            checkOut={checkOut}
+            numberOfMonths={2}
+            onChange={(ci, co) => {
+              setCheckIn(ci);
+              if (co) setCheckOut(co);
+            }}
+            className="flex flex-1"
+            renderTrigger={({ checkInLabel, checkOutLabel, open, openPicker }) => (
+              <>
+                <button
+                  type="button"
+                  className="hero-booking-bar__segment"
+                  onClick={openPicker}
+                  aria-expanded={open}
+                  aria-haspopup="dialog"
+                >
+                  <span className="hero-booking-bar__label">Giriş</span>
+                  <span className="hero-booking-bar__value">{checkInLabel}</span>
+                </button>
+                <button
+                  type="button"
+                  className="hero-booking-bar__segment"
+                  onClick={openPicker}
+                  aria-expanded={open}
+                  aria-haspopup="dialog"
+                >
+                  <span className="hero-booking-bar__label">Çıkış</span>
+                  <span className="hero-booking-bar__value">{checkOutLabel}</span>
+                </button>
+              </>
+            )}
+          />
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 lg:gap-3 items-end"
-        >
-          <div className="col-span-1">
-            <label className="form-label flex items-center gap-1.5">
-              <CalendarRange size={11} className="text-gold-dark/70" strokeWidth={1.5} />
-              Giriş
-            </label>
-            <input
-              type="date"
-              className="form-input"
-              value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
-              min={fmt(new Date())}
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="form-label">Çıkış</label>
-            <input
-              type="date"
-              className="form-input"
-              value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
-              min={checkIn}
-              required
-            />
-          </div>
-          <div className="col-span-1">
-            <label className="form-label flex items-center gap-1.5">
-              <Users size={11} className="text-gold-dark/70" strokeWidth={1.5} />
+
+        <div className="hero-booking-bar__field hero-booking-bar__field--single">
+          <div className="hero-booking-bar__segment">
+            <label className="hero-booking-bar__label" htmlFor="hb-adults">
               Yetişkin
             </label>
             <select
-              className="form-input"
+              id="hb-adults"
+              className="hero-booking-bar__select"
               value={adults}
               onChange={(e) => setAdults(Number(e.target.value))}
             >
@@ -104,10 +110,16 @@ export default function HeroBookingStrip() {
               ))}
             </select>
           </div>
-          <div className="col-span-1">
-            <label className="form-label">Çocuk</label>
+        </div>
+
+        <div className="hero-booking-bar__field hero-booking-bar__field--single">
+          <div className="hero-booking-bar__segment">
+            <label className="hero-booking-bar__label" htmlFor="hb-children">
+              Çocuk
+            </label>
             <select
-              className="form-input"
+              id="hb-children"
+              className="hero-booking-bar__select"
               value={children}
               onChange={(e) => setChildren(Number(e.target.value))}
             >
@@ -118,10 +130,16 @@ export default function HeroBookingStrip() {
               ))}
             </select>
           </div>
-          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
-            <label className="form-label">Oda</label>
+        </div>
+
+        <div className="hero-booking-bar__field">
+          <div className="hero-booking-bar__segment">
+            <label className="hero-booking-bar__label" htmlFor="hb-room">
+              Oda
+            </label>
             <select
-              className="form-input"
+              id="hb-room"
+              className="hero-booking-bar__select"
               value={roomType}
               onChange={(e) => setRoomType(e.target.value)}
             >
@@ -132,17 +150,21 @@ export default function HeroBookingStrip() {
               ))}
             </select>
           </div>
-          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
-            <button type="submit" className="btn-cta-solid w-full py-3.5 border-0">
-              Müsaitlik
-              <ArrowRight className="w-4 h-4" strokeWidth={2} />
-            </button>
-          </div>
-        </form>
-      </div>
-      {invalid && (
+        </div>
+
+        <button type="submit" className="hero-booking-bar__submit">
+          Müsaitliğe bak
+          <ArrowRight className="w-4 h-4" strokeWidth={2} />
+        </button>
+      </form>
+
+      {invalid ? (
         <p className="text-red-700 text-[12px] mt-4 text-left m-0">
           Çıkış tarihi girişten sonra olmalıdır.
+        </p>
+      ) : (
+        <p className="text-[12px] text-text-light mt-4 mb-0 text-left leading-relaxed">
+          Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır.
         </p>
       )}
     </div>
