@@ -1,16 +1,78 @@
-/** Room type keys → hero imagery for booking cards */
-export const ROOM_TYPE_IMAGES: Record<string, string> = {
-  deluxe_sea_view:
-    "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-  traditional_room:
-    "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-  premium_family:
-    "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
+/**
+ * Central room photo catalogue — Task 03 (trust content).
+ *
+ * All room imagery across the site (home page cards, /rooms gallery, JSON-LD
+ * imagery, etc.) MUST be sourced from here — never hard-code a photo path or
+ * hotlink an external CDN URL elsewhere.
+ *
+ * Files live in `public/img/rooms/<slug>/<slug>-N.webp`, generated from the
+ * repo-root `img/<Kaynak Klasör>/` originals by
+ * `scripts/optimize-images.mjs` (1920px max width, WebP q80). See AGENTS.md
+ * for the source-folder -> room-type mapping — those folder names are only
+ * the photo SOURCE and never change the public room names below.
+ */
+
+export interface RoomImage {
+  src: string;
+  alt: string;
+}
+
+export interface RoomImageSet {
+  /** Primary card/hero image for this room type. */
+  cover: RoomImage;
+  /** Full mini-gallery (includes the cover as its first entry). */
+  gallery: RoomImage[];
+}
+
+export const ROOM_IMAGES: Record<string, RoomImageSet> = {
+  deluxe_sea_view: {
+    cover: { src: "/img/rooms/deluxe/deluxe-1.webp", alt: "Deluxe Tam Deniz Manzaralı oda" },
+    gallery: [
+      { src: "/img/rooms/deluxe/deluxe-1.webp", alt: "Deluxe Tam Deniz Manzaralı oda - genel görünüm" },
+      { src: "/img/rooms/deluxe/deluxe-2.webp", alt: "Deluxe Tam Deniz Manzaralı oda - yatak alanı" },
+      { src: "/img/rooms/deluxe/deluxe-3.webp", alt: "Deluxe Tam Deniz Manzaralı oda - balkon ve deniz manzarası" },
+      { src: "/img/rooms/deluxe/deluxe-4.webp", alt: "Deluxe Tam Deniz Manzaralı oda - banyo" },
+      { src: "/img/rooms/deluxe/deluxe-5.webp", alt: "Deluxe Tam Deniz Manzaralı oda - detay" },
+      { src: "/img/rooms/deluxe/deluxe-6.webp", alt: "Deluxe Tam Deniz Manzaralı oda - manzara" },
+    ],
+  },
+  traditional_room: {
+    cover: { src: "/img/rooms/traditional/traditional-1.webp", alt: "Traditional Kısmi Deniz Manzaralı oda" },
+    gallery: [
+      { src: "/img/rooms/traditional/traditional-1.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - genel görünüm" },
+      { src: "/img/rooms/traditional/traditional-2.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - yatak alanı" },
+      { src: "/img/rooms/traditional/traditional-3.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - balkon" },
+      { src: "/img/rooms/traditional/traditional-4.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - banyo" },
+      { src: "/img/rooms/traditional/traditional-5.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - detay" },
+      { src: "/img/rooms/traditional/traditional-6.webp", alt: "Traditional Kısmi Deniz Manzaralı oda - manzara" },
+    ],
+  },
+  premium_family: {
+    cover: { src: "/img/rooms/aile-suit/aile-suit-1.webp", alt: "Aile Suit Deniz Manzaralı oda" },
+    gallery: [
+      { src: "/img/rooms/aile-suit/aile-suit-1.webp", alt: "Aile Suit Deniz Manzaralı oda - genel görünüm" },
+      { src: "/img/rooms/aile-suit/aile-suit-2.webp", alt: "Aile Suit Deniz Manzaralı oda - oturma alanı" },
+      { src: "/img/rooms/aile-suit/aile-suit-3.webp", alt: "Aile Suit Deniz Manzaralı oda - yatak alanı" },
+      { src: "/img/rooms/aile-suit/aile-suit-4.webp", alt: "Aile Suit Deniz Manzaralı oda - balkon ve deniz manzarası" },
+      { src: "/img/rooms/aile-suit/aile-suit-5.webp", alt: "Aile Suit Deniz Manzaralı oda - açık hava yemek masası" },
+      { src: "/img/rooms/aile-suit/aile-suit-6.webp", alt: "Aile Suit Deniz Manzaralı oda - banyo" },
+    ],
+  },
 };
 
-export function getRoomTypeImage(roomType: string): string {
-  return (
-    ROOM_TYPE_IMAGES[roomType] ??
-    "https://cdng.jollytur.com/files/cms/media/hotel/fa46d2cc-7aa8-45b3-95bf-d179020cf7a8-600.jpeg"
-  );
+const FALLBACK: RoomImageSet = ROOM_IMAGES.deluxe_sea_view;
+
+export function getRoomImages(roomType: string): RoomImageSet {
+  return ROOM_IMAGES[roomType] ?? FALLBACK;
+}
+
+/** Convenience accessor for card contexts that only need the cover photo. */
+export function getRoomCoverImage(roomType: string): RoomImage {
+  return getRoomImages(roomType).cover;
+}
+
+/** Second gallery image, used for the hover cross-fade on room cards. */
+export function getRoomHoverImage(roomType: string): RoomImage {
+  const { gallery, cover } = getRoomImages(roomType);
+  return gallery[1] ?? cover;
 }

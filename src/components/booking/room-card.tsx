@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { RoomResult } from "./booking-flow";
 import { BedDouble, Users, Sparkles } from "lucide-react";
-import { getRoomTypeImage } from "@/lib/config/room-images";
+import { getRoomCoverImage } from "@/lib/config/room-images";
 import { calculateStayTotal } from "@/lib/config/pricing";
 
 interface Props {
@@ -12,14 +12,14 @@ interface Props {
 }
 
 export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
-  const img = getRoomTypeImage(room.roomType);
+  const img = getRoomCoverImage(room.roomType);
   const stay = calculateStayTotal(room.roomType, checkIn, checkOut);
 
   return (
     <article className="room-select-card group">
       <div className="room-select-card__media relative overflow-hidden">
         <Image
-          src={img}
+          src={img.src}
           alt={room.label}
           width={560}
           height={420}

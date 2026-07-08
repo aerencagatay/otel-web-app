@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "img:optimize": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.5.3",
@@ -39,6 +41,7 @@
     "schema-dts": "^2.0.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.10"
   }
 }
