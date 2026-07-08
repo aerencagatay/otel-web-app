@@ -1,11 +1,13 @@
-import { getAverageRating, getReviewCount } from "@/lib/config/reviews";
+import { getAverageRating, getRatedReviewCount } from "@/lib/config/reviews";
 import { HOTEL } from "@/lib/config/hotel";
 
 export default function StatsBar() {
+  // Null while no review carries a CONFIRMED star rating (inferred values
+  // are never stored in reviews.ts) — the badge is hidden entirely then.
   const average = getAverageRating();
-  const reviewCount = getReviewCount();
+  const reviewCount = getRatedReviewCount();
 
-  // Only ever show a rating stat when it is backed by real reviews
+  // Only ever show a rating stat when it is backed by real rated reviews
   // (src/lib/config/reviews.ts) — never a hardcoded/unsubstantiated number.
   const stats = [
     ...(average != null

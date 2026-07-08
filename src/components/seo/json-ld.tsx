@@ -2,7 +2,7 @@ import type { ContactPage, Hotel, HotelRoom, Thing, WithContext } from "schema-d
 import { HOTEL } from "@/lib/config/hotel";
 import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { getLowestUpcomingPrice } from "@/lib/config/pricing";
-import { getAverageRating, getReviewCount } from "@/lib/config/reviews";
+import { getAverageRating, getRatedReviewCount } from "@/lib/config/reviews";
 
 /**
  * Desteklenen içerik dilleri. Task 04 (i18n) devreye girdiğinde builder'lara
@@ -69,8 +69,11 @@ const AMENITIES: Record<JsonLdLocale, string[]> = {
  * rating Google tarafından cezalandırılır.
  */
 export function hotelJsonLd(locale: JsonLdLocale = "tr"): WithContext<Hotel> {
+  // Both derive ONLY from reviews with a confirmed star rating; while none
+  // carry one (current state), averageRating is null and no AggregateRating
+  // is emitted at all.
   const averageRating = getAverageRating();
-  const reviewCount = getReviewCount();
+  const reviewCount = getRatedReviewCount();
 
   return {
     "@context": "https://schema.org",
