@@ -1,6 +1,18 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export default function Footer() {
+  const t = useTranslations("nav");
+  const tf = useTranslations("footer");
+
+  const links = [
+    { href: "/", label: t("home") },
+    { href: "/about", label: t("about") },
+    { href: "/rooms", label: t("rooms") },
+    { href: "/reservation", label: t("reservation") },
+    { href: "/contact", label: t("contact") },
+  ] as const;
+
   return (
     <footer className="site-footer">
       <div className="max-w-7xl mx-auto px-4">
@@ -33,15 +45,9 @@ export default function Footer() {
 
           {/* Pages */}
           <div>
-            <h6 className="footer-heading">Sayfalar</h6>
+            <h6 className="footer-heading">{tf("pagesHeading")}</h6>
             <ul className="list-none p-0 space-y-2.5">
-              {[
-                { href: "/", label: "Anasayfa" },
-                { href: "/about", label: "Hakkımızda" },
-                { href: "/rooms", label: "Odalarımız" },
-                { href: "/reservation", label: "Rezervasyon" },
-                { href: "/contact", label: "İletişim" },
-              ].map((link) => (
+              {links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -56,7 +62,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h6 className="footer-heading">İletişim</h6>
+            <h6 className="footer-heading">{tf("contactHeading")}</h6>
             <ul className="list-none p-0 space-y-2.5">
               <li>
                 <a
@@ -75,7 +81,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-white/55 text-[13.5px]">
-                7/24 Resepsiyon Hizmeti
+                {tf("reception")}
               </li>
             </ul>
           </div>
@@ -84,9 +90,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10 py-5 mt-13 text-center text-white/35 text-[12.5px]">
         <div className="max-w-7xl mx-auto px-4">
-          <p className="footer-license">
-            © 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921
-          </p>
+          <p className="footer-license">{tf("license")}</p>
         </div>
       </div>
     </footer>

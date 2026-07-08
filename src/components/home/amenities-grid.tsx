@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   Waves,
   PersonStanding,
@@ -12,78 +13,47 @@ import {
   BellRing,
 } from "lucide-react";
 
-const amenities = [
-  { icon: Waves, title: "Açık Havuz", desc: "Deniz manzaralı yüzme havuzu" },
-  {
-    icon: PersonStanding,
-    title: "Çocuk Havuzu",
-    desc: "Küçük misafirlerimiz için ayrı havuz",
-  },
-  {
-    icon: UtensilsCrossed,
-    title: "A La Carte Restoran",
-    desc: "Deniz manzaralı özgün Ege mutfağı",
-  },
-  {
-    icon: Coffee,
-    title: "Kahvaltı Dahil",
-    desc: "08:30–10:30 ısmarlamalı servis",
-  },
-  { icon: Wine, title: "Bar", desc: "Havuz başı ve lounge bar" },
-  {
-    icon: Flame,
-    title: "Firepit Alanı",
-    desc: "Deniz manzaralı açık hava ateş köşesi",
-  },
-  {
-    icon: Wifi,
-    title: "Ücretsiz Wi-Fi",
-    desc: "Tüm alanlarda kesintisiz internet",
-  },
-  {
-    icon: CarFront,
-    title: "Ücretsiz Otopark",
-    desc: "Geniş açık otopark alanı",
-  },
-  { icon: Leaf, title: "Bahçe", desc: "Huzurlu peyzajlı bahçe alanı" },
-  {
-    icon: Briefcase,
-    title: "Bagaj Muhafazası",
-    desc: "Erken/geç çıkışlar için emanet",
-  },
-  {
-    icon: BellRing,
-    title: "7/24 Resepsiyon",
-    desc: "Her an yanınızdayız",
-  },
-];
+const AMENITY_KEYS = [
+  { key: "pool", icon: Waves },
+  { key: "kidsPool", icon: PersonStanding },
+  { key: "restaurant", icon: UtensilsCrossed },
+  { key: "breakfast", icon: Coffee },
+  { key: "bar", icon: Wine },
+  { key: "firepit", icon: Flame },
+  { key: "wifi", icon: Wifi },
+  { key: "parking", icon: CarFront },
+  { key: "garden", icon: Leaf },
+  { key: "luggage", icon: Briefcase },
+  { key: "reception", icon: BellRing },
+] as const;
 
 export default function AmenitiesGrid() {
+  const t = useTranslations("home.amenities");
+
   return (
     <section className="section-py bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-15">
-          <span className="eyebrow">Olanaklar</span>
-          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
-            Otel Özellikleri
-          </h2>
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>{t("title")}</h2>
           <div className="divider-gold-center" />
           <p className="text-[15.5px] text-text-light max-w-[580px] mx-auto">
-            Size en iyi konaklama deneyimini sunmak için tasarlanmış
-            olanaklarımız.
+            {t("lede")}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-          {amenities.map((a, i) => (
+          {AMENITY_KEYS.map(({ key }) => (
             <div
-              key={i}
+              key={key}
               className="flex items-baseline justify-between gap-6 py-4 border-b border-border"
             >
               <h5 className="text-[13px] tracking-[1.2px] uppercase text-dark m-0 font-semibold">
-                {a.title}
+                {t(`items.${key}.title`)}
               </h5>
-              <p className="text-[13px] text-text-light m-0 text-right">{a.desc}</p>
+              <p className="text-[13px] text-text-light m-0 text-right">
+                {t(`items.${key}.desc`)}
+              </p>
             </div>
           ))}
         </div>

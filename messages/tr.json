@@ -1,0 +1,595 @@
+{
+  "meta": {
+    "titleTemplate": "%s – Assos Karadut Taş Otel",
+    "ogImageAlt": "Assos Karadut Taş Otel — deniz manzarası",
+    "home": {
+      "title": "Assos Karadut Taş Otel – Ayvacık, Çanakkale",
+      "description": "Assos Karadut Taş Otel, Ayvacık'ın tarihi güzelliği içinde eşsiz bir konaklama deneyimi sunar. Kadırga Plajı'na 5 dakika, Assos Antik Kenti'ne 7 dakika."
+    },
+    "about": {
+      "title": "Hakkımızda",
+      "description": "Assos Karadut Taş Otel hakkında bilgi edinin. 28 oda, A La Carte restoran, açık havuz, Kadırga Koyu'na 5 km. 9.6/10 misafir puanı."
+    },
+    "rooms": {
+      "title": "Odalarımız",
+      "description": "Assos Karadut Taş Otel oda tipleri: Deluxe Tam Deniz Manzaralı, Traditional Kısmi Deniz Manzaralı ve Aile Suit Deniz Manzaralı. Tüm odalarda klima, TV, Wi-Fi, minibar."
+    },
+    "reservation": {
+      "title": "Rezervasyon",
+      "description": "Assos Karadut Taş Otel online rezervasyon. Tarih seçin, müsaitliği kontrol edin ve kolayca rezervasyon yapın."
+    },
+    "contact": {
+      "title": "İletişim",
+      "description": "Assos Karadut Taş Otel iletişim: +90 501 091 34 17 | karaduttas@gmail.com | Büyükhusun Köyü Namazgah Mevkii No:26, Ayvacık, Çanakkale."
+    },
+    "bookingSuccess": {
+      "title": "Rezervasyon Başarılı",
+      "description": "Rezervasyon talebiniz alındı. Kapora talimatları e-posta ile iletilir."
+    }
+  },
+  "roomTypes": {
+    "deluxe_sea_view": "Deluxe Tam Deniz Manzaralı",
+    "traditional_room": "Traditional Kısmi Deniz Manzaralı",
+    "premium_family": "Aile Suit Deniz Manzaralı"
+  },
+  "nav": {
+    "brand": "Assos Karadut Taş Otel",
+    "home": "Anasayfa",
+    "about": "Hakkımızda",
+    "rooms": "Odalarımız",
+    "reservation": "Rezervasyon",
+    "contact": "İletişim",
+    "reservationCta": "Rezervasyon",
+    "menu": "Menü",
+    "switchTo": "English",
+    "switchToLabel": "Switch to English"
+  },
+  "topbar": {
+    "callToBook": "Rezervasyon için bizi arayın:"
+  },
+  "footer": {
+    "pagesHeading": "Sayfalar",
+    "contactHeading": "İletişim",
+    "reception": "7/24 Resepsiyon Hizmeti",
+    "license": "© 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921"
+  },
+  "pageHero": {
+    "eyebrow": "Assos Karadut",
+    "home": "Anasayfa"
+  },
+  "stickyCta": {
+    "label": "Tarih seç · Rezervasyon"
+  },
+  "backToTop": {
+    "label": "Yukarı çık"
+  },
+  "home": {
+    "hero": {
+      "tag": "Assos · Çanakkale",
+      "titleLine1": "Taşın kalbinde,",
+      "titleLine2": "Assos'un gözdesi.",
+      "lede": "Butik konaklama · 28 oda · havuz · A La Carte · Kadırga'ya dakikalar",
+      "ctaDates": "Tarih seç & müsaitlik",
+      "ctaRooms": "Odaları incele",
+      "scroll": "Kaydır"
+    },
+    "bookingStrip": {
+      "eyebrow": "Hızlı arama",
+      "title": "Konaklama tarihleri",
+      "checkIn": "Giriş",
+      "checkOut": "Çıkış",
+      "adults": "Yetişkin",
+      "children": "Çocuk",
+      "room": "Oda",
+      "allTypes": "Tüm tipler",
+      "roomDeluxe": "Deluxe tam deniz",
+      "roomTraditional": "Traditional kısmi",
+      "roomFamily": "Aile suit",
+      "submit": "Müsaitliğe bak",
+      "invalidDate": "Çıkış tarihi girişten sonra olmalıdır.",
+      "hint": "Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır."
+    },
+    "stats": {
+      "guestScore": "Misafir puanı / 10",
+      "boutiqueRooms": "Butik oda",
+      "bay": "Kadırga koyu"
+    },
+    "about": {
+      "eyebrow": "Hakkımızda",
+      "titleLine1": "Assos'un Taş",
+      "titleLine2": "Mirası ile Konfor",
+      "p1": "28 oda kapasitesi ile Büyükhusun Köyü'nde, Assos'un eşsiz doğası içinde konumlanan otelimiz; kahvaltı dahil ve yarım pansiyon seçenekleriyle misafirlerine hizmet vermektedir. Geleneksel taş mimarisinin sıcaklığı, modern konfor anlayışıyla buluşuyor.",
+      "p2": "Kadırga Koyu'na 5 km, Antik Assos'a dakikalar mesafede yer alan otelimiz; denizi, tarihi ve doğayı bir arada yaşamak isteyenler için eşsiz bir konaklama üssüdür.",
+      "highlight1": "Açık yüzme havuzu",
+      "highlight2": "A La Carte Restoran",
+      "highlight3": "Kahvaltı dahil seçenek",
+      "highlight4": "Ücretsiz açık otopark",
+      "moreInfo": "Daha Fazla Bilgi",
+      "imageAlt": "Assos Karadut Taş Otel"
+    },
+    "featured": {
+      "eyebrow": "Konaklama",
+      "title": "Odalar",
+      "lede": "Taş mimarisi, geniş pencereler ve Ege ışığı. Her oda sessiz lüks ve sakinlik için düşünüldü.",
+      "priceContact": "Fiyat için iletişim",
+      "availability": "Müsaitlik & rezervasyon",
+      "allDetails": "Tüm detaylar",
+      "pickDates": "Hemen tarih seç →",
+      "videoAlt": "Assos Karadut Taş Otel odaları",
+      "featSize24": "24 m²",
+      "featSize22": "22 m²",
+      "featSize44": "44 m²",
+      "feat2guests": "2 kişi",
+      "feat4guests": "4 kişiye kadar",
+      "featSeaView": "Deniz manzarası",
+      "featWifi": "Wi-Fi"
+    },
+    "amenities": {
+      "eyebrow": "Olanaklar",
+      "title": "Otel Özellikleri",
+      "lede": "Size en iyi konaklama deneyimini sunmak için tasarlanmış olanaklarımız.",
+      "items": {
+        "pool": { "title": "Açık Havuz", "desc": "Deniz manzaralı yüzme havuzu" },
+        "kidsPool": { "title": "Çocuk Havuzu", "desc": "Küçük misafirlerimiz için ayrı havuz" },
+        "restaurant": { "title": "A La Carte Restoran", "desc": "Deniz manzaralı özgün Ege mutfağı" },
+        "breakfast": { "title": "Kahvaltı Dahil", "desc": "08:30–10:30 ısmarlamalı servis" },
+        "bar": { "title": "Bar", "desc": "Havuz başı ve lounge bar" },
+        "firepit": { "title": "Firepit Alanı", "desc": "Deniz manzaralı açık hava ateş köşesi" },
+        "wifi": { "title": "Ücretsiz Wi-Fi", "desc": "Tüm alanlarda kesintisiz internet" },
+        "parking": { "title": "Ücretsiz Otopark", "desc": "Geniş açık otopark alanı" },
+        "garden": { "title": "Bahçe", "desc": "Huzurlu peyzajlı bahçe alanı" },
+        "luggage": { "title": "Bagaj Muhafazası", "desc": "Erken/geç çıkışlar için emanet" },
+        "reception": { "title": "7/24 Resepsiyon", "desc": "Her an yanınızdayız" }
+      }
+    },
+    "cta": {
+      "eyebrow": "Rezervasyon",
+      "titleLine1": "Hayalinizdeki Tatil",
+      "titleLine2": "Bir Telefon Kadar Yakın",
+      "text1": "Online ödeme yok, karmaşık form yok. Sadece bizi arayın,",
+      "text2": "size en uygun odayı birlikte bulalım.",
+      "button": "Rezervasyon Hakkında Bilgi Al"
+    },
+    "location": {
+      "eyebrow": "Konum",
+      "titleLine1": "Her Şeye",
+      "titleLine2": "Yakın, Gürültüden",
+      "titleLine3": "Uzak",
+      "intro": "Büyükhusun Köyü'nün sakin atmosferinde, Ege'nin en gözde noktalarına dakikalar mesafedeyiz.",
+      "directions": "Yol tarifi al",
+      "mapCta": "Google Haritalar'da Aç",
+      "mapAlt": "Otel konumu - Harita",
+      "mapAria": "Google Haritalar'da konumu aç",
+      "items": {
+        "bay": { "title": "Kadırga Koyu", "desc": "km · Berrak Ege sularında serinleme" },
+        "assos": { "title": "Antik Assos (Behramkale)", "desc": "dk · Aristo'nun kenti, Athena Tapınağı" },
+        "harbor": { "title": "Assos Limanı", "desc": "dk · Balık restoranları ve tekneler" },
+        "town": { "title": "Ayvacık Merkez", "desc": "km · En yakın ilçe merkezi" },
+        "park": { "title": "Kazdağı Milli Parkı", "desc": "km · Ida Dağı doğa yürüyüşleri" }
+      }
+    },
+    "gallery": {
+      "eyebrow": "Galeri",
+      "title": "Kareler",
+      "lede": "Otelden ve çevreden seçilmiş kareler — odalar, manzara ve havuz.",
+      "items": {
+        "venue": { "title": "Mekân", "desc": "Taş ve Ege ışığı", "alt": "Otel ve çevre" },
+        "family": { "title": "Aile Suit", "desc": "Geniş alan", "alt": "Aile Suit" },
+        "view": { "title": "Manzara", "desc": "Deniz ve gökyüzü", "alt": "Manzara" },
+        "pool": { "title": "Havuz", "desc": "Serinlik", "alt": "Havuz" }
+      }
+    },
+    "ambient": {
+      "play": "Doğa sesini aç",
+      "stop": "Doğa sesini kapat",
+      "titleOn": "Sesi kapat",
+      "titleOff": "Doğa sesi"
+    }
+  },
+  "about": {
+    "hero": { "title": "Hakkımızda", "breadcrumb": "Hakkımızda" },
+    "ratings": {
+      "google": "Google Puanı · 157 yorum",
+      "tripadvisor": "TripAdvisor Puanı",
+      "rank": "Büyükhusun'da Sıralama",
+      "designedRooms": "Özenle Tasarlanmış Oda"
+    },
+    "story": {
+      "eyebrow": "Hikayemiz",
+      "titleLine1": "Assos'un Ruhunu",
+      "titleLine2": "Taşıyan Bir Otel",
+      "p1": "Assos Karadut Taş Otel, Büyükhusun Köyü'nün sessiz güzelliğinde, Ege'nin mavisine açılan eşsiz bir konumda yükseliyor. 28 odası ile kahvaltı dahil ve yarım pansiyon seçenekleri sunan otelimiz, geleneksel taş mimarisini modern konfor anlayışıyla harmanlıyor.",
+      "p2": "Kadırga Koyu'na 5 km mesafede, Antik Assos ve Assos Limanı'na dakikalar uzaklıkta konumlanan otelimiz; Ege'nin tarihini, doğasını ve denizini tek bir tatilde bir araya getirmek isteyenler için biçilmiş bir kaftandır.",
+      "p3Prefix": "Misafirlerimizin ZenHotels'te verdiği",
+      "p3Mid": "ve TripAdvisor'daki",
+      "p3Suffix": "puanı, sunduğumuz hizmetin ve mekânın en güzel yansımasıdır.",
+      "seasonalLabel": "Sezonluk Otel:",
+      "seasonalText": "Nisan – Ekim ayları arasında hizmet vermekteyiz.",
+      "videoAria": "Assos Karadut Taş Otel tanıtım videosu"
+    },
+    "values": {
+      "mission": { "title": "Misyonumuz", "desc": "Misafirlerimize evlerinden uzakta ev sıcaklığı hissettirmek; Ege'nin doğasını ve Assos'un tarihini en iyi şekilde deneyimlemelerini sağlamak." },
+      "vision": { "title": "Vizyonumuz", "desc": "Assos bölgesinin en seçkin butik oteli olmak; geleneksel taş mimarisini yaşatarak sürdürülebilir turizme öncülük etmek." },
+      "certified": { "title": "Kültür Bakanlığı Belgeli", "desc": "T.C. Kültür ve Turizm Bakanlığı Turizm İşletme Belgesi'ne (No: 24921) sahip onaylı bir konaklama tesisiyiz." }
+    },
+    "features": {
+      "eyebrow": "Olanaklar",
+      "titleLine1": "Her Detayda",
+      "titleLine2": "Özen",
+      "p1": "Deniz manzaralı açık yüzme havuzumuz ve ayrı çocuk havuzumuz ile tüm yaş gruplarına hitap ediyoruz. Havuz başındaki bar, sizi serinletirken keyfini de artırıyor.",
+      "p2": "A La Carte restoranımızda taze yerel malzemelerle hazırlanan Ege lezzetleri ve ısmarlamalı kahvaltı servisi (08:30–10:30) sunulmaktadır.",
+      "videoAria": "Otel havuzu videosu",
+      "list": {
+        "pool": "Açık havuz + çocuk havuzu",
+        "restaurant": "A La Carte Restoran",
+        "bar": "Havuz başı bar",
+        "breakfast": "Ismarlamalı kahvaltı (08:30–10:30)",
+        "firepit": "Firepit · açık hava ateş alanı",
+        "parking": "Ücretsiz açık otopark",
+        "wifi": "Tüm alanlarda ücretsiz Wi-Fi"
+      }
+    },
+    "reviews": {
+      "eyebrow": "Misafir Yorumları",
+      "title": "Misafirlerimiz Ne Diyor?",
+      "outOf": "/ 5",
+      "count": "157 Google yorumu",
+      "exceptional": "Olağanüstü",
+      "review1": "Buraya kesinlikle bayıldık 2 gece konakladık bugün çıkacağız ama resmen buradan ayrılacağım için üzülüyorum. Böyle güzel manzara bu kadar huzurlu bir yer bulup 2 günümüzü geçirmek inanılmaz güzel bir tecrübeydi. Biz 1+1'lerde konakladık; odalardaki ince dekoratif ayrıntılar, Midilli'ye karşı muhteşem manzara kesinlikle çok güzeldi. Odada şömine bile vardı ama odamızın o kadar güzel manzarası vardı ki biz hep balkonda vakit geçirmek istedik. Otelin sahipleri en ince ayrıntıya kadar düşünmüşler; resmen bir otel değil de kendi evlerini tasarlar gibi yapmışlar. Kahvaltısı da gayet yeterli ve güzeldi. Otelin maskotları Ares'le Tarçın çok cana yakın ve eğitimli köpekler, onlarla da çok güzel vakit geçirdik. Eşsiz güzel manzara, muhteşem huzur — kesinlikle tavsiye ediyoruz.",
+      "review1meta": "Google · 7 ay önce · Çift",
+      "review2": "Ailecek, 1+1 odalarında 2 gece konakladığımız Karadut Taş Otel beklentilerimizin üzerinde bir deneyim sundu. İlgili, güler yüzlü çalışanlar, temiz ve konforlu odalar, muhteşem bir manzara ve sessizlik, dinlenmek için müthiş bir konum gerçek anlamda 5 yıldızı hak ediyor. Otel sahilden 7-8 dakika uzakta olsa da, kendilerine ait pansiyonun Kadırga Koyu'ndaki plajından ücretsiz yararlandırmaları da müthiş. Sonuç olarak; ben böyle bir işletmemiz olduğu için gurur duydum; bundan sonra mümkünse her yıl birkaç günü bu otelde geçirip kendimi yenilemek isterim. Emeği geçen herkese teşekkürlerimle.",
+      "review2meta": "Google · 10 ay önce · Aile",
+      "review3": "Karadut Otel, Assos tatilimizde tercih ettiğimiz konaklama lokasyonumuz oldu. Burası çok şirin bir aile işletmesi. Yağız Bey ve ailesi hem çok samimi hem de çok profesyonel; tüm ihtiyaçlarımızı sabırla karşıladılar. Odalar temiz ve ferah, daireler arası mesafe mahremiyet için yeterli. Sonsuzluk havuzuna da bayıldık; mükemmel bir manzaraya sahip. Çocuk havuzu da mevcut, havuz tertemiz ve bakımlıydı. Telefonla rezervasyon yaptırdığımızda internetten çok daha uygun bir fiyat aldık — iletişim numarasından ulaşmanızı öneririm.",
+      "review3meta": "Google · 8 ay önce · Arkadaşlar",
+      "highlightCleanliness": "Temizlik",
+      "highlightLocation": "Konum",
+      "highlightStaff": "Personel",
+      "highlightBreakfast": "Kahvaltı",
+      "seeAll": "Google'da Tüm Yorumları Gör"
+    },
+    "team": {
+      "photoCaption": "Bilgi İşlem Sorumlumuz",
+      "eyebrow": "Ekibimiz",
+      "titleLine1": "Kişisel İlgi,",
+      "titleLine2": "Güleryüzlü Hizmet",
+      "p1": "Assos Karadut Taş Otel'de hizmet anlayışımız, kurumsal soğukluğun ötesindedir. Sahipleri ve ekibi, her misafiriyle birebir ilgilenerek onların ihtiyaçlarını önceden sezmeye çalışır.",
+      "p2": "Bölgeyi iyi tanıyan ekibimiz; Assos çevresindeki gizli koyları, yürüyüş rotalarını ve en taze deniz ürünleri sunan restoranları sizinle paylaşmaktan mutluluk duyar.",
+      "cta": "Bize Ulaşın"
+    },
+    "gallery": {
+      "eyebrow": "Fotoğraf Galerisi",
+      "title": "Otelimizden Kareler",
+      "disCephe": "Dış Cephe",
+      "balkon": "Balkon",
+      "bahce": "Bahçe",
+      "havuz": "Havuz",
+      "seaView": "Deniz Manzarası",
+      "otel": "Otel",
+      "tasMimari": "Taş Mimari",
+      "aileSuit": "Aile Suit Deniz Manzaralı"
+    },
+    "nearby": {
+      "eyebrow": "Çevrede Keşfedilecekler",
+      "title": "Assos'un Hazineleri",
+      "items": {
+        "bay": { "title": "Kadırga Koyu", "dist": "5 km", "desc": "Ege'nin berrak sularında yüzme ve güneşlenme. Otelden şezlong ve şemsiye ayrıcalığı." },
+        "assos": { "title": "Antik Assos (Behramkale)", "dist": "10 dk", "desc": "Aristo'nun yaşadığı antik kent. Athena Tapınağı ve Ege'ye hâkim akropol." },
+        "harbor": { "title": "Assos Limanı", "dist": "10 dk", "desc": "Tekneler, taze balık restoranları ve Ege manzaralı romantik akşamlar." },
+        "park": { "title": "Kazdağı Milli Parkı", "dist": "37 km", "desc": "Ida Dağı'nda doğa yürüyüşleri, şelale ve ormanlık alanlar." },
+        "museum": { "title": "Adatepe Zeytinyağı Müzesi", "dist": "", "desc": "Zeytinyağının tarihini anlatan özgün müze ve bölgenin geleneksel zanaatkârlığı." },
+        "kucukkuyu": { "title": "Küçükkuyu", "dist": "", "desc": "Şirin bir kıyı kasabası; yerel pazarlar, geleneksel Türk restoranları ve gözde plajlar." }
+      }
+    },
+    "cta": {
+      "eyebrow": "Rezervasyon",
+      "title": "Sizi Aramızda Görmek İstiyoruz",
+      "text": "Nisan – Ekim sezonu için yerinizi şimdiden ayırtın.",
+      "button": "Rezervasyon Bilgisi"
+    }
+  },
+  "rooms": {
+    "hero": { "title": "Odalarımız", "breadcrumb": "Odalarımız" },
+    "intro": {
+      "eyebrow": "28 Oda · 3 Tip",
+      "title": "Konforun Taştaki Adresi",
+      "text": "Otelimizde 3 farklı oda tipimiz bulunmakta olup tüm odalar; klima, TV, Wi-Fi, minibar, gardırop ve özel banyoyla donatılmıştır. Deniz manzarası seçeneklerimizle Ege'yi odanızdan seyredin."
+    },
+    "priceContact": "Fiyat için arayın",
+    "priceSub": "/ Gece · Kahvaltı Dahil",
+    "bookCta": "Online Rezervasyon",
+    "list": {
+      "deluxe": {
+        "desc": "Ege'nin muhteşem mavisine açılan pencereleriyle sabahları deniz manzarasıyla uyanacağınız odamız. 24 m² alanda modern konfor anlayışıyla tasarlanmış, klima ile tüm mevsimlerde konforlu bir konaklama sunmaktadır."
+      },
+      "traditional": {
+        "desc": "22 m² alana sahip bu odamız, kısmen Ege manzarası sunarken tüm standart konfor olanaklarına sahiptir. Klima, TV ve minibarıyla rahat bir konaklama arayan misafirlerimiz için ideal bir seçimdir."
+      },
+      "family": {
+        "desc": "44 m² ile otelimizin en geniş odası. Ailenizle birlikte geniş ve rahat bir tatil için tasarlanan bu odamız, 4 kişiye kadar konaklama kapasitesine sahiptir. Ayrı oturma alanı ve açık havada yemek masasıyla tam bir aile tatili konforunu sunar."
+      }
+    },
+    "feat": {
+      "size24": "24 m²",
+      "size22": "22 m²",
+      "size44": "44 m²",
+      "guests2": "2 Kişi",
+      "guests4": "4 Kişiye Kadar",
+      "fullSeaView": "Tam Deniz Manzarası",
+      "partialSeaView": "Kısmi Deniz Manzarası",
+      "ac": "Klima",
+      "wifi": "Wi-Fi",
+      "tv": "TV",
+      "minibar": "Minibar",
+      "hairdryer": "Saç Kurutma Makinesi",
+      "sitting": "Oturma Alanı",
+      "outdoorTable": "Açık Hava Yemek Masası"
+    },
+    "amenities": {
+      "eyebrow": "Standart Özellikler",
+      "title": "Tüm Odalarımızda",
+      "text": "Aşağıdaki özellikler ekstra ücret olmaksızın tüm odalarımızda mevcuttur.",
+      "items": {
+        "ac": "Klima",
+        "wifi": "Ücretsiz Wi-Fi",
+        "tv": "TV",
+        "minibar": "Minibar",
+        "hairdryer": "Saç Kurutma Makinesi",
+        "bath": "Banyo & Duş",
+        "wardrobe": "Gardırop",
+        "seating": "Oturma Grubu",
+        "mosquitoNet": "Sivrisinek Teli",
+        "amenityKit": "Buklet Seti",
+        "towels": "Havlu Seti",
+        "outdoorTable": "Açık Hava Yemek Masası"
+      }
+    },
+    "checkinBanner": {
+      "checkIn": "Giriş Saati",
+      "checkOut": "Çıkış Saati",
+      "totalRooms": "Toplam Oda",
+      "reservation": "Rezervasyon"
+    },
+    "cta": {
+      "eyebrow": "Rezervasyon",
+      "titleLine1": "Odanızı Ayırtmak İçin",
+      "titleLine2": "Bizi Arayın",
+      "text": "7/24 resepsiyon hizmetimizle her zaman yanınızdayız.",
+      "button": "Rezervasyon Nasıl Yapılır?"
+    }
+  },
+  "reservation": {
+    "hero": {
+      "eyebrow": "Rezervasyon",
+      "titleLine1": "Tarih seçin, odayı seçin,",
+      "titleLine2": "kapora ile kesinleştirin.",
+      "lede": "Müsaitlik anında kontrol edilir. Talebiniz kapora onayından sonra kesin rezervasyona dönüşür."
+    },
+    "process": {
+      "eyebrow": "Süreç",
+      "title": "Nasıl Rezervasyon Yapılır?",
+      "text": "3 basit adımda rezervasyonunuzu tamamlayın.",
+      "step1": { "title": "Tarih & Oda Seçin", "desc": "Giriş-çıkış tarihinizi ve oda tipini belirleyin. Müsaitliği anında görün." },
+      "step2": { "title": "Bilgilerinizi Girin", "desc": "Ad, soyad, telefon ve e-posta bilgilerinizi doldurun." },
+      "step3": { "title": "Kapora Ödeyip Onaylayın", "desc": "IBAN'a kapora ödemesi yapın. Admin onayı ile rezervasyonunuz kesinleşir." },
+      "loading": "Rezervasyon formu yükleniyor…"
+    },
+    "conditions": {
+      "eyebrow": "Bilmeniz Gerekenler",
+      "titleLine1": "Rezervasyon",
+      "titleLine2": "Koşulları",
+      "earlyTitle": "Erken Rezervasyon",
+      "earlyText": "Yaz sezonunda odalar hızla doluyor. Yerinizi garantilemek için önceden rezervasyon yapın.",
+      "hoursTitle": "Giriş / Çıkış Saatleri",
+      "hoursText": "Check-in: 14:00 · Check-out: 12:00\nErken giriş ve geç çıkış için müsaitlik durumuna göre destek sağlanır.",
+      "cancelTitle": "İptal Politikası",
+      "cancelText": "Kapora ödemesi yapıldıktan sonra iptal ve değişiklik koşulları için bizi arayın.",
+      "childTitle": "Çocuk Politikası",
+      "childText": "Çocuklu konaklamalarınız için fiyat ve uygunluk bilgisi almak üzere lütfen bizimle iletişime geçin."
+    },
+    "contactBox": {
+      "eyebrow": "Anında Ulaşın",
+      "title": "Sorularınız mı var?",
+      "text": "Oda müsaitliği, fiyat bilgisi, otel olanakları veya çevre hakkında aklınıza takılan her şeyi sormaktan çekinmeyin.",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "hours": "Hizmet Saatleri",
+      "hoursValue": "7 gün 24 saat",
+      "callNow": "Şimdi Ara"
+    },
+    "faq": {
+      "eyebrow": "SSS",
+      "title": "Sık Sorulan Sorular",
+      "q1": "Kahvaltı dahil mi?",
+      "a1": "Evet, fiyatlarımıza sabah kahvaltısı dahildir. Her gün taze hazırlanan açık büfe kahvaltımız misafirlerimize sunulmaktadır.",
+      "q2": "Otopark ücretsiz mi?",
+      "a2": "Evet, misafirlerimize özel ücretsiz otopark alanımız mevcuttur.",
+      "q3": "Denize/plaja ne kadar yakınsınız?",
+      "a3": "Kadırga Plajı'na yaklaşık 5 dakika, Assos Limanı'na ise 10 dakika mesafedeyiz. Araçla kolayca ulaşabilirsiniz.",
+      "q4": "Kapora ne zaman ödenmeli?",
+      "a4": "Rezervasyon oluşturduktan sonra {hours} saat içinde kapora ödemesini IBAN'a yapmanız beklenir. Bu süre içinde onaylanmazsa rezervasyon talebiniz otomatik iptal edilir. Ödeme onaylandıktan sonra rezervasyonunuz kesinleşir."
+    }
+  },
+  "contact": {
+    "hero": { "title": "İletişim", "breadcrumb": "İletişim" },
+    "cards": {
+      "addressTitle": "Adres",
+      "addressLink": "HARİTADA AÇ →",
+      "phoneTitle": "Telefon",
+      "phoneSub": "7/24 hizmet",
+      "emailTitle": "E-posta",
+      "emailSub": "En geç 24 saat içinde yanıt"
+    },
+    "form": {
+      "eyebrow": "Mesaj Gönderin",
+      "title": "Bize Yazın",
+      "text": "Soru, öneri veya bilgi talepleriniz için aşağıdaki formu doldurun. En kısa sürede size dönüş yapacağız.",
+      "name": "Ad Soyad",
+      "namePlaceholder": "Adınız ve soyadınız",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@email.com",
+      "subject": "Konu",
+      "subjectPlaceholder": "Konu seçin",
+      "subjectGeneral": "Genel Bilgi",
+      "subjectReservation": "Rezervasyon",
+      "subjectPrice": "Fiyat Bilgisi",
+      "subjectComplaint": "Şikayet / Öneri",
+      "subjectOther": "Diğer",
+      "message": "Mesajınız",
+      "messagePlaceholder": "Mesajınızı buraya yazın...",
+      "submit": "Gönder",
+      "submitted": "Mesajınız İletildi"
+    },
+    "map": {
+      "eyebrow": "Konumumuz",
+      "title": "Nasıl Gelinir?",
+      "openMaps": "Google Haritalar'da Aç",
+      "beach": "Kadırga Plajı",
+      "beachTime": "Araç ile yaklaşık 5 dakika",
+      "assos": "Antik Assos (Behramkale)",
+      "assosTime": "Araç ile yaklaşık 7 dakika",
+      "harbor": "Assos Limanı",
+      "harborTime": "Araç ile yaklaşık 10 dakika"
+    },
+    "nearby": {
+      "eyebrow": "Çevrede",
+      "title": "Yakın Aktiviteler",
+      "beach": { "title": "Kadırga Plajı", "desc": "Ege'nin berrak sularında yüzme ve güneşlenme imkânı. 5 dakika mesafe." },
+      "assos": { "title": "Antik Assos", "desc": "Aristo'nun yaşadığı tarihi antik kent ve Zeus Tapınağı kalıntıları. 7 dakika." },
+      "harbor": { "title": "Assos Limanı", "desc": "Tekneler, balık restoranları ve Ege manzarası eşliğinde romantik akşamlar. 10 dakika." }
+    }
+  },
+  "bookingSuccess": {
+    "badge": "Talep alındı",
+    "title": "Rezervasyonunuz oluşturuldu",
+    "reservationNo": "No",
+    "depositPendingLabel": "Kapora bekleniyor",
+    "depositPendingText": "Rezervasyonunuz <strong>kapora ödemesi onaylanana kadar</strong> kesin değildir. Ödeme onaylandığında e-posta ile bilgilendirileceksiniz.",
+    "instructions1": "Özet ve talimatlar e-posta adresinize gönderilmiştir.",
+    "instructions2": "aşağıdaki IBAN'a kapora göndermeniz gerekir. Havale açıklamasına rezervasyon numaranızı yazın. Bu süre içinde onaylanmazsa rezervasyon otomatik iptal olur.",
+    "withinHours": "{hours} saat içinde",
+    "depositTitle": "Kapora bilgileri",
+    "iban": "IBAN",
+    "recipient": "Alıcı",
+    "description": "Açıklama",
+    "descriptionValue": "Rezervasyon numaranız",
+    "home": "Anasayfa",
+    "callUs": "Bizi arayın",
+    "checkEmail": "E-postanızı kontrol edin; göremiyorsanız spam klasörüne bakın."
+  },
+  "booking": {
+    "progress": {
+      "step1": "Tarih & misafir",
+      "step2": "Oda seçimi",
+      "step3": "Bilgiler & kapora"
+    },
+    "search": {
+      "step": "Adım 1",
+      "title": "Müsaitlik ara",
+      "lede": "Tarih ve kişi sayısı seçin; uygun odaları anında listeleyelim.",
+      "checkInDate": "Giriş tarihi",
+      "checkOutDate": "Çıkış tarihi",
+      "adults": "Yetişkin",
+      "children": "Çocuk",
+      "adultsOption": "{count} yetişkin",
+      "childrenOption": "{count} çocuk",
+      "roomTypeOptional": "Oda tipi (isteğe bağlı)",
+      "allRoomTypes": "Tüm Oda Tipleri",
+      "submit": "Müsaitlik ara",
+      "searching": "Aranıyor…",
+      "invalidDate": "Çıkış tarihi giriş tarihinden sonra olmalıdır."
+    },
+    "flow": {
+      "checking": "Müsaitlik kontrol ediliyor…",
+      "availableRooms": "Müsait odalar",
+      "changeDates": "← Tarihleri değiştir",
+      "noRooms": "Seçtiğiniz tarihler için müsait oda bulunamadı.",
+      "tryDifferent": "Farklı tarih dene",
+      "guestInfo": "Misafir bilgileri",
+      "changeRoom": "← Oda değiştir"
+    },
+    "roomCard": {
+      "roomsAvailable": "{count} oda müsait",
+      "boutiqueRoom": "Butik oda",
+      "maxGuests": "En fazla {count} misafir",
+      "note": "Rezervasyon talebiniz, kapora ödemesi onaylandıktan sonra kesinleşir.",
+      "totalNights": "Toplam · {nights} gece",
+      "perNight": "{price} ₺ / gece · KDV dahil",
+      "vatIncluded": "KDV dahil",
+      "depositOneNight": "Kapora (1 gece):",
+      "deposit": "Kapora",
+      "select": "Bu odayı seç",
+      "approxEur": "≈ {amount} € (yaklaşık)"
+    },
+    "form": {
+      "step": "Adım 3",
+      "title": "İletişim bilgileri",
+      "lede": "Bu bilgiler rezervasyon kaydı ve kapora talimatları için kullanılır. Lütfen ulaşabileceğiniz bir telefon girin.",
+      "firstName": "Ad *",
+      "firstNamePlaceholder": "Adınız",
+      "lastName": "Soyad *",
+      "lastNamePlaceholder": "Soyadınız",
+      "email": "E-posta *",
+      "emailPlaceholder": "ornek@email.com",
+      "emailHint": "Kapora ve onay bu adrese gönderilir.",
+      "phone": "Telefon *",
+      "phonePlaceholder": "+90 5__ ___ __ __",
+      "notes": "Notlar",
+      "notesOptional": "(isteğe bağlı)",
+      "notesPlaceholder": "Özel istek, varış saati…",
+      "submit": "Talebi gönder",
+      "submitting": "Gönderiliyor…"
+    },
+    "summary": {
+      "title": "Özet",
+      "intro": "Gönderimden önce bilgilerinizi kontrol edin. Kapora aşağıda vurgulanmıştır.",
+      "room": "Oda",
+      "stay": "Konaklama",
+      "nights": "{count} gece",
+      "guest": "Misafir",
+      "adults": "{count} yetişkin",
+      "children": "{count} çocuk",
+      "priceLine": "{price} ₺ × {nights} gece",
+      "nightsStay": "{nights} gece konaklama",
+      "totalVat": "Toplam (KDV dahil)",
+      "noPrice": "Bu tarihler için toplam fiyat bilgisi almak üzere lütfen bizi arayın.",
+      "depositLabel": "Ödenecek kapora (1 gecelik ücret)",
+      "confirmTitle": "Kesin rezervasyon:",
+      "confirmText": "IBAN kaporası onaylandıktan sonra oluşur. Talimatlar e-posta ile gider.",
+      "approxEur": "≈ {amount} € (yaklaşık)"
+    },
+    "datePicker": {
+      "placeholder": "Tarih seçin",
+      "dialogLabel": "Tarih seçin",
+      "hint": "Giriş ve çıkış tarihini seçin.",
+      "close": "Kapat"
+    },
+    "errors": {
+      "availabilityFailed": "Müsaitlik kontrolü başarısız.",
+      "connection": "Bağlantı hatası. Lütfen tekrar deneyin.",
+      "reservationFailed": "Rezervasyon oluşturulamadı."
+    }
+  },
+  "apiErrors": {
+    "rateLimit": "Çok fazla istek gönderildi. Lütfen bir süre sonra tekrar deneyin.",
+    "invalidData": "Geçersiz bilgiler.",
+    "invalidParams": "Geçersiz parametreler.",
+    "serviceUnavailable": "Rezervasyon sistemi şu anda geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin veya bizi telefonla arayın.",
+    "securityFailed": "Güvenlik doğrulaması başarısız oldu. Lütfen sayfayı yenileyip tekrar deneyin.",
+    "pastDate": "Giriş tarihi geçmişte olamaz.",
+    "checkoutAfterCheckin": "Çıkış tarihi giriş tarihinden sonra olmalıdır.",
+    "invalidRoomType": "Geçersiz oda tipi.",
+    "noAvailability": "Seçtiğiniz tarihler için müsait oda kalmamıştır. Lütfen farklı tarih veya oda tipi deneyin.",
+    "reservationCreateError": "Rezervasyon oluşturulurken bir hata oluştu.",
+    "availabilityError": "Müsaitlik kontrolü sırasında bir hata oluştu.",
+    "unknown": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
+  },
+  "validation": {
+    "nameChars": "Ad yalnızca harf, boşluk ve tire içerebilir.",
+    "surnameChars": "Soyad yalnızca harf, boşluk ve tire içerebilir.",
+    "invalidPhone": "Geçerli bir telefon numarası girin.",
+    "maxNights": "En fazla 21 gecelik rezervasyon yapılabilir.",
+    "maxAdvance": "Giriş tarihi bugünden en fazla 365 gün sonrası olabilir.",
+    "maxGuestsForRoom": "Seçilen oda tipi en fazla {max} misafir kabul eder."
+  }
+}

@@ -1,51 +1,16 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import JsonLd, { hotelJsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
+/**
+ * Passthrough kök layout. `<html>`/`<body>` burada DEĞİL — birden fazla root
+ * layout var:
+ *   - herkese açık, çok dilli sayfalar → `src/app/[locale]/layout.tsx`
+ *   - admin (yalnızca TR) → `src/app/admin/layout.tsx`
+ * Bu dosya yalnızca global CSS'i enjekte eder ve `metadataBase` gibi tüm
+ * uygulama genelinde geçerli meta ayarlarını taşır.
+ */
 export const metadata: Metadata = {
-  title: {
-    default: "Assos Karadut Taş Otel – Ayvacık, Çanakkale",
-    template: "%s – Assos Karadut Taş Otel",
-  },
-  description:
-    "Assos Karadut Taş Otel, Ayvacık'ın tarihi güzelliği içinde eşsiz bir konaklama deneyimi sunar. Kadırga Plajı'na 5 dakika, Assos Antik Kenti'ne 7 dakika.",
   metadataBase: new URL("https://karaduttasotel.com"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "tr_TR",
-    siteName: "Assos Karadut Taş Otel",
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Assos Karadut Taş Otel — deniz manzarası",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: ["/og.jpg"],
-  },
-  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -53,12 +18,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="tr" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body>
-        <JsonLd data={hotelJsonLd()} />
-        {children}
-      </body>
-    </html>
-  );
+  return children;
 }

@@ -1,22 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X } from "lucide-react";
-
-const links = [
-  { href: "/", label: "Anasayfa" },
-  { href: "/about", label: "Hakkımızda" },
-  { href: "/rooms", label: "Odalarımız" },
-  { href: "/reservation", label: "Rezervasyon" },
-  { href: "/contact", label: "İletişim" },
-];
+import { routing } from "@/i18n/routing";
 
 export default function Navbar() {
+  const t = useTranslations("nav");
+  const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  // Diğer dil: mevcut path korunarak locale değiştirilir.
+  const otherLocale = routing.locales.find((l) => l !== locale) ?? "en";
+
+  const links = [
+    { href: "/", label: t("home") },
+    { href: "/about", label: t("about") },
+    { href: "/rooms", label: t("rooms") },
+    { href: "/reservation", label: t("reservation") },
+    { href: "/contact", label: t("contact") },
+  ] as const;
+
   // Üstünde koyu hero olmayan sayfalarda şeffaf navbar beyaz metniyle okunmaz;
   // bu rotalarda navbar her zaman opak (scrolled) stiliyle başlar.
   const solidNav = pathname.startsWith("/booking-success");
@@ -38,7 +44,7 @@ export default function Navbar() {
             href="/"
             className="navbar-brand-text shrink-0 no-underline max-w-[min(100%,220px)]"
           >
-            Assos Karadut Taş Otel
+            {t("brand")}
           </Link>
 
           {/* Desktop nav */}
@@ -58,12 +64,24 @@ export default function Navbar() {
               +90 501 091 34 17
             </a>
             <Link
+              href={pathname}
+              locale={otherLocale}
+              className={`nav-lang-switch text-[11px] tracking-[1.5px] uppercase font-semibold no-underline transition-colors ${
+                scrolled || menuOpen || solidNav
+                  ? "text-dark hover:text-gold"
+                  : "text-white/85 hover:text-white"
+              }`}
+              aria-label={t("switchToLabel")}
+            >
+              {t("switchTo")}
+            </Link>
+            <Link
               href="/reservation"
               className={`nav-cta ml-2 no-underline ${
                 scrolled || menuOpen || solidNav ? "nav-cta--on-light" : "nav-cta--on-dark"
               }`}
             >
-              Rezervasyon
+              {t("reservationCta")}
             </Link>
           </div>
 
@@ -73,7 +91,7 @@ export default function Navbar() {
               scrolled || menuOpen || solidNav ? "text-dark" : "text-white"
             }`}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menü"
+            aria-label={t("menu")}
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -102,11 +120,20 @@ export default function Navbar() {
               +90 501 091 34 17
             </a>
             <Link
+              href={pathname}
+              locale={otherLocale}
+              className="block py-3 text-dark text-[11.5px] tracking-[1.8px] uppercase font-bold no-underline"
+              onClick={() => setMenuOpen(false)}
+              aria-label={t("switchToLabel")}
+            >
+              {t("switchTo")}
+            </Link>
+            <Link
               href="/reservation"
               className="btn-cta-solid block mt-3 text-center no-underline"
               onClick={() => setMenuOpen(false)}
             >
-              Rezervasyon
+              {t("reservationCta")}
             </Link>
           </div>
         )}

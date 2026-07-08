@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getIronSession } from "iron-session";
+import createIntlMiddleware from "next-intl/middleware";
 import type { SessionData } from "@/lib/auth/session";
+import { routing } from "@/i18n/routing";
 
 if (!process.env.SESSION_SECRET) {
   throw new Error("SESSION_SECRET environment variable is required");
@@ -17,8 +19,17 @@ const sessionOptions = {
   },
 };
 
+// next-intl locale yönlendirme middleware'i. Yalnızca herkese açık sayfalarda
+// çalışır; /admin ve /api yollarına ASLA dokunmaz (aşağıda erken return edilir).
+const intlMiddleware = createIntlMiddleware(routing);
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // ---------------------------------------------------------------------------
+  // /admin ve /api: locale yönlendirmesinin TAMAMEN dışında. Mevcut oturum
+  // koruması i18n öncesiyle birebir aynı davranır (regresyon riski yok).
+  // ---------------------------------------------------------------------------
 
   // Protect /admin pages (but not /admin/login itself)
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
@@ -61,9 +72,18 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  // /admin ve /api yolları intl middleware'ine GİRMEZ — olduğu gibi geçer.
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  // Herkese açık sayfalar: locale çözümü + yönlendirme next-intl'e devredilir.
+  return intlMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  // _next, _vercel ve nokta içeren statik dosyalar (og.jpg, sitemap.xml,
+  // robots.txt, favicon vb.) hariç TÜM yollar. /admin ve /api yukarıda erken
+  // return ile ele alınır; kalan her şey herkese açık sayfa olarak intl'e gider.
+  matcher: ["/((?!_next|_vercel|.*\\..*).*)"],
 };

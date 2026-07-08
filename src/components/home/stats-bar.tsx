@@ -1,10 +1,13 @@
-const stats = [
-  { value: "9.6", label: "Misafir puanı / 10" },
-  { value: "28", label: "Butik oda" },
-  { value: "5 km", label: "Kadırga koyu" },
-];
+import { useTranslations } from "next-intl";
 
 export default function StatsBar() {
+  const t = useTranslations("home.stats");
+  const stats = [
+    { value: "9.6", label: t("guestScore") },
+    { value: "28", label: t("boutiqueRooms") },
+    { value: "5 km", label: t("bay") },
+  ];
+
   return (
     <div className="bg-ivory py-10 md:py-11 border-y border-border">
       <div className="max-w-7xl mx-auto px-4">

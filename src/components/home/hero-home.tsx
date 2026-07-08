@@ -1,35 +1,37 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Phone } from "lucide-react";
 import HeroBookingStrip from "./hero-booking-strip";
 import HeroVideo from "./hero-video";
 
 export default function HeroHome() {
+  const t = useTranslations("home.hero");
   return (
     <section className="hero-home">
       <HeroVideo />
       <div className="hero-home-inner">
-        <span className="hero-tag animate-fade-up">Assos · Çanakkale</span>
+        <span className="hero-tag animate-fade-up">{t("tag")}</span>
         <h1
           className="type-display text-white mb-5 animate-fade-up animate-fade-up-delay-1"
           style={{ fontSize: "clamp(2.65rem, 8.5vw, 5.15rem)" }}
         >
-          Taşın kalbinde,
+          {t("titleLine1")}
           <br />
           <span className="text-white font-normal italic font-heading">
-            Assos&apos;un gözdesi.
+            {t("titleLine2")}
           </span>
         </h1>
         <p
           className="type-lede text-white/80 max-w-[34rem] mx-auto mb-2 font-normal animate-fade-up animate-fade-up-delay-2"
         >
-          Butik konaklama · 28 oda · havuz · A La Carte · Kadırga&apos;ya dakikalar
+          {t("lede")}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mt-10 animate-fade-up animate-fade-up-delay-2 max-w-md sm:max-w-none mx-auto">
           <Link href="/reservation" className="btn-cta-solid no-underline text-center">
-            Tarih seç &amp; müsaitlik
+            {t("ctaDates")}
           </Link>
           <Link href="/rooms" className="btn-outline-light no-underline text-center">
-            Odaları incele
+            {t("ctaRooms")}
           </Link>
         </div>
         <a
@@ -44,7 +46,7 @@ export default function HeroHome() {
       <HeroBookingStrip />
 
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-2 flex flex-col items-center gap-1.5 text-white/40 text-[8px] tracking-[0.4em] uppercase pointer-events-none">
-        <span>Kaydır</span>
+        <span>{t("scroll")}</span>
         <div
           className="w-px h-9"
           style={{

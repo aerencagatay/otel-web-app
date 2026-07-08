@@ -1,48 +1,48 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Ruler, Users, Waves, Wifi } from "lucide-react";
 
-const rooms = [
-  {
-    name: "Deluxe Tam Deniz Manzaralı",
-    price: "Fiyat için iletişim",
-    image:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-    features: [
-      { icon: Ruler, text: "24 m²" },
-      { icon: Users, text: "2 kişi" },
-      { icon: Waves, text: "Deniz manzarası" },
-    ],
-  },
-  {
-    name: "Traditional Kısmi Deniz Manzaralı",
-    price: "Fiyat için iletişim",
-    image:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-    features: [
-      { icon: Ruler, text: "22 m²" },
-      { icon: Users, text: "2 kişi" },
-      { icon: Wifi, text: "Wi-Fi" },
-    ],
-  },
-  {
-    name: "Aile Suit Deniz Manzaralı",
-    price: "Fiyat için iletişim",
-    image:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-    features: [
-      { icon: Ruler, text: "44 m²" },
-      { icon: Users, text: "4 kişiye kadar" },
-      { icon: Wifi, text: "Wi-Fi" },
-    ],
-  },
-];
-
 export default function FeaturedRooms() {
+  const t = useTranslations("home.featured");
+  const tr = useTranslations("roomTypes");
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const rooms = [
+    {
+      name: tr("deluxe_sea_view"),
+      image:
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
+      features: [
+        { icon: Ruler, text: t("featSize24") },
+        { icon: Users, text: t("feat2guests") },
+        { icon: Waves, text: t("featSeaView") },
+      ],
+    },
+    {
+      name: tr("traditional_room"),
+      image:
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
+      features: [
+        { icon: Ruler, text: t("featSize22") },
+        { icon: Users, text: t("feat2guests") },
+        { icon: Wifi, text: t("featWifi") },
+      ],
+    },
+    {
+      name: tr("premium_family"),
+      image:
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
+      features: [
+        { icon: Ruler, text: t("featSize44") },
+        { icon: Users, text: t("feat4guests") },
+        { icon: Wifi, text: t("featWifi") },
+      ],
+    },
+  ];
 
   // Bant genişliğini korumak için video yalnızca görünür alana girince
   // oynatılır (autoplay yerine IntersectionObserver ile tetiklenir).
@@ -68,20 +68,14 @@ export default function FeaturedRooms() {
     <section className="section-py bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-2xl mb-10 md:mb-12">
-          <span className="eyebrow">Konaklama</span>
-          <h2 className="type-section-title text-dark m-0 mb-4">Odalar</h2>
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <h2 className="type-section-title text-dark m-0 mb-4">{t("title")}</h2>
           <div className="divider-gold" />
-          <p className="type-lede m-0">
-            Taş mimarisi, geniş pencereler ve Ege ışığı. Her oda sessiz lüks ve sakinlik için
-            düşünüldü.
-          </p>
+          <p className="type-lede m-0">{t("lede")}</p>
         </div>
 
         {/* Sol: oda videosu (masaüstünde sabit 3:4) — Sağ: 3 eşit yükseklikte
-            oda kartı. Video hücresi kendi aspect-ratio'suyla satırın "auto"
-            yüksekliğini belirler (en büyük içerik); sağ sütun grid-rows-3 +
-            h-full ile bu yüksekliğe stretch olur — CSS Grid'in standart
-            "iki sütunu eşitleme" kalıbı (1440px'te doğrulanmalı). */}
+            oda kartı. */}
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_1fr] gap-10 md:gap-14 items-stretch">
           <div className="rounded-[var(--radius-md)] overflow-hidden border border-border aspect-video md:aspect-[3/4]">
             <video
@@ -97,7 +91,7 @@ export default function FeaturedRooms() {
             />
             <Image
               src="/img/aile-suit.webp"
-              alt="Assos Karadut Taş Otel odaları"
+              alt={t("videoAlt")}
               width={720}
               height={960}
               className="w-full h-full object-cover hidden motion-reduce:block"
@@ -128,7 +122,7 @@ export default function FeaturedRooms() {
                     {room.name}
                   </h3>
                   <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2">
-                    {room.price}
+                    {t("priceContact")}
                   </p>
                   <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3">
                     {room.features.map((f, j) => (
@@ -139,7 +133,7 @@ export default function FeaturedRooms() {
                     ))}
                   </div>
                   <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
-                    Müsaitlik &amp; rezervasyon
+                    {t("availability")}
                   </span>
                 </div>
               </Link>
@@ -149,13 +143,13 @@ export default function FeaturedRooms() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center mt-10 md:mt-12 pt-10 border-t border-border">
           <Link href="/rooms" className="btn-dark-sq no-underline">
-            Tüm detaylar
+            {t("allDetails")}
           </Link>
           <Link
             href="/reservation"
             className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold-dark no-underline border-b border-gold-dark/40 pb-0.5 hover:border-gold-dark transition-colors"
           >
-            Hemen tarih seç →
+            {t("pickDates")}
           </Link>
         </div>
       </div>
