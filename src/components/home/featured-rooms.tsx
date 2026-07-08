@@ -62,7 +62,8 @@ export default function FeaturedRooms() {
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
+              poster="/img/oda-video-poster.jpg"
               aria-hidden="true"
             />
             <Image

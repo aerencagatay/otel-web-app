@@ -186,7 +186,7 @@ async function generatePoster(videoPath, posterOut) {
     "-i", videoPath,
     "-ss", "00:00:00.5",
     "-frames:v", "1",
-    "-vf", "scale=1280:-2",
+    "-vf", "scale='min(1280,iw)':-2", // asla upscale etme
     posterOut,
   ]);
   return true;

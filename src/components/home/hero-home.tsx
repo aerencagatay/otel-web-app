@@ -1,22 +1,12 @@
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import HeroBookingStrip from "./hero-booking-strip";
+import HeroVideo from "./hero-video";
 
 export default function HeroHome() {
   return (
     <section className="hero-home">
-      <video
-        className="hero-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/img/hero-poster.jpg"
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src="/img/otel-video.mp4" type="video/mp4" />
-      </video>
+      <HeroVideo />
       <div className="hero-home-inner">
         <span className="hero-tag animate-fade-up">Assos · Çanakkale</span>
         <h1
