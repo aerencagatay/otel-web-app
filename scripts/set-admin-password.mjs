@@ -41,6 +41,14 @@ if (!found) {
 }
 
 writeFileSync(".env.local", out.join("\n"), "utf8");
-console.log("✅ Admin sifresi guncellendi (hash .env.local'e yazildi).");
+console.log("✅ Admin sifresi guncellendi (hash .env.local'e yazildi, escaped).");
 console.log("Hash uzunlugu:", hash.length, "| baslangic:", hash.slice(0, 4));
-console.log("Simdi dev sunucusunu yeniden baslat: Ctrl+C, sonra npm run dev");
+console.log("");
+console.log("=== VERCEL ICIN (raw — tirnak/escape YOK, oldugu gibi yapistir) ===");
+console.log(hash);
+console.log("===================================================================");
+console.log("");
+console.log("1) Yukaridaki satiri Vercel > Settings > Environment Variables >");
+console.log("   ADMIN_PASSWORD_HASH degerine yapistir (eskisini sil).");
+console.log("2) Degisikligin gecerli olmasi icin Vercel'de redeploy gerekir.");
+console.log("3) Lokal icin dev sunucusunu yeniden baslat: Ctrl+C, sonra npm run dev");

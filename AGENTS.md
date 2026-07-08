@@ -26,6 +26,16 @@ Bu bölüm iş bilgilerinin kanonik kaynağıdır. Bir agent tanımı veya sayfa
 2. **Traditional Kısmi Deniz Manzaralı** — 22m², max 2 kişi
 3. **Aile Suit Deniz Manzaralı** — 44m², max 4 kişi
 
-Anasayfada gecelik başlangıç fiyatı GÖSTERİLMEZ (kullanıcı kararı 2026-07-03);
-oda kartlarında "Fiyat için iletişim" kullanılır. `src/lib/config/pricing.ts`
-rezervasyon sisteminin fonksiyonel verisidir, pazarlama kopyası değildir.
+Anasayfa ve /rooms oda kartlarında `src/lib/config/pricing.ts`'ten türetilen
+gerçek başlangıç fiyatı GÖSTERİLİR ("₺7.200'den başlayan / gece" biçiminde;
+kullanıcı kararı 2026-07-08, önceki "fiyat gösterme" kararını geçersiz kılar).
+Fiyat tanımlı ay yoksa zarif fallback: "Fiyat için bize ulaşın". Fiyat değerleri
+elle yazılmaz, her zaman `pricing.ts`'ten hesaplanır.
+
+## Oda fotoğrafı kaynak eşlemesi (kullanıcı kararı 2026-07-08)
+
+`img/` altındaki klasör adları yalnızca fotoğraf KAYNAĞIDIR, oda adlarını değiştirmez:
+
+- `img/Panoramic Oda/` → **Deluxe Tam Deniz Manzaralı**
+- `img/Traditional Oda/` → **Traditional Kısmi Deniz Manzaralı**
+- `img/Premium Dört Kişilik Oda/` → **Aile Suit Deniz Manzaralı**
