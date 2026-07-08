@@ -9,7 +9,7 @@ const items = [
     mosaicClass: "gallery-mosaic__hero",
   },
   {
-    src: "/img/aile_odası.webp",
+    src: "/img/aile-suit.webp",
     alt: "Aile Suit",
     title: "Aile Suit",
     desc: "Geniş alan",

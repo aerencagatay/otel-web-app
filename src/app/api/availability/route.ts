@@ -2,9 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { availabilitySchema } from "@/lib/utils/validation";
 import { checkAvailability } from "@/lib/sheets/availability";
 import { isPastDate } from "@/lib/utils/dates";
+import {
+  getClientIp,
+  availabilityLimiter,
+  RATE_LIMIT_MESSAGE,
+} from "@/lib/security/rate-limit";
 
 export async function GET(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+    const rateLimitResult = await availabilityLimiter.limit(ip);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: RATE_LIMIT_MESSAGE },
+        { status: 429 }
+      );
+    }
+
     const params = Object.fromEntries(request.nextUrl.searchParams);
     const parsed = availabilitySchema.safeParse(params);
 

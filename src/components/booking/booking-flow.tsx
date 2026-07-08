@@ -116,6 +116,7 @@ export default function BookingFlow() {
     email: string;
     phone: string;
     notes?: string;
+    turnstileToken?: string;
   }) {
     if (!search || !selectedRoom) return;
 

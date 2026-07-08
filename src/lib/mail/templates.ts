@@ -1,6 +1,19 @@
 import { HOTEL, RESERVATION_HOLD_HOURS } from "../config/hotel";
 import { formatDateTR } from "../utils/dates";
 
+/**
+ * Escapes HTML-significant characters so user-supplied strings (name,
+ * notes, etc.) can't inject markup/scripts into outgoing HTML emails.
+ */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function pendingReservationEmail(data: {
   reservationId: string;
   firstName: string;
@@ -20,7 +33,7 @@ export function pendingReservationEmail(data: {
         </div>
         <div style="padding:32px;border:1px solid #e8e2d9;border-top:none;">
           <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">Rezervasyonunuz Alındı</h2>
-          <p>Sayın ${data.firstName} ${data.lastName},</p>
+          <p>Sayın ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)},</p>
           <p>Rezervasyon talebiniz başarıyla oluşturulmuştur. Kesinleşmesi için aşağıdaki kapora ödemesini <strong>${RESERVATION_HOLD_HOURS} saat içinde</strong> yapmanız gerekmektedir. Bu süre içinde kapora onaylanmazsa rezervasyonunuz otomatik olarak iptal edilir.</p>
 
           <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
@@ -69,7 +82,7 @@ export function expiredReservationEmail(data: {
         </div>
         <div style="padding:32px;border:1px solid #e8e2d9;border-top:none;">
           <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">Rezervasyon Talebiniz İptal Edildi</h2>
-          <p>Sayın ${data.firstName} ${data.lastName},</p>
+          <p>Sayın ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)},</p>
           <p><strong>${data.reservationId}</strong> numaralı rezervasyon talebiniz, ${RESERVATION_HOLD_HOURS} saat içinde kapora ödemesi onaylanmadığı için otomatik olarak iptal edilmiştir. Seçtiğiniz tarihler yeniden müsait hale gelmiştir.</p>
 
           <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
@@ -117,16 +130,16 @@ export function adminNotificationEmail(data: {
           <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
             <table style="width:100%;font-size:14px;">
               <tr><td style="padding:4px 0;color:#888;">Rezervasyon No</td><td style="font-weight:700;color:#1a1a1a;">${data.reservationId}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Misafir</td><td style="font-weight:700;color:#1a1a1a;">${data.firstName} ${data.lastName}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1a1a1a;"><a href="tel:${data.phone.replace(/\s/g, "")}" style="color:#1a1a1a;">${data.phone}</a></td></tr>
-              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${data.email}" style="color:#1a1a1a;">${data.email}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Misafir</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1a1a1a;"><a href="tel:${encodeURIComponent(data.phone.replace(/\s/g, ""))}" style="color:#1a1a1a;">${escapeHtml(data.phone)}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${encodeURIComponent(data.email)}" style="color:#1a1a1a;">${escapeHtml(data.email)}</a></td></tr>
               <tr><td style="padding:4px 0;color:#888;">Oda</td><td style="font-weight:700;color:#1a1a1a;">${data.roomLabel}</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Giriş</td><td style="font-weight:700;color:#1a1a1a;">${formatDateTR(data.checkIn)}</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Çıkış</td><td style="font-weight:700;color:#1a1a1a;">${formatDateTR(data.checkOut)}</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Süre</td><td style="font-weight:700;color:#1a1a1a;">${data.nights} gece</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Kişi</td><td style="font-weight:700;color:#1a1a1a;">${data.adults} yetişkin${data.children ? `, ${data.children} çocuk` : ""}</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Beklenen Kapora</td><td style="font-weight:700;color:#e4a00e;">${data.depositAmount.toLocaleString("tr-TR")} ₺</td></tr>
-              ${data.notes ? `<tr><td style="padding:4px 0;color:#888;">Not</td><td style="font-weight:700;color:#1a1a1a;">${data.notes}</td></tr>` : ""}
+              ${data.notes ? `<tr><td style="padding:4px 0;color:#888;">Not</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.notes)}</td></tr>` : ""}
             </table>
           </div>
 
@@ -167,7 +180,7 @@ export function confirmedReservationEmail(data: {
             </div>
           </div>
           <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;text-align:center;">Rezervasyonunuz Kesinleşti!</h2>
-          <p>Sayın ${data.firstName} ${data.lastName},</p>
+          <p>Sayın ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)},</p>
           <p>Kapora ödemeniz onaylanmış ve rezervasyonunuz kesinleşmiştir. Sizi otelimizde ağırlamaktan mutluluk duyacağız.</p>
 
           <div style="background:#faf8f5;border-left:3px solid #28a745;padding:16px 20px;margin:20px 0;">

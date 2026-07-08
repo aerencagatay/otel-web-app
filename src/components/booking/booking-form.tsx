@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Loader2, Send } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface Props {
   onSubmit: (data: {
@@ -10,9 +11,12 @@ interface Props {
     email: string;
     phone: string;
     notes?: string;
+    turnstileToken?: string;
   }) => void;
   submitting: boolean;
 }
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function BookingForm({ onSubmit, submitting }: Props) {
   const [firstName, setFirstName] = useState("");
@@ -20,11 +24,21 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | undefined>(
+    undefined
+  );
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!firstName || !lastName || !email || !phone) return;
-    onSubmit({ firstName, lastName, email, phone, notes: notes || undefined });
+    onSubmit({
+      firstName,
+      lastName,
+      email,
+      phone,
+      notes: notes || undefined,
+      turnstileToken,
+    });
   }
 
   return (
@@ -117,6 +131,17 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           placeholder="Özel istek, varış saati…"
         />
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <div className="mt-6">
+          <Turnstile
+            siteKey={TURNSTILE_SITE_KEY}
+            options={{ size: "invisible" }}
+            onSuccess={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken(undefined)}
+          />
+        </div>
+      )}
 
       <div className="mt-10">
         <button

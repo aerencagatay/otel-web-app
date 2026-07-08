@@ -66,7 +66,7 @@ export default function FeaturedRooms() {
               aria-hidden="true"
             />
             <Image
-              src="/img/aile_odası.webp"
+              src="/img/aile-suit.webp"
               alt="Assos Karadut Taş Otel odaları"
               width={720}
               height={1280}
