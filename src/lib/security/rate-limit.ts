@@ -97,6 +97,13 @@ export const reservationLimiter = {
   },
 };
 
+/** IP başına 5 istek / saat — iletişim formu spam koruması (Task 03). */
+export const contactLimiter = createLimiter({
+  tokens: 5,
+  window: "1 h",
+  prefix: "contact-1h",
+});
+
 /** IP başına 30 istek / dakika. */
 export const availabilityLimiter = createLimiter({
   tokens: 30,

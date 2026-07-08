@@ -61,6 +61,9 @@ export const reservationSchema = z
       .pipe(z.string().max(500))
       .optional(),
     turnstileToken: z.string().optional(),
+    consent: z.literal(true, {
+      error: "KVKK Aydınlatma Metni'ni okuyup onaylamanız gerekmektedir.",
+    }),
   })
   .refine((data) => nightCount(data.checkIn, data.checkOut) <= MAX_NIGHTS, {
     message: "En fazla 21 gecelik rezervasyon yapılabilir.",
@@ -83,5 +86,36 @@ export const reservationSchema = z
     }
   });
 
+export const CONTACT_SUBJECTS = [
+  "Genel Bilgi",
+  "Rezervasyon",
+  "Fiyat Bilgisi",
+  "Şikayet / Öneri",
+  "Diğer",
+] as const;
+
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, "Ad Soyad zorunludur.")
+    .max(80)
+    .regex(NAME_REGEX, "Ad Soyad yalnızca harf, boşluk ve tire içerebilir."),
+  email: z.email("Geçerli bir e-posta adresi girin.").trim(),
+  phone: z
+    .string()
+    .transform((val) => val.replace(/[\s-]/g, ""))
+    .pipe(z.string().regex(PHONE_REGEX, "Geçerli bir telefon numarası girin."))
+    .optional()
+    .or(z.literal("")),
+  subject: z.enum(CONTACT_SUBJECTS, "Lütfen bir konu seçin."),
+  message: z
+    .string()
+    .transform((val) => stripControlChars(val.trim()))
+    .pipe(z.string().min(10, "Mesajınız en az 10 karakter olmalıdır.").max(1000)),
+  turnstileToken: z.string().optional(),
+});
+
 export type AvailabilityInput = z.infer<typeof availabilitySchema>;
 export type ReservationInput = z.infer<typeof reservationSchema>;
+export type ContactInput = z.infer<typeof contactSchema>;
