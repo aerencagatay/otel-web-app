@@ -158,9 +158,13 @@ export default function HeroBookingStrip() {
         </button>
       </form>
 
-      {invalid && (
+      {invalid ? (
         <p className="text-red-700 text-[12px] mt-4 text-left m-0">
           Çıkış tarihi girişten sonra olmalıdır.
+        </p>
+      ) : (
+        <p className="text-[12px] text-text-light mt-4 mb-0 text-left leading-relaxed">
+          Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır.
         </p>
       )}
     </div>
