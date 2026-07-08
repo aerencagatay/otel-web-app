@@ -19,6 +19,22 @@
   --font-body: "DM Sans", sans-serif;
 }
 
+/* Yumuşak radius / gölge dili — taş dokusu + Ege ışığı + sessiz lüks.
+   Aman Resorts / Design Hotels rezervasyon arayüzlerine referansla: bol
+   beyaz alan, hap formlu kontroller, çok yumuşak gölgeler, keskin köşe yok.
+   Kural: tam genişlikte (edge-to-edge) section arka planları köşesiz kalır;
+   yalnızca yüzen kart/panel/chip/buton/input bu token'ları kullanır. */
+:root {
+  --radius-xs: 6px;    /* chip içi küçük elemanlar */
+  --radius-sm: 10px;   /* input, select, küçük kart */
+  --radius-md: 16px;   /* kart, panel */
+  --radius-lg: 24px;   /* hero kart, büyük medya */
+  --radius-pill: 999px;/* buton, chip, arama barı */
+  --shadow-soft: 0 1px 2px rgba(20,18,14,.05), 0 8px 28px rgba(20,18,14,.07);
+  --shadow-lift: 0 2px 6px rgba(20,18,14,.06), 0 16px 48px rgba(20,18,14,.12);
+  --border-soft: 1px solid rgba(120,110,95,.18); /* sıcak, düşük kontrast */
+}
+
 /* ===== BASE ===== */
 html {
   scroll-behavior: smooth;
@@ -123,6 +139,7 @@ img {
   background: var(--color-gold);
   color: #fff;
   border: 2px solid var(--color-gold);
+  border-radius: var(--radius-pill);
   padding: 14px 34px;
   font-size: 11px;
   letter-spacing: 2.5px;
@@ -142,6 +159,7 @@ img {
   background: transparent;
   color: #fff;
   border: 2px solid rgba(255,255,255,0.65);
+  border-radius: var(--radius-pill);
   padding: 14px 34px;
   font-size: 11px;
   letter-spacing: 2.5px;
@@ -161,6 +179,7 @@ img {
   background: var(--color-dark);
   color: #fff;
   border: 2px solid var(--color-dark);
+  border-radius: var(--radius-pill);
   padding: 13px 30px;
   font-size: 11px;
   letter-spacing: 2px;
@@ -183,6 +202,7 @@ img {
   background: var(--color-dark);
   color: #fff !important;
   border: 2px solid var(--color-dark);
+  border-radius: var(--radius-pill);
   padding: 15px 32px;
   font-size: 10px;
   letter-spacing: 0.28em;
@@ -207,6 +227,7 @@ img {
   text-transform: uppercase;
   font-weight: 700;
   padding: 11px 22px;
+  border-radius: var(--radius-pill);
   transition: background 0.25s, border-color 0.25s, color 0.25s;
 }
 .nav-cta--on-dark {
@@ -455,40 +476,151 @@ img {
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* Floating booking bar (homepage) — hairline, quiet, no colored top bar */
+/* Floating booking bar (homepage) — one soft "pill" panel, no colored top bar.
+   Desktop reads as a wide capsule (radius-pill); mobile stacks vertically and
+   settles for radius-lg since a tall stacked box no longer reads as a bar. */
 .hero-booking-shell {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1040px;
+  max-width: 1080px;
   margin: clamp(16px, 3vh, 32px) auto 0;
   background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 24px 64px rgba(15, 17, 15, 0.28);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: clamp(20px, 2.8vw, 28px) clamp(20px, 3vw, 32px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: clamp(20px, 2.4vw, 24px) clamp(28px, 4vw, 44px);
 }
-
-.hero-booking-shell .form-label {
-  color: var(--color-dark);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-}
-
-.hero-booking-shell .form-input,
-.hero-booking-shell select.form-input {
-  background: #fff;
-  border-color: var(--color-border);
+@media (max-width: 767px) {
+  .hero-booking-shell {
+    border-radius: var(--radius-lg);
+    padding: clamp(20px, 5vw, 28px);
+  }
 }
 
 .hero-booking-title {
   font-family: var(--font-heading);
-  font-size: clamp(22px, 3.2vw, 34px);
+  font-size: clamp(20px, 2.6vw, 26px);
   font-weight: 600;
   color: var(--color-dark);
   letter-spacing: -0.02em;
   line-height: 1.15;
+}
+
+/* Search bar — segments separated by hairlines instead of boxed inputs;
+   the whole row sits inside the pill shell above. */
+.hero-booking-bar {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  row-gap: 14px;
+}
+.hero-booking-bar__field {
+  display: flex;
+  align-items: stretch;
+  flex: 2 1 220px;
+  min-width: 0;
+}
+.hero-booking-bar__field--single {
+  flex: 1 1 130px;
+}
+.hero-booking-bar__segment {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 2px 18px;
+  border-left: var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+.hero-booking-bar__field:first-child .hero-booking-bar__segment:first-child {
+  border-left: none;
+  padding-left: 2px;
+}
+.hero-booking-bar__label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: 4px;
+}
+.hero-booking-bar__value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero-booking-bar__select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+  font-family: var(--font-body);
+  cursor: pointer;
+  width: 100%;
+}
+.hero-booking-bar__select:focus-visible {
+  outline: 2px solid var(--color-gold-dark);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+.hero-booking-bar__submit {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 12px;
+  padding: 14px 26px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.25s, transform 0.2s;
+}
+.hero-booking-bar__submit:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-1px);
+}
+@media (max-width: 1023px) {
+  .hero-booking-bar {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+  .hero-booking-bar__field,
+  .hero-booking-bar__field--single {
+    flex: 1 1 auto;
+  }
+  .hero-booking-bar__segment {
+    border-left: none;
+    border-top: var(--border-soft);
+    padding: 12px 4px;
+  }
+  .hero-booking-bar__field:first-child .hero-booking-bar__segment:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+  .hero-booking-bar__submit {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px 26px;
+  }
 }
 
 /* Scroll indicator */
@@ -532,12 +664,13 @@ img {
   text-align: center;
   padding: 40px 20px;
   border: 1px solid transparent;
+  border-radius: var(--radius-md);
   transition: all 0.32s;
   background: #fff;
 }
 .amenity-card:hover {
   border-color: var(--color-border);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-soft);
   transform: translateY(-6px);
 }
 
@@ -624,6 +757,7 @@ img {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1;
+  border-radius: var(--radius-md);
 }
 .gallery-item img {
   width: 100%;
@@ -738,7 +872,7 @@ img {
   margin-bottom: 32px;
   transition: border-color 0.35s, transform 0.35s;
   background: #fff;
-  border-radius: 0;
+  border-radius: var(--radius-md);
 }
 .room-list-card:hover {
   border-color: var(--color-gold);
@@ -752,6 +886,7 @@ img {
   gap: 9px;
   background: transparent;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
   padding: 10px 20px;
   font-size: 12px;
   letter-spacing: 0.02em;
@@ -801,6 +936,7 @@ img {
   text-align: center;
   padding: 40px 24px;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   transition: border-color 0.3s, transform 0.3s;
   height: 100%;
 }
@@ -827,6 +963,7 @@ img {
 .info-box {
   background: var(--color-warm);
   border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius-sm);
   padding: 20px 24px;
   margin-bottom: 16px;
   font-size: 14px;
@@ -842,6 +979,7 @@ img {
   text-align: center;
   padding: 44px 24px;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   transition: border-color 0.3s, transform 0.3s;
   height: 100%;
 }
@@ -870,7 +1008,7 @@ img {
 }
 .form-input {
   border: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   padding: 14px 16px;
   font-size: 14px;
   color: var(--color-dark);
@@ -977,7 +1115,7 @@ img {
   z-index: 1003;
   text-decoration: none;
   font-size: 17px;
-  box-shadow: 0 4px 18px rgba(46, 74, 92,0.45);
+  box-shadow: var(--shadow-lift);
 }
 .back-to-top.show { opacity: 1; visibility: visible; }
 .back-to-top:hover {
@@ -993,6 +1131,7 @@ img {
   gap: 16px;
   background: var(--color-warm);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
   padding: 20px 30px;
 }
 
@@ -1004,13 +1143,73 @@ img {
   line-height: 1;
 }
 
+/* ===== DATE RANGE PICKER (shared: hero search + reservation) ===== */
+.date-range-picker {
+  position: relative;
+}
+.date-range-picker__popover {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 12px);
+  left: 0;
+  background: #fff;
+  border: var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lift);
+  padding: clamp(16px, 2vw, 24px);
+  width: max-content;
+  max-width: min(92vw, 640px);
+}
+@media (max-width: 640px) {
+  .date-range-picker__popover {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.date-range-picker__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: var(--border-soft);
+}
+.date-range-picker__hint {
+  font-size: 12px;
+  color: var(--color-text-light);
+  margin: 0;
+}
+.date-range-picker__close {
+  border: none;
+  background: transparent;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-gold-dark);
+  cursor: pointer;
+  padding: 6px 4px;
+}
+.date-range-picker__close:hover {
+  text-decoration: underline;
+}
+.date-range-picker__calendar.rdp-root {
+  --rdp-accent-color: var(--color-gold-dark);
+  --rdp-accent-background-color: var(--color-warm);
+  --rdp-today-color: var(--color-gold-dark);
+  --rdp-day_button-border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  color: var(--color-dark);
+}
+
 /* ===== BOOKING FORM ===== */
 .booking-card {
   background: #fff;
   border: 1px solid var(--color-border);
   padding: clamp(28px, 4vw, 40px);
   transition: border-color 0.35s;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   position: relative;
 }
 .booking-card:hover {
@@ -1028,7 +1227,7 @@ img {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
   background: transparent;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   overflow: visible;
 }
 .booking-progress-step {
@@ -1086,7 +1285,7 @@ img {
 .premium-trip-card {
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: var(--radius-md);
   padding: clamp(24px, 3vw, 32px);
 }
 .premium-trip-card__title {
@@ -1119,7 +1318,7 @@ img {
   padding: 1.25rem;
   background: var(--color-dark);
   color: rgba(255, 255, 255, 0.92);
-  border-radius: 0;
+  border-radius: var(--radius-sm);
 }
 .premium-trip-card__deposit-label {
   font-size: 10px;
@@ -1143,7 +1342,7 @@ img {
   align-items: stretch;
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: var(--radius-md);
   overflow: hidden;
   transition: border-color 0.3s, transform 0.35s;
 }
@@ -1182,6 +1381,7 @@ img {
   font-weight: 700;
   padding: 6px 10px;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
   background: #fff;
   color: var(--color-dark);
   margin-bottom: 10px;
@@ -1242,6 +1442,7 @@ img {
   background: var(--color-gold);
   color: #fff !important;
   border: none;
+  border-radius: var(--radius-pill);
   font-size: 10px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -1261,7 +1462,7 @@ img {
   padding: 3.5rem 1.5rem;
   background: #fff;
   border: 1px dashed var(--color-border);
-  border-radius: 0;
+  border-radius: var(--radius-md);
 }
 .state-surface--muted {
   background: var(--color-warm);
