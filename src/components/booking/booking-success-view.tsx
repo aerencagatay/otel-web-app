@@ -29,7 +29,7 @@ export default function BookingSuccessView() {
             </h1>
 
             {id && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-border bg-warm rounded-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-border bg-warm rounded-[var(--radius-sm)]">
                 <Clock size={16} className="text-gold-dark" />
                 <span className="text-[11px] tracking-[0.12em] uppercase text-text-light">
                   No
@@ -38,7 +38,7 @@ export default function BookingSuccessView() {
               </div>
             )}
 
-            <div className="text-left border border-amber-900/15 bg-amber-50/80 px-5 py-4 rounded-sm mb-6">
+            <div className="text-left border border-amber-900/15 bg-amber-50/80 px-5 py-4 rounded-[var(--radius-sm)] mb-6">
               <p className="text-[11px] tracking-[0.2em] uppercase font-semibold text-amber-900/80 m-0 mb-2">
                 Kapora bekleniyor
               </p>
@@ -55,7 +55,7 @@ export default function BookingSuccessView() {
               Bu süre içinde onaylanmazsa rezervasyon otomatik iptal olur.
             </p>
 
-            <div className="text-left border border-border bg-white/80 p-6 mb-6 rounded-sm">
+            <div className="text-left border border-border bg-white/80 p-6 mb-6 rounded-[var(--radius-sm)]">
               <h3 className="font-heading text-lg font-semibold text-dark m-0 mb-4">
                 Kapora bilgileri
               </h3>

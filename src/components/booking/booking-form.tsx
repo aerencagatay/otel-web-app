@@ -48,7 +48,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           <input
             id="bf-first"
             type="text"
-            className="form-input rounded-sm"
+            className="form-input"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="Adınız"
@@ -63,7 +63,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           <input
             id="bf-last"
             type="text"
-            className="form-input rounded-sm"
+            className="form-input"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Soyadınız"
@@ -78,7 +78,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           <input
             id="bf-email"
             type="email"
-            className="form-input rounded-sm"
+            className="form-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ornek@email.com"
@@ -94,7 +94,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           <input
             id="bf-phone"
             type="tel"
-            className="form-input rounded-sm"
+            className="form-input"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="+90 5__ ___ __ __"
@@ -110,7 +110,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
         </label>
         <textarea
           id="bf-notes"
-          className="form-input rounded-sm min-h-[108px] resize-y"
+          className="form-input min-h-[108px] resize-y"
           rows={3}
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
