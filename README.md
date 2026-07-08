@@ -16,6 +16,15 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Rate limiting & bot protection (optional in dev)
+
+Copy `.env.example` to `.env.local` and fill in the base env vars (Google Sheets, mail, admin auth) as usual. Two more integrations protect the public reservation/login endpoints from abuse:
+
+- **Upstash Redis** (`UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`) — backs IP/e-mail based rate limiting for the reservation, availability and login APIs. Create a free Redis database at [upstash.com](https://upstash.com) and copy the REST URL/token from the dashboard.
+- **Cloudflare Turnstile** (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`) — invisible captcha on the booking form. Create a widget at the [Cloudflare Turnstile dashboard](https://dash.cloudflare.com/?to=/:account/turnstile) and copy the site/secret keys.
+
+If either pair of env vars is missing, the corresponding protection no-ops locally (with a console warning) so `npm run dev` / `npm run build` keep working without external accounts. Both must be configured in production.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

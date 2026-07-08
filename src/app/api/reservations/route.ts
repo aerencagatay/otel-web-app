@@ -11,9 +11,25 @@ import {
   pendingReservationEmail,
   adminNotificationEmail,
 } from "@/lib/mail/templates";
+import {
+  getClientIp,
+  reservationLimiter,
+  RATE_LIMIT_MESSAGE,
+} from "@/lib/security/rate-limit";
+import { verifyTurnstileToken } from "@/lib/security/turnstile";
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+
+    const rateLimitResult = await reservationLimiter.limit(ip);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: RATE_LIMIT_MESSAGE },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const parsed = reservationSchema.safeParse(body);
 
@@ -25,6 +41,20 @@ export async function POST(request: NextRequest) {
     }
 
     const data = parsed.data;
+
+    const turnstileResult = await verifyTurnstileToken(
+      data.turnstileToken,
+      ip
+    );
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        {
+          error:
+            "Güvenlik doğrulaması başarısız oldu. Lütfen sayfayı yenileyip tekrar deneyin.",
+        },
+        { status: 403 }
+      );
+    }
 
     if (isPastDate(data.checkIn)) {
       return NextResponse.json(

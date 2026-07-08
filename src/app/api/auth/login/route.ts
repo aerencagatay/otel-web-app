@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession, verifyCredentials } from "@/lib/auth/session";
+import {
+  getClientIp,
+  loginLimiter,
+  RATE_LIMIT_MESSAGE,
+} from "@/lib/security/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,6 +14,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "E-posta ve şifre gereklidir." },
         { status: 400 }
+      );
+    }
+
+    const ip = getClientIp(request);
+    const rateLimitResult = await loginLimiter.limit(ip, email);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: RATE_LIMIT_MESSAGE },
+        { status: 429 }
       );
     }
 
