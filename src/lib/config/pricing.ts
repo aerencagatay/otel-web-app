@@ -37,6 +37,25 @@ export function getNightlyPrice(roomType: string, date: string): number | null {
   return table[date.substring(0, 7)] ?? null;
 }
 
+/**
+ * Lowest defined nightly price for a room type across the current and future
+ * months, or null when no upcoming month has pricing (season over / not yet
+ * entered). Used for "starting from" display and JSON-LD Offer price — never
+ * hardcode price values elsewhere.
+ */
+export function getLowestUpcomingPrice(
+  roomType: string,
+  from: Date = new Date()
+): number | null {
+  const table = ROOM_PRICING[roomType];
+  if (!table) return null;
+  const currentMonth = `${from.getFullYear()}-${String(from.getMonth() + 1).padStart(2, "0")}`;
+  const upcoming = Object.entries(table)
+    .filter(([month]) => month >= currentMonth)
+    .map(([, price]) => price);
+  return upcoming.length ? Math.min(...upcoming) : null;
+}
+
 export interface StayPrice {
   nights: number;
   /** Total stay price, or null if any night's month has no defined price. */
