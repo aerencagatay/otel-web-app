@@ -14,5 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/rooms`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/reservation`, lastModified: lastContentUpdate, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/contact`, lastModified: lastContentUpdate, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/kvkk`, lastModified: lastContentUpdate, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/gizlilik`, lastModified: lastContentUpdate, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/iptal-politikasi`, lastModified: lastContentUpdate, changeFrequency: "yearly", priority: 0.3 },
   ];
 }
