@@ -64,7 +64,7 @@ export default function GalleryStrip() {
           {items.map((item) => (
             <div
               key={item.mosaicClass}
-              className={`gallery-item relative min-h-[200px] h-full ${item.mosaicClass}`}
+              className={`gallery-item relative ${item.mosaicClass}`}
             >
               <Image
                 src={item.src}
