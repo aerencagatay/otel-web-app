@@ -17,7 +17,7 @@ export default function AboutSnippet() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="relative">
             <Image
-              src="/img/hotel.JPG"
+              src="/img/hotel-web.jpg"
               alt="Assos Karadut Taş Otel"
               width={600}
               height={520}

@@ -16,7 +16,7 @@ const items = [
     mosaicClass: "gallery-mosaic__a",
   },
   {
-    src: "/img/hero.JPG",
+    src: "/img/hero-web.jpg",
     alt: "Manzara",
     title: "Manzara",
     desc: "Deniz ve gökyüzü",
