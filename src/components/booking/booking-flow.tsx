@@ -10,6 +10,7 @@ import BookingForm from "./booking-form";
 import BookingSummary from "./booking-summary";
 import { Loader2 } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { setBookingContext } from "@/lib/booking-context";
 
 export type RoomResult = {
   roomType: string;
@@ -113,6 +114,22 @@ export default function BookingFlow() {
       setLoading(false);
     }
   }, [t, translateError]);
+
+  // Adım 2-3'teyken seçili tarih/oda bağlamını sayfa geneline yayınla
+  // (WhatsApp butonu mesajı parametreleştirir). Adım 1'e dönüşte ve
+  // unmount'ta temizlenir — URL'ye yazmıyoruz; gerekçe: booking-context.ts.
+  useEffect(() => {
+    if (step !== "search" && search) {
+      setBookingContext({
+        checkIn: search.checkIn,
+        checkOut: search.checkOut,
+        roomType: selectedRoom?.roomType ?? search.roomType,
+      });
+    } else {
+      setBookingContext(null);
+    }
+    return () => setBookingContext(null);
+  }, [step, search, selectedRoom]);
 
   useEffect(() => {
     if (autoRan.current) return;

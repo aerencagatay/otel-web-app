@@ -1,12 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePathname } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { MessageCircle } from "lucide-react";
 import { whatsappUrl } from "@/lib/config/whatsapp";
 import { trackEvent } from "@/lib/analytics";
+import {
+  getBookingContext,
+  getServerBookingContext,
+  subscribeBookingContext,
+} from "@/lib/booking-context";
 
 const ROOM_TYPE_LABEL_KEY: Record<string, string> = {
   deluxe_sea_view: "deluxe_sea_view",
@@ -25,9 +30,11 @@ function formatDateShort(iso: string, locale: string): string {
 
 /**
  * Floating WhatsApp CTA, present on every public page. When the reservation
- * flow has dates/room in the URL (deep-link prefill or an in-progress
- * search), the pre-filled message is parameterized with that context so the
- * hotel gets a useful lead instead of a blank "hi" message.
+ * flow is at step 2-3 (booking-context store, normal in-page flow) or the
+ * URL carries dates/room (deep-link prefill), the pre-filled message is
+ * parameterized with that context so the hotel gets a useful lead instead
+ * of a blank "hi" message. Store wins over URL (it reflects the user's most
+ * recent in-flow selection).
  *
  * Position/behavior notes (Task 05):
  * - Sits bottom-right, clear of `back-to-top` (which only appears after
@@ -48,6 +55,13 @@ export default function WhatsAppButton() {
   const [hidden, setHidden] = useState(false);
   const lastY = useRef(0);
 
+  // Rezervasyon akışının canlı bağlamı (adım 2-3'te dolu, aksi halde null).
+  const bookingCtx = useSyncExternalStore(
+    subscribeBookingContext,
+    getBookingContext,
+    getServerBookingContext
+  );
+
   useEffect(() => {
     lastY.current = window.scrollY;
     function handleScroll() {
@@ -66,9 +80,12 @@ export default function WhatsAppButton() {
 
   if (pathname?.startsWith("/admin")) return null;
 
-  const checkIn = searchParams.get("checkIn");
-  const checkOut = searchParams.get("checkOut");
-  const roomType = searchParams.get("roomType");
+  // Öncelik: akış içi store (normal kullanım) → URL query (deep-link).
+  const checkIn = bookingCtx?.checkIn ?? searchParams.get("checkIn");
+  const checkOut = bookingCtx?.checkOut ?? searchParams.get("checkOut");
+  const roomType = bookingCtx
+    ? (bookingCtx.roomType ?? null)
+    : searchParams.get("roomType");
 
   let message = t("genericMessage");
   if (checkIn && checkOut) {
