@@ -3,6 +3,7 @@ import { HOTEL } from "@/lib/config/hotel";
 import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { getLowestUpcomingPrice } from "@/lib/config/pricing";
 import { getAverageRating, getRatedReviewCount } from "@/lib/config/reviews";
+import { getRoomCoverImage } from "@/lib/config/room-images";
 
 /**
  * Desteklenen içerik dilleri. Task 04 (i18n) devreye girdiğinde builder'lara
@@ -128,31 +129,33 @@ export function hotelJsonLd(locale: JsonLdLocale = "tr"): WithContext<Hotel> {
   };
 }
 
+const ROOM_DETAILS: Record<string, { size: number; description: Record<JsonLdLocale, string> }> = {
+  deluxe_sea_view: {
+    size: 24,
+    description: {
+      tr: "Tam deniz manzaralı, klimalı, 24 m² deluxe oda. Maksimum 2 kişi.",
+      en: "Deluxe room with full sea view and air conditioning, 24 sqm. Up to 2 guests.",
+    },
+  },
+  traditional_room: {
+    size: 22,
+    description: {
+      tr: "Kısmi deniz manzaralı, klimalı, 22 m² traditional oda. Maksimum 2 kişi.",
+      en: "Traditional room with partial sea view and air conditioning, 22 sqm. Up to 2 guests.",
+    },
+  },
+  premium_family: {
+    size: 44,
+    description: {
+      tr: "Deniz manzaralı, oturma alanlı, 44 m² aile suiti. 4 kişiye kadar.",
+      en: "Family suite with sea view and sitting area, 44 sqm. Up to 4 guests.",
+    },
+  },
+};
+
 /** /rooms sayfası: her oda tipi için HotelRoom + Offer. */
 export function roomsJsonLd(locale: JsonLdLocale = "tr"): WithContext<HotelRoom>[] {
-  const roomDetails: Record<string, { size: number; description: Record<JsonLdLocale, string> }> = {
-    deluxe_sea_view: {
-      size: 24,
-      description: {
-        tr: "Tam deniz manzaralı, klimalı, 24 m² deluxe oda. Maksimum 2 kişi.",
-        en: "Deluxe room with full sea view and air conditioning, 24 sqm. Up to 2 guests.",
-      },
-    },
-    traditional_room: {
-      size: 22,
-      description: {
-        tr: "Kısmi deniz manzaralı, klimalı, 22 m² traditional oda. Maksimum 2 kişi.",
-        en: "Traditional room with partial sea view and air conditioning, 22 sqm. Up to 2 guests.",
-      },
-    },
-    premium_family: {
-      size: 44,
-      description: {
-        tr: "Deniz manzaralı, oturma alanlı, 44 m² aile suiti. 4 kişiye kadar.",
-        en: "Family suite with sea view and sitting area, 44 sqm. Up to 4 guests.",
-      },
-    },
-  };
+  const roomDetails = ROOM_DETAILS;
 
   return Object.entries(ROOM_TYPE_MAP).map(([roomType, config]) => {
     const details = roomDetails[roomType];
@@ -192,6 +195,53 @@ export function roomsJsonLd(locale: JsonLdLocale = "tr"): WithContext<HotelRoom>
         : {}),
     };
   });
+}
+
+/** `/rooms/[slug]` oda detay sayfası: tekil HotelRoom + Offer + fotoğraf. */
+export function roomDetailJsonLd(
+  roomType: string,
+  locale: JsonLdLocale = "tr"
+): WithContext<HotelRoom> | null {
+  const config = ROOM_TYPE_MAP[roomType];
+  if (!config) return null;
+  const details = ROOM_DETAILS[roomType];
+  const price = getLowestUpcomingPrice(roomType);
+  const image = getRoomCoverImage(roomType);
+  const path = locale === "en" ? `/en/rooms/${config.slug}` : `/rooms/${config.slug}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HotelRoom",
+    name: config.publicLabel,
+    image: `${HOTEL.website}${image.src}`,
+    ...(details
+      ? {
+          description: details.description[locale],
+          floorSize: {
+            "@type": "QuantitativeValue",
+            value: details.size,
+            unitCode: "MTK",
+          },
+        }
+      : {}),
+    occupancy: {
+      "@type": "QuantitativeValue",
+      maxValue: config.maxGuests,
+      unitText: locale === "tr" ? "kişi" : "guests",
+    },
+    containedInPlace: { "@id": HOTEL_ID },
+    ...(price != null
+      ? {
+          offers: {
+            "@type": "Offer",
+            price,
+            priceCurrency: "TRY",
+            availability: "https://schema.org/InStock",
+            url: `${HOTEL.website}${path}`,
+          },
+        }
+      : {}),
+  };
 }
 
 /** /contact sayfası: ContactPage + otel referansı. */
