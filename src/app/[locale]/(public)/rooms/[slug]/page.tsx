@@ -109,7 +109,12 @@ export default async function RoomDetailPage({
   ];
 
   const priceTable = ROOM_PRICING[roomType] ?? {};
-  const priceRows = Object.entries(priceTable).sort(([a], [b]) => a.localeCompare(b));
+  // Geçmiş ayların fiyatları misafiri yanıltmasın: yalnızca içinde
+  // bulunulan ay ve sonrası listelenir (kart etiketiyle tutarlı).
+  const currentMonth = new Date().toISOString().slice(0, 7);
+  const priceRows = Object.entries(priceTable)
+    .filter(([month]) => month >= currentMonth)
+    .sort(([a], [b]) => a.localeCompare(b));
 
   const similarRooms = Object.entries(ROOM_TYPE_MAP).filter(([type]) => type !== roomType);
 

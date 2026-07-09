@@ -1,0 +1,19 @@
+
+> karadut-otel@0.1.0 lint
+> eslint
+
+
+C:\Users\ahmet\OneDrive\Desktop\otel website\scripts\setup-sheet.mjs
+  106:7  warning  'targetTabs' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ahmet\OneDrive\Desktop\otel website\src\app\(public)\contact\page.tsx
+  2:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ahmet\OneDrive\Desktop\otel website\src\app\(public)\reservation\page.tsx
+  2:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ahmet\OneDrive\Desktop\otel website\src\app\admin\page.tsx
+  48:6  warning  React Hook useEffect has a missing dependency: 'fetchReservations'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 4 problems (0 errors, 4 warnings)
+

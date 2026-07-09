@@ -1,0 +1,52 @@
+
+> karadut-otel@0.1.0 build
+> next build
+
+▲ Next.js 16.2.3 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 16.9s
+  Running TypeScript ...
+  Finished TypeScript in 22.6s ...
+  Collecting page data using 27 workers ...
+  Generating static pages using 27 workers (0/32) ...
+  Generating static pages using 27 workers (8/32) 
+  Generating static pages using 27 workers (16/32) 
+  Generating static pages using 27 workers (24/32) 
+✓ Generating static pages using 27 workers (32/32) in 778ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/about
+├ ƒ /[locale]/booking-success
+├ ƒ /[locale]/contact
+├ ƒ /[locale]/gizlilik
+├ ƒ /[locale]/iptal-politikasi
+├ ƒ /[locale]/kvkk
+├ ƒ /[locale]/reservation
+├ ƒ /[locale]/rooms
+├ ○ /admin
+├ ○ /admin/login
+├ ƒ /api/admin/reservations
+├ ƒ /api/admin/reservations/[id]/cancel
+├ ƒ /api/admin/reservations/[id]/confirm
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/availability
+├ ƒ /api/contact
+├ ƒ /api/cron/expire-reservations
+├ ƒ /api/reservations
+├ ○ /apple-icon.png
+├ ○ /icon.svg
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
