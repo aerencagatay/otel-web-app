@@ -26,7 +26,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+90 ");
   const [notes, setNotes] = useState("");
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>(
     undefined

@@ -21,7 +21,7 @@ export default function ContactForm() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+90 ");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>(undefined);
@@ -53,6 +53,13 @@ export default function ContactForm() {
     setStatus("submitting");
     setErrorMessage(null);
 
+    // Alan opsiyonel: kullanıcı yalnızca varsayılan "+90 " ön ekini bırakıp
+    // hiç rakam eklemediyse boş kabul edilir (aksi halde sunucu regex'i
+    // "+90" gibi eksik bir değeri geçersiz sayıp opsiyonel alanı bloklar).
+    const trimmedPhone = phone.trim();
+    const phoneToSend =
+      trimmedPhone && trimmedPhone !== "+90" ? trimmedPhone : undefined;
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -60,7 +67,7 @@ export default function ContactForm() {
         body: JSON.stringify({
           name,
           email,
-          phone: phone || undefined,
+          phone: phoneToSend,
           subject,
           message,
           turnstileToken,
@@ -80,7 +87,7 @@ export default function ContactForm() {
       setStatus("success");
       setName("");
       setEmail("");
-      setPhone("");
+      setPhone("+90 ");
       setSubject("");
       setMessage("");
     } catch {
