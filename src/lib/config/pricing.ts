@@ -56,6 +56,21 @@ export function getLowestUpcomingPrice(
   return upcoming.length ? Math.min(...upcoming) : null;
 }
 
+/**
+ * User-facing "starting from" price label for a room type, derived only
+ * from `ROOM_PRICING` (never hand-typed). Falls back to a graceful
+ * "call us" message when no upcoming month has a defined price, so the UI
+ * never shows a stale or fabricated number.
+ */
+export function getStartingPriceLabel(
+  roomType: string,
+  from: Date = new Date()
+): string {
+  const price = getLowestUpcomingPrice(roomType, from);
+  if (price == null) return "Fiyat için bize ulaşın";
+  return `₺${price.toLocaleString("tr-TR")}'den başlayan / gece · kahvaltı dahil`;
+}
+
 export interface StayPrice {
   nights: number;
   /** Total stay price, or null if any night's month has no defined price. */

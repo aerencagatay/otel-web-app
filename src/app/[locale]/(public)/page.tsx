@@ -6,6 +6,7 @@ import FeaturedRooms from "@/components/home/featured-rooms";
 import AmenitiesGrid from "@/components/home/amenities-grid";
 import CtaBanner from "@/components/home/cta-banner";
 import LocationSection from "@/components/home/location-section";
+import ReviewsSection from "@/components/home/reviews-section";
 import GalleryStrip from "@/components/home/gallery-strip";
 import AmbientSound from "@/components/home/ambient-sound";
 
@@ -27,6 +28,7 @@ export default async function HomePage({
       <AmenitiesGrid />
       <CtaBanner />
       <LocationSection />
+      <ReviewsSection />
       <GalleryStrip />
     </>
   );

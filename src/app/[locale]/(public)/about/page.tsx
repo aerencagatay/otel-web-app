@@ -113,11 +113,8 @@ export default async function AboutPage({
 
   return (
     <>
-      <PageHero
-        title={t("hero.title")}
-        breadcrumb={t("hero.breadcrumb")}
-        backgroundImage="https://cdng.jollytur.com/files/cms/media/hotel/fa46d2cc-7aa8-45b3-95bf-d179020cf7a8-600.jpeg"
-      />
+      {/* Task 03: Jollytur hotlink kaldırıldı — PageHero varsayılan yerel görseli kullanır. */}
+      <PageHero title={t("hero.title")} breadcrumb={t("hero.breadcrumb")} />
 
       {/* Rating Banner */}
       <div className="bg-dark py-9">

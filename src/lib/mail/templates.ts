@@ -278,3 +278,72 @@ export function adminNotificationEmail(data: {
     `,
   };
 }
+
+export function contactAdminNotificationEmail(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+}): { subject: string; html: string } {
+  return {
+    subject: `Yeni İletişim Mesajı — ${data.subject} | ${HOTEL.name}`,
+    html: `
+      <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
+        <div style="background:#1a1a1a;padding:24px;text-align:center;">
+          <h1 style="color:#e4a00e;font-family:'Playfair Display',Georgia,serif;margin:0;font-size:20px;">${HOTEL.name} · İletişim Formu</h1>
+        </div>
+        <div style="padding:28px;border:1px solid #e8e2d9;border-top:none;">
+          <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:0 0 20px;">
+            <table style="width:100%;font-size:14px;">
+              <tr><td style="padding:4px 0;color:#888;">Ad Soyad</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.name)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${encodeURIComponent(data.email)}" style="color:#1a1a1a;">${escapeHtml(data.email)}</a></td></tr>
+              ${data.phone ? `<tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.phone)}</td></tr>` : ""}
+              <tr><td style="padding:4px 0;color:#888;">Konu</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.subject)}</td></tr>
+            </table>
+          </div>
+          <p style="margin:0 0 6px;color:#888;font-size:13px;">Mesaj</p>
+          <p style="white-space:pre-wrap;font-size:14px;color:#1a1a1a;">${escapeHtml(data.message)}</p>
+        </div>
+        <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
+          ${HOTEL.name} · ${HOTEL.address}
+        </div>
+      </div>
+    `,
+  };
+}
+
+/** İletişim formu otomatik yanıtı — misafirin form dilinde (tr/en). */
+const CONTACT_REPLY = {
+  tr: {
+    subject: `Mesajınız Alındı | ${HOTEL.name}`,
+    heading: "Mesajınız Alındı",
+    dear: "Sayın",
+    body: "Bize ulaştığınız için teşekkür ederiz. Mesajınız tarafımıza ulaşmıştır ve en geç 24 saat içinde size dönüş yapacağız.",
+    urgent: "Acil bir konu için doğrudan bizi arayabilirsiniz:",
+  },
+  en: {
+    subject: `We Have Received Your Message | ${HOTEL.name}`,
+    heading: "Your Message Has Been Received",
+    dear: "Dear",
+    body: "Thank you for contacting us. Your message has reached us and we will get back to you within 24 hours at the latest.",
+    urgent: "For urgent matters, you can call us directly:",
+  },
+} as const;
+
+export function contactAutoReplyEmail(data: {
+  name: string;
+  locale?: MailLocale;
+}): { subject: string; html: string } {
+  const m = CONTACT_REPLY[data.locale ?? "tr"];
+  return {
+    subject: m.subject,
+    html: shell(`
+          <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.heading}</h2>
+          <p>${m.dear} ${escapeHtml(data.name)},</p>
+          <p>${m.body}</p>
+          <p>${m.urgent}</p>
+          <p style="font-size:16px;"><a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;font-weight:700;">${HOTEL.phone}</a></p>
+    `),
+  };
+}

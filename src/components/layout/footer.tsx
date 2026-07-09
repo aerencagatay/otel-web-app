@@ -13,6 +13,12 @@ export default function Footer() {
     { href: "/contact", label: t("contact") },
   ] as const;
 
+  const legalLinks = [
+    { href: "/kvkk", label: tf("legal.kvkk") },
+    { href: "/gizlilik", label: tf("legal.privacy") },
+    { href: "/iptal-politikasi", label: tf("legal.cancellation") },
+  ] as const;
+
   return (
     <footer className="site-footer">
       <div className="max-w-7xl mx-auto px-4">
@@ -90,7 +96,18 @@ export default function Footer() {
 
       <div className="border-t border-white/10 py-5 mt-13 text-center text-white/35 text-[12.5px]">
         <div className="max-w-7xl mx-auto px-4">
-          <p className="footer-license">{tf("license")}</p>
+          <p className="footer-license mb-3">{tf("license")}</p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px]">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-white/45 no-underline hover:text-gold transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

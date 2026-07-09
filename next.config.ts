@@ -14,15 +14,6 @@ const devLanOrigins = process.env.DEV_LAN_ORIGIN
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: devLanOrigins,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdng.jollytur.com",
-        pathname: "/files/cms/media/hotel/**",
-      },
-    ],
-  },
 };
 
 export default withNextIntl(nextConfig);

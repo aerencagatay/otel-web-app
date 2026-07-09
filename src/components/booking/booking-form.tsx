@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Loader2, Send } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
@@ -13,6 +14,7 @@ interface Props {
     phone: string;
     notes?: string;
     turnstileToken?: string;
+    consent: boolean;
   }) => void;
   submitting: boolean;
 }
@@ -29,10 +31,11 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>(
     undefined
   );
+  const [consent, setConsent] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!firstName || !lastName || !email || !phone) return;
+    if (!firstName || !lastName || !email || !phone || !consent) return;
     onSubmit({
       firstName,
       lastName,
@@ -40,6 +43,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
       phone,
       notes: notes || undefined,
       turnstileToken,
+      consent,
     });
   }
 
@@ -144,11 +148,32 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
         </div>
       )}
 
+      <div className="form-field mt-6">
+        <label className="flex items-start gap-2.5 text-[13px] text-text cursor-pointer">
+          <input
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+            required
+            className="mt-0.5 shrink-0"
+          />
+          <span>
+            {t.rich("consent", {
+              link: (chunks) => (
+                <Link href="/kvkk" target="_blank" className="text-gold-dark underline">
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </span>
+        </label>
+      </div>
+
       <div className="mt-10">
         <button
           type="submit"
           className="btn-cta-solid w-full justify-center py-4 text-[10px] tracking-[0.24em] border-0 disabled:opacity-60 disabled:transform-none"
-          disabled={submitting}
+          disabled={submitting || !consent}
         >
           {submitting ? (
             <>

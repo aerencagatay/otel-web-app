@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const pages: {
     path: string;
-    changeFrequency: "weekly" | "monthly";
+    changeFrequency: "weekly" | "monthly" | "yearly";
     priority: number;
   }[] = [
     { path: "/", changeFrequency: "weekly", priority: 1 },
@@ -26,6 +26,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/rooms", changeFrequency: "weekly", priority: 0.9 },
     { path: "/reservation", changeFrequency: "weekly", priority: 0.9 },
     { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
+    // Task 03 yasal sayfaları
+    { path: "/kvkk", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/gizlilik", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/iptal-politikasi", changeFrequency: "yearly", priority: 0.3 },
   ];
 
   // Her sayfa için TR ve EN girdisi; ikisi de hreflang alternates taşır.

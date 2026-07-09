@@ -139,6 +139,7 @@ export default function BookingFlow() {
     phone: string;
     notes?: string;
     turnstileToken?: string;
+    consent: boolean;
   }) {
     if (!search || !selectedRoom) return;
 

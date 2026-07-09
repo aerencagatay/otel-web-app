@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import JsonLd, { hotelJsonLd } from "@/components/seo/json-ld";
+import CookieBanner from "@/components/layout/cookie-banner";
 import { fontVariables } from "@/lib/fonts";
 import { routing, type Locale } from "@/i18n/routing";
 
@@ -82,7 +83,10 @@ export default async function LocaleLayout({
     <html lang={locale} className={fontVariables}>
       <body>
         <JsonLd data={hotelJsonLd(locale)} />
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          <CookieBanner />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

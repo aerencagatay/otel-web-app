@@ -4,7 +4,7 @@ import Image from "next/image";
 import type { RoomResult } from "./booking-flow";
 import { useLocale, useTranslations } from "next-intl";
 import { BedDouble, Users, Sparkles } from "lucide-react";
-import { getRoomTypeImage } from "@/lib/config/room-images";
+import { getRoomCoverImage } from "@/lib/config/room-images";
 import { calculateStayTotal } from "@/lib/config/pricing";
 import { approxEur } from "@/lib/config/hotel";
 
@@ -22,7 +22,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
   const intlLocale = locale === "en" ? "en-US" : "tr-TR";
   const num = (n: number) => n.toLocaleString(intlLocale);
 
-  const img = getRoomTypeImage(room.roomType);
+  const img = getRoomCoverImage(room.roomType);
   const stay = calculateStayTotal(room.roomType, checkIn, checkOut);
   const roomLabel = tr.has(room.roomType) ? tr(room.roomType) : room.label;
   const depositAmount = stay.fromPrice ?? room.depositAmount;
@@ -31,7 +31,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
     <article className="room-select-card group">
       <div className="room-select-card__media relative overflow-hidden">
         <Image
-          src={img}
+          src={img.src}
           alt={roomLabel}
           width={560}
           height={420}

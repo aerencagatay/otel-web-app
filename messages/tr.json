@@ -25,7 +25,23 @@
     "bookingSuccess": {
       "title": "Rezervasyon Başarılı",
       "description": "Rezervasyon talebiniz alındı. Kapora talimatları e-posta ile iletilir."
+    },
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni",
+      "description": "Assos Karadut Taş Otel KVKK Aydınlatma Metni — kişisel verilerin işlenmesi, amaç, saklama süresi ve ilgili kişi hakları."
+    },
+    "gizlilik": {
+      "title": "Gizlilik Politikası",
+      "description": "Assos Karadut Taş Otel gizlilik politikası — web sitesi çerez kullanımı, veri güvenliği ve üçüncü taraf hizmetler hakkında bilgi."
+    },
+    "iptal": {
+      "title": "İptal ve İade Politikası",
+      "description": "Assos Karadut Taş Otel iptal ve iade politikası — kapora, iptal süreleri ve mesafeli satış koşulları."
     }
+  },
+  "pricing": {
+    "startingFrom": "₺{price}'den başlayan / gece · kahvaltı dahil",
+    "contactForPrice": "Fiyat için bize ulaşın"
   },
   "roomTypes": {
     "deluxe_sea_view": "Deluxe Tam Deniz Manzaralı",
@@ -51,7 +67,48 @@
     "pagesHeading": "Sayfalar",
     "contactHeading": "İletişim",
     "reception": "7/24 Resepsiyon Hizmeti",
-    "license": "© 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921"
+    "license": "© 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921",
+    "legal": {
+      "kvkk": "KVKK Aydınlatma Metni",
+      "privacy": "Gizlilik Politikası",
+      "cancellation": "İptal ve İade Politikası"
+    }
+  },
+  "cookieBanner": {
+    "ariaLabel": "Çerez tercihleri",
+    "text": "Sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Tercihlerinizi <link>Gizlilik Politikamızdan</link> inceleyebilirsiniz.",
+    "essentialOnly": "Yalnızca Zorunlu",
+    "accept": "Kabul Et"
+  },
+  "lightbox": {
+    "openPhoto": "{roomName} fotoğrafı {index} - büyüt",
+    "galleryAria": "{roomName} galerisi",
+    "close": "Kapat",
+    "previous": "Önceki fotoğraf",
+    "next": "Sonraki fotoğraf"
+  },
+  "reviewsSection": {
+    "eyebrow": "Misafir Yorumları",
+    "title": "Misafirlerimiz Ne Diyor",
+    "averageLine": "Google'da <strong>{average}/5</strong> ortalama puan · {count} yorum",
+    "noRatingLine": "Google'da misafirlerimizin paylaştığı deneyimlerden seçtiklerimiz",
+    "showMore": "Devamını gör",
+    "showLess": "Daha az göster",
+    "starsAria": "{rating}/5 yıldız",
+    "items": {
+      "1": {
+        "text": "Buraya kesinlikle bayıldık 2 gece konakladık bugün çıkacağız ama resmen buradan ayrılacağım için üzülüyorum. Böyle güzel manzara bu kadar huzurlu bir yer bulup 2 günümüzü geçirmek inanılmaz güzel bir tecrübeydi. Biz 1+1'lerde konakladık; odalardaki ince dekoratif ayrıntılar, Midilli'ye karşı muhteşem manzara kesinlikle çok güzeldi. Odada şömine bile vardı ama odamızın o kadar güzel manzarası vardı ki biz hep balkonda vakit geçirmek istedik. Otelin sahipleri en ince ayrıntıya kadar düşünmüşler; resmen bir otel değil de kendi evlerini tasarlar gibi yapmışlar. Kahvaltısı da gayet yeterli ve güzeldi. Otelin maskotları Ares'le Tarçın çok cana yakın ve eğitimli köpekler, onlarla da çok güzel vakit geçirdik. Eşsiz güzel manzara, muhteşem huzur — kesinlikle tavsiye ediyoruz.",
+        "date": "7 ay önce"
+      },
+      "2": {
+        "text": "Ailecek, 1+1 odalarında 2 gece konakladığımız Karadut Taş Otel beklentilerimizin üzerinde bir deneyim sundu. İlgili, güler yüzlü çalışanlar, temiz ve konforlu odalar, muhteşem bir manzara ve sessizlik, dinlenmek için müthiş bir konum gerçek anlamda 5 yıldızı hak ediyor. Otel sahilden 7-8 dakika uzakta olsa da, kendilerine ait pansiyonun Kadırga Koyu'ndaki plajından ücretsiz yararlandırmaları da müthiş. Sonuç olarak; ben böyle bir işletmemiz olduğu için gurur duydum; bundan sonra mümkünse her yıl birkaç günü bu otelde geçirip kendimi yenilemek isterim. Emeği geçen herkese teşekkürlerimle.",
+        "date": "10 ay önce"
+      },
+      "3": {
+        "text": "Karadut Otel, Assos tatilimizde tercih ettiğimiz konaklama lokasyonumuz oldu. Burası çok şirin bir aile işletmesi. Yağız Bey ve ailesi hem çok samimi hem de çok profesyonel; tüm ihtiyaçlarımızı sabırla karşıladılar. Odalar temiz ve ferah, daireler arası mesafe mahremiyet için yeterli. Sonsuzluk havuzuna da bayıldık; mükemmel bir manzaraya sahip. Çocuk havuzu da mevcut, havuz tertemiz ve bakımlıydı. Telefonla rezervasyon yaptırdığımızda internetten çok daha uygun bir fiyat aldık — iletişim numarasından ulaşmanızı öneririm.",
+        "date": "8 ay önce"
+      }
+    }
   },
   "pageHero": {
     "eyebrow": "Assos Karadut",
@@ -90,7 +147,7 @@
       "hint": "Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır."
     },
     "stats": {
-      "guestScore": "Misafir puanı / 10",
+      "guestRating": "Misafir puanı · {count} yorum",
       "boutiqueRooms": "Butik oda",
       "bay": "Kadırga koyu"
     },
@@ -437,8 +494,17 @@
       "subjectOther": "Diğer",
       "message": "Mesajınız",
       "messagePlaceholder": "Mesajınızı buraya yazın...",
+      "optional": "(isteğe bağlı)",
       "submit": "Gönder",
-      "submitted": "Mesajınız İletildi"
+      "sending": "Gönderiliyor…",
+      "connectionError": "Bağlantı hatası. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.",
+      "successTitle": "Mesajınız iletildi",
+      "successText": "En kısa sürede size dönüş yapacağız. Acil durumlar için bizi doğrudan arayabilirsiniz:",
+      "newMessage": "Yeni mesaj gönder",
+      "whatsappHint": "Daha hızlı yanıt için doğrudan WhatsApp'tan yazabilirsiniz.",
+      "whatsappCta": "WhatsApp'tan Yazın",
+      "whatsappMessage": "Merhaba, {hotel} hakkında bilgi almak istiyorum.",
+      "kvkkNote": "Formu göndererek <link>KVKK Aydınlatma Metni'ni</link> kabul etmiş olursunuz."
     },
     "map": {
       "eyebrow": "Konumumuz",
@@ -537,6 +603,7 @@
       "notes": "Notlar",
       "notesOptional": "(isteğe bağlı)",
       "notesPlaceholder": "Özel istek, varış saati…",
+      "consent": "<link>KVKK Aydınlatma Metni'ni</link> okudum ve onaylıyorum. *",
       "submit": "Talebi gönder",
       "submitting": "Gönderiliyor…"
     },
@@ -582,6 +649,9 @@
     "noAvailability": "Seçtiğiniz tarihler için müsait oda kalmamıştır. Lütfen farklı tarih veya oda tipi deneyin.",
     "reservationCreateError": "Rezervasyon oluşturulurken bir hata oluştu.",
     "availabilityError": "Müsaitlik kontrolü sırasında bir hata oluştu.",
+    "contactUnavailable": "İletişim formu şu anda geçici olarak kullanılamıyor. Lütfen bizi telefonla arayın veya daha sonra tekrar deneyin.",
+    "contactSendFailed": "Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin veya bizi telefonla arayın.",
+    "contactError": "Mesajınız gönderilirken bir hata oluştu.",
     "unknown": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
   },
   "validation": {
@@ -590,6 +660,128 @@
     "invalidPhone": "Geçerli bir telefon numarası girin.",
     "maxNights": "En fazla 21 gecelik rezervasyon yapılabilir.",
     "maxAdvance": "Giriş tarihi bugünden en fazla 365 gün sonrası olabilir.",
-    "maxGuestsForRoom": "Seçilen oda tipi en fazla {max} misafir kabul eder."
+    "maxGuestsForRoom": "Seçilen oda tipi en fazla {max} misafir kabul eder.",
+    "consentRequired": "KVKK Aydınlatma Metni'ni okuyup onaylamanız gerekmektedir.",
+    "fullNameRequired": "Ad Soyad zorunludur.",
+    "fullNameChars": "Ad Soyad yalnızca harf, boşluk ve tire içerebilir.",
+    "invalidEmail": "Geçerli bir e-posta adresi girin.",
+    "subjectRequired": "Lütfen bir konu seçin.",
+    "messageMin": "Mesajınız en az 10 karakter olmalıdır."
+  },
+  "legal": {
+    "kvkk": {
+      "heroTitle": "KVKK Aydınlatma Metni",
+      "breadcrumb": "KVKK",
+      "lastUpdated": "Son güncelleme: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Veri Sorumlusu",
+        "p": "6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") uyarınca, kişisel verileriniz veri sorumlusu sıfatıyla <strong>{hotelName}</strong> (\"Otel\") tarafından aşağıda açıklanan kapsamda işlenebilecektir.",
+        "address": "Adres",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "mersis": "Mersis / Vergi No: [OTEL SAHİBİ ONAYLAYACAK]"
+      },
+      "s2": {
+        "h": "2. İşlenen Kişisel Veriler",
+        "p": "Rezervasyon, iletişim formu ve konaklama süreçleriniz kapsamında; ad-soyad, telefon numarası, e-posta adresi, konaklama tarihleri, misafir sayısı ve talep/şikayet içerikleriniz gibi kişisel verileriniz işlenmektedir."
+      },
+      "s3": {
+        "h": "3. Kişisel Verilerin İşlenme Amacı",
+        "items": {
+          "1": "Rezervasyon taleplerinin oluşturulması ve yönetilmesi",
+          "2": "Kapora/ödeme süreçlerinin takibi",
+          "3": "İletişim formu ve talepler üzerinden geri dönüş yapılması",
+          "4": "Yasal yükümlülüklerin (konaklama vergisi, resmi bildirimler vb.) yerine getirilmesi",
+          "5": "Hizmet kalitesinin ölçülmesi ve iyileştirilmesi"
+        }
+      },
+      "s4": {
+        "h": "4. Kişisel Verilerin Aktarılması",
+        "p": "Kişisel verileriniz, yasal yükümlülüklerimiz gereği yetkili kamu kurum ve kuruluşları ile; rezervasyon ve e-posta altyapımızı sağlayan hizmet sağlayıcılarımıza (sunucu/e-posta/ödeme altyapı sağlayıcıları) yalnızca hizmetin ifası amacıyla sınırlı olarak aktarılabilir. Verileriniz yurt dışına aktarılmaz; aktarım gerektiren bir altyapı kullanılması hâlinde bu metin güncellenecektir. [OTEL SAHİBİ ONAYLAYACAK]"
+      },
+      "s5": {
+        "h": "5. Saklama Süresi",
+        "p": "Kişisel verileriniz, ilgili mevzuatta öngörülen süreler (örn. vergi ve muhasebe mevzuatı kapsamında konaklama kayıtları) boyunca veya işleme amacının gerektirdiği süre boyunca saklanır. Kesin saklama süreleri: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+      },
+      "s6": {
+        "h": "6. KVKK Kapsamındaki Haklarınız",
+        "intro": "KVKK'nın 11. maddesi uyarınca herkes, veri sorumlusuna başvurarak kendisiyle ilgili;",
+        "items": {
+          "1": "Kişisel veri işlenip işlenmediğini öğrenme,",
+          "2": "İşlenmişse buna ilişkin bilgi talep etme,",
+          "3": "İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme,",
+          "4": "Yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilme,",
+          "5": "Eksik/yanlış işlenmişse düzeltilmesini isteme,",
+          "6": "KVKK'nın 7. maddesindeki şartlar çerçevesinde silinmesini/yok edilmesini isteme,",
+          "7": "Düzeltme/silme işlemlerinin aktarılan üçüncü kişilere bildirilmesini isteme,",
+          "8": "İşlenen verilerin münhasıran otomatik sistemlerle analiz edilmesi suretiyle aleyhine bir sonucun ortaya çıkmasına itiraz etme,",
+          "9": "Kanuna aykırı işleme nedeniyle zarara uğraması hâlinde zararın giderilmesini talep etme haklarına sahiptir."
+        },
+        "outro": "Bu haklarınızı kullanmak için taleplerinizi {email} adresine veya yukarıdaki posta adresine iletebilirsiniz."
+      }
+    },
+    "gizlilik": {
+      "heroTitle": "Gizlilik Politikası",
+      "breadcrumb": "Gizlilik",
+      "lastUpdated": "Son güncelleme: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Genel",
+        "p": "Bu gizlilik politikası, {hotelName} web sitesini (\"Site\") kullanımınız sırasında toplanan bilgilerin nasıl işlendiğini açıklar. Kişisel verilerin işlenmesine ilişkin detaylı bilgi için <kvkkLink>KVKK Aydınlatma Metni'ne</kvkkLink> bakınız."
+      },
+      "s2": {
+        "h": "2. Çerezler",
+        "p": "Site, temel işlevsellik için zorunlu çerezler kullanabilir. Analitik/pazarlama amaçlı çerezler yalnızca sayfanın alt kısmındaki çerez bandından onay verdiğiniz takdirde etkinleştirilir. Tercihinizi tarayıcınızda saklanan yerel depolama (localStorage) aracılığıyla değiştirebilirsiniz."
+      },
+      "s3": {
+        "h": "3. Toplanan Bilgiler",
+        "p": "Rezervasyon ve iletişim formları aracılığıyla gönderdiğiniz ad, e-posta, telefon ve mesaj içerikleri; ayrıca sayfa görüntülemeleri gibi anonim kullanım istatistikleri (analitik etkinse) toplanabilir."
+      },
+      "s4": {
+        "h": "4. Veri Güvenliği",
+        "p": "Verileriniz, yetkisiz erişime karşı makul teknik ve idari tedbirlerle korunur. İletişim formu ve rezervasyon sistemi güvenlik doğrulaması (Cloudflare Turnstile) ve istek sınırlama (rate limiting) ile spam ve kötüye kullanıma karşı korunur."
+      },
+      "s5": {
+        "h": "5. Üçüncü Taraf Hizmetler",
+        "p": "E-posta gönderimi ve rezervasyon altyapısı için üçüncü taraf hizmet sağlayıcılar kullanılmaktadır. Bu sağlayıcılar verilerinizi yalnızca hizmetin ifası amacıyla işler. [OTEL SAHİBİ ONAYLAYACAK — kullanılan sağlayıcıların güncel listesi]"
+      },
+      "s6": {
+        "h": "6. İletişim",
+        "p": "Bu politika hakkında sorularınız için {email} adresinden bize ulaşabilirsiniz."
+      }
+    },
+    "iptal": {
+      "heroTitle": "İptal ve İade Politikası",
+      "breadcrumb": "İptal Politikası",
+      "lastUpdated": "Son güncelleme: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Rezervasyon ve Kapora Modeli",
+        "p": "{hotelName} rezervasyonları, web sitesi üzerinden oluşturulan bir talep ve ardından yapılan kapora ödemesi ile kesinleşir. Rezervasyon talebiniz oluşturulduktan sonra <strong>{hours} saat</strong> içinde kapora ödemesi yapılmazsa talebiniz otomatik olarak iptal edilir ve seçtiğiniz tarihler yeniden müsait hale gelir."
+      },
+      "s2": {
+        "h": "2. İptal Koşulları",
+        "intro": "Kaporası ödenerek kesinleşmiş bir rezervasyonun misafir tarafından iptal edilmesi durumunda uygulanan koşullar aşağıdaki gibidir:",
+        "items": {
+          "1": "Giriş tarihinden <strong>[OTEL SAHİBİ ONAYLAYACAK] gün önce</strong> yapılan iptallerde kapora tam olarak iade edilir.",
+          "2": "Bu süreden sonra yapılan iptallerde kapora <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong> koşuluna göre kısmen veya tamamen iade edilmez.",
+          "3": "No-show (bildirim yapılmadan gelinmemesi) durumunda kapora iade edilmez."
+        }
+      },
+      "s3": {
+        "h": "3. Otel Kaynaklı İptaller",
+        "p": "Mücbir sebep veya öngörülemeyen bir durum nedeniyle otelin rezervasyonu iptal etmesi hâlinde, ödenen kaporanın tamamı misafire iade edilir veya misafirin talebi doğrultusunda alternatif bir tarihe aktarılır."
+      },
+      "s4": {
+        "h": "4. Mesafeli Satış Sözleşmesi Kapsamında Cayma Hakkı",
+        "p": "6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği uyarınca; konaklama hizmetleri belirli bir tarihte ifa edilmek üzere sunulan hizmetler kapsamında değerlendirilebileceğinden, cayma hakkının kullanım koşulları için lütfen ilgili mevzuatı inceleyiniz veya bizimle iletişime geçiniz. Kesin koşullar: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+      },
+      "s5": {
+        "h": "5. İade Süreci",
+        "p": "Onaylanan iadeler, bildirim tarihinden itibaren <strong>[OTEL SAHİBİ ONAYLAYACAK] iş günü</strong> içinde kaporanın ödendiği hesaba yapılır."
+      },
+      "s6": {
+        "h": "6. İletişim",
+        "p": "İptal, değişiklik ve iade talepleriniz için lütfen bizi telefonla arayın: <phoneLink>{phone}</phoneLink> veya {email} adresine e-posta gönderin."
+      }
+    }
   }
 }

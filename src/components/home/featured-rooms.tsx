@@ -1,21 +1,38 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Ruler, Users, Waves, Wifi } from "lucide-react";
+import { getRoomCoverImage, getRoomHoverImage } from "@/lib/config/room-images";
+import { getLowestUpcomingPrice } from "@/lib/config/pricing";
+import { approxEur } from "@/lib/config/hotel";
 
 export default function FeaturedRooms() {
   const t = useTranslations("home.featured");
+  const tp = useTranslations("pricing");
   const tr = useTranslations("roomTypes");
+  const locale = useLocale();
+  const intlLocale = locale === "en" ? "en-US" : "tr-TR";
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Fiyat etiketi her zaman pricing.ts'ten türetilir (elle yazılmaz);
+  // tanımlı ay yoksa zarif "bize ulaşın" fallback'i. EN tarafında yaklaşık
+  // EUR eklenir (hotel.ts EUR_RATE — canlı kur yok).
+  function priceLabel(roomType: string): string {
+    const price = getLowestUpcomingPrice(roomType);
+    if (price == null) return tp("contactForPrice");
+    const formatted = price.toLocaleString(intlLocale);
+    return locale === "en"
+      ? tp("startingFrom", { price: formatted, eur: approxEur(price).toLocaleString(intlLocale) })
+      : tp("startingFrom", { price: formatted });
+  }
 
   const rooms = [
     {
+      roomType: "deluxe_sea_view",
       name: tr("deluxe_sea_view"),
-      image:
-        "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
       features: [
         { icon: Ruler, text: t("featSize24") },
         { icon: Users, text: t("feat2guests") },
@@ -23,9 +40,8 @@ export default function FeaturedRooms() {
       ],
     },
     {
+      roomType: "traditional_room",
       name: tr("traditional_room"),
-      image:
-        "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
       features: [
         { icon: Ruler, text: t("featSize22") },
         { icon: Users, text: t("feat2guests") },
@@ -33,9 +49,8 @@ export default function FeaturedRooms() {
       ],
     },
     {
+      roomType: "premium_family",
       name: tr("premium_family"),
-      image:
-        "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
       features: [
         { icon: Ruler, text: t("featSize44") },
         { icon: Users, text: t("feat4guests") },
@@ -99,45 +114,56 @@ export default function FeaturedRooms() {
           </div>
 
           <div className="grid grid-rows-3 gap-5 md:gap-4 h-full">
-            {rooms.map((room) => (
-              <Link
-                key={room.name}
-                href="/reservation"
-                className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border border-border rounded-[var(--radius-md)] p-4 sm:p-5 transition-[border-color,box-shadow,transform] duration-300 hover:border-gold hover:shadow-[var(--shadow-lift)] hover:-translate-y-0.5"
-              >
-                <div className="overflow-hidden rounded-[var(--radius-sm)] sm:w-[42%] shrink-0">
-                  <Image
-                    src={room.image}
-                    alt={room.name}
-                    width={600}
-                    height={450}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-[400ms] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                  />
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <h3
-                    className="font-heading font-semibold text-dark m-0 mb-1"
-                    style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.3rem)" }}
-                  >
-                    {room.name}
-                  </h3>
-                  <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2">
-                    {t("priceContact")}
-                  </p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3">
-                    {room.features.map((f, j) => (
-                      <span key={j} className="flex items-center gap-1.5">
-                        <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
-                        {f.text}
-                      </span>
-                    ))}
+            {rooms.map((room) => {
+              const coverImage = getRoomCoverImage(room.roomType);
+              const hoverImage = getRoomHoverImage(room.roomType);
+              return (
+                <Link
+                  key={room.name}
+                  href="/reservation"
+                  className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border border-border rounded-[var(--radius-md)] p-4 sm:p-5 transition-[border-color,box-shadow,transform] duration-300 hover:border-gold hover:shadow-[var(--shadow-lift)] hover:-translate-y-0.5"
+                >
+                  <div className="relative overflow-hidden rounded-[var(--radius-sm)] sm:w-[42%] shrink-0 aspect-[4/3]">
+                    <Image
+                      src={coverImage.src}
+                      alt={room.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      className="object-cover transition-opacity duration-500 group-hover:opacity-0"
+                    />
+                    <Image
+                      src={hoverImage.src}
+                      alt={room.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      className="object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
                   </div>
-                  <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
-                    {t("availability")}
-                  </span>
-                </div>
-              </Link>
-            ))}
+                  <div className="flex flex-col min-w-0">
+                    <h3
+                      className="font-heading font-semibold text-dark m-0 mb-1"
+                      style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.3rem)" }}
+                    >
+                      {room.name}
+                    </h3>
+                    <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2">
+                      {priceLabel(room.roomType)}
+                    </p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3">
+                      {room.features.map((f, j) => (
+                        <span key={j} className="flex items-center gap-1.5">
+                          <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
+                          {f.text}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
+                      {t("availability")}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
 

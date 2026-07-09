@@ -61,6 +61,10 @@ export const reservationSchema = z
       .pipe(z.string().max(500))
       .optional(),
     turnstileToken: z.string().optional(),
+    consent: z.literal(true, {
+      // İstemci tarafında çevrilen hata kodu (messages/*.json → validation.*).
+      error: "validation.consentRequired",
+    }),
   })
   .refine((data) => nightCount(data.checkIn, data.checkOut) <= MAX_NIGHTS, {
     message: "validation.maxNights",
@@ -84,5 +88,38 @@ export const reservationSchema = z
     }
   });
 
+export const CONTACT_SUBJECTS = [
+  "Genel Bilgi",
+  "Rezervasyon",
+  "Fiyat Bilgisi",
+  "Şikayet / Öneri",
+  "Diğer",
+] as const;
+
+// Hata mesajları KOD olarak döner; istemci messages/*.json'daki
+// validation.* anahtarlarıyla çevirir (Task 04 i18n yaklaşımı).
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, "validation.fullNameRequired")
+    .max(80)
+    .regex(NAME_REGEX, "validation.fullNameChars"),
+  email: z.email("validation.invalidEmail").trim(),
+  phone: z
+    .string()
+    .transform((val) => val.replace(/[\s-]/g, ""))
+    .pipe(z.string().regex(PHONE_REGEX, "validation.invalidPhone"))
+    .optional()
+    .or(z.literal("")),
+  subject: z.enum(CONTACT_SUBJECTS, "validation.subjectRequired"),
+  message: z
+    .string()
+    .transform((val) => stripControlChars(val.trim()))
+    .pipe(z.string().min(10, "validation.messageMin").max(1000)),
+  turnstileToken: z.string().optional(),
+});
+
 export type AvailabilityInput = z.infer<typeof availabilitySchema>;
 export type ReservationInput = z.infer<typeof reservationSchema>;
+export type ContactInput = z.infer<typeof contactSchema>;

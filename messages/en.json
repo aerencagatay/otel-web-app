@@ -25,7 +25,23 @@
     "bookingSuccess": {
       "title": "Reservation Received",
       "description": "Your reservation request has been received. Deposit instructions are sent by email."
+    },
+    "kvkk": {
+      "title": "Personal Data Protection (KVKK) Notice",
+      "description": "Assos Karadut Taş Otel KVKK privacy notice — how personal data is processed, purposes, retention periods and data subject rights under Turkish law."
+    },
+    "gizlilik": {
+      "title": "Privacy Policy",
+      "description": "Assos Karadut Taş Otel privacy policy — information on website cookie usage, data security and third-party services."
+    },
+    "iptal": {
+      "title": "Cancellation & Refund Policy",
+      "description": "Assos Karadut Taş Otel cancellation and refund policy — deposit terms, cancellation windows and distance-sales conditions."
     }
+  },
+  "pricing": {
+    "startingFrom": "From ₺{price} / night · breakfast included · ≈ €{eur} (approx.)",
+    "contactForPrice": "Contact us for pricing"
   },
   "roomTypes": {
     "deluxe_sea_view": "Deluxe Full Sea View",
@@ -51,7 +67,48 @@
     "pagesHeading": "Pages",
     "contactHeading": "Contact",
     "reception": "24/7 Reception",
-    "license": "© 2026 Assos Karadut Taş Otel · Tourism Licence No: 24921"
+    "license": "© 2026 Assos Karadut Taş Otel · Tourism Licence No: 24921",
+    "legal": {
+      "kvkk": "KVKK Privacy Notice",
+      "privacy": "Privacy Policy",
+      "cancellation": "Cancellation & Refund Policy"
+    }
+  },
+  "cookieBanner": {
+    "ariaLabel": "Cookie preferences",
+    "text": "We use cookies to improve your experience on our site. You can review your options in our <link>Privacy Policy</link>.",
+    "essentialOnly": "Essential Only",
+    "accept": "Accept"
+  },
+  "lightbox": {
+    "openPhoto": "{roomName} photo {index} - enlarge",
+    "galleryAria": "{roomName} gallery",
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo"
+  },
+  "reviewsSection": {
+    "eyebrow": "Guest Reviews",
+    "title": "What Our Guests Say",
+    "averageLine": "<strong>{average}/5</strong> average rating on Google · {count} reviews",
+    "noRatingLine": "A selection of experiences our guests have shared on Google",
+    "showMore": "Read more",
+    "showLess": "Show less",
+    "starsAria": "{rating}/5 stars",
+    "items": {
+      "1": {
+        "text": "We absolutely loved this place. We stayed two nights and are checking out today, and I'm genuinely sad to leave. Finding such a beautiful view and such a peaceful spot to spend two days was an incredible experience. We stayed in the one-bedroom suites; the fine decorative touches in the rooms and the magnificent view towards Lesbos were simply lovely. There was even a fireplace, but our view was so beautiful that we spent all our time on the balcony. The owners have thought of every detail — it feels less like a hotel and more as if they designed their own home. Breakfast was ample and delicious. The hotel's mascots, Ares and Tarçın, are affectionate, well-trained dogs, and we had a wonderful time with them too. Peerless views, wonderful peace — highly recommended.",
+        "date": "7 months ago"
+      },
+      "2": {
+        "text": "As a family, our two-night stay in the one-bedroom suites at Karadut Taş Otel exceeded our expectations. Attentive, friendly staff, clean and comfortable rooms, a magnificent view and quiet, a superb location to unwind — it truly deserves its five stars. Although the hotel is 7–8 minutes from the coast, the free access to the beach at their own guesthouse in Kadırga Bay is fantastic. In short, I felt proud to have a place like this; from now on I'd love to spend a few days here every year to recharge. My thanks to everyone involved.",
+        "date": "10 months ago"
+      },
+      "3": {
+        "text": "Karadut Otel was our accommodation of choice during our Assos holiday. It's a lovely family-run business. Yağız and his family are both very warm and very professional; they met all our needs with patience. The rooms are clean and airy, and the distance between the apartments gives enough privacy. We loved the infinity pool too; it has a perfect view. There is also a children's pool, and the pool was spotless and well kept. When we booked by phone we got a much better rate than online — I'd suggest reaching them via their contact number.",
+        "date": "8 months ago"
+      }
+    }
   },
   "pageHero": {
     "eyebrow": "Assos Karadut",
@@ -90,7 +147,7 @@
       "hint": "Submit to see available rooms — your details carry over to the reservation page."
     },
     "stats": {
-      "guestScore": "Guest score / 10",
+      "guestRating": "Guest rating · {count} reviews",
       "boutiqueRooms": "Boutique rooms",
       "bay": "Kadırga bay"
     },
@@ -437,8 +494,17 @@
       "subjectOther": "Other",
       "message": "Your Message",
       "messagePlaceholder": "Write your message here...",
+      "optional": "(optional)",
       "submit": "Send",
-      "submitted": "Message Sent"
+      "sending": "Sending…",
+      "connectionError": "Connection error. Please check your internet connection and try again.",
+      "successTitle": "Your message has been sent",
+      "successText": "We will get back to you as soon as possible. For urgent matters, you can call us directly:",
+      "newMessage": "Send a new message",
+      "whatsappHint": "For a faster reply, you can write to us directly on WhatsApp.",
+      "whatsappCta": "Message us on WhatsApp",
+      "whatsappMessage": "Hello, I would like to get information about {hotel}.",
+      "kvkkNote": "By submitting this form you accept the <link>KVKK Privacy Notice</link>."
     },
     "map": {
       "eyebrow": "Our Location",
@@ -537,6 +603,7 @@
       "notes": "Notes",
       "notesOptional": "(optional)",
       "notesPlaceholder": "Special request, arrival time…",
+      "consent": "I have read and accept the <link>KVKK Privacy Notice</link>. *",
       "submit": "Send request",
       "submitting": "Sending…"
     },
@@ -582,6 +649,9 @@
     "noAvailability": "No rooms remain available for the dates you selected. Please try different dates or a different room type.",
     "reservationCreateError": "An error occurred while creating the reservation.",
     "availabilityError": "An error occurred while checking availability.",
+    "contactUnavailable": "The contact form is temporarily unavailable. Please call us by phone or try again later.",
+    "contactSendFailed": "Your message could not be sent. Please try again later or call us by phone.",
+    "contactError": "An error occurred while sending your message.",
     "unknown": "An unexpected error occurred. Please try again."
   },
   "validation": {
@@ -590,6 +660,128 @@
     "invalidPhone": "Please enter a valid phone number.",
     "maxNights": "Reservations can be made for at most 21 nights.",
     "maxAdvance": "The check-in date can be at most 365 days from today.",
-    "maxGuestsForRoom": "The selected room type accepts at most {max} guests."
+    "maxGuestsForRoom": "The selected room type accepts at most {max} guests.",
+    "consentRequired": "You must read and accept the KVKK Privacy Notice.",
+    "fullNameRequired": "Full name is required.",
+    "fullNameChars": "The full name may contain only letters, spaces and hyphens.",
+    "invalidEmail": "Please enter a valid email address.",
+    "subjectRequired": "Please choose a subject.",
+    "messageMin": "Your message must be at least 10 characters."
+  },
+  "legal": {
+    "kvkk": {
+      "heroTitle": "Personal Data Protection (KVKK) Notice",
+      "breadcrumb": "KVKK",
+      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Data Controller",
+        "p": "Under Turkish Law No. 6698 on the Protection of Personal Data (\"KVKK\"), your personal data may be processed by <strong>{hotelName}</strong> (the \"Hotel\") acting as data controller, within the scope described below.",
+        "address": "Address",
+        "email": "Email",
+        "phone": "Phone",
+        "mersis": "MERSIS / Tax No: [OTEL SAHİBİ ONAYLAYACAK]"
+      },
+      "s2": {
+        "h": "2. Personal Data Processed",
+        "p": "In connection with your reservation, contact form and accommodation processes, personal data such as your full name, phone number, email address, stay dates, number of guests and the content of your requests/complaints is processed."
+      },
+      "s3": {
+        "h": "3. Purposes of Processing",
+        "items": {
+          "1": "Creating and managing reservation requests",
+          "2": "Tracking deposit/payment processes",
+          "3": "Responding to enquiries submitted via the contact form and other requests",
+          "4": "Fulfilling legal obligations (accommodation tax, official notifications, etc.)",
+          "5": "Measuring and improving service quality"
+        }
+      },
+      "s4": {
+        "h": "4. Transfer of Personal Data",
+        "p": "Your personal data may be transferred to authorised public institutions where required by our legal obligations, and to the service providers operating our reservation and email infrastructure (hosting/email/payment infrastructure providers), strictly limited to the performance of the service. Your data is not transferred abroad; should an infrastructure requiring such a transfer be used, this notice will be updated. [OTEL SAHİBİ ONAYLAYACAK]"
+      },
+      "s5": {
+        "h": "5. Retention Period",
+        "p": "Your personal data is retained for the periods prescribed by applicable legislation (e.g. accommodation records under tax and accounting law) or for as long as the processing purpose requires. Exact retention periods: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+      },
+      "s6": {
+        "h": "6. Your Rights under KVKK",
+        "intro": "Under Article 11 of the KVKK, everyone has the right, by applying to the data controller, to:",
+        "items": {
+          "1": "Learn whether their personal data is being processed,",
+          "2": "Request information about such processing,",
+          "3": "Learn the purpose of the processing and whether the data is used in line with that purpose,",
+          "4": "Know the third parties to whom the data is transferred, in Turkey or abroad,",
+          "5": "Request correction of incomplete or inaccurate data,",
+          "6": "Request erasure or destruction of the data under the conditions set out in Article 7 of the KVKK,",
+          "7": "Request that corrections/erasures be notified to third parties to whom the data was transferred,",
+          "8": "Object to a result arising against them from analysis of the processed data exclusively by automated systems,",
+          "9": "Claim compensation for damages arising from unlawful processing."
+        },
+        "outro": "To exercise these rights, you may send your requests to {email} or to the postal address above."
+      }
+    },
+    "gizlilik": {
+      "heroTitle": "Privacy Policy",
+      "breadcrumb": "Privacy",
+      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. General",
+        "p": "This privacy policy explains how the information collected while you use the {hotelName} website (the \"Site\") is processed. For detailed information on the processing of personal data, please see the <kvkkLink>KVKK Privacy Notice</kvkkLink>."
+      },
+      "s2": {
+        "h": "2. Cookies",
+        "p": "The Site may use strictly necessary cookies for core functionality. Analytics/marketing cookies are only enabled if you give consent via the cookie bar at the bottom of the page. You can change your preference through the local storage (localStorage) kept in your browser."
+      },
+      "s3": {
+        "h": "3. Information Collected",
+        "p": "The name, email, phone number and message content you submit via the reservation and contact forms, as well as anonymous usage statistics such as page views (if analytics is enabled), may be collected."
+      },
+      "s4": {
+        "h": "4. Data Security",
+        "p": "Your data is protected against unauthorised access with reasonable technical and administrative measures. The contact form and reservation system are protected against spam and abuse with security verification (Cloudflare Turnstile) and rate limiting."
+      },
+      "s5": {
+        "h": "5. Third-Party Services",
+        "p": "Third-party service providers are used for email delivery and the reservation infrastructure. These providers process your data solely for the performance of the service. [OTEL SAHİBİ ONAYLAYACAK — kullanılan sağlayıcıların güncel listesi]"
+      },
+      "s6": {
+        "h": "6. Contact",
+        "p": "For questions about this policy, you can reach us at {email}."
+      }
+    },
+    "iptal": {
+      "heroTitle": "Cancellation & Refund Policy",
+      "breadcrumb": "Cancellation Policy",
+      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Reservation and Deposit Model",
+        "p": "Reservations at {hotelName} are confirmed through a request created on the website followed by a deposit payment. If the deposit is not paid within <strong>{hours} hours</strong> of your reservation request being created, the request is cancelled automatically and your selected dates become available again."
+      },
+      "s2": {
+        "h": "2. Cancellation Conditions",
+        "intro": "When a reservation confirmed by deposit payment is cancelled by the guest, the following conditions apply:",
+        "items": {
+          "1": "For cancellations made <strong>[OTEL SAHİBİ ONAYLAYACAK] days before</strong> the check-in date, the deposit is refunded in full.",
+          "2": "For cancellations made after that period, the deposit is partly or fully non-refundable according to the <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong> condition.",
+          "3": "In the event of a no-show (failure to arrive without notice), the deposit is non-refundable."
+        }
+      },
+      "s3": {
+        "h": "3. Cancellations by the Hotel",
+        "p": "If the hotel cancels a reservation due to force majeure or an unforeseeable circumstance, the deposit paid is refunded to the guest in full, or transferred to an alternative date at the guest's request."
+      },
+      "s4": {
+        "h": "4. Right of Withdrawal under Distance Sales Rules",
+        "p": "Under Turkish Consumer Protection Law No. 6502 and the Distance Contracts Regulation, accommodation services may be treated as services to be performed on a specific date; please review the applicable legislation or contact us regarding the conditions for exercising the right of withdrawal. Exact conditions: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+      },
+      "s5": {
+        "h": "5. Refund Process",
+        "p": "Approved refunds are made to the account the deposit was paid from within <strong>[OTEL SAHİBİ ONAYLAYACAK] business days</strong> of the notification date."
+      },
+      "s6": {
+        "h": "6. Contact",
+        "p": "For cancellation, change and refund requests, please call us at <phoneLink>{phone}</phoneLink> or email {email}."
+      }
+    }
   }
 }
