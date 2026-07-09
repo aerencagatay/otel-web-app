@@ -47,6 +47,9 @@ export default function BookingFlow() {
   const [step, setStep] = useState<"search" | "select" | "form">("search");
   const [search, setSearch] = useState<SearchParams | null>(null);
   const [rooms, setRooms] = useState<RoomResult[]>([]);
+  const [alternatives, setAlternatives] = useState<
+    { checkIn: string; checkOut: string }[]
+  >([]);
   const [selectedRoom, setSelectedRoom] = useState<RoomResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -96,6 +99,7 @@ export default function BookingFlow() {
       }
 
       setRooms(data.rooms || []);
+      setAlternatives(data.alternatives || []);
       setStep("select");
       trackEvent("availability_search", {
         check_in: params.checkIn,
@@ -258,7 +262,37 @@ export default function BookingFlow() {
               <p className="text-text-light text-[16px] mb-4 m-0">
                 {t("flow.noRooms")}
               </p>
-              <button type="button" onClick={() => setStep("search")} className="btn-gold">
+              {alternatives.length > 0 ? (
+                <>
+                  <p className="text-dark text-[14px] font-semibold mb-4">
+                    {t("flow.alternativesTitle")}
+                  </p>
+                  <div className="flex flex-wrap gap-3 justify-center mb-2">
+                    {alternatives.map((alt) => (
+                      <button
+                        key={`${alt.checkIn}-${alt.checkOut}`}
+                        type="button"
+                        onClick={() => {
+                          if (!search) return;
+                          runSearch({ ...search, checkIn: alt.checkIn, checkOut: alt.checkOut });
+                        }}
+                        className="date-alternative-chip"
+                      >
+                        {new Date(alt.checkIn).toLocaleDateString(
+                          locale === "en" ? "en-US" : "tr-TR",
+                          { day: "2-digit", month: "short" }
+                        )}
+                        {" – "}
+                        {new Date(alt.checkOut).toLocaleDateString(
+                          locale === "en" ? "en-US" : "tr-TR",
+                          { day: "2-digit", month: "short" }
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : null}
+              <button type="button" onClick={() => setStep("search")} className="btn-gold mt-3">
                 {t("flow.tryDifferent")}
               </button>
             </div>
