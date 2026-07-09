@@ -98,6 +98,10 @@ const T = {
   },
 } as const;
 
+/** Misafirin dilindeki rezervasyon sorgulama sayfası URL'si (Task 05). */
+const lookupPageUrl = (locale: MailLocale) =>
+  `${HOTEL.website}${locale === "en" ? "/en" : ""}/rezervasyon-sorgula`;
+
 const shell = (bodyHtml: string) => `
       <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
         <div style="background:#1a1a1a;padding:32px;text-align:center;">
@@ -125,7 +129,7 @@ export function pendingReservationEmail(data: {
 }): { subject: string; html: string } {
   const locale = data.locale ?? "tr";
   const m = T[locale];
-  const lookupUrl = `${HOTEL.website}${locale === "en" ? "/en" : ""}/rezervasyon-sorgula`;
+  const lookupUrl = lookupPageUrl(locale);
   return {
     subject: m.pendingSubject(data.reservationId),
     html: shell(`
@@ -200,6 +204,7 @@ export function confirmedReservationEmail(data: {
 }): { subject: string; html: string } {
   const locale = data.locale ?? "tr";
   const m = T[locale];
+  const lookupUrl = lookupPageUrl(locale);
   return {
     subject: m.confirmedSubject(data.reservationId),
     html: shell(`
@@ -223,6 +228,9 @@ export function confirmedReservationEmail(data: {
           </div>
 
           <p>${m.confirmedOutro}</p>
+
+          <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#e4a00e;">${lookupUrl}</a></p>
+
           <p>${m.questions} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;">${HOTEL.phone}</a></p>
     `),
   };
