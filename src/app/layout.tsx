@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import JsonLd, { hotelJsonLd } from "@/components/seo/json-ld";
+import CookieBanner from "@/components/layout/cookie-banner";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body>
         <JsonLd data={hotelJsonLd()} />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

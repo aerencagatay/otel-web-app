@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/layout/page-hero";
 import JsonLd, { roomsJsonLd } from "@/components/seo/json-ld";
+import RoomGalleryLightbox from "@/components/rooms/room-gallery-lightbox";
+import { getRoomImages } from "@/lib/config/room-images";
+import { getStartingPriceLabel } from "@/lib/config/pricing";
 import {
   Ruler,
   Users,
@@ -30,16 +33,10 @@ export const metadata: Metadata = {
 
 const rooms = [
   {
+    roomType: "deluxe_sea_view",
     name: "Deluxe Tam Deniz Manzaralı",
-    price: "Fiyat için arayın",
     priceSub: "/ Gece · Kahvaltı Dahil",
     desc: "Ege'nin muhteşem mavisine açılan pencereleriyle sabahları deniz manzarasıyla uyanacağınız odamız. 24 m² alanda modern konfor anlayışıyla tasarlanmış, klima ile tüm mevsimlerde konforlu bir konaklama sunmaktadır.",
-    mainImage:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-    galleryImages: [
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2dc440f7-fe20-42bc-98c7-e796e41ea0a6-600.jpeg",
-    ],
     features: [
       { icon: Ruler, text: "24 m²" },
       { icon: Users, text: "2 Kişi" },
@@ -54,16 +51,10 @@ const rooms = [
     layout: "image-left",
   },
   {
+    roomType: "traditional_room",
     name: "Traditional Kısmi Deniz Manzaralı",
-    price: "Fiyat için arayın",
     priceSub: "/ Gece · Kahvaltı Dahil",
     desc: "22 m² alana sahip bu odamız, kısmen Ege manzarası sunarken tüm standart konfor olanaklarına sahiptir. Klima, TV ve minibarıyla rahat bir konaklama arayan misafirlerimiz için ideal bir seçimdir.",
-    mainImage:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-    galleryImages: [
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e95a6f29-0b97-4617-9ede-37e2d0ed9f00-300.jpeg",
-    ],
     features: [
       { icon: Ruler, text: "22 m²" },
       { icon: Users, text: "2 Kişi" },
@@ -78,16 +69,10 @@ const rooms = [
     layout: "image-right",
   },
   {
+    roomType: "premium_family",
     name: "Aile Suit Deniz Manzaralı",
-    price: "Fiyat için arayın",
     priceSub: "/ Gece · Kahvaltı Dahil",
     desc: "44 m² ile otelimizin en geniş odası. Ailenizle birlikte geniş ve rahat bir tatil için tasarlanan bu odamız, 4 kişiye kadar konaklama kapasitesine sahiptir. Ayrı oturma alanı ve açık havada yemek masasıyla tam bir aile tatili konforunu sunar.",
-    mainImage:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-    galleryImages: [
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/412c6b53-32d0-428a-aecb-089d4da3cd45-600.jpeg",
-    ],
     features: [
       { icon: Ruler, text: "44 m²" },
       { icon: Users, text: "4 Kişiye Kadar" },
@@ -122,11 +107,7 @@ export default function RoomsPage() {
   return (
     <>
       <JsonLd data={roomsJsonLd()} />
-      <PageHero
-        title="Odalarımız"
-        breadcrumb="Odalarımız"
-        backgroundImage="https://cdng.jollytur.com/files/cms/media/hotel/fa46d2cc-7aa8-45b3-95bf-d179020cf7a8-600.jpeg"
-      />
+      <PageHero title="Odalarımız" breadcrumb="Odalarımız" />
 
       {/* Intro */}
       <section className="section-sm bg-warm">
@@ -143,93 +124,75 @@ export default function RoomsPage() {
       </section>
 
       {/* Room Cards */}
-      {rooms.map((room, i) => (
-        <div key={i}>
-          <section className={`section-py ${room.bg}`}>
-            <div className="max-w-7xl mx-auto px-4">
-              <div
-                className="room-list-card"
-                style={{
-                  gridTemplateColumns:
-                    room.layout === "image-left" ? "480px 1fr" : "1fr 480px",
-                }}
-              >
+      {rooms.map((room, i) => {
+        const images = getRoomImages(room.roomType);
+        const priceLabel = getStartingPriceLabel(room.roomType);
+        return (
+          <div key={i}>
+            <section className={`section-py ${room.bg}`}>
+              <div className="max-w-7xl mx-auto px-4">
                 <div
-                  className="overflow-hidden min-h-[380px]"
-                  style={{ order: room.layout === "image-right" ? 2 : 0 }}
+                  className="room-list-card"
+                  style={{
+                    gridTemplateColumns:
+                      room.layout === "image-left" ? "480px 1fr" : "1fr 480px",
+                  }}
                 >
-                  <Image
-                    src={room.mainImage}
-                    alt={room.name}
-                    width={480}
-                    height={380}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div
-                  className="p-8 md:px-9 flex flex-col justify-center"
-                  style={{ order: room.layout === "image-right" ? 1 : 0 }}
-                >
-                  <h3
-                    className="mb-2"
-                    style={{ fontSize: "clamp(20px, 2.5vw, 26px)" }}
+                  <div
+                    className="overflow-hidden min-h-[380px]"
+                    style={{ order: room.layout === "image-right" ? 2 : 0 }}
                   >
-                    {room.name}
-                  </h3>
-                  <div className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase mb-4">
-                    {room.price}{" "}
-                    <span className="text-text-light font-normal normal-case tracking-normal">
-                      {room.priceSub}
-                    </span>
+                    <Image
+                      src={images.cover.src}
+                      alt={images.cover.alt}
+                      width={480}
+                      height={380}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <p className="text-[14px] text-text leading-[1.8] mb-6">
-                    {room.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-x-6 gap-y-2.5 mb-7 pt-5 border-t border-border">
-                    {room.features.map((f, j) => (
-                      <span
-                        key={j}
-                        className="text-[12.5px] text-text-light flex items-center gap-1.5"
-                      >
-                        <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
-                        {f.text}
-                      </span>
-                    ))}
-                  </div>
-                  <div>
-                    <Link href="/reservation" className="btn-gold">
-                      <Phone className="inline w-3.5 h-3.5 mr-2" />
-                      Online Rezervasyon
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Gallery */}
-          <div className="grid grid-cols-2 gap-1 max-w-[960px] mx-auto mb-20">
-            {room.galleryImages.map((img, j) => (
-              <div key={j} className="gallery-item" style={{ aspectRatio: "16/9" }}>
-                <Image
-                  src={img}
-                  alt={room.name}
-                  width={480}
-                  height={270}
-                  className="w-full h-full object-cover"
-                />
-                <div className="gallery-overlay">
-                  <div className="text-white text-center p-5">
-                    <h5 className="font-heading text-white text-[18px]">
+                  <div
+                    className="p-8 md:px-9 flex flex-col justify-center"
+                    style={{ order: room.layout === "image-right" ? 1 : 0 }}
+                  >
+                    <h3
+                      className="mb-2"
+                      style={{ fontSize: "clamp(20px, 2.5vw, 26px)" }}
+                    >
                       {room.name}
-                    </h5>
+                    </h3>
+                    <div className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase mb-4">
+                      {priceLabel}
+                    </div>
+                    <p className="text-[14px] text-text leading-[1.8] mb-6">
+                      {room.desc}
+                    </p>
+                    <div className="flex flex-wrap gap-x-6 gap-y-2.5 mb-7 pt-5 border-t border-border">
+                      {room.features.map((f, j) => (
+                        <span
+                          key={j}
+                          className="text-[12.5px] text-text-light flex items-center gap-1.5"
+                        >
+                          <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
+                          {f.text}
+                        </span>
+                      ))}
+                    </div>
+                    <div>
+                      <Link href="/reservation" className="btn-gold">
+                        <Phone className="inline w-3.5 h-3.5 mr-2" />
+                        Online Rezervasyon
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </section>
+
+            {/* Mini galeri (lightbox'lı) */}
+            <RoomGalleryLightbox images={images.gallery} roomName={room.name} />
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {/* All Room Amenities */}
       <section className="section-sm bg-warm">

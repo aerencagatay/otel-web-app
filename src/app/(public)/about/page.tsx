@@ -127,11 +127,7 @@ const galleryImages = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        title="Hakkımızda"
-        breadcrumb="Hakkımızda"
-        backgroundImage="https://cdng.jollytur.com/files/cms/media/hotel/fa46d2cc-7aa8-45b3-95bf-d179020cf7a8-600.jpeg"
-      />
+      <PageHero title="Hakkımızda" breadcrumb="Hakkımızda" />
 
       {/* Rating Banner */}
       <div className="bg-dark py-9">

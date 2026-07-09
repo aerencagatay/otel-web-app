@@ -84,9 +84,24 @@ export default function Footer() {
 
       <div className="border-t border-white/10 py-5 mt-13 text-center text-white/35 text-[12.5px]">
         <div className="max-w-7xl mx-auto px-4">
-          <p className="footer-license">
+          <p className="footer-license mb-3">
             © 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921
           </p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px]">
+            {[
+              { href: "/kvkk", label: "KVKK Aydınlatma Metni" },
+              { href: "/gizlilik", label: "Gizlilik Politikası" },
+              { href: "/iptal-politikasi", label: "İptal ve İade Politikası" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-white/45 no-underline hover:text-gold transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

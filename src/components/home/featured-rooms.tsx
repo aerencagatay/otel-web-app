@@ -4,13 +4,13 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Ruler, Users, Waves, Wifi } from "lucide-react";
+import { getRoomCoverImage, getRoomHoverImage } from "@/lib/config/room-images";
+import { getStartingPriceLabel } from "@/lib/config/pricing";
 
 const rooms = [
   {
+    roomType: "deluxe_sea_view",
     name: "Deluxe Tam Deniz Manzaralı",
-    price: "Fiyat için iletişim",
-    image:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
     features: [
       { icon: Ruler, text: "24 m²" },
       { icon: Users, text: "2 kişi" },
@@ -18,10 +18,8 @@ const rooms = [
     ],
   },
   {
+    roomType: "traditional_room",
     name: "Traditional Kısmi Deniz Manzaralı",
-    price: "Fiyat için iletişim",
-    image:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
     features: [
       { icon: Ruler, text: "22 m²" },
       { icon: Users, text: "2 kişi" },
@@ -29,10 +27,8 @@ const rooms = [
     ],
   },
   {
+    roomType: "premium_family",
     name: "Aile Suit Deniz Manzaralı",
-    price: "Fiyat için iletişim",
-    image:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
     features: [
       { icon: Ruler, text: "44 m²" },
       { icon: Users, text: "4 kişiye kadar" },
@@ -105,45 +101,57 @@ export default function FeaturedRooms() {
           </div>
 
           <div className="grid grid-rows-3 gap-5 md:gap-4 h-full">
-            {rooms.map((room) => (
-              <Link
-                key={room.name}
-                href="/reservation"
-                className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border border-border rounded-[var(--radius-md)] p-4 sm:p-5 transition-[border-color,box-shadow,transform] duration-300 hover:border-gold hover:shadow-[var(--shadow-lift)] hover:-translate-y-0.5"
-              >
-                <div className="overflow-hidden rounded-[var(--radius-sm)] sm:w-[42%] shrink-0">
-                  <Image
-                    src={room.image}
-                    alt={room.name}
-                    width={600}
-                    height={450}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-[400ms] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                  />
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <h3
-                    className="font-heading font-semibold text-dark m-0 mb-1"
-                    style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.3rem)" }}
-                  >
-                    {room.name}
-                  </h3>
-                  <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2">
-                    {room.price}
-                  </p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3">
-                    {room.features.map((f, j) => (
-                      <span key={j} className="flex items-center gap-1.5">
-                        <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
-                        {f.text}
-                      </span>
-                    ))}
+            {rooms.map((room) => {
+              const coverImage = getRoomCoverImage(room.roomType);
+              const hoverImage = getRoomHoverImage(room.roomType);
+              const priceLabel = getStartingPriceLabel(room.roomType);
+              return (
+                <Link
+                  key={room.name}
+                  href="/reservation"
+                  className="group flex flex-col sm:flex-row gap-5 sm:items-center no-underline border border-border rounded-[var(--radius-md)] p-4 sm:p-5 transition-[border-color,box-shadow,transform] duration-300 hover:border-gold hover:shadow-[var(--shadow-lift)] hover:-translate-y-0.5"
+                >
+                  <div className="relative overflow-hidden rounded-[var(--radius-sm)] sm:w-[42%] shrink-0 aspect-[4/3]">
+                    <Image
+                      src={coverImage.src}
+                      alt={coverImage.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      className="object-cover transition-opacity duration-500 group-hover:opacity-0"
+                    />
+                    <Image
+                      src={hoverImage.src}
+                      alt={hoverImage.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      className="object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
                   </div>
-                  <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
-                    Müsaitlik &amp; rezervasyon
-                  </span>
-                </div>
-              </Link>
-            ))}
+                  <div className="flex flex-col min-w-0">
+                    <h3
+                      className="font-heading font-semibold text-dark m-0 mb-1"
+                      style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.3rem)" }}
+                    >
+                      {room.name}
+                    </h3>
+                    <p className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase m-0 mb-2">
+                      {priceLabel}
+                    </p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-text-light mb-3">
+                      {room.features.map((f, j) => (
+                        <span key={j} className="flex items-center gap-1.5">
+                          <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
+                          {f.text}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-2 self-start text-[11px] font-semibold tracking-[0.22em] uppercase text-dark border-b border-dark/30 pb-1 group-hover:border-dark transition-colors">
+                      Müsaitlik &amp; rezervasyon
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
 

@@ -35,6 +35,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const PUBLIC_IMG = path.join(ROOT, "public", "img");
 const ASSETS_RAW_IMG = path.join(ROOT, "assets-raw", "img");
+const ROOM_SOURCE_IMG = path.join(ROOT, "img");
+const PUBLIC_ROOMS_IMG = path.join(PUBLIC_IMG, "rooms");
 const FORCE = process.argv.includes("--force");
 
 /**
@@ -161,6 +163,62 @@ async function generateOgImage() {
 }
 
 /**
+ * Room photo galleries (Task 03 — trust content).
+ *
+ * Source folders live in the repo root under `img/` (NOT `public/`) and are
+ * named after the physical room layout used by the photographer. Per
+ * AGENTS.md, those folder names are only the photo SOURCE — they do not
+ * rename the public-facing room types. Each source folder maps to the
+ * public room-type slug used by `src/lib/config/room-images.ts`.
+ *
+ * Output: `public/img/rooms/<slug>/<slug>-N.webp`, max 1920px wide, q80,
+ * kebab-case. Re-numbered sequentially per slug so output names stay tidy
+ * regardless of the source file's original number.
+ */
+const ROOM_GALLERIES = [
+  { sourceDir: "Panoramic Oda", slug: "deluxe" },
+  { sourceDir: "Traditional Oda", slug: "traditional" },
+  { sourceDir: "Premium Dört Kişilik Oda", slug: "aile-suit" },
+];
+
+const ROOM_MAX_WIDTH = 1920;
+const ROOM_WEBP_QUALITY = 80;
+
+async function generateRoomGallery({ sourceDir, slug }) {
+  const srcDir = path.join(ROOM_SOURCE_IMG, sourceDir);
+  if (!existsSync(srcDir)) {
+    console.warn(`  skip ${slug}: kaynak klasör bulunamadı (${sourceDir})`);
+    return;
+  }
+
+  const outDir = path.join(PUBLIC_ROOMS_IMG, slug);
+  await mkdir(outDir, { recursive: true });
+
+  const { readdirSync } = await import("node:fs");
+  const files = readdirSync(srcDir)
+    .filter((f) => /\.(avif|jpe?g|png|webp)$/i.test(f))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+  let didWork = false;
+  for (let i = 0; i < files.length; i++) {
+    const sourcePath = path.join(srcDir, files[i]);
+    const outPath = path.join(outDir, `${slug}-${i + 1}.webp`);
+    if (!isStale(sourcePath, outPath)) continue;
+    await sharp(sourcePath)
+      .rotate()
+      .resize({ width: ROOM_MAX_WIDTH, withoutEnlargement: true })
+      .webp({ quality: ROOM_WEBP_QUALITY })
+      .toFile(outPath);
+    didWork = true;
+    console.log(`  ${path.relative(ROOT, outPath)} <- ${path.relative(ROOT, sourcePath)}`);
+  }
+
+  if (!didWork) {
+    console.log(`  img/rooms/${slug} güncel, atlandı (${files.length} kare)`);
+  }
+}
+
+/**
  * Background videos: re-encoded in place (H.264 CRF 28, no audio — they are
  * always rendered muted) + a first-frame poster JPEG extracted alongside.
  * `.reencoded` marker files track whether a given source has already been
@@ -248,6 +306,12 @@ async function main() {
 
   console.log("\nog.jpg (Open Graph önizleme görseli) üretiliyor...");
   await generateOgImage();
+
+  console.log("\nOda fotoğraf galerileri (img/rooms) üretiliyor...");
+  await mkdir(PUBLIC_ROOMS_IMG, { recursive: true });
+  for (const item of ROOM_GALLERIES) {
+    await generateRoomGallery(item);
+  }
 
   console.log("\nVideolar yeniden encode ediliyor + poster üretiliyor...");
   for (const item of VIDEOS) {
