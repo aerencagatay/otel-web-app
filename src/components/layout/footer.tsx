@@ -14,6 +14,7 @@ export default function Footer() {
   ] as const;
 
   const legalLinks = [
+    { href: "/rezervasyon-sorgula", label: tf("legal.lookup") },
     { href: "/kvkk", label: tf("legal.kvkk") },
     { href: "/gizlilik", label: tf("legal.privacy") },
     { href: "/iptal-politikasi", label: tf("legal.cancellation") },

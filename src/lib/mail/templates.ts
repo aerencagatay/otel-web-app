@@ -38,6 +38,7 @@ const T = {
     recipient: "Alıcı",
     description: "Açıklama",
     warnRef: "⚠ Havale açıklamasına mutlaka rezervasyon numaranızı yazınız.",
+    lookupLinkText: "Rezervasyon durumunuzu buradan takip edebilirsiniz:",
     questions: "Sorularınız için:",
     expiredSubject: (id: string) =>
       `Rezervasyon talebiniz iptal edildi - ${id} | ${HOTEL.name}`,
@@ -75,6 +76,7 @@ const T = {
     description: "Description",
     warnRef:
       "⚠ Please be sure to write your reservation number in the transfer description.",
+    lookupLinkText: "You can track your reservation status here:",
     questions: "For questions:",
     expiredSubject: (id: string) =>
       `Your reservation request has been cancelled - ${id} | ${HOTEL.name}`,
@@ -123,6 +125,7 @@ export function pendingReservationEmail(data: {
 }): { subject: string; html: string } {
   const locale = data.locale ?? "tr";
   const m = T[locale];
+  const lookupUrl = `${HOTEL.website}${locale === "en" ? "/en" : ""}/rezervasyon-sorgula`;
   return {
     subject: m.pendingSubject(data.reservationId),
     html: shell(`
@@ -151,6 +154,8 @@ export function pendingReservationEmail(data: {
           </div>
 
           <p style="color:#c00;font-size:13px;">${m.warnRef}</p>
+
+          <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#e4a00e;">${lookupUrl}</a></p>
 
           <p>${m.questions} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;">${HOTEL.phone}</a></p>
     `),

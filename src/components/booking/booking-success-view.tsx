@@ -97,6 +97,12 @@ export default function BookingSuccessView() {
               <Mail size={14} />
               {t("checkEmail")}
             </p>
+
+            <p className="text-[12px] text-text-light mt-3 mb-0">
+              <Link href="/rezervasyon-sorgula" className="text-gold-dark underline underline-offset-4">
+                {t("lookupLink")}
+              </Link>
+            </p>
           </div>
         </div>
       </section>

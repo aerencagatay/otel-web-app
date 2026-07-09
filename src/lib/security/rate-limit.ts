@@ -104,6 +104,13 @@ export const contactLimiter = createLimiter({
   prefix: "contact-1h",
 });
 
+/** IP başına 10 istek / saat — rezervasyon sorgulama (Task 05, self-servis). */
+export const lookupLimiter = createLimiter({
+  tokens: 10,
+  window: "1 h",
+  prefix: "lookup-1h",
+});
+
 /** IP başına 30 istek / dakika. */
 export const availabilityLimiter = createLimiter({
   tokens: 30,
