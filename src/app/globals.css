@@ -1102,6 +1102,43 @@ img {
   }
 }
 
+/* ===== WHATSAPP FLOATING BUTTON (Task 05) ===== */
+.whatsapp-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  width: 54px;
+  height: 54px;
+  background: #25d366;
+  color: #fff;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lift);
+  z-index: 1002;
+  text-decoration: none;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.2s;
+}
+.whatsapp-fab:hover {
+  background: #1fb457;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.whatsapp-fab--hidden {
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+}
+@media (max-width: 1023px) {
+  .whatsapp-fab {
+    right: 16px;
+    bottom: calc(72px + 66px + env(safe-area-inset-bottom, 0px));
+    width: 48px;
+    height: 48px;
+  }
+}
+
 /* ===== BACK TO TOP ===== */
 .back-to-top {
   position: fixed;
@@ -1208,6 +1245,61 @@ img {
   --rdp-day_button-border-radius: var(--radius-pill);
   font-family: var(--font-body);
   color: var(--color-dark);
+}
+
+/* Per-day price labels (Task 05 fiyat takvimi) */
+.date-range-picker__calendar--priced {
+  --rdp-day_button-height: 44px;
+  --rdp-day_button-width: 44px;
+}
+.date-range-picker__calendar--priced .rdp-day_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  line-height: 1;
+}
+.date-range-picker__day-num {
+  font-size: 13px;
+}
+.date-range-picker__day-price {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-gold-dark);
+  opacity: 0.85;
+}
+.rdp-selected .date-range-picker__day-price {
+  color: inherit;
+  opacity: 0.85;
+}
+@media (max-width: 640px) {
+  .date-range-picker__calendar--priced {
+    --rdp-day_button-height: 40px;
+    --rdp-day_button-width: 40px;
+  }
+  .date-range-picker__day-num {
+    font-size: 12px;
+  }
+  .date-range-picker__day-price {
+    font-size: 10px;
+  }
+}
+.date-range-picker__summary {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: var(--color-warm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-dark);
+  text-align: center;
+}
+.date-range-picker__summary-eur {
+  font-weight: 400;
+  color: var(--color-text-light);
 }
 
 /* ===== BOOKING FORM ===== */
@@ -1461,6 +1553,43 @@ img {
   background: var(--color-gold-dark);
   color: #fff !important;
   transform: translateY(-1px);
+}
+
+/* Room detail page (Task 05) */
+.room-detail-cta {
+  width: 100%;
+}
+.similar-room-card {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.similar-room-card:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-3px);
+}
+
+/* Alternative-date suggestion chips (Task 05) */
+.date-alternative-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: var(--color-gold-dark);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.date-alternative-chip:hover {
+  background: var(--color-gold);
+  color: #fff;
 }
 
 /* Empty / loading states */

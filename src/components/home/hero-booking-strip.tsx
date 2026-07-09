@@ -63,6 +63,8 @@ export default function HeroBookingStrip() {
             checkIn={checkIn}
             checkOut={checkOut}
             numberOfMonths={2}
+            roomType={roomType || undefined}
+            showSummary
             onChange={(ci, co) => {
               setCheckIn(ci);
               if (co) setCheckOut(co);
