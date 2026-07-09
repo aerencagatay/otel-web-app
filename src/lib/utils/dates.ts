@@ -66,3 +66,15 @@ export function formatDateTR(dateStr: string): string {
     year: "numeric",
   });
 }
+
+/**
+ * Locale-aware tarih biçimi (e-posta şablonları için). "en" → en-US, aksi
+ * halde tr-TR.
+ */
+export function formatDate(dateStr: string, locale: "tr" | "en" = "tr"): string {
+  return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "tr-TR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}

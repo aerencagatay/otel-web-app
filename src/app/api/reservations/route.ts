@@ -15,7 +15,6 @@ import {
 import {
   getClientIp,
   reservationLimiter,
-  RATE_LIMIT_MESSAGE,
 } from "@/lib/security/rate-limit";
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
 
@@ -25,10 +24,7 @@ export async function POST(request: NextRequest) {
 
     const rateLimitResult = await reservationLimiter.limit(ip);
     if (!rateLimitResult.success) {
-      return NextResponse.json(
-        { error: RATE_LIMIT_MESSAGE },
-        { status: 429 }
-      );
+      return NextResponse.json({ error: "rateLimit" }, { status: 429 });
     }
 
     const body = await request.json();
@@ -36,12 +32,14 @@ export async function POST(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: "Geçersiz bilgiler.", details: parsed.error.flatten() },
+        { error: "invalidData", details: parsed.error.flatten() },
         { status: 400 }
       );
     }
 
     const data = parsed.data;
+    // Misafir e-postası dili (payload'dan; varsayılan tr). Yalnızca 'tr'/'en'.
+    const guestLocale: "tr" | "en" = body?.locale === "en" ? "en" : "tr";
 
     const turnstileResult = await verifyTurnstileToken(
       data.turnstileToken,
@@ -52,42 +50,27 @@ export async function POST(request: NextRequest) {
       // misconfigured (helper fails closed) — surface as 503, not user error.
       if (turnstileResult.reason === "no-secret-configured") {
         return NextResponse.json(
-          {
-            error:
-              "Rezervasyon sistemi şu anda geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin veya bizi telefonla arayın.",
-          },
+          { error: "serviceUnavailable" },
           { status: 503 }
         );
       }
-      return NextResponse.json(
-        {
-          error:
-            "Güvenlik doğrulaması başarısız oldu. Lütfen sayfayı yenileyip tekrar deneyin.",
-        },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "securityFailed" }, { status: 403 });
     }
 
     if (isPastDate(data.checkIn)) {
-      return NextResponse.json(
-        { error: "Giriş tarihi geçmişte olamaz." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "pastDate" }, { status: 400 });
     }
 
     if (data.checkIn >= data.checkOut) {
       return NextResponse.json(
-        { error: "Çıkış tarihi giriş tarihinden sonra olmalıdır." },
+        { error: "checkoutAfterCheckin" },
         { status: 400 }
       );
     }
 
     const config = ROOM_TYPE_MAP[data.roomType];
     if (!config) {
-      return NextResponse.json(
-        { error: "Geçersiz oda tipi." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "invalidRoomType" }, { status: 400 });
     }
 
     // Generate reservationId BEFORE the sheet write so it can be embedded in
@@ -120,6 +103,7 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
       confirmedAt: "",
       cancelledAt: "",
+      locale: guestLocale,
     };
 
     // Single atomic batchUpdate: monthly cells (value+format) + log row.
@@ -135,13 +119,7 @@ export async function POST(request: NextRequest) {
     );
 
     if (!result) {
-      return NextResponse.json(
-        {
-          error:
-            "Seçtiğiniz tarihler için müsait oda kalmamıştır. Lütfen farklı tarih veya oda tipi deneyin.",
-        },
-        { status: 409 }
-      );
+      return NextResponse.json({ error: "noAvailability" }, { status: 409 });
     }
 
     const mail = getMailService();
@@ -157,6 +135,7 @@ export async function POST(request: NextRequest) {
         nights,
         roomLabel: result.roomLabel,
         depositAmount: deposit,
+        locale: guestLocale,
       });
       await mail.send({ to: data.email, ...template });
     } catch (mailErr) {
@@ -200,7 +179,7 @@ export async function POST(request: NextRequest) {
     console.error("Reservation create error:", err);
     await reportServerError(err, { stage: "reservation_create" });
     return NextResponse.json(
-      { error: "Rezervasyon oluşturulurken bir hata oluştu." },
+      { error: "reservationCreateError" },
       { status: 500 }
     );
   }
