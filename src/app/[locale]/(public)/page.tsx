@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import HeroHome from "@/components/home/hero-home";
 import StatsBar from "@/components/home/stats-bar";
 import AboutSnippet from "@/components/home/about-snippet";
@@ -8,7 +9,14 @@ import LocationSection from "@/components/home/location-section";
 import GalleryStrip from "@/components/home/gallery-strip";
 import AmbientSound from "@/components/home/ambient-sound";
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <AmbientSound />

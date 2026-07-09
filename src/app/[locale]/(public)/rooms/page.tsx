@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { hasLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import PageHero from "@/components/layout/page-hero";
 import JsonLd, { roomsJsonLd } from "@/components/seo/json-ld";
+import { buildAlternates } from "@/i18n/seo";
+import { routing, type Locale } from "@/i18n/routing";
 import {
   Ruler,
   Users,
@@ -21,123 +25,135 @@ import {
   Droplets,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Odalarımız",
-  description:
-    "Assos Karadut Taş Otel oda tipleri: Deluxe Tam Deniz Manzaralı, Traditional Kısmi Deniz Manzaralı ve Aile Suit Deniz Manzaralı. Tüm odalarda klima, TV, Wi-Fi, minibar.",
-  alternates: { canonical: "/rooms" },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const active: Locale = hasLocale(routing.locales, locale)
+    ? locale
+    : routing.defaultLocale;
+  const t = await getTranslations({ locale: active, namespace: "meta.rooms" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: buildAlternates(active, "/rooms"),
+  };
+}
 
-const rooms = [
-  {
-    name: "Deluxe Tam Deniz Manzaralı",
-    price: "Fiyat için arayın",
-    priceSub: "/ Gece · Kahvaltı Dahil",
-    desc: "Ege'nin muhteşem mavisine açılan pencereleriyle sabahları deniz manzarasıyla uyanacağınız odamız. 24 m² alanda modern konfor anlayışıyla tasarlanmış, klima ile tüm mevsimlerde konforlu bir konaklama sunmaktadır.",
-    mainImage:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-    galleryImages: [
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2dc440f7-fe20-42bc-98c7-e796e41ea0a6-600.jpeg",
-    ],
-    features: [
-      { icon: Ruler, text: "24 m²" },
-      { icon: Users, text: "2 Kişi" },
-      { icon: Waves, text: "Tam Deniz Manzarası" },
-      { icon: Snowflake, text: "Klima" },
-      { icon: Wifi, text: "Wi-Fi" },
-      { icon: Tv, text: "TV" },
-      { icon: Wine, text: "Minibar" },
-      { icon: Wind, text: "Saç Kurutma Makinesi" },
-    ],
-    bg: "bg-white",
-    layout: "image-left",
-  },
-  {
-    name: "Traditional Kısmi Deniz Manzaralı",
-    price: "Fiyat için arayın",
-    priceSub: "/ Gece · Kahvaltı Dahil",
-    desc: "22 m² alana sahip bu odamız, kısmen Ege manzarası sunarken tüm standart konfor olanaklarına sahiptir. Klima, TV ve minibarıyla rahat bir konaklama arayan misafirlerimiz için ideal bir seçimdir.",
-    mainImage:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-    galleryImages: [
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e95a6f29-0b97-4617-9ede-37e2d0ed9f00-300.jpeg",
-    ],
-    features: [
-      { icon: Ruler, text: "22 m²" },
-      { icon: Users, text: "2 Kişi" },
-      { icon: Waves, text: "Kısmi Deniz Manzarası" },
-      { icon: Snowflake, text: "Klima" },
-      { icon: Wifi, text: "Wi-Fi" },
-      { icon: Tv, text: "TV" },
-      { icon: Wine, text: "Minibar" },
-      { icon: Wind, text: "Saç Kurutma Makinesi" },
-    ],
-    bg: "bg-warm",
-    layout: "image-right",
-  },
-  {
-    name: "Aile Suit Deniz Manzaralı",
-    price: "Fiyat için arayın",
-    priceSub: "/ Gece · Kahvaltı Dahil",
-    desc: "44 m² ile otelimizin en geniş odası. Ailenizle birlikte geniş ve rahat bir tatil için tasarlanan bu odamız, 4 kişiye kadar konaklama kapasitesine sahiptir. Ayrı oturma alanı ve açık havada yemek masasıyla tam bir aile tatili konforunu sunar.",
-    mainImage:
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-    galleryImages: [
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
-      "https://cdng.jollytur.com/files/cms/media/hotel/room/412c6b53-32d0-428a-aecb-089d4da3cd45-600.jpeg",
-    ],
-    features: [
-      { icon: Ruler, text: "44 m²" },
-      { icon: Users, text: "4 Kişiye Kadar" },
-      { icon: Sofa, text: "Oturma Alanı" },
-      { icon: Snowflake, text: "Klima" },
-      { icon: Wifi, text: "Wi-Fi" },
-      { icon: Tv, text: "TV" },
-      { icon: Wine, text: "Minibar" },
-      { icon: Armchair, text: "Açık Hava Yemek Masası" },
-    ],
-    bg: "bg-white",
-    layout: "image-left",
-  },
-];
+export default async function RoomsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("rooms");
+  const tr = await getTranslations("roomTypes");
 
-const allAmenities = [
-  { icon: Snowflake, text: "Klima" },
-  { icon: Wifi, text: "Ücretsiz Wi-Fi" },
-  { icon: Tv, text: "TV" },
-  { icon: Wine, text: "Minibar" },
-  { icon: Wind, text: "Saç Kurutma Makinesi" },
-  { icon: Bath, text: "Banyo & Duş" },
-  { icon: Shirt, text: "Gardırop" },
-  { icon: Sofa, text: "Oturma Grubu" },
-  { icon: Shield, text: "Sivrisinek Teli" },
-  { icon: Droplets, text: "Buklet Seti" },
-  { icon: Waves, text: "Havlu Seti" },
-  { icon: Armchair, text: "Açık Hava Yemek Masası" },
-];
+  const priceSub = t("priceSub");
+  const rooms = [
+    {
+      name: tr("deluxe_sea_view"),
+      desc: t("list.deluxe.desc"),
+      mainImage:
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
+      galleryImages: [
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/5f6475c4-9c9a-4640-a5dc-115fa6ffb7be-600.jpeg",
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/2dc440f7-fe20-42bc-98c7-e796e41ea0a6-600.jpeg",
+      ],
+      features: [
+        { icon: Ruler, text: t("feat.size24") },
+        { icon: Users, text: t("feat.guests2") },
+        { icon: Waves, text: t("feat.fullSeaView") },
+        { icon: Snowflake, text: t("feat.ac") },
+        { icon: Wifi, text: t("feat.wifi") },
+        { icon: Tv, text: t("feat.tv") },
+        { icon: Wine, text: t("feat.minibar") },
+        { icon: Wind, text: t("feat.hairdryer") },
+      ],
+      bg: "bg-white",
+      layout: "image-left",
+    },
+    {
+      name: tr("traditional_room"),
+      desc: t("list.traditional.desc"),
+      mainImage:
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
+      galleryImages: [
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/2e20db12-6c15-49eb-8b30-5cbd53389e78-600.jpeg",
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/e95a6f29-0b97-4617-9ede-37e2d0ed9f00-300.jpeg",
+      ],
+      features: [
+        { icon: Ruler, text: t("feat.size22") },
+        { icon: Users, text: t("feat.guests2") },
+        { icon: Waves, text: t("feat.partialSeaView") },
+        { icon: Snowflake, text: t("feat.ac") },
+        { icon: Wifi, text: t("feat.wifi") },
+        { icon: Tv, text: t("feat.tv") },
+        { icon: Wine, text: t("feat.minibar") },
+        { icon: Wind, text: t("feat.hairdryer") },
+      ],
+      bg: "bg-warm",
+      layout: "image-right",
+    },
+    {
+      name: tr("premium_family"),
+      desc: t("list.family.desc"),
+      mainImage:
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
+      galleryImages: [
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/e21e4d3b-f71b-43ce-9dfd-a6b7bb92f9cc-600.jpeg",
+        "https://cdng.jollytur.com/files/cms/media/hotel/room/412c6b53-32d0-428a-aecb-089d4da3cd45-600.jpeg",
+      ],
+      features: [
+        { icon: Ruler, text: t("feat.size44") },
+        { icon: Users, text: t("feat.guests4") },
+        { icon: Sofa, text: t("feat.sitting") },
+        { icon: Snowflake, text: t("feat.ac") },
+        { icon: Wifi, text: t("feat.wifi") },
+        { icon: Tv, text: t("feat.tv") },
+        { icon: Wine, text: t("feat.minibar") },
+        { icon: Armchair, text: t("feat.outdoorTable") },
+      ],
+      bg: "bg-white",
+      layout: "image-left",
+    },
+  ];
 
-export default function RoomsPage() {
+  const allAmenities = [
+    { icon: Snowflake, text: t("amenities.items.ac") },
+    { icon: Wifi, text: t("amenities.items.wifi") },
+    { icon: Tv, text: t("amenities.items.tv") },
+    { icon: Wine, text: t("amenities.items.minibar") },
+    { icon: Wind, text: t("amenities.items.hairdryer") },
+    { icon: Bath, text: t("amenities.items.bath") },
+    { icon: Shirt, text: t("amenities.items.wardrobe") },
+    { icon: Sofa, text: t("amenities.items.seating") },
+    { icon: Shield, text: t("amenities.items.mosquitoNet") },
+    { icon: Droplets, text: t("amenities.items.amenityKit") },
+    { icon: Waves, text: t("amenities.items.towels") },
+    { icon: Armchair, text: t("amenities.items.outdoorTable") },
+  ];
+
   return (
     <>
-      <JsonLd data={roomsJsonLd()} />
+      <JsonLd data={roomsJsonLd(locale as Locale)} />
       <PageHero
-        title="Odalarımız"
-        breadcrumb="Odalarımız"
+        title={t("hero.title")}
+        breadcrumb={t("hero.breadcrumb")}
         backgroundImage="https://cdng.jollytur.com/files/cms/media/hotel/fa46d2cc-7aa8-45b3-95bf-d179020cf7a8-600.jpeg"
       />
 
       {/* Intro */}
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <span className="eyebrow">28 Oda · 3 Tip</span>
-          <h2>Konforun Taştaki Adresi</h2>
+          <span className="eyebrow">{t("intro.eyebrow")}</span>
+          <h2>{t("intro.title")}</h2>
           <div className="divider-gold-center" />
           <p className="max-w-[640px] mx-auto text-[15px] text-text-light">
-            Otelimizde 3 farklı oda tipimiz bulunmakta olup tüm odalar; klima,
-            TV, Wi-Fi, minibar, gardırop ve özel banyoyla donatılmıştır. Deniz
-            manzarası seçeneklerimizle Ege&apos;yi odanızdan seyredin.
+            {t("intro.text")}
           </p>
         </div>
       </section>
@@ -177,9 +193,9 @@ export default function RoomsPage() {
                     {room.name}
                   </h3>
                   <div className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase mb-4">
-                    {room.price}{" "}
+                    {t("priceContact")}{" "}
                     <span className="text-text-light font-normal normal-case tracking-normal">
-                      {room.priceSub}
+                      {priceSub}
                     </span>
                   </div>
                   <p className="text-[14px] text-text leading-[1.8] mb-6">
@@ -199,7 +215,7 @@ export default function RoomsPage() {
                   <div>
                     <Link href="/reservation" className="btn-gold">
                       <Phone className="inline w-3.5 h-3.5 mr-2" />
-                      Online Rezervasyon
+                      {t("bookCta")}
                     </Link>
                   </div>
                 </div>
@@ -235,13 +251,10 @@ export default function RoomsPage() {
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">Standart Özellikler</span>
-            <h2>Tüm Odalarımızda</h2>
+            <span className="eyebrow">{t("amenities.eyebrow")}</span>
+            <h2>{t("amenities.title")}</h2>
             <div className="divider-gold-center" />
-            <p className="text-text-light text-[15px]">
-              Aşağıdaki özellikler ekstra ücret olmaksızın tüm odalarımızda
-              mevcuttur.
-            </p>
+            <p className="text-text-light text-[15px]">{t("amenities.text")}</p>
           </div>
           <div className="text-center">
             {allAmenities.map((a, i) => (
@@ -259,9 +272,9 @@ export default function RoomsPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { label: "Giriş Saati", value: "14:00" },
-              { label: "Çıkış Saati", value: "12:00" },
-              { label: "Toplam Oda", value: "28" },
+              { label: t("checkinBanner.checkIn"), value: "14:00" },
+              { label: t("checkinBanner.checkOut"), value: "12:00" },
+              { label: t("checkinBanner.totalRooms"), value: "28" },
             ].map((item, i) => (
               <div
                 key={i}
@@ -278,7 +291,7 @@ export default function RoomsPage() {
               >
                 +90 501 091 34 17
               </a>
-              <span className="stat-label mt-2">Rezervasyon</span>
+              <span className="stat-label mt-2">{t("checkinBanner.reservation")}</span>
             </div>
           </div>
         </div>
@@ -287,21 +300,19 @@ export default function RoomsPage() {
       {/* CTA */}
       <section className="cta-banner">
         <div className="max-w-7xl mx-auto px-4 relative z-2">
-          <span className="eyebrow text-gold-light">Rezervasyon</span>
+          <span className="eyebrow text-gold-light">{t("cta.eyebrow")}</span>
           <h2 className="text-white">
-            Odanızı Ayırtmak İçin
+            {t("cta.titleLine1")}
             <br />
-            Bizi Arayın
+            {t("cta.titleLine2")}
           </h2>
-          <p className="text-white/70 text-[15px]">
-            7/24 resepsiyon hizmetimizle her zaman yanınızdayız.
-          </p>
+          <p className="text-white/70 text-[15px]">{t("cta.text")}</p>
           <a href="tel:+905010913417" className="phone-display">
             +90 501 091 34 17
           </a>
           <br />
           <Link href="/reservation" className="btn-outline-light mt-2">
-            Rezervasyon Nasıl Yapılır?
+            {t("cta.button")}
           </Link>
         </div>
       </section>

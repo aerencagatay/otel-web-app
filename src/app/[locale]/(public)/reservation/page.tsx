@@ -1,44 +1,62 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { hasLocale } from "next-intl";
 import BookingFlow from "@/components/booking/booking-flow";
 import { RESERVATION_HOLD_HOURS } from "@/lib/config/hotel";
-import {
-  Phone,
-  Mail,
-  Clock,
-  CalendarCheck,
-  LogIn,
-  Ban,
-  Baby,
-} from "lucide-react";
+import { buildAlternates } from "@/i18n/seo";
+import { routing, type Locale } from "@/i18n/routing";
+import { Phone, Mail, Clock, CalendarCheck, LogIn, Ban, Baby } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Rezervasyon",
-  description:
-    "Assos Karadut Taş Otel online rezervasyon. Tarih seçin, müsaitliği kontrol edin ve kolayca rezervasyon yapın.",
-  alternates: { canonical: "/reservation" },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const active: Locale = hasLocale(routing.locales, locale)
+    ? locale
+    : routing.defaultLocale;
+  const t = await getTranslations({ locale: active, namespace: "meta.reservation" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: buildAlternates(active, "/reservation"),
+  };
+}
 
-export default function ReservationPage() {
+export default async function ReservationPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("reservation");
+
+  const steps = [
+    { num: 1, title: t("process.step1.title"), desc: t("process.step1.desc") },
+    { num: 2, title: t("process.step2.title"), desc: t("process.step2.desc") },
+    { num: 3, title: t("process.step3.title"), desc: t("process.step3.desc") },
+  ];
+
   return (
     <>
       {/* Hero */}
       <div>
         <div className="res-hero relative z-[1]">
           <div className="max-w-7xl mx-auto px-4">
-            <span className="eyebrow text-white/70">Rezervasyon</span>
+            <span className="eyebrow text-white/70">{t("hero.eyebrow")}</span>
             <h1
               className="text-white mb-4 font-heading font-semibold tracking-tight"
               style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}
             >
-              Tarih seçin, odayı seçin,
+              {t("hero.titleLine1")}
               <br className="hidden sm:block" />
-              <span className="text-white/85 font-normal italic"> kapora ile kesinleştirin.</span>
+              <span className="text-white/85 font-normal italic"> {t("hero.titleLine2")}</span>
             </h1>
             <p className="text-white/70 text-[15px] max-w-[540px] mx-auto mb-2 leading-relaxed">
-              Müsaitlik anında kontrol edilir. Talebiniz kapora onayından sonra kesin rezervasyona
-              dönüşür.
+              {t("hero.lede")}
             </p>
           </div>
         </div>
@@ -48,38 +66,18 @@ export default function ReservationPage() {
       <section className="section-py bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">Süreç</span>
-            <h2>Nasıl Rezervasyon Yapılır?</h2>
+            <span className="eyebrow">{t("process.eyebrow")}</span>
+            <h2>{t("process.title")}</h2>
             <div className="divider-gold-center" />
-            <p className="text-text-light text-[15px]">
-              3 basit adımda rezervasyonunuzu tamamlayın.
-            </p>
+            <p className="text-text-light text-[15px]">{t("process.text")}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            {[
-              {
-                num: 1,
-                title: "Tarih & Oda Seçin",
-                desc: "Giriş-çıkış tarihinizi ve oda tipini belirleyin. Müsaitliği anında görün.",
-              },
-              {
-                num: 2,
-                title: "Bilgilerinizi Girin",
-                desc: "Ad, soyad, telefon ve e-posta bilgilerinizi doldurun.",
-              },
-              {
-                num: 3,
-                title: "Kapora Ödeyip Onaylayın",
-                desc: "IBAN'a kapora ödemesi yapın. Admin onayı ile rezervasyonunuz kesinleşir.",
-              },
-            ].map((step) => (
+            {steps.map((step) => (
               <div key={step.num} className="step-card">
                 <div className="step-number">{step.num}</div>
                 <h5 className="text-[16px] mb-2.5">{step.title}</h5>
-                <p className="text-[13.5px] text-text-light m-0">
-                  {step.desc}
-                </p>
+                <p className="text-[13.5px] text-text-light m-0">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -87,7 +85,7 @@ export default function ReservationPage() {
           <Suspense
             fallback={
               <div className="state-surface state-surface--muted py-20">
-                <p className="text-text-light m-0">Rezervasyon formu yükleniyor…</p>
+                <p className="text-text-light m-0">{t("process.loading")}</p>
               </div>
             }
           >
@@ -101,106 +99,86 @@ export default function ReservationPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
-              <span className="eyebrow">Bilmeniz Gerekenler</span>
+              <span className="eyebrow">{t("conditions.eyebrow")}</span>
               <h2 className="mb-4">
-                Rezervasyon
+                {t("conditions.titleLine1")}
                 <br />
-                Koşulları
+                {t("conditions.titleLine2")}
               </h2>
               <div className="info-box">
                 <strong>
                   <CalendarCheck className="inline w-4 h-4 mr-2 text-gold" />
-                  Erken Rezervasyon
+                  {t("conditions.earlyTitle")}
                 </strong>
-                Yaz sezonunda odalar hızla doluyor. Yerinizi garantilemek için
-                önceden rezervasyon yapın.
+                {t("conditions.earlyText")}
               </div>
-              <div className="info-box">
+              <div className="info-box whitespace-pre-line">
                 <strong>
                   <LogIn className="inline w-4 h-4 mr-2 text-gold" />
-                  Giriş / Çıkış Saatleri
+                  {t("conditions.hoursTitle")}
                 </strong>
-                Check-in: 14:00 · Check-out: 12:00
-                <br />
-                Erken giriş ve geç çıkış için müsaitlik durumuna göre destek
-                sağlanır.
+                {t("conditions.hoursText")}
               </div>
               <div className="info-box">
                 <strong>
                   <Ban className="inline w-4 h-4 mr-2 text-gold" />
-                  İptal Politikası
+                  {t("conditions.cancelTitle")}
                 </strong>
-                Kapora ödemesi yapıldıktan sonra iptal ve değişiklik koşulları
-                için bizi arayın.
+                {t("conditions.cancelText")}
               </div>
               <div className="info-box">
                 <strong>
                   <Baby className="inline w-4 h-4 mr-2 text-gold" />
-                  Çocuk Politikası
+                  {t("conditions.childTitle")}
                 </strong>
-                Çocuklu konaklamalarınız için fiyat ve uygunluk bilgisi almak
-                üzere lütfen bizimle iletişime geçin.
+                {t("conditions.childText")}
               </div>
             </div>
 
             <div className="bg-dark p-10 md:p-12 text-white">
-              <span className="eyebrow text-gold-light">Anında Ulaşın</span>
-              <h3 className="text-white mb-5">Sorularınız mı var?</h3>
-              <p className="text-white/65 text-[14.5px] mb-8">
-                Oda müsaitliği, fiyat bilgisi, otel olanakları veya çevre
-                hakkında aklınıza takılan her şeyi sormaktan çekinmeyin.
-              </p>
+              <span className="eyebrow text-gold-light">{t("contactBox.eyebrow")}</span>
+              <h3 className="text-white mb-5">{t("contactBox.title")}</h3>
+              <p className="text-white/65 text-[14.5px] mb-8">{t("contactBox.text")}</p>
 
-              {[
-                {
-                  icon: Phone,
-                  label: "Telefon",
-                  content: (
-                    <a
-                      href="tel:+905010913417"
-                      className="font-heading text-[24px] text-gold no-underline font-bold"
-                    >
-                      +90 501 091 34 17
-                    </a>
-                  ),
-                },
-                {
-                  icon: Mail,
-                  label: "E-posta",
-                  content: (
-                    <a
-                      href="mailto:karaduttas@gmail.com"
-                      className="text-[15px] text-white/80 no-underline"
-                    >
-                      karaduttas@gmail.com
-                    </a>
-                  ),
-                },
-                {
-                  icon: Clock,
-                  label: "Hizmet Saatleri",
-                  content: (
-                    <span className="text-[15px] text-white/80">
-                      7 gün 24 saat
-                    </span>
-                  ),
-                },
-              ].map((item, i, arr) => (
-                <div
-                  key={i}
-                  className={`flex items-center gap-4 py-4 ${
-                    i !== arr.length - 1 ? "border-b border-white/10" : ""
-                  }`}
-                >
-                  <item.icon size={18} className="text-gold-light shrink-0" />
-                  <div>
-                    <div className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-1">
-                      {item.label}
-                    </div>
-                    {item.content}
+              <div className="flex items-center gap-4 py-4 border-b border-white/10">
+                <Phone size={18} className="text-gold-light shrink-0" />
+                <div>
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-1">
+                    {t("contactBox.phone")}
                   </div>
+                  <a
+                    href="tel:+905010913417"
+                    className="font-heading text-[24px] text-gold no-underline font-bold"
+                  >
+                    +90 501 091 34 17
+                  </a>
                 </div>
-              ))}
+              </div>
+              <div className="flex items-center gap-4 py-4 border-b border-white/10">
+                <Mail size={18} className="text-gold-light shrink-0" />
+                <div>
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-1">
+                    {t("contactBox.email")}
+                  </div>
+                  <a
+                    href="mailto:karaduttas@gmail.com"
+                    className="text-[15px] text-white/80 no-underline"
+                  >
+                    karaduttas@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 py-4">
+                <Clock size={18} className="text-gold-light shrink-0" />
+                <div>
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-1">
+                    {t("contactBox.hours")}
+                  </div>
+                  <span className="text-[15px] text-white/80">
+                    {t("contactBox.hoursValue")}
+                  </span>
+                </div>
+              </div>
 
               <hr className="border-white/10 mt-8 mb-8" />
               <a
@@ -208,7 +186,7 @@ export default function ReservationPage() {
                 className="btn-gold w-full text-center block"
               >
                 <Phone className="inline w-4 h-4 mr-2" />
-                Şimdi Ara
+                {t("contactBox.callNow")}
               </a>
             </div>
           </div>
@@ -219,12 +197,19 @@ export default function ReservationPage() {
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">SSS</span>
-            <h2>Sık Sorulan Sorular</h2>
+            <span className="eyebrow">{t("faq.eyebrow")}</span>
+            <h2>{t("faq.title")}</h2>
             <div className="divider-gold-center" />
           </div>
           <div className="max-w-3xl mx-auto">
-            <FaqAccordion />
+            <FaqAccordion
+              faqs={[
+                { q: t("faq.q1"), a: t("faq.a1") },
+                { q: t("faq.q2"), a: t("faq.a2") },
+                { q: t("faq.q3"), a: t("faq.a3") },
+                { q: t("faq.q4"), a: t("faq.a4", { hours: RESERVATION_HOLD_HOURS }) },
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -232,33 +217,11 @@ export default function ReservationPage() {
   );
 }
 
-function FaqAccordion() {
-  const faqs = [
-    {
-      q: "Kahvaltı dahil mi?",
-      a: "Evet, fiyatlarımıza sabah kahvaltısı dahildir. Her gün taze hazırlanan açık büfe kahvaltımız misafirlerimize sunulmaktadır.",
-    },
-    {
-      q: "Otopark ücretsiz mi?",
-      a: "Evet, misafirlerimize özel ücretsiz otopark alanımız mevcuttur.",
-    },
-    {
-      q: "Denize/plaja ne kadar yakınsınız?",
-      a: "Kadırga Plajı'na yaklaşık 5 dakika, Assos Limanı'na ise 10 dakika mesafedeyiz. Araçla kolayca ulaşabilirsiniz.",
-    },
-    {
-      q: "Kapora ne zaman ödenmeli?",
-      a: `Rezervasyon oluşturduktan sonra ${RESERVATION_HOLD_HOURS} saat içinde kapora ödemesini IBAN'a yapmanız beklenir. Bu süre içinde onaylanmazsa rezervasyon talebiniz otomatik iptal edilir. Ödeme onaylandıktan sonra rezervasyonunuz kesinleşir.`,
-    },
-  ];
-
+function FaqAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
   return (
     <div className="space-y-3">
       {faqs.map((faq, i) => (
-        <details
-          key={i}
-          className="border-b border-border group"
-        >
+        <details key={i} className="border-b border-border group">
           <summary className="cursor-pointer py-5 text-[14px] font-semibold text-dark list-none flex justify-between items-center gap-4">
             {faq.q}
             <span className="text-gold ml-4 transition-transform group-open:rotate-45 text-xl shrink-0">

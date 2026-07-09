@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import PageHero from "@/components/layout/page-hero";
+import { buildAlternates } from "@/i18n/seo";
+import { hasLocale } from "next-intl";
+import { routing, type Locale } from "@/i18n/routing";
 import {
   Heart,
   Eye,
@@ -25,111 +29,93 @@ import {
   BellRing,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Hakkımızda",
-  description:
-    "Assos Karadut Taş Otel hakkında bilgi edinin. 28 oda, A La Carte restoran, açık havuz, Kadırga Koyu'na 5 km. 9.6/10 misafir puanı.",
-  alternates: { canonical: "/about" },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const active: Locale = hasLocale(routing.locales, locale)
+    ? locale
+    : routing.defaultLocale;
+  const t = await getTranslations({ locale: active, namespace: "meta.about" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: buildAlternates(active, "/about"),
+  };
+}
 
-const ratingStats = [
-  { label: "Google Puanı · 157 yorum", value: "4.9" },
-  { label: "TripAdvisor Puanı", value: "5/5" },
-  { label: "Büyükhusun'da Sıralama", value: "#2" },
-  { label: "Özenle Tasarlanmış Oda", value: "28" },
-];
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("about");
 
-const reviews = [
-  {
-    text: `Buraya kesinlikle bayıldık 2 gece konakladık bugün çıkacağız ama resmen buradan ayrılacağım için üzülüyorum. Böyle güzel manzara bu kadar huzurlu bir yer bulup 2 günümüzü geçirmek inanılmaz güzel bir tecrübeydi. Biz 1+1'lerde konakladık; odalardaki ince dekoratif ayrıntılar, Midilli'ye karşı muhteşem manzara kesinlikle çok güzeldi. Odada şömine bile vardı ama odamızın o kadar güzel manzarası vardı ki biz hep balkonda vakit geçirmek istedik. Otelin sahipleri en ince ayrıntıya kadar düşünmüşler; resmen bir otel değil de kendi evlerini tasarlar gibi yapmışlar. Kahvaltısı da gayet yeterli ve güzeldi. Otelin maskotları Ares'le Tarçın çok cana yakın ve eğitimli köpekler, onlarla da çok güzel vakit geçirdik. Eşsiz güzel manzara, muhteşem huzur — kesinlikle tavsiye ediyoruz.`,
-    author: "Kmrozlm7777",
-    meta: "Google · 7 ay önce · Çift",
-  },
-  {
-    text: `Ailecek, 1+1 odalarında 2 gece konakladığımız Karadut Taş Otel beklentilerimizin üzerinde bir deneyim sundu. İlgili, güler yüzlü çalışanlar, temiz ve konforlu odalar, muhteşem bir manzara ve sessizlik, dinlenmek için müthiş bir konum gerçek anlamda 5 yıldızı hak ediyor. Otel sahilden 7-8 dakika uzakta olsa da, kendilerine ait pansiyonun Kadırga Koyu'ndaki plajından ücretsiz yararlandırmaları da müthiş. Sonuç olarak; ben böyle bir işletmemiz olduğu için gurur duydum; bundan sonra mümkünse her yıl birkaç günü bu otelde geçirip kendimi yenilemek isterim. Emeği geçen herkese teşekkürlerimle.`,
-    author: "Bahar",
-    meta: "Google · 10 ay önce · Aile",
-  },
-  {
-    text: `Karadut Otel, Assos tatilimizde tercih ettiğimiz konaklama lokasyonumuz oldu. Burası çok şirin bir aile işletmesi. Yağız Bey ve ailesi hem çok samimi hem de çok profesyonel; tüm ihtiyaçlarımızı sabırla karşıladılar. Odalar temiz ve ferah, daireler arası mesafe mahremiyet için yeterli. Sonsuzluk havuzuna da bayıldık; mükemmel bir manzaraya sahip. Çocuk havuzu da mevcut, havuz tertemiz ve bakımlıydı. Telefonla rezervasyon yaptırdığımızda internetten çok daha uygun bir fiyat aldık — iletişim numarasından ulaşmanızı öneririm.`,
-    author: "İrem İnci",
-    meta: "Google · 8 ay önce · Arkadaşlar",
-  },
-];
+  const ratingStats = [
+    { label: t("ratings.google"), value: "4.9" },
+    { label: t("ratings.tripadvisor"), value: "5/5" },
+    { label: t("ratings.rank"), value: "#2" },
+    { label: t("ratings.designedRooms"), value: "28" },
+  ];
 
-const highlightRatings = [
-  { icon: Sparkles, label: "Temizlik", score: "9.8" },
-  { icon: MapPin, label: "Konum", score: "9.5" },
-  { icon: BellRing, label: "Personel", score: "9.9" },
-  { icon: Coffee, label: "Kahvaltı", score: "9.7" },
-];
+  const reviews = [
+    { text: t("reviews.review1"), author: "Kmrozlm7777", meta: t("reviews.review1meta") },
+    { text: t("reviews.review2"), author: "Bahar", meta: t("reviews.review2meta") },
+    { text: t("reviews.review3"), author: "İrem İnci", meta: t("reviews.review3meta") },
+  ];
 
-const features = [
-  { icon: Waves, text: "Açık havuz + çocuk havuzu" },
-  { icon: UtensilsCrossed, text: "A La Carte Restoran" },
-  { icon: Wine, text: "Havuz başı bar" },
-  { icon: Coffee, text: "Ismarlamalı kahvaltı (08:30–10:30)" },
-  { icon: Flame, text: "Firepit · açık hava ateş alanı" },
-  { icon: CarFront, text: "Ücretsiz açık otopark" },
-  { icon: Wifi, text: "Tüm alanlarda ücretsiz Wi-Fi" },
-];
+  const highlightRatings = [
+    { icon: Sparkles, label: t("reviews.highlightCleanliness"), score: "9.8" },
+    { icon: MapPin, label: t("reviews.highlightLocation"), score: "9.5" },
+    { icon: BellRing, label: t("reviews.highlightStaff"), score: "9.9" },
+    { icon: Coffee, label: t("reviews.highlightBreakfast"), score: "9.7" },
+  ];
 
-const attractions = [
-  {
-    icon: Umbrella,
-    title: "Kadırga Koyu",
-    dist: "5 km",
-    desc: "Ege'nin berrak sularında yüzme ve güneşlenme. Otelden şezlong ve şemsiye ayrıcalığı.",
-  },
-  {
-    icon: Landmark,
-    title: "Antik Assos (Behramkale)",
-    dist: "10 dk",
-    desc: "Aristo'nun yaşadığı antik kent. Athena Tapınağı ve Ege'ye hâkim akropol.",
-  },
-  {
-    icon: Ship,
-    title: "Assos Limanı",
-    dist: "10 dk",
-    desc: "Tekneler, taze balık restoranları ve Ege manzaralı romantik akşamlar.",
-  },
-  {
-    icon: TreePine,
-    title: "Kazdağı Milli Parkı",
-    dist: "37 km",
-    desc: "Ida Dağı'nda doğa yürüyüşleri, şelale ve ormanlık alanlar.",
-  },
-  {
-    icon: Droplets,
-    title: "Adatepe Zeytinyağı Müzesi",
-    dist: "",
-    desc: "Zeytinyağının tarihini anlatan özgün müze ve bölgenin geleneksel zanaatkârlığı.",
-  },
-  {
-    icon: Anchor,
-    title: "Küçükkuyu",
-    dist: "",
-    desc: "Şirin bir kıyı kasabası; yerel pazarlar, geleneksel Türk restoranları ve gözde plajlar.",
-  },
-];
+  const features = [
+    { icon: Waves, text: t("features.list.pool") },
+    { icon: UtensilsCrossed, text: t("features.list.restaurant") },
+    { icon: Wine, text: t("features.list.bar") },
+    { icon: Coffee, text: t("features.list.breakfast") },
+    { icon: Flame, text: t("features.list.firepit") },
+    { icon: CarFront, text: t("features.list.parking") },
+    { icon: Wifi, text: t("features.list.wifi") },
+  ];
 
-const galleryImages = [
-  { src: "/img/dis-cephe-web.jpg", label: "Dış Cephe" },
-  { src: "/img/balkon-web.jpg", label: "Balkon" },
-  { src: "/img/bahce.webp", label: "Bahçe" },
-  { src: "/img/havuz.webp", label: "Havuz" },
-  { src: "/img/hero-poster.jpg", label: "Deniz Manzarası" },
-  { src: "/img/hotel-web.jpg", label: "Otel" },
-  { src: "/img/hotel-2-web.jpg", label: "Taş Mimari" },
-  { src: "/img/aile-suit.webp", label: "Aile Suit Deniz Manzaralı" },
-];
+  const attractions = [
+    { icon: Umbrella, key: "bay" },
+    { icon: Landmark, key: "assos" },
+    { icon: Ship, key: "harbor" },
+    { icon: TreePine, key: "park" },
+    { icon: Droplets, key: "museum" },
+    { icon: Anchor, key: "kucukkuyu" },
+  ] as const;
 
-export default function AboutPage() {
+  const galleryImages = [
+    { src: "/img/dis-cephe-web.jpg", label: t("gallery.disCephe") },
+    { src: "/img/balkon-web.jpg", label: t("gallery.balkon") },
+    { src: "/img/bahce.webp", label: t("gallery.bahce") },
+    { src: "/img/havuz.webp", label: t("gallery.havuz") },
+    { src: "/img/hero-poster.jpg", label: t("gallery.seaView") },
+    { src: "/img/hotel-web.jpg", label: t("gallery.otel") },
+    { src: "/img/hotel-2-web.jpg", label: t("gallery.tasMimari") },
+    { src: "/img/aile-suit.webp", label: t("gallery.aileSuit") },
+  ];
+
+  const values = [
+    { icon: Heart, title: t("values.mission.title"), desc: t("values.mission.desc") },
+    { icon: Eye, title: t("values.vision.title"), desc: t("values.vision.desc") },
+    { icon: Award, title: t("values.certified.title"), desc: t("values.certified.desc") },
+  ];
+
   return (
     <>
       <PageHero
-        title="Hakkımızda"
-        breadcrumb="Hakkımızda"
+        title={t("hero.title")}
+        breadcrumb={t("hero.breadcrumb")}
         backgroundImage="https://cdng.jollytur.com/files/cms/media/hotel/fa46d2cc-7aa8-45b3-95bf-d179020cf7a8-600.jpeg"
       />
 
@@ -159,35 +145,22 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="eyebrow">Hikayemiz</span>
+              <span className="eyebrow">{t("story.eyebrow")}</span>
               <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
-                Assos&apos;un Ruhunu
+                {t("story.titleLine1")}
                 <br />
-                Taşıyan Bir Otel
+                {t("story.titleLine2")}
               </h2>
               <div className="divider-gold" />
-              <p className="text-[15px] leading-[1.9] mb-4">
-                Assos Karadut Taş Otel, Büyükhusun Köyü&apos;nün sessiz
-                güzelliğinde, Ege&apos;nin mavisine açılan eşsiz bir konumda
-                yükseliyor. 28 odası ile kahvaltı dahil ve yarım pansiyon
-                seçenekleri sunan otelimiz, geleneksel taş mimarisini modern
-                konfor anlayışıyla harmanlıyor.
-              </p>
-              <p className="text-[15px] leading-[1.9] mb-4">
-                Kadırga Koyu&apos;na 5 km mesafede, Antik Assos ve Assos
-                Limanı&apos;na dakikalar uzaklıkta konumlanan otelimiz;
-                Ege&apos;nin tarihini, doğasını ve denizini tek bir tatilde bir
-                araya getirmek isteyenler için biçilmiş bir kaftandır.
-              </p>
+              <p className="text-[15px] leading-[1.9] mb-4">{t("story.p1")}</p>
+              <p className="text-[15px] leading-[1.9] mb-4">{t("story.p2")}</p>
               <p className="text-[15px] leading-[1.9]">
-                Misafirlerimizin ZenHotels&apos;te verdiği{" "}
-                <strong>9.6/10</strong> ve TripAdvisor&apos;daki{" "}
-                <strong>5/5</strong> puanı, sunduğumuz hizmetin ve mekânın en
-                güzel yansımasıdır.
+                {t("story.p3Prefix")} <strong>9.6/10</strong> {t("story.p3Mid")}{" "}
+                <strong>5/5</strong> {t("story.p3Suffix")}
               </p>
               <div className="bg-warm border-l-[3px] border-gold px-5 py-4 mt-5 text-[13.5px]">
-                <strong className="text-dark">Sezonluk Otel:</strong> Nisan –
-                Ekim ayları arasında hizmet vermekteyiz.
+                <strong className="text-dark">{t("story.seasonalLabel")}</strong>{" "}
+                {t("story.seasonalText")}
               </div>
             </div>
             <div>
@@ -199,7 +172,7 @@ export default function AboutPage() {
                 playsInline
                 preload="none"
                 poster="/img/otel-video-poster.jpg"
-                aria-label="Assos Karadut Taş Otel tanıtım videosu"
+                aria-label={t("story.videoAria")}
               >
                 <source src="/img/otel-video.mp4" type="video/mp4" />
               </video>
@@ -212,23 +185,7 @@ export default function AboutPage() {
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              {
-                icon: Heart,
-                title: "Misyonumuz",
-                desc: "Misafirlerimize evlerinden uzakta ev sıcaklığı hissettirmek; Ege'nin doğasını ve Assos'un tarihini en iyi şekilde deneyimlemelerini sağlamak.",
-              },
-              {
-                icon: Eye,
-                title: "Vizyonumuz",
-                desc: "Assos bölgesinin en seçkin butik oteli olmak; geleneksel taş mimarisini yaşatarak sürdürülebilir turizme öncülük etmek.",
-              },
-              {
-                icon: Award,
-                title: "Kültür Bakanlığı Belgeli",
-                desc: "T.C. Kültür ve Turizm Bakanlığı Turizm İşletme Belgesi'ne (No: 24921) sahip onaylı bir konaklama tesisiyiz.",
-              },
-            ].map((item, i) => (
+            {values.map((item, i) => (
               <div key={i} className="amenity-card bg-white h-full">
                 <div className="amenity-icon">
                   <item.icon size={26} className="text-gold" />
@@ -248,23 +205,15 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <span className="eyebrow">Olanaklar</span>
+              <span className="eyebrow">{t("features.eyebrow")}</span>
               <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
-                Her Detayda
+                {t("features.titleLine1")}
                 <br />
-                Özen
+                {t("features.titleLine2")}
               </h2>
               <div className="divider-gold" />
-              <p className="text-[15px] leading-[1.9] mb-4">
-                Deniz manzaralı açık yüzme havuzumuz ve ayrı çocuk havuzumuz
-                ile tüm yaş gruplarına hitap ediyoruz. Havuz başındaki bar,
-                sizi serinletirken keyfini de artırıyor.
-              </p>
-              <p className="text-[15px] leading-[1.9] mb-4">
-                A La Carte restoranımızda taze yerel malzemelerle hazırlanan
-                Ege lezzetleri ve ısmarlamalı kahvaltı servisi (08:30–10:30)
-                sunulmaktadır.
-              </p>
+              <p className="text-[15px] leading-[1.9] mb-4">{t("features.p1")}</p>
+              <p className="text-[15px] leading-[1.9] mb-4">{t("features.p2")}</p>
               <ul className="list-none p-0 mt-3 space-y-0">
                 {features.map((f, i) => (
                   <li
@@ -286,7 +235,7 @@ export default function AboutPage() {
                 playsInline
                 preload="none"
                 poster="/img/havuz-video-poster.jpg"
-                aria-label="Otel havuzu videosu"
+                aria-label={t("features.videoAria")}
               >
                 <source src="/img/havuz-video.mp4" type="video/mp4" />
               </video>
@@ -299,8 +248,8 @@ export default function AboutPage() {
       <section className="section-py bg-dark">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow text-gold-light">Misafir Yorumları</span>
-            <h2 className="text-white">Misafirlerimiz Ne Diyor?</h2>
+            <span className="eyebrow text-gold-light">{t("reviews.eyebrow")}</span>
+            <h2 className="text-white">{t("reviews.title")}</h2>
             <div className="divider-gold-center" />
           </div>
 
@@ -309,7 +258,7 @@ export default function AboutPage() {
               <div>
                 <div className="rating-score">4.9</div>
                 <div className="text-[12px] tracking-wide text-text-light">
-                  / 5
+                  {t("reviews.outOf")}
                 </div>
               </div>
               <div className="text-left">
@@ -323,10 +272,10 @@ export default function AboutPage() {
                   ))}
                 </div>
                 <div className="text-[14px] text-text-light">
-                  157 Google yorumu
+                  {t("reviews.count")}
                 </div>
                 <div className="text-[13px] font-bold text-gold">
-                  Olağanüstü
+                  {t("reviews.exceptional")}
                 </div>
               </div>
             </div>
@@ -384,7 +333,7 @@ export default function AboutPage() {
               className="btn-gold no-underline inline-flex items-center justify-center gap-2"
             >
               <Star size={15} className="fill-current" />
-              Google&apos;da Tüm Yorumları Gör
+              {t("reviews.seeAll")}
             </a>
           </div>
         </div>
@@ -397,36 +346,27 @@ export default function AboutPage() {
             <div className="lg:col-span-5">
               <Image
                 src="/img/chairperson-web.jpg"
-                alt="Bilgi İşlem Sorumlumuz"
+                alt={t("team.photoCaption")}
                 width={500}
                 height={480}
                 className="w-full h-[480px] object-cover"
               />
               <p className="text-center text-[11px] tracking-[0.25em] uppercase text-gold-dark font-semibold mt-3">
-                Bilgi İşlem Sorumlumuz
+                {t("team.photoCaption")}
               </p>
             </div>
             <div className="lg:col-span-7">
-              <span className="eyebrow">Ekibimiz</span>
+              <span className="eyebrow">{t("team.eyebrow")}</span>
               <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
-                Kişisel İlgi,
+                {t("team.titleLine1")}
                 <br />
-                Güleryüzlü Hizmet
+                {t("team.titleLine2")}
               </h2>
               <div className="divider-gold" />
-              <p className="text-[15px] leading-[1.9] mb-4">
-                Assos Karadut Taş Otel&apos;de hizmet anlayışımız, kurumsal
-                soğukluğun ötesindedir. Sahipleri ve ekibi, her misafiriyle
-                birebir ilgilenerek onların ihtiyaçlarını önceden sezmeye
-                çalışır.
-              </p>
-              <p className="text-[15px] leading-[1.9] mb-2">
-                Bölgeyi iyi tanıyan ekibimiz; Assos çevresindeki gizli
-                koyları, yürüyüş rotalarını ve en taze deniz ürünleri sunan
-                restoranları sizinle paylaşmaktan mutluluk duyar.
-              </p>
+              <p className="text-[15px] leading-[1.9] mb-4">{t("team.p1")}</p>
+              <p className="text-[15px] leading-[1.9] mb-2">{t("team.p2")}</p>
               <Link href="/contact" className="btn-gold mt-2">
-                Bize Ulaşın
+                {t("team.cta")}
               </Link>
             </div>
           </div>
@@ -437,8 +377,8 @@ export default function AboutPage() {
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">Fotoğraf Galerisi</span>
-            <h2>Otelimizden Kareler</h2>
+            <span className="eyebrow">{t("gallery.eyebrow")}</span>
+            <h2>{t("gallery.title")}</h2>
             <div className="divider-gold-center" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-[5px]">
@@ -468,28 +408,29 @@ export default function AboutPage() {
       <section className="section-py bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">Çevrede Keşfedilecekler</span>
-            <h2>Assos&apos;un Hazineleri</h2>
+            <span className="eyebrow">{t("nearby.eyebrow")}</span>
+            <h2>{t("nearby.title")}</h2>
             <div className="divider-gold-center" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {attractions.map((a, i) => (
-              <div key={i} className="amenity-card bg-warm h-full">
-                <div className="amenity-icon">
-                  <a.icon size={26} className="text-gold" />
+            {attractions.map((a, i) => {
+              const dist = t(`nearby.items.${a.key}.dist`);
+              return (
+                <div key={i} className="amenity-card bg-warm h-full">
+                  <div className="amenity-icon">
+                    <a.icon size={26} className="text-gold" />
+                  </div>
+                  <h5 className="text-[13px] tracking-[1.2px] uppercase mb-2">
+                    {t(`nearby.items.${a.key}.title`)}
+                  </h5>
+                  <p className="text-[13px] text-text-light m-0">
+                    {dist && <strong className="text-gold">{dist}</strong>}{" "}
+                    {dist && "· "}
+                    {t(`nearby.items.${a.key}.desc`)}
+                  </p>
                 </div>
-                <h5 className="text-[13px] tracking-[1.2px] uppercase mb-2">
-                  {a.title}
-                </h5>
-                <p className="text-[13px] text-text-light m-0">
-                  {a.dist && (
-                    <strong className="text-gold">{a.dist}</strong>
-                  )}{" "}
-                  {a.dist && "· "}
-                  {a.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -497,17 +438,15 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="cta-banner">
         <div className="max-w-7xl mx-auto px-4 relative z-2">
-          <span className="eyebrow text-gold-light">Rezervasyon</span>
-          <h2 className="text-white">Sizi Aramızda Görmek İstiyoruz</h2>
-          <p className="text-white/70 text-[15px]">
-            Nisan – Ekim sezonu için yerinizi şimdiden ayırtın.
-          </p>
+          <span className="eyebrow text-gold-light">{t("cta.eyebrow")}</span>
+          <h2 className="text-white">{t("cta.title")}</h2>
+          <p className="text-white/70 text-[15px]">{t("cta.text")}</p>
           <a href="tel:+905010913417" className="phone-display">
             +90 501 091 34 17
           </a>
           <br />
           <Link href="/reservation" className="btn-outline-light mt-2">
-            Rezervasyon Bilgisi
+            {t("cta.button")}
           </Link>
         </div>
       </section>

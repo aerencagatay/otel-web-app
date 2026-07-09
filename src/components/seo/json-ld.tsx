@@ -67,12 +67,18 @@ const AMENITIES: Record<JsonLdLocale, string[]> = {
  * eklenmelidir. Yorum verisi yokken KESİNLİKLE eklenmez — sahte/desteksiz
  * rating Google tarafından cezalandırılır.
  */
+const HOTEL_DESCRIPTION: Record<JsonLdLocale, string> = {
+  tr: "Assos Karadut Taş Otel, Ayvacık'ın tarihi güzelliği içinde eşsiz bir konaklama deneyimi sunar. Kadırga Plajı'na 5 dakika, Assos Antik Kenti'ne 7 dakika.",
+  en: "Assos Karadut Taş Otel offers a distinctive stay amid the historic beauty of Ayvacık. Five minutes to Kadırga Beach, seven minutes to the ancient city of Assos.",
+};
+
 export function hotelJsonLd(locale: JsonLdLocale = "tr"): WithContext<Hotel> {
   return {
     "@context": "https://schema.org",
     "@type": "Hotel",
     "@id": HOTEL_ID,
     name: HOTEL.name,
+    description: HOTEL_DESCRIPTION[locale],
     url: HOTEL.website,
     telephone: HOTEL.phone,
     email: HOTEL.email,
