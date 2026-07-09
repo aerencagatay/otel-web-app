@@ -1,13 +1,15 @@
+import { useTranslations } from "next-intl";
 import { Phone } from "lucide-react";
 
 export default function Topbar() {
+  const t = useTranslations("topbar");
   return (
     <div className="topbar py-2 border-b border-gray-700">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center">
           <p className="mb-0 text-white text-[12.5px]">
             <Phone className="inline w-3 h-3 mr-2 text-gold" />
-            <span className="hidden sm:inline">Rezervasyon için bizi arayın:&nbsp;</span>
+            <span className="hidden sm:inline">{t("callToBook")}&nbsp;</span>
             <a
               href="tel:+905010913417"
               className="text-white no-underline font-semibold"

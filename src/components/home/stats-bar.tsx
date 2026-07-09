@@ -1,7 +1,12 @@
+import { useLocale, useTranslations } from "next-intl";
 import { getAverageRating, getRatedReviewCount } from "@/lib/config/reviews";
 import { HOTEL } from "@/lib/config/hotel";
 
 export default function StatsBar() {
+  const t = useTranslations("home.stats");
+  const locale = useLocale();
+  const intlLocale = locale === "en" ? "en-US" : "tr-TR";
+
   // Null while no review carries a CONFIRMED star rating (inferred values
   // are never stored in reviews.ts) — the badge is hidden entirely then.
   const average = getAverageRating();
@@ -11,10 +16,15 @@ export default function StatsBar() {
   // (src/lib/config/reviews.ts) — never a hardcoded/unsubstantiated number.
   const stats = [
     ...(average != null
-      ? [{ value: `${average.toLocaleString("tr-TR")}/5`, label: `Misafir puanı · ${reviewCount} yorum` }]
+      ? [
+          {
+            value: `${average.toLocaleString(intlLocale)}/5`,
+            label: t("guestRating", { count: reviewCount }),
+          },
+        ]
       : []),
-    { value: String(HOTEL.totalRooms), label: "Butik oda" },
-    { value: "5 km", label: "Kadırga koyu" },
+    { value: String(HOTEL.totalRooms), label: t("boutiqueRooms") },
+    { value: "5 km", label: t("bay") },
   ];
 
   return (

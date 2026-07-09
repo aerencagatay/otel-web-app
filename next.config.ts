@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 // Allow phone/other LAN devices to load dev resources when testing via the
 // Network URL (e.g. http://<your-lan-ip>:3000). Dev-only; ignored in
@@ -13,4 +16,4 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: devLanOrigins,
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -1,23 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 import DateRangePicker from "@/components/booking/date-range-picker";
-
-const roomTypes = [
-  { value: "", label: "Tüm tipler" },
-  { value: "deluxe_sea_view", label: "Deluxe tam deniz" },
-  { value: "traditional_room", label: "Traditional kısmi" },
-  { value: "premium_family", label: "Aile suit" },
-];
 
 function fmt(d: Date) {
   return d.toISOString().split("T")[0];
 }
 
 export default function HeroBookingStrip() {
+  const t = useTranslations("home.bookingStrip");
   const router = useRouter();
+
+  const roomTypes = [
+    { value: "", label: t("allTypes") },
+    { value: "deluxe_sea_view", label: t("roomDeluxe") },
+    { value: "traditional_room", label: t("roomTraditional") },
+    { value: "premium_family", label: t("roomFamily") },
+  ];
+
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const dayAfter = new Date();
@@ -49,9 +52,9 @@ export default function HeroBookingStrip() {
     <div className="hero-booking-shell animate-fade-up animate-fade-up-delay-3">
       <div className="mb-4">
         <p className="text-[10px] tracking-[0.3em] uppercase text-gold-dark font-semibold mb-1.5">
-          Hızlı arama
+          {t("eyebrow")}
         </p>
-        <h2 className="hero-booking-title m-0">Konaklama tarihleri</h2>
+        <h2 className="hero-booking-title m-0">{t("title")}</h2>
       </div>
 
       <form onSubmit={handleSubmit} className="hero-booking-bar">
@@ -74,7 +77,7 @@ export default function HeroBookingStrip() {
                   aria-expanded={open}
                   aria-haspopup="dialog"
                 >
-                  <span className="hero-booking-bar__label">Giriş</span>
+                  <span className="hero-booking-bar__label">{t("checkIn")}</span>
                   <span className="hero-booking-bar__value">{checkInLabel}</span>
                 </button>
                 <button
@@ -84,7 +87,7 @@ export default function HeroBookingStrip() {
                   aria-expanded={open}
                   aria-haspopup="dialog"
                 >
-                  <span className="hero-booking-bar__label">Çıkış</span>
+                  <span className="hero-booking-bar__label">{t("checkOut")}</span>
                   <span className="hero-booking-bar__value">{checkOutLabel}</span>
                 </button>
               </>
@@ -95,7 +98,7 @@ export default function HeroBookingStrip() {
         <div className="hero-booking-bar__field hero-booking-bar__field--single">
           <div className="hero-booking-bar__segment">
             <label className="hero-booking-bar__label" htmlFor="hb-adults">
-              Yetişkin
+              {t("adults")}
             </label>
             <select
               id="hb-adults"
@@ -115,7 +118,7 @@ export default function HeroBookingStrip() {
         <div className="hero-booking-bar__field hero-booking-bar__field--single">
           <div className="hero-booking-bar__segment">
             <label className="hero-booking-bar__label" htmlFor="hb-children">
-              Çocuk
+              {t("children")}
             </label>
             <select
               id="hb-children"
@@ -135,7 +138,7 @@ export default function HeroBookingStrip() {
         <div className="hero-booking-bar__field">
           <div className="hero-booking-bar__segment">
             <label className="hero-booking-bar__label" htmlFor="hb-room">
-              Oda
+              {t("room")}
             </label>
             <select
               id="hb-room"
@@ -153,18 +156,18 @@ export default function HeroBookingStrip() {
         </div>
 
         <button type="submit" className="hero-booking-bar__submit">
-          Müsaitliğe bak
+          {t("submit")}
           <ArrowRight className="w-4 h-4" strokeWidth={2} />
         </button>
       </form>
 
       {invalid ? (
         <p className="text-red-700 text-[12px] mt-4 text-left m-0">
-          Çıkış tarihi girişten sonra olmalıdır.
+          {t("invalidDate")}
         </p>
       ) : (
         <p className="text-[12px] text-text-light mt-4 mb-0 text-left leading-relaxed">
-          Müsait odaları görmek için gönderin — bilgileriniz rezervasyon sayfasına taşınır.
+          {t("hint")}
         </p>
       )}
     </div>

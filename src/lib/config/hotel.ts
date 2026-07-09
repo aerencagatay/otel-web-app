@@ -24,3 +24,16 @@ export const HOTEL = {
  * shown in guest-facing copy (keep them in sync via this single source).
  */
 export const RESERVATION_HOLD_HOURS = 3;
+
+/**
+ * Yaklaşık TRY→EUR kuru. Yalnızca İngilizce arayüzde fiyatların yanında
+ * "≈ €X (yaklaşık)" göstermek için kullanılır — bilgilendirme amaçlıdır,
+ * tahsilat her zaman TRY üzerindendir. CANLI kur servisi KURULMAZ (scope
+ * dışı); değer elle güncellenir.
+ */
+export const EUR_RATE = 47;
+
+/** TRY tutarını yaklaşık EUR'ya çevirir (en yakın 5 €'ya yuvarlar). */
+export function approxEur(tryAmount: number): number {
+  return Math.round(tryAmount / EUR_RATE / 5) * 5;
+}

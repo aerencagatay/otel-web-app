@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
-import { tr } from "react-day-picker/locale";
+import { tr, enUS } from "react-day-picker/locale";
+import { useLocale, useTranslations } from "next-intl";
 import "react-day-picker/style.css";
 
 export interface DateRangeTriggerArgs {
@@ -36,17 +37,10 @@ function fromISO(s?: string) {
   return new Date(y, m - 1, d);
 }
 
-function formatLabel(d?: Date) {
-  if (!d) return "Tarih seçin";
-  return d.toLocaleDateString("tr-TR", { day: "2-digit", month: "short" });
-}
-
 /**
- * Reusable check-in/check-out range picker (react-day-picker v9) used by both
- * the homepage quick-search pill and the reservation page's availability
- * form. Owns the popover/keyboard behaviour; the caller supplies its own
- * trigger markup via `renderTrigger` so it can match either the pill or
- * boxed form-field visual language.
+ * Reusable check-in/check-out range picker (react-day-picker v9), locale-aware:
+ * tarih biçimleri ve takvim yerelleştirmesi aktif dile göre (`tr` / `enUS`)
+ * seçilir. Homepage hızlı arama pill'i ve rezervasyon sayfası formu paylaşır.
  */
 export default function DateRangePicker({
   checkIn,
@@ -56,9 +50,19 @@ export default function DateRangePicker({
   numberOfMonths = 2,
   renderTrigger,
 }: Props) {
+  const t = useTranslations("booking.datePicker");
+  const locale = useLocale();
+  const dpLocale = locale === "en" ? enUS : tr;
+  const intlLocale = locale === "en" ? "en-US" : "tr-TR";
+
   const [open, setOpen] = useState(false);
   const [monthsToShow, setMonthsToShow] = useState(1);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  function formatLabel(d?: Date) {
+    if (!d) return t("placeholder");
+    return d.toLocaleDateString(intlLocale, { day: "2-digit", month: "short" });
+  }
 
   useEffect(() => {
     function updateMonths() {
@@ -120,11 +124,11 @@ export default function DateRangePicker({
       })}
 
       {open && (
-        <div className="date-range-picker__popover" role="dialog" aria-label="Tarih seçin">
+        <div className="date-range-picker__popover" role="dialog" aria-label={t("dialogLabel")}>
           <DayPicker
             className="date-range-picker__calendar"
             mode="range"
-            locale={tr}
+            locale={dpLocale}
             numberOfMonths={monthsToShow}
             selected={range}
             onSelect={handleSelect}
@@ -133,15 +137,13 @@ export default function DateRangePicker({
             autoFocus
           />
           <div className="date-range-picker__footer">
-            <p className="date-range-picker__hint">
-              Giriş ve çıkış tarihini seçin.
-            </p>
+            <p className="date-range-picker__hint">{t("hint")}</p>
             <button
               type="button"
               className="date-range-picker__close"
               onClick={() => setOpen(false)}
             >
-              Kapat
+              {t("close")}
             </button>
           </div>
         </div>

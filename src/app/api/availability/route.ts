@@ -5,7 +5,6 @@ import { isPastDate } from "@/lib/utils/dates";
 import {
   getClientIp,
   availabilityLimiter,
-  RATE_LIMIT_MESSAGE,
 } from "@/lib/security/rate-limit";
 
 export async function GET(request: NextRequest) {
@@ -13,10 +12,7 @@ export async function GET(request: NextRequest) {
     const ip = getClientIp(request);
     const rateLimitResult = await availabilityLimiter.limit(ip);
     if (!rateLimitResult.success) {
-      return NextResponse.json(
-        { error: RATE_LIMIT_MESSAGE },
-        { status: 429 }
-      );
+      return NextResponse.json({ error: "rateLimit" }, { status: 429 });
     }
 
     const params = Object.fromEntries(request.nextUrl.searchParams);
@@ -24,7 +20,7 @@ export async function GET(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: "Geçersiz parametreler.", details: parsed.error.flatten() },
+        { error: "invalidParams", details: parsed.error.flatten() },
         { status: 400 }
       );
     }
@@ -32,15 +28,12 @@ export async function GET(request: NextRequest) {
     const { checkIn, checkOut, adults, children, roomType } = parsed.data;
 
     if (isPastDate(checkIn)) {
-      return NextResponse.json(
-        { error: "Giriş tarihi geçmişte olamaz." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "pastDate" }, { status: 400 });
     }
 
     if (checkIn >= checkOut) {
       return NextResponse.json(
-        { error: "Çıkış tarihi giriş tarihinden sonra olmalıdır." },
+        { error: "checkoutAfterCheckin" },
         { status: 400 }
       );
     }
@@ -56,9 +49,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ rooms });
   } catch (err) {
     console.error("Availability check error:", err);
-    return NextResponse.json(
-      { error: "Müsaitlik kontrolü sırasında bir hata oluştu." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "availabilityError" }, { status: 500 });
   }
 }

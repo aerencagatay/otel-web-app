@@ -55,6 +55,7 @@ export async function GET(request: NextRequest) {
               reservationId: r.reservationId,
               firstName: r.firstName,
               lastName: r.lastName,
+              locale: r.locale === "en" ? "en" : "tr",
             });
             await mail.send({ to: r.email, ...tpl });
           }

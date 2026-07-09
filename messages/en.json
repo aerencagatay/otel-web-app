@@ -1,0 +1,787 @@
+{
+  "meta": {
+    "titleTemplate": "%s – Assos Karadut Taş Otel",
+    "ogImageAlt": "Assos Karadut Taş Otel — sea view",
+    "home": {
+      "title": "Assos Karadut Taş Otel – Ayvacık, Çanakkale",
+      "description": "Assos Karadut Taş Otel offers a distinctive stay amid the historic beauty of Ayvacık. Five minutes to Kadırga Beach, seven minutes to the ancient city of Assos."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Discover Assos Karadut Taş Otel: 28 rooms, an à la carte restaurant, an outdoor pool, and just 5 km from Kadırga Bay. Rated 9.6/10 by guests."
+    },
+    "rooms": {
+      "title": "Our Rooms",
+      "description": "Room types at Assos Karadut Taş Otel: Deluxe Full Sea View, Traditional Partial Sea View, and Family Suite Sea View. Every room has air conditioning, TV, Wi-Fi and a minibar."
+    },
+    "reservation": {
+      "title": "Reservation",
+      "description": "Book online at Assos Karadut Taş Otel. Choose your dates, check availability, and reserve with ease."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact Assos Karadut Taş Otel: +90 501 091 34 17 | karaduttas@gmail.com | Büyükhusun Köyü Namazgah Mevkii No:26, Ayvacık, Çanakkale."
+    },
+    "bookingSuccess": {
+      "title": "Reservation Received",
+      "description": "Your reservation request has been received. Deposit instructions are sent by email."
+    },
+    "kvkk": {
+      "title": "Personal Data Protection (KVKK) Notice",
+      "description": "Assos Karadut Taş Otel KVKK privacy notice — how personal data is processed, purposes, retention periods and data subject rights under Turkish law."
+    },
+    "gizlilik": {
+      "title": "Privacy Policy",
+      "description": "Assos Karadut Taş Otel privacy policy — information on website cookie usage, data security and third-party services."
+    },
+    "iptal": {
+      "title": "Cancellation & Refund Policy",
+      "description": "Assos Karadut Taş Otel cancellation and refund policy — deposit terms, cancellation windows and distance-sales conditions."
+    }
+  },
+  "pricing": {
+    "startingFrom": "From ₺{price} / night · breakfast included · ≈ €{eur} (approx.)",
+    "contactForPrice": "Contact us for pricing"
+  },
+  "roomTypes": {
+    "deluxe_sea_view": "Deluxe Full Sea View",
+    "traditional_room": "Traditional Partial Sea View",
+    "premium_family": "Family Suite Sea View"
+  },
+  "nav": {
+    "brand": "Assos Karadut Taş Otel",
+    "home": "Home",
+    "about": "About",
+    "rooms": "Rooms",
+    "reservation": "Reservation",
+    "contact": "Contact",
+    "reservationCta": "Book Now",
+    "menu": "Menu",
+    "switchTo": "Türkçe",
+    "switchToLabel": "Türkçeye geç"
+  },
+  "topbar": {
+    "callToBook": "Call us to book:"
+  },
+  "footer": {
+    "pagesHeading": "Pages",
+    "contactHeading": "Contact",
+    "reception": "24/7 Reception",
+    "license": "© 2026 Assos Karadut Taş Otel · Tourism Licence No: 24921",
+    "legal": {
+      "kvkk": "KVKK Privacy Notice",
+      "privacy": "Privacy Policy",
+      "cancellation": "Cancellation & Refund Policy"
+    }
+  },
+  "cookieBanner": {
+    "ariaLabel": "Cookie preferences",
+    "text": "We use cookies to improve your experience on our site. You can review your options in our <link>Privacy Policy</link>.",
+    "essentialOnly": "Essential Only",
+    "accept": "Accept"
+  },
+  "lightbox": {
+    "openPhoto": "{roomName} photo {index} - enlarge",
+    "galleryAria": "{roomName} gallery",
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo"
+  },
+  "reviewsSection": {
+    "eyebrow": "Guest Reviews",
+    "title": "What Our Guests Say",
+    "averageLine": "<strong>{average}/5</strong> average rating on Google · {count} reviews",
+    "noRatingLine": "A selection of experiences our guests have shared on Google",
+    "showMore": "Read more",
+    "showLess": "Show less",
+    "starsAria": "{rating}/5 stars",
+    "items": {
+      "1": {
+        "text": "We absolutely loved this place. We stayed two nights and are checking out today, and I'm genuinely sad to leave. Finding such a beautiful view and such a peaceful spot to spend two days was an incredible experience. We stayed in the one-bedroom suites; the fine decorative touches in the rooms and the magnificent view towards Lesbos were simply lovely. There was even a fireplace, but our view was so beautiful that we spent all our time on the balcony. The owners have thought of every detail — it feels less like a hotel and more as if they designed their own home. Breakfast was ample and delicious. The hotel's mascots, Ares and Tarçın, are affectionate, well-trained dogs, and we had a wonderful time with them too. Peerless views, wonderful peace — highly recommended.",
+        "date": "7 months ago"
+      },
+      "2": {
+        "text": "As a family, our two-night stay in the one-bedroom suites at Karadut Taş Otel exceeded our expectations. Attentive, friendly staff, clean and comfortable rooms, a magnificent view and quiet, a superb location to unwind — it truly deserves its five stars. Although the hotel is 7–8 minutes from the coast, the free access to the beach at their own guesthouse in Kadırga Bay is fantastic. In short, I felt proud to have a place like this; from now on I'd love to spend a few days here every year to recharge. My thanks to everyone involved.",
+        "date": "10 months ago"
+      },
+      "3": {
+        "text": "Karadut Otel was our accommodation of choice during our Assos holiday. It's a lovely family-run business. Yağız and his family are both very warm and very professional; they met all our needs with patience. The rooms are clean and airy, and the distance between the apartments gives enough privacy. We loved the infinity pool too; it has a perfect view. There is also a children's pool, and the pool was spotless and well kept. When we booked by phone we got a much better rate than online — I'd suggest reaching them via their contact number.",
+        "date": "8 months ago"
+      }
+    }
+  },
+  "pageHero": {
+    "eyebrow": "Assos Karadut",
+    "home": "Home"
+  },
+  "stickyCta": {
+    "label": "Pick dates · Book"
+  },
+  "backToTop": {
+    "label": "Back to top"
+  },
+  "home": {
+    "hero": {
+      "tag": "Assos · Çanakkale",
+      "titleLine1": "In the heart of stone,",
+      "titleLine2": "the jewel of Assos.",
+      "lede": "Boutique stay · 28 rooms · pool · à la carte · minutes to Kadırga",
+      "ctaDates": "Pick dates & availability",
+      "ctaRooms": "Explore rooms",
+      "scroll": "Scroll"
+    },
+    "bookingStrip": {
+      "eyebrow": "Quick search",
+      "title": "Stay dates",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "adults": "Adults",
+      "children": "Children",
+      "room": "Room",
+      "allTypes": "All types",
+      "roomDeluxe": "Deluxe full sea",
+      "roomTraditional": "Traditional partial",
+      "roomFamily": "Family suite",
+      "submit": "Check availability",
+      "invalidDate": "Check-out must be after check-in.",
+      "hint": "Submit to see available rooms — your details carry over to the reservation page."
+    },
+    "stats": {
+      "guestRating": "Guest rating · {count} reviews",
+      "boutiqueRooms": "Boutique rooms",
+      "bay": "Kadırga bay"
+    },
+    "about": {
+      "eyebrow": "About Us",
+      "titleLine1": "Comfort with the",
+      "titleLine2": "Stone Heritage of Assos",
+      "p1": "Set among the unspoilt nature of Assos in Büyükhusun village, our 28-room hotel welcomes guests with bed-and-breakfast and half-board options. The warmth of traditional stone architecture meets a modern sense of comfort.",
+      "p2": "Just 5 km from Kadırga Bay and minutes from ancient Assos, the hotel is an ideal base for those who want to experience the sea, history and nature all in one holiday.",
+      "highlight1": "Outdoor swimming pool",
+      "highlight2": "À la carte restaurant",
+      "highlight3": "Bed & breakfast option",
+      "highlight4": "Free open-air parking",
+      "moreInfo": "Learn More",
+      "imageAlt": "Assos Karadut Taş Otel"
+    },
+    "featured": {
+      "eyebrow": "Stay",
+      "title": "Rooms",
+      "lede": "Stone architecture, generous windows and Aegean light. Every room is designed for quiet luxury and calm.",
+      "priceContact": "Contact for pricing",
+      "availability": "Availability & booking",
+      "allDetails": "All details",
+      "pickDates": "Pick dates now →",
+      "videoAlt": "Rooms at Assos Karadut Taş Otel",
+      "featSize24": "24 m²",
+      "featSize22": "22 m²",
+      "featSize44": "44 m²",
+      "feat2guests": "2 guests",
+      "feat4guests": "Up to 4 guests",
+      "featSeaView": "Sea view",
+      "featWifi": "Wi-Fi"
+    },
+    "amenities": {
+      "eyebrow": "Facilities",
+      "title": "Hotel Features",
+      "lede": "Amenities designed to give you the finest possible stay.",
+      "items": {
+        "pool": { "title": "Outdoor Pool", "desc": "Swimming pool with a sea view" },
+        "kidsPool": { "title": "Children's Pool", "desc": "A separate pool for our youngest guests" },
+        "restaurant": { "title": "À la Carte Restaurant", "desc": "Original Aegean cuisine with a sea view" },
+        "breakfast": { "title": "Breakfast Included", "desc": "Made-to-order service, 08:30–10:30" },
+        "bar": { "title": "Bar", "desc": "Poolside and lounge bar" },
+        "firepit": { "title": "Firepit Area", "desc": "Open-air fire corner with a sea view" },
+        "wifi": { "title": "Free Wi-Fi", "desc": "Seamless internet throughout" },
+        "parking": { "title": "Free Parking", "desc": "Spacious open-air car park" },
+        "garden": { "title": "Garden", "desc": "Peaceful landscaped garden" },
+        "luggage": { "title": "Luggage Storage", "desc": "Storage for early/late check-outs" },
+        "reception": { "title": "24/7 Reception", "desc": "Here for you at any hour" }
+      }
+    },
+    "cta": {
+      "eyebrow": "Reservation",
+      "titleLine1": "Your Dream Holiday",
+      "titleLine2": "Is One Call Away",
+      "text1": "No online payment, no complicated forms. Simply call us,",
+      "text2": "and we'll find the right room together.",
+      "button": "Reservation Information"
+    },
+    "location": {
+      "eyebrow": "Location",
+      "titleLine1": "Close to",
+      "titleLine2": "Everything, Far",
+      "titleLine3": "from the Noise",
+      "intro": "In the calm of Büyükhusun village, we are minutes from the Aegean's most sought-after spots.",
+      "directions": "Get directions",
+      "mapCta": "Open in Google Maps",
+      "mapAlt": "Hotel location - Map",
+      "mapAria": "Open location in Google Maps",
+      "items": {
+        "bay": { "title": "Kadırga Bay", "desc": "km · Cool off in clear Aegean waters" },
+        "assos": { "title": "Ancient Assos (Behramkale)", "desc": "min · Aristotle's city, Temple of Athena" },
+        "harbor": { "title": "Assos Harbour", "desc": "min · Seafood restaurants and boats" },
+        "town": { "title": "Ayvacık Centre", "desc": "km · Nearest district centre" },
+        "park": { "title": "Mount Ida National Park", "desc": "km · Nature walks on Mount Ida" }
+      }
+    },
+    "gallery": {
+      "eyebrow": "Gallery",
+      "title": "Moments",
+      "lede": "Selected moments from the hotel and its surroundings — rooms, views and the pool.",
+      "items": {
+        "venue": { "title": "The Venue", "desc": "Stone and Aegean light", "alt": "The hotel and surroundings" },
+        "family": { "title": "Family Suite", "desc": "Generous space", "alt": "Family Suite" },
+        "view": { "title": "The View", "desc": "Sea and sky", "alt": "The view" },
+        "pool": { "title": "The Pool", "desc": "A cool escape", "alt": "The pool" }
+      }
+    },
+    "ambient": {
+      "play": "Turn on nature sound",
+      "stop": "Turn off nature sound",
+      "titleOn": "Mute",
+      "titleOff": "Nature sound"
+    }
+  },
+  "about": {
+    "hero": { "title": "About Us", "breadcrumb": "About" },
+    "ratings": {
+      "google": "Google Rating · 157 reviews",
+      "tripadvisor": "TripAdvisor Rating",
+      "rank": "Rank in Büyükhusun",
+      "designedRooms": "Thoughtfully Designed Rooms"
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "titleLine1": "A Hotel That Carries",
+      "titleLine2": "the Spirit of Assos",
+      "p1": "Assos Karadut Taş Otel rises in the quiet beauty of Büyükhusun village, in a unique setting that opens onto the blue of the Aegean. With 28 rooms and both bed-and-breakfast and half-board options, we blend traditional stone architecture with a modern sense of comfort.",
+      "p2": "Just 5 km from Kadırga Bay and minutes from ancient Assos and Assos Harbour, our hotel is tailor-made for those who wish to bring together the Aegean's history, nature and sea in a single holiday.",
+      "p3Prefix": "Our guests' rating of",
+      "p3Mid": "on ZenHotels and",
+      "p3Suffix": "on TripAdvisor is the finest reflection of the service and the setting we offer.",
+      "seasonalLabel": "Seasonal Hotel:",
+      "seasonalText": "We are open from April to October.",
+      "videoAria": "Assos Karadut Taş Otel promotional video"
+    },
+    "values": {
+      "mission": { "title": "Our Mission", "desc": "To make guests feel the warmth of home away from home, and to help them experience the nature of the Aegean and the history of Assos to the fullest." },
+      "vision": { "title": "Our Vision", "desc": "To be the finest boutique hotel in the Assos region and to lead sustainable tourism by keeping traditional stone architecture alive." },
+      "certified": { "title": "Ministry of Culture Certified", "desc": "We are a licensed accommodation certified by the Turkish Ministry of Culture and Tourism (Licence No: 24921)." }
+    },
+    "features": {
+      "eyebrow": "Facilities",
+      "titleLine1": "Care in",
+      "titleLine2": "Every Detail",
+      "p1": "Our sea-view outdoor pool and separate children's pool welcome every age group. The poolside bar keeps you refreshed while adding to the pleasure.",
+      "p2": "Our à la carte restaurant serves Aegean flavours prepared with fresh local ingredients, along with made-to-order breakfast (08:30–10:30).",
+      "videoAria": "Hotel pool video",
+      "list": {
+        "pool": "Outdoor pool + children's pool",
+        "restaurant": "À la carte restaurant",
+        "bar": "Poolside bar",
+        "breakfast": "Made-to-order breakfast (08:30–10:30)",
+        "firepit": "Firepit · open-air fire area",
+        "parking": "Free open-air parking",
+        "wifi": "Free Wi-Fi throughout"
+      }
+    },
+    "reviews": {
+      "eyebrow": "Guest Reviews",
+      "title": "What Our Guests Say",
+      "outOf": "/ 5",
+      "count": "157 Google reviews",
+      "exceptional": "Exceptional",
+      "review1": "We absolutely loved this place. We stayed two nights and are checking out today, and I'm genuinely sad to leave. Finding such a beautiful view and such a peaceful spot to spend two days was an incredible experience. We stayed in the one-bedroom suites; the fine decorative touches in the rooms and the magnificent view towards Lesbos were simply lovely. There was even a fireplace, but our view was so beautiful that we spent all our time on the balcony. The owners have thought of every detail — it feels less like a hotel and more as if they designed their own home. Breakfast was ample and delicious. The hotel's mascots, Ares and Tarçın, are affectionate, well-trained dogs, and we had a wonderful time with them too. Peerless views, wonderful peace — highly recommended.",
+      "review1meta": "Google · 7 months ago · Couple",
+      "review2": "As a family, our two-night stay in the one-bedroom suites at Karadut Taş Otel exceeded our expectations. Attentive, friendly staff, clean and comfortable rooms, a magnificent view and quiet, a superb location to unwind — it truly deserves its five stars. Although the hotel is 7–8 minutes from the coast, the free access to the beach at their own guesthouse in Kadırga Bay is fantastic. In short, I felt proud to have a place like this; from now on I'd love to spend a few days here every year to recharge. My thanks to everyone involved.",
+      "review2meta": "Google · 10 months ago · Family",
+      "review3": "Karadut Otel was our accommodation of choice during our Assos holiday. It's a lovely family-run business. Yağız and his family are both very warm and very professional; they met all our needs with patience. The rooms are clean and airy, and the distance between the apartments gives enough privacy. We loved the infinity pool too; it has a perfect view. There is also a children's pool, and the pool was spotless and well kept. When we booked by phone we got a much better rate than online — I'd suggest reaching them via their contact number.",
+      "review3meta": "Google · 8 months ago · Friends",
+      "highlightCleanliness": "Cleanliness",
+      "highlightLocation": "Location",
+      "highlightStaff": "Staff",
+      "highlightBreakfast": "Breakfast",
+      "seeAll": "See All Reviews on Google"
+    },
+    "team": {
+      "photoCaption": "Our IT Manager",
+      "eyebrow": "Our Team",
+      "titleLine1": "Personal Attention,",
+      "titleLine2": "Warm Service",
+      "p1": "At Assos Karadut Taş Otel, our approach to service goes beyond corporate coolness. The owners and their team look after every guest personally, anticipating their needs in advance.",
+      "p2": "Our team knows the region well and is glad to share the hidden coves around Assos, the walking trails, and the restaurants serving the freshest seafood.",
+      "cta": "Get in Touch"
+    },
+    "gallery": {
+      "eyebrow": "Photo Gallery",
+      "title": "Moments from Our Hotel",
+      "disCephe": "Exterior",
+      "balkon": "Balcony",
+      "bahce": "Garden",
+      "havuz": "Pool",
+      "seaView": "Sea View",
+      "otel": "The Hotel",
+      "tasMimari": "Stone Architecture",
+      "aileSuit": "Family Suite Sea View"
+    },
+    "nearby": {
+      "eyebrow": "To Explore Nearby",
+      "title": "The Treasures of Assos",
+      "items": {
+        "bay": { "title": "Kadırga Bay", "dist": "5 km", "desc": "Swimming and sunbathing in the clear waters of the Aegean. Sun lounger and umbrella privileges from the hotel." },
+        "assos": { "title": "Ancient Assos (Behramkale)", "dist": "10 min", "desc": "The ancient city where Aristotle lived. The Temple of Athena and an acropolis overlooking the Aegean." },
+        "harbor": { "title": "Assos Harbour", "dist": "10 min", "desc": "Boats, fresh seafood restaurants and romantic evenings with an Aegean view." },
+        "park": { "title": "Mount Ida National Park", "dist": "37 km", "desc": "Nature walks, waterfalls and woodlands on Mount Ida." },
+        "museum": { "title": "Adatepe Olive Oil Museum", "dist": "", "desc": "A distinctive museum tracing the history of olive oil and the region's traditional craftsmanship." },
+        "kucukkuyu": { "title": "Küçükkuyu", "dist": "", "desc": "A charming coastal town with local markets, traditional Turkish restaurants and popular beaches." }
+      }
+    },
+    "cta": {
+      "eyebrow": "Reservation",
+      "title": "We'd Love to Welcome You",
+      "text": "Reserve your place now for the April–October season.",
+      "button": "Reservation Information"
+    }
+  },
+  "rooms": {
+    "hero": { "title": "Our Rooms", "breadcrumb": "Rooms" },
+    "intro": {
+      "eyebrow": "28 Rooms · 3 Types",
+      "title": "Comfort Set in Stone",
+      "text": "Our hotel offers 3 room types, and every room is equipped with air conditioning, TV, Wi-Fi, a minibar, a wardrobe and a private bathroom. With our sea-view options, take in the Aegean right from your room."
+    },
+    "priceContact": "Call for pricing",
+    "priceSub": "/ Night · Breakfast Included",
+    "bookCta": "Book Online",
+    "list": {
+      "deluxe": {
+        "desc": "Wake to a sea view each morning through windows that open onto the magnificent blue of the Aegean. Designed with modern comfort across 24 m², with air conditioning for a comfortable stay in every season."
+      },
+      "traditional": {
+        "desc": "This 22 m² room offers a partial Aegean view along with all standard comforts. With air conditioning, TV and minibar, it is the ideal choice for guests seeking a relaxed stay."
+      },
+      "family": {
+        "desc": "At 44 m², this is our largest room. Designed for a spacious, relaxed holiday with your family, it accommodates up to 4 guests. With a separate sitting area and an outdoor dining table, it offers the full comfort of a family holiday."
+      }
+    },
+    "feat": {
+      "size24": "24 m²",
+      "size22": "22 m²",
+      "size44": "44 m²",
+      "guests2": "2 Guests",
+      "guests4": "Up to 4 Guests",
+      "fullSeaView": "Full Sea View",
+      "partialSeaView": "Partial Sea View",
+      "ac": "Air Conditioning",
+      "wifi": "Wi-Fi",
+      "tv": "TV",
+      "minibar": "Minibar",
+      "hairdryer": "Hair Dryer",
+      "sitting": "Sitting Area",
+      "outdoorTable": "Outdoor Dining Table"
+    },
+    "amenities": {
+      "eyebrow": "Standard Features",
+      "title": "In All Our Rooms",
+      "text": "The features below are available in all our rooms at no extra charge.",
+      "items": {
+        "ac": "Air Conditioning",
+        "wifi": "Free Wi-Fi",
+        "tv": "TV",
+        "minibar": "Minibar",
+        "hairdryer": "Hair Dryer",
+        "bath": "Bathroom & Shower",
+        "wardrobe": "Wardrobe",
+        "seating": "Seating Set",
+        "mosquitoNet": "Mosquito Screen",
+        "amenityKit": "Amenity Kit",
+        "towels": "Towel Set",
+        "outdoorTable": "Outdoor Dining Table"
+      }
+    },
+    "checkinBanner": {
+      "checkIn": "Check-in Time",
+      "checkOut": "Check-out Time",
+      "totalRooms": "Total Rooms",
+      "reservation": "Reservation"
+    },
+    "cta": {
+      "eyebrow": "Reservation",
+      "titleLine1": "To Reserve Your Room",
+      "titleLine2": "Call Us",
+      "text": "With our 24/7 reception, we're always here for you.",
+      "button": "How to Book?"
+    }
+  },
+  "reservation": {
+    "hero": {
+      "eyebrow": "Reservation",
+      "titleLine1": "Choose your dates, pick a room,",
+      "titleLine2": "confirm with a deposit.",
+      "lede": "Availability is checked instantly. Your request becomes a firm reservation once the deposit is confirmed."
+    },
+    "process": {
+      "eyebrow": "The Process",
+      "title": "How to Book",
+      "text": "Complete your reservation in 3 simple steps.",
+      "step1": { "title": "Choose Dates & Room", "desc": "Set your check-in and check-out dates and room type. See availability instantly." },
+      "step2": { "title": "Enter Your Details", "desc": "Fill in your first name, surname, phone and email." },
+      "step3": { "title": "Pay the Deposit & Confirm", "desc": "Send the deposit to the IBAN. Your reservation is confirmed once approved by our team." },
+      "loading": "Loading the reservation form…"
+    },
+    "conditions": {
+      "eyebrow": "Good to Know",
+      "titleLine1": "Reservation",
+      "titleLine2": "Conditions",
+      "earlyTitle": "Early Booking",
+      "earlyText": "Rooms fill quickly in summer. Book ahead to secure your place.",
+      "hoursTitle": "Check-in / Check-out Times",
+      "hoursText": "Check-in: 14:00 · Check-out: 12:00\nEarly check-in and late check-out are supported subject to availability.",
+      "cancelTitle": "Cancellation Policy",
+      "cancelText": "For cancellation and change conditions after the deposit is paid, please call us.",
+      "childTitle": "Child Policy",
+      "childText": "For pricing and availability for stays with children, please get in touch with us."
+    },
+    "contactBox": {
+      "eyebrow": "Reach Us Instantly",
+      "title": "Have questions?",
+      "text": "Don't hesitate to ask us anything about room availability, pricing, hotel facilities or the surrounding area.",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Service Hours",
+      "hoursValue": "24 hours, 7 days",
+      "callNow": "Call Now"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequently Asked Questions",
+      "q1": "Is breakfast included?",
+      "a1": "Yes, breakfast is included in our rates. A freshly prepared open buffet breakfast is served to our guests every day.",
+      "q2": "Is parking free?",
+      "a2": "Yes, we have a free car park reserved for our guests.",
+      "q3": "How close are you to the sea/beach?",
+      "a3": "We are about 5 minutes from Kadırga Beach and 10 minutes from Assos Harbour. Both are easily reached by car.",
+      "q4": "When should the deposit be paid?",
+      "a4": "After creating your reservation, you are expected to send the deposit to the IBAN within {hours} hours. If it is not confirmed within that time, your reservation request is cancelled automatically. Your reservation is finalised once the payment is confirmed."
+    }
+  },
+  "contact": {
+    "hero": { "title": "Contact", "breadcrumb": "Contact" },
+    "cards": {
+      "addressTitle": "Address",
+      "addressLink": "OPEN IN MAPS →",
+      "phoneTitle": "Phone",
+      "phoneSub": "24/7 service",
+      "emailTitle": "Email",
+      "emailSub": "Reply within 24 hours"
+    },
+    "form": {
+      "eyebrow": "Send a Message",
+      "title": "Write to Us",
+      "text": "Fill in the form below for any questions, suggestions or information requests. We'll get back to you as soon as possible.",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "phone": "Phone",
+      "email": "Email",
+      "emailPlaceholder": "example@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Choose a subject",
+      "subjectGeneral": "General Information",
+      "subjectReservation": "Reservation",
+      "subjectPrice": "Price Information",
+      "subjectComplaint": "Complaint / Suggestion",
+      "subjectOther": "Other",
+      "message": "Your Message",
+      "messagePlaceholder": "Write your message here...",
+      "optional": "(optional)",
+      "submit": "Send",
+      "sending": "Sending…",
+      "connectionError": "Connection error. Please check your internet connection and try again.",
+      "successTitle": "Your message has been sent",
+      "successText": "We will get back to you as soon as possible. For urgent matters, you can call us directly:",
+      "newMessage": "Send a new message",
+      "whatsappHint": "For a faster reply, you can write to us directly on WhatsApp.",
+      "whatsappCta": "Message us on WhatsApp",
+      "whatsappMessage": "Hello, I would like to get information about {hotel}.",
+      "kvkkNote": "By submitting this form you accept the <link>KVKK Privacy Notice</link>."
+    },
+    "map": {
+      "eyebrow": "Our Location",
+      "title": "How to Get Here",
+      "openMaps": "Open in Google Maps",
+      "beach": "Kadırga Beach",
+      "beachTime": "About 5 minutes by car",
+      "assos": "Ancient Assos (Behramkale)",
+      "assosTime": "About 7 minutes by car",
+      "harbor": "Assos Harbour",
+      "harborTime": "About 10 minutes by car"
+    },
+    "nearby": {
+      "eyebrow": "Nearby",
+      "title": "Nearby Activities",
+      "beach": { "title": "Kadırga Beach", "desc": "Swimming and sunbathing in the clear waters of the Aegean. 5 minutes away." },
+      "assos": { "title": "Ancient Assos", "desc": "The historic ancient city where Aristotle lived, with the ruins of the Temple of Zeus. 7 minutes." },
+      "harbor": { "title": "Assos Harbour", "desc": "Boats, seafood restaurants and romantic evenings with an Aegean view. 10 minutes." }
+    }
+  },
+  "bookingSuccess": {
+    "badge": "Request received",
+    "title": "Your reservation has been created",
+    "reservationNo": "No.",
+    "depositPendingLabel": "Deposit pending",
+    "depositPendingText": "Your reservation is not confirmed <strong>until the deposit payment is approved</strong>. You will be notified by email once the payment is confirmed.",
+    "instructions1": "A summary and instructions have been sent to your email address.",
+    "instructions2": "you need to send the deposit to the IBAN below. Write your reservation number in the transfer description. If it is not confirmed within that time, the reservation is cancelled automatically.",
+    "withinHours": "Within {hours} hours",
+    "depositTitle": "Deposit details",
+    "iban": "IBAN",
+    "recipient": "Recipient",
+    "description": "Description",
+    "descriptionValue": "Your reservation number",
+    "home": "Home",
+    "callUs": "Call us",
+    "checkEmail": "Check your email; if you don't see it, look in your spam folder."
+  },
+  "booking": {
+    "progress": {
+      "step1": "Dates & guests",
+      "step2": "Room selection",
+      "step3": "Details & deposit"
+    },
+    "search": {
+      "step": "Step 1",
+      "title": "Search availability",
+      "lede": "Choose dates and the number of guests; we'll list available rooms instantly.",
+      "checkInDate": "Check-in date",
+      "checkOutDate": "Check-out date",
+      "adults": "Adults",
+      "children": "Children",
+      "adultsOption": "{count} adults",
+      "childrenOption": "{count} children",
+      "roomTypeOptional": "Room type (optional)",
+      "allRoomTypes": "All Room Types",
+      "submit": "Search availability",
+      "searching": "Searching…",
+      "invalidDate": "Check-out must be after check-in."
+    },
+    "flow": {
+      "checking": "Checking availability…",
+      "availableRooms": "Available rooms",
+      "changeDates": "← Change dates",
+      "noRooms": "No rooms are available for the dates you selected.",
+      "tryDifferent": "Try different dates",
+      "guestInfo": "Guest details",
+      "changeRoom": "← Change room"
+    },
+    "roomCard": {
+      "roomsAvailable": "{count} rooms available",
+      "boutiqueRoom": "Boutique room",
+      "maxGuests": "Up to {count} guests",
+      "note": "Your reservation request is finalised once the deposit payment is approved.",
+      "totalNights": "Total · {nights} nights",
+      "perNight": "{price} ₺ / night · VAT included",
+      "vatIncluded": "VAT included",
+      "depositOneNight": "Deposit (1 night):",
+      "deposit": "Deposit",
+      "select": "Select this room",
+      "approxEur": "≈ €{amount} (approx.)"
+    },
+    "form": {
+      "step": "Step 3",
+      "title": "Contact details",
+      "lede": "These details are used for your reservation record and deposit instructions. Please enter a phone number where we can reach you.",
+      "firstName": "First name *",
+      "firstNamePlaceholder": "Your first name",
+      "lastName": "Surname *",
+      "lastNamePlaceholder": "Your surname",
+      "email": "Email *",
+      "emailPlaceholder": "example@email.com",
+      "emailHint": "The deposit and confirmation are sent to this address.",
+      "phone": "Phone *",
+      "phonePlaceholder": "+90 5__ ___ __ __",
+      "notes": "Notes",
+      "notesOptional": "(optional)",
+      "notesPlaceholder": "Special request, arrival time…",
+      "consent": "I have read and accept the <link>KVKK Privacy Notice</link>. *",
+      "submit": "Send request",
+      "submitting": "Sending…"
+    },
+    "summary": {
+      "title": "Summary",
+      "intro": "Review your details before sending. The deposit is highlighted below.",
+      "room": "Room",
+      "stay": "Stay",
+      "nights": "{count} nights",
+      "guest": "Guests",
+      "adults": "{count} adults",
+      "children": "{count} children",
+      "priceLine": "{price} ₺ × {nights} nights",
+      "nightsStay": "{nights}-night stay",
+      "totalVat": "Total (VAT included)",
+      "noPrice": "To get a total price for these dates, please call us.",
+      "depositLabel": "Deposit due (one night's rate)",
+      "confirmTitle": "Firm reservation:",
+      "confirmText": "created once the IBAN deposit is confirmed. Instructions are sent by email.",
+      "approxEur": "≈ €{amount} (approx.)"
+    },
+    "datePicker": {
+      "placeholder": "Choose a date",
+      "dialogLabel": "Choose dates",
+      "hint": "Select your check-in and check-out dates.",
+      "close": "Close"
+    },
+    "errors": {
+      "availabilityFailed": "Availability check failed.",
+      "connection": "Connection error. Please try again.",
+      "reservationFailed": "The reservation could not be created."
+    }
+  },
+  "apiErrors": {
+    "rateLimit": "Too many requests. Please try again shortly.",
+    "invalidData": "Invalid details.",
+    "invalidParams": "Invalid parameters.",
+    "serviceUnavailable": "The reservation system is temporarily unavailable. Please try again later or call us by phone.",
+    "securityFailed": "Security verification failed. Please refresh the page and try again.",
+    "pastDate": "The check-in date cannot be in the past.",
+    "checkoutAfterCheckin": "Check-out must be after check-in.",
+    "invalidRoomType": "Invalid room type.",
+    "noAvailability": "No rooms remain available for the dates you selected. Please try different dates or a different room type.",
+    "reservationCreateError": "An error occurred while creating the reservation.",
+    "availabilityError": "An error occurred while checking availability.",
+    "contactUnavailable": "The contact form is temporarily unavailable. Please call us by phone or try again later.",
+    "contactSendFailed": "Your message could not be sent. Please try again later or call us by phone.",
+    "contactError": "An error occurred while sending your message.",
+    "unknown": "An unexpected error occurred. Please try again."
+  },
+  "validation": {
+    "nameChars": "The first name may contain only letters, spaces and hyphens.",
+    "surnameChars": "The surname may contain only letters, spaces and hyphens.",
+    "invalidPhone": "Please enter a valid phone number.",
+    "maxNights": "Reservations can be made for at most 21 nights.",
+    "maxAdvance": "The check-in date can be at most 365 days from today.",
+    "maxGuestsForRoom": "The selected room type accepts at most {max} guests.",
+    "consentRequired": "You must read and accept the KVKK Privacy Notice.",
+    "fullNameRequired": "Full name is required.",
+    "fullNameChars": "The full name may contain only letters, spaces and hyphens.",
+    "invalidEmail": "Please enter a valid email address.",
+    "subjectRequired": "Please choose a subject.",
+    "messageMin": "Your message must be at least 10 characters."
+  },
+  "legal": {
+    "kvkk": {
+      "heroTitle": "Personal Data Protection (KVKK) Notice",
+      "breadcrumb": "KVKK",
+      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Data Controller",
+        "p": "Under Turkish Law No. 6698 on the Protection of Personal Data (\"KVKK\"), your personal data may be processed by <strong>{hotelName}</strong> (the \"Hotel\") acting as data controller, within the scope described below.",
+        "address": "Address",
+        "email": "Email",
+        "phone": "Phone",
+        "mersis": "MERSIS / Tax No: [OTEL SAHİBİ ONAYLAYACAK]"
+      },
+      "s2": {
+        "h": "2. Personal Data Processed",
+        "p": "In connection with your reservation, contact form and accommodation processes, personal data such as your full name, phone number, email address, stay dates, number of guests and the content of your requests/complaints is processed."
+      },
+      "s3": {
+        "h": "3. Purposes of Processing",
+        "items": {
+          "1": "Creating and managing reservation requests",
+          "2": "Tracking deposit/payment processes",
+          "3": "Responding to enquiries submitted via the contact form and other requests",
+          "4": "Fulfilling legal obligations (accommodation tax, official notifications, etc.)",
+          "5": "Measuring and improving service quality"
+        }
+      },
+      "s4": {
+        "h": "4. Transfer of Personal Data",
+        "p": "Your personal data may be transferred to authorised public institutions where required by our legal obligations, and to the service providers operating our reservation and email infrastructure (hosting/email/payment infrastructure providers), strictly limited to the performance of the service. Your data is not transferred abroad; should an infrastructure requiring such a transfer be used, this notice will be updated. [OTEL SAHİBİ ONAYLAYACAK]"
+      },
+      "s5": {
+        "h": "5. Retention Period",
+        "p": "Your personal data is retained for the periods prescribed by applicable legislation (e.g. accommodation records under tax and accounting law) or for as long as the processing purpose requires. Exact retention periods: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+      },
+      "s6": {
+        "h": "6. Your Rights under KVKK",
+        "intro": "Under Article 11 of the KVKK, everyone has the right, by applying to the data controller, to:",
+        "items": {
+          "1": "Learn whether their personal data is being processed,",
+          "2": "Request information about such processing,",
+          "3": "Learn the purpose of the processing and whether the data is used in line with that purpose,",
+          "4": "Know the third parties to whom the data is transferred, in Turkey or abroad,",
+          "5": "Request correction of incomplete or inaccurate data,",
+          "6": "Request erasure or destruction of the data under the conditions set out in Article 7 of the KVKK,",
+          "7": "Request that corrections/erasures be notified to third parties to whom the data was transferred,",
+          "8": "Object to a result arising against them from analysis of the processed data exclusively by automated systems,",
+          "9": "Claim compensation for damages arising from unlawful processing."
+        },
+        "outro": "To exercise these rights, you may send your requests to {email} or to the postal address above."
+      }
+    },
+    "gizlilik": {
+      "heroTitle": "Privacy Policy",
+      "breadcrumb": "Privacy",
+      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. General",
+        "p": "This privacy policy explains how the information collected while you use the {hotelName} website (the \"Site\") is processed. For detailed information on the processing of personal data, please see the <kvkkLink>KVKK Privacy Notice</kvkkLink>."
+      },
+      "s2": {
+        "h": "2. Cookies",
+        "p": "The Site may use strictly necessary cookies for core functionality. Analytics/marketing cookies are only enabled if you give consent via the cookie bar at the bottom of the page. You can change your preference through the local storage (localStorage) kept in your browser."
+      },
+      "s3": {
+        "h": "3. Information Collected",
+        "p": "The name, email, phone number and message content you submit via the reservation and contact forms, as well as anonymous usage statistics such as page views (if analytics is enabled), may be collected."
+      },
+      "s4": {
+        "h": "4. Data Security",
+        "p": "Your data is protected against unauthorised access with reasonable technical and administrative measures. The contact form and reservation system are protected against spam and abuse with security verification (Cloudflare Turnstile) and rate limiting."
+      },
+      "s5": {
+        "h": "5. Third-Party Services",
+        "p": "Third-party service providers are used for email delivery and the reservation infrastructure. These providers process your data solely for the performance of the service. [OTEL SAHİBİ ONAYLAYACAK — kullanılan sağlayıcıların güncel listesi]"
+      },
+      "s6": {
+        "h": "6. Contact",
+        "p": "For questions about this policy, you can reach us at {email}."
+      }
+    },
+    "iptal": {
+      "heroTitle": "Cancellation & Refund Policy",
+      "breadcrumb": "Cancellation Policy",
+      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "s1": {
+        "h": "1. Reservation and Deposit Model",
+        "p": "Reservations at {hotelName} are confirmed through a request created on the website followed by a deposit payment. If the deposit is not paid within <strong>{hours} hours</strong> of your reservation request being created, the request is cancelled automatically and your selected dates become available again."
+      },
+      "s2": {
+        "h": "2. Cancellation Conditions",
+        "intro": "When a reservation confirmed by deposit payment is cancelled by the guest, the following conditions apply:",
+        "items": {
+          "1": "For cancellations made <strong>[OTEL SAHİBİ ONAYLAYACAK] days before</strong> the check-in date, the deposit is refunded in full.",
+          "2": "For cancellations made after that period, the deposit is partly or fully non-refundable according to the <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong> condition.",
+          "3": "In the event of a no-show (failure to arrive without notice), the deposit is non-refundable."
+        }
+      },
+      "s3": {
+        "h": "3. Cancellations by the Hotel",
+        "p": "If the hotel cancels a reservation due to force majeure or an unforeseeable circumstance, the deposit paid is refunded to the guest in full, or transferred to an alternative date at the guest's request."
+      },
+      "s4": {
+        "h": "4. Right of Withdrawal under Distance Sales Rules",
+        "p": "Under Turkish Consumer Protection Law No. 6502 and the Distance Contracts Regulation, accommodation services may be treated as services to be performed on a specific date; please review the applicable legislation or contact us regarding the conditions for exercising the right of withdrawal. Exact conditions: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+      },
+      "s5": {
+        "h": "5. Refund Process",
+        "p": "Approved refunds are made to the account the deposit was paid from within <strong>[OTEL SAHİBİ ONAYLAYACAK] business days</strong> of the notification date."
+      },
+      "s6": {
+        "h": "6. Contact",
+        "p": "For cancellation, change and refund requests, please call us at <phoneLink>{phone}</phoneLink> or email {email}."
+      }
+    }
+  }
+}

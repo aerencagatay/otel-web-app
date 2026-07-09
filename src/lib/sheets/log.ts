@@ -23,6 +23,12 @@ export interface ReservationLog {
   createdAt: string;
   confirmedAt: string;
   cancelledAt: string;
+  /**
+   * Misafirin rezervasyon anında seçtiği dil ("tr" | "en"). Cron/onay
+   * e-postalarının doğru dilde gönderilmesi için saklanır. Eski (kolonu
+   * olmayan) kayıtlarda boş gelir → "tr" varsayılır.
+   */
+  locale: string;
 }
 
 function logToRow(log: ReservationLog): (string | number)[] {
@@ -45,6 +51,7 @@ function logToRow(log: ReservationLog): (string | number)[] {
     log.createdAt,
     log.confirmedAt || "",
     log.cancelledAt || "",
+    log.locale || "tr",
   ];
 }
 
@@ -89,7 +96,7 @@ export async function appendReservationLog(
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: `'${LOG_TAB}'!A:R`,
+    range: `'${LOG_TAB}'!A:S`,
     valueInputOption: "RAW",
     requestBody: { values: [logToRow(log)] },
   });
@@ -104,7 +111,7 @@ export async function getReservationLogs(): Promise<ReservationLog[]> {
 
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: sheetId,
-    range: `'${LOG_TAB}'!A2:R`,
+    range: `'${LOG_TAB}'!A2:S`,
   });
 
   const rows = res.data.values || [];
@@ -128,6 +135,7 @@ export async function getReservationLogs(): Promise<ReservationLog[]> {
     createdAt: row[15] || "",
     confirmedAt: row[16] || "",
     cancelledAt: row[17] || "",
+    locale: row[18] || "tr",
   }));
 }
 

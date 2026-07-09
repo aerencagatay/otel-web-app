@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const STORAGE_KEY = "karadut-cookie-consent";
 
@@ -22,6 +23,7 @@ export function getStoredCookieConsent(): CookieConsent | null {
  * loading any non-essential script.
  */
 export default function CookieBanner() {
+  const t = useTranslations("cookieBanner");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -47,17 +49,18 @@ export default function CookieBanner() {
   return (
     <div
       role="dialog"
-      aria-label="Çerez tercihleri"
+      aria-label={t("ariaLabel")}
       className="fixed bottom-0 inset-x-0 z-[90] bg-dark text-white border-t border-white/10 px-4 py-5"
     >
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <p className="text-[13px] text-white/75 m-0 max-w-2xl leading-relaxed">
-          Sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz.
-          Tercihlerinizi{" "}
-          <Link href="/gizlilik" className="text-gold-light underline">
-            Gizlilik Politikamızdan
-          </Link>{" "}
-          inceleyebilirsiniz.
+          {t.rich("text", {
+            link: (chunks) => (
+              <Link href="/gizlilik" className="text-gold-light underline">
+                {chunks}
+              </Link>
+            ),
+          })}
         </p>
         <div className="flex gap-3 shrink-0">
           <button
@@ -65,14 +68,14 @@ export default function CookieBanner() {
             onClick={() => choose("essential-only")}
             className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/70 border border-white/25 px-4 py-2.5 rounded-[var(--radius-sm)] bg-transparent cursor-pointer hover:text-white hover:border-white/50 transition-colors"
           >
-            Yalnızca Zorunlu
+            {t("essentialOnly")}
           </button>
           <button
             type="button"
             onClick={() => choose("accepted")}
             className="text-[11px] font-semibold tracking-[0.15em] uppercase text-dark bg-gold px-4 py-2.5 rounded-[var(--radius-sm)] border-0 cursor-pointer hover:opacity-90 transition-opacity"
           >
-            Kabul Et
+            {t("accept")}
           </button>
         </div>
       </div>

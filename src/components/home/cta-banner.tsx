@@ -1,24 +1,26 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export default function CtaBanner() {
+  const t = useTranslations("home.cta");
   return (
     <section className="cta-banner">
       <div className="max-w-7xl mx-auto px-4 relative z-2">
         <span className="eyebrow" style={{ color: "#f0b830" }}>
-          Rezervasyon
+          {t("eyebrow")}
         </span>
         <h2
           className="text-white mb-3.5"
           style={{ fontSize: "clamp(26px, 4vw, 46px)" }}
         >
-          Hayalinizdeki Tatil
+          {t("titleLine1")}
           <br />
-          Bir Telefon Kadar Yakın
+          {t("titleLine2")}
         </h2>
         <p className="text-white/70 text-[15px] mb-2">
-          Online ödeme yok, karmaşık form yok. Sadece bizi arayın,
+          {t("text1")}
           <br />
-          size en uygun odayı birlikte bulalım.
+          {t("text2")}
         </p>
         <a href="tel:+905010913417" className="phone-display">
           +90 501 091 34 17
@@ -29,7 +31,7 @@ export default function CtaBanner() {
           className="btn-outline-light"
           style={{ marginTop: "8px" }}
         >
-          Rezervasyon Hakkında Bilgi Al
+          {t("button")}
         </Link>
       </div>
     </section>

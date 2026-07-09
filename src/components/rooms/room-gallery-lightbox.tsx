@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { RoomImage } from "@/lib/config/room-images";
@@ -19,6 +20,7 @@ interface Props {
  * and focus is returned to the thumbnail that opened it on close.
  */
 export default function RoomGalleryLightbox({ images, roomName }: Props) {
+  const t = useTranslations("lightbox");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
@@ -61,7 +63,7 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
             onClick={(e) => open(i, e.currentTarget)}
             className="gallery-item block w-full border-0 p-0 cursor-pointer bg-transparent"
             style={{ aspectRatio: "4/3" }}
-            aria-label={`${roomName} fotoğrafı ${i + 1} - büyüt`}
+            aria-label={t("openPhoto", { roomName, index: i + 1 })}
           >
             <Image
               src={img.src}
@@ -85,7 +87,7 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
           className="fixed inset-0 z-[100] bg-dark/95 flex items-center justify-center p-4 outline-none"
           role="dialog"
           aria-modal="true"
-          aria-label={`${roomName} galerisi`}
+          aria-label={t("galleryAria", { roomName })}
           onClick={close}
           onKeyDown={(e) => {
             if (e.key === "Escape") close();
@@ -97,7 +99,7 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
           <button
             type="button"
             onClick={close}
-            aria-label="Kapat"
+            aria-label={t("close")}
             className="absolute top-5 right-5 text-white/80 hover:text-white bg-transparent border-0 cursor-pointer p-2"
           >
             <X size={28} />
@@ -110,7 +112,7 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
                 e.stopPropagation();
                 show(-1);
               }}
-              aria-label="Önceki fotoğraf"
+              aria-label={t("previous")}
               className="absolute left-2 sm:left-6 text-white/80 hover:text-white bg-transparent border-0 cursor-pointer p-2"
             >
               <ChevronLeft size={36} />
@@ -137,7 +139,7 @@ export default function RoomGalleryLightbox({ images, roomName }: Props) {
                 e.stopPropagation();
                 show(1);
               }}
-              aria-label="Sonraki fotoğraf"
+              aria-label={t("next")}
               className="absolute right-2 sm:right-6 text-white/80 hover:text-white bg-transparent border-0 cursor-pointer p-2"
             >
               <ChevronRight size={36} />

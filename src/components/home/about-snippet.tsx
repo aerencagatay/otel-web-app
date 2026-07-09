@@ -1,16 +1,16 @@
-
-
 import Image from "next/image";
-import Link from "next/link";
-
-const highlights = [
-  "Açık yüzme havuzu",
-  "A La Carte Restoran",
-  "Kahvaltı dahil seçenek",
-  "Ücretsiz açık otopark",
-];
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export default function AboutSnippet() {
+  const t = useTranslations("home.about");
+  const highlights = [
+    t("highlight1"),
+    t("highlight2"),
+    t("highlight3"),
+    t("highlight4"),
+  ];
+
   return (
     <section className="section-py bg-white">
       <div className="max-w-7xl mx-auto px-4">
@@ -18,7 +18,7 @@ export default function AboutSnippet() {
           <div className="relative">
             <Image
               src="/img/hotel-web.jpg"
-              alt="Assos Karadut Taş Otel"
+              alt={t("imageAlt")}
               width={600}
               height={520}
               className="w-full h-[520px] object-cover"
@@ -27,26 +27,20 @@ export default function AboutSnippet() {
           </div>
 
           <div className="lg:pl-14">
-            <span className="eyebrow">Hakkımızda</span>
+            <span className="eyebrow">{t("eyebrow")}</span>
             <h2
               className="mb-6 font-normal"
               style={{ fontSize: "clamp(28px, 4.2vw, 52px)", lineHeight: 1.18 }}
             >
-              Assos&apos;un Taş
+              {t("titleLine1")}
               <br />
-              Mirası ile Konfor
+              {t("titleLine2")}
             </h2>
             <p className="text-[15px] leading-[1.85] text-text mb-4">
-              28 oda kapasitesi ile Büyükhusun Köyü&apos;nde, Assos&apos;un
-              eşsiz doğası içinde konumlanan otelimiz; kahvaltı dahil ve yarım
-              pansiyon seçenekleriyle misafirlerine hizmet vermektedir.
-              Geleneksel taş mimarisinin sıcaklığı, modern konfor anlayışıyla
-              buluşuyor.
+              {t("p1")}
             </p>
             <p className="text-[15px] leading-[1.85] text-text mb-8">
-              Kadırga Koyu&apos;na 5 km, Antik Assos&apos;a dakikalar mesafede
-              yer alan otelimiz; denizi, tarihi ve doğayı bir arada yaşamak
-              isteyenler için eşsiz bir konaklama üssüdür.
+              {t("p2")}
             </p>
             <ul className="list-none p-0 mb-9">
               {highlights.map((h) => (
@@ -62,7 +56,7 @@ export default function AboutSnippet() {
               href="/about"
               className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-dark no-underline border-b border-gold-dark/40 pb-1 hover:border-gold-dark transition-colors"
             >
-              Daha Fazla Bilgi
+              {t("moreInfo")}
             </Link>
           </div>
         </div>

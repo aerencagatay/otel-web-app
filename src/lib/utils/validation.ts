@@ -43,18 +43,18 @@ export const reservationSchema = z
       .trim()
       .min(1)
       .max(60)
-      .regex(NAME_REGEX, "Ad yalnızca harf, boşluk ve tire içerebilir."),
+      .regex(NAME_REGEX, "validation.nameChars"),
     lastName: z
       .string()
       .trim()
       .min(1)
       .max(60)
-      .regex(NAME_REGEX, "Soyad yalnızca harf, boşluk ve tire içerebilir."),
+      .regex(NAME_REGEX, "validation.surnameChars"),
     email: z.email().trim(),
     phone: z
       .string()
       .transform((val) => val.replace(/[\s-]/g, ""))
-      .pipe(z.string().regex(PHONE_REGEX, "Geçerli bir telefon numarası girin.")),
+      .pipe(z.string().regex(PHONE_REGEX, "validation.invalidPhone")),
     notes: z
       .string()
       .transform((val) => stripControlChars(val.trim()))
@@ -62,15 +62,16 @@ export const reservationSchema = z
       .optional(),
     turnstileToken: z.string().optional(),
     consent: z.literal(true, {
-      error: "KVKK Aydınlatma Metni'ni okuyup onaylamanız gerekmektedir.",
+      // İstemci tarafında çevrilen hata kodu (messages/*.json → validation.*).
+      error: "validation.consentRequired",
     }),
   })
   .refine((data) => nightCount(data.checkIn, data.checkOut) <= MAX_NIGHTS, {
-    message: "En fazla 21 gecelik rezervasyon yapılabilir.",
+    message: "validation.maxNights",
     path: ["checkOut"],
   })
   .refine((data) => isWithinAdvanceWindow(data.checkIn), {
-    message: "Giriş tarihi bugünden en fazla 365 gün sonrası olabilir.",
+    message: "validation.maxAdvance",
     path: ["checkIn"],
   })
   .superRefine((data, ctx) => {
@@ -80,7 +81,8 @@ export const reservationSchema = z
     if (totalGuests > config.maxGuests) {
       ctx.addIssue({
         code: "custom",
-        message: `Seçilen oda tipi en fazla ${config.maxGuests} misafir kabul eder.`,
+        // İstemci tarafında çevrilen hata kodu (messages/*.json → validation.*).
+        message: "validation.maxGuestsForRoom",
         path: ["adults"],
       });
     }
@@ -94,25 +96,27 @@ export const CONTACT_SUBJECTS = [
   "Diğer",
 ] as const;
 
+// Hata mesajları KOD olarak döner; istemci messages/*.json'daki
+// validation.* anahtarlarıyla çevirir (Task 04 i18n yaklaşımı).
 export const contactSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(1, "Ad Soyad zorunludur.")
+    .min(1, "validation.fullNameRequired")
     .max(80)
-    .regex(NAME_REGEX, "Ad Soyad yalnızca harf, boşluk ve tire içerebilir."),
-  email: z.email("Geçerli bir e-posta adresi girin.").trim(),
+    .regex(NAME_REGEX, "validation.fullNameChars"),
+  email: z.email("validation.invalidEmail").trim(),
   phone: z
     .string()
     .transform((val) => val.replace(/[\s-]/g, ""))
-    .pipe(z.string().regex(PHONE_REGEX, "Geçerli bir telefon numarası girin."))
+    .pipe(z.string().regex(PHONE_REGEX, "validation.invalidPhone"))
     .optional()
     .or(z.literal("")),
-  subject: z.enum(CONTACT_SUBJECTS, "Lütfen bir konu seçin."),
+  subject: z.enum(CONTACT_SUBJECTS, "validation.subjectRequired"),
   message: z
     .string()
     .transform((val) => stripControlChars(val.trim()))
-    .pipe(z.string().min(10, "Mesajınız en az 10 karakter olmalıdır.").max(1000)),
+    .pipe(z.string().min(10, "validation.messageMin").max(1000)),
   turnstileToken: z.string().optional(),
 });
 

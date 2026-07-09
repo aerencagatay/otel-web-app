@@ -59,6 +59,7 @@ export async function POST(
         checkOut: reservation.checkOut,
         nights: nightCount(reservation.checkIn, reservation.checkOut),
         roomLabel: reservation.roomLabel,
+        locale: reservation.locale === "en" ? "en" : "tr",
       });
       await mail.send({ to: reservation.email, ...template });
     } catch (mailErr) {

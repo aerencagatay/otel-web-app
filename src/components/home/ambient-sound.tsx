@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Volume2, VolumeX } from "lucide-react";
 
 /**
@@ -12,6 +13,7 @@ import { Volume2, VolumeX } from "lucide-react";
  * kullanıcı sesi açmadıkça ambient.mp3 (~2.3MB) asla indirilmez.
  */
 export default function AmbientSound() {
+  const t = useTranslations("home.ambient");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -39,9 +41,9 @@ export default function AmbientSound() {
       <button
         type="button"
         onClick={toggle}
-        aria-label={playing ? "Doğa sesini kapat" : "Doğa sesini aç"}
+        aria-label={playing ? t("stop") : t("play")}
         aria-pressed={playing}
-        title={playing ? "Sesi kapat" : "Doğa sesi"}
+        title={playing ? t("titleOn") : t("titleOff")}
         className="ambient-toggle"
       >
         {playing ? (

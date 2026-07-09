@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 interface PageHeroProps {
   title: string;
@@ -11,6 +12,7 @@ export default function PageHero({
   breadcrumb,
   backgroundImage = "/img/hotel-web.jpg",
 }: PageHeroProps) {
+  const t = useTranslations("pageHero");
   return (
     <div
       className="page-hero"
@@ -18,7 +20,7 @@ export default function PageHero({
     >
       <div className="relative z-2 text-white px-4">
         <p className="text-[10px] tracking-[0.35em] uppercase text-white/60 mb-4 m-0">
-          Assos Karadut
+          {t("eyebrow")}
         </p>
         <h1
           className="text-white mb-6 font-heading font-semibold tracking-tight m-0"
@@ -29,7 +31,7 @@ export default function PageHero({
         <span className="block w-10 h-px bg-white/25 mx-auto mb-6" aria-hidden="true" />
         <nav className="flex justify-center gap-3 text-[11px] tracking-[0.12em] uppercase">
           <Link href="/" className="text-white/55 no-underline hover:text-white transition-colors">
-            Anasayfa
+            {t("home")}
           </Link>
           <span className="text-white/25">·</span>
           <span className="text-gold-light">{breadcrumb}</span>

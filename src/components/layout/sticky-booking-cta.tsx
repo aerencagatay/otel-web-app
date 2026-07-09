@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { CalendarPlus } from "lucide-react";
 
 const HIDE_ON = new Set([
@@ -12,6 +12,7 @@ const HIDE_ON = new Set([
 ]);
 
 export default function StickyBookingCta() {
+  const t = useTranslations("stickyCta");
   const pathname = usePathname();
   if (!pathname || pathname.startsWith("/admin")) return null;
   if (HIDE_ON.has(pathname)) return null;
@@ -23,7 +24,7 @@ export default function StickyBookingCta() {
         className="sticky-book-cta__btn no-underline"
       >
         <CalendarPlus size={17} strokeWidth={1.75} />
-        Tarih seç · Rezervasyon
+        {t("label")}
       </Link>
     </div>
   );
