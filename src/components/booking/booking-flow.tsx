@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 import AvailabilitySearch from "./availability-search";
 import RoomCard from "./room-card";
 import BookingForm from "./booking-form";
@@ -26,9 +28,21 @@ export type SearchParams = {
 };
 
 export default function BookingFlow() {
+  const t = useTranslations("booking");
+  const tErr = useTranslations("apiErrors");
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const autoRan = useRef(false);
+
+  // API artık hata KODU döndürür (apiErrors namespace anahtarı). Bilinmeyen
+  // kod gelirse zarif fallback. runSearch'ün useCallback bağımlılığı olduğu
+  // için stabil referansla (useCallback) sarılır.
+  const translateError = useCallback(
+    (code: unknown): string =>
+      typeof code === "string" && tErr.has(code) ? tErr(code) : tErr("unknown"),
+    [tErr]
+  );
 
   const [step, setStep] = useState<"search" | "select" | "form">("search");
   const [search, setSearch] = useState<SearchParams | null>(null);
@@ -77,7 +91,7 @@ export default function BookingFlow() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Müsaitlik kontrolü başarısız.");
+        setError(translateError(data.error));
         return;
       }
 
@@ -90,11 +104,11 @@ export default function BookingFlow() {
         results: (data.rooms || []).length,
       });
     } catch {
-      setError("Bağlantı hatası. Lütfen tekrar deneyin.");
+      setError(t("errors.connection"));
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t, translateError]);
 
   useEffect(() => {
     if (autoRan.current) return;
@@ -142,6 +156,7 @@ export default function BookingFlow() {
           adults: search.adults,
           children: search.children,
           roomType: selectedRoom.roomType,
+          locale,
         }),
       });
 
@@ -152,7 +167,7 @@ export default function BookingFlow() {
           room_type: selectedRoom.roomType,
           status: res.status,
         });
-        setError(data.error || "Rezervasyon oluşturulamadı.");
+        setError(translateError(data.error));
         setSubmitting(false);
         return;
       }
@@ -168,12 +183,16 @@ export default function BookingFlow() {
         room_type: selectedRoom.roomType,
         status: "network",
       });
-      setError("Bağlantı hatası. Lütfen tekrar deneyin.");
+      setError(t("errors.connection"));
       setSubmitting(false);
     }
   }
 
-  const progressLabels = ["Tarih & misafir", "Oda seçimi", "Bilgiler & kapora"];
+  const progressLabels = [
+    t("progress.step1"),
+    t("progress.step2"),
+    t("progress.step3"),
+  ];
 
   return (
     <div>
@@ -208,7 +227,7 @@ export default function BookingFlow() {
             <div className="absolute inset-0 bg-[var(--color-ivory)]/85 flex items-center justify-center z-10 backdrop-blur-[2px]">
               <Loader2 className="animate-spin text-gold" size={32} />
               <span className="ml-3 text-text-light text-[14px]">
-                Müsaitlik kontrol ediliyor…
+                {t("flow.checking")}
               </span>
             </div>
           )}
@@ -219,7 +238,7 @@ export default function BookingFlow() {
         <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
             <h3 className="font-heading text-2xl font-semibold text-dark m-0">
-              Müsait odalar
+              {t("flow.availableRooms")}
             </h3>
             <button
               type="button"
@@ -229,17 +248,17 @@ export default function BookingFlow() {
               }}
               className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4 transition-colors bg-transparent border-0 cursor-pointer p-0"
             >
-              ← Tarihleri değiştir
+              {t("flow.changeDates")}
             </button>
           </div>
 
           {rooms.length === 0 ? (
             <div className="state-surface">
               <p className="text-text-light text-[16px] mb-4 m-0">
-                Seçtiğiniz tarihler için müsait oda bulunamadı.
+                {t("flow.noRooms")}
               </p>
               <button type="button" onClick={() => setStep("search")} className="btn-gold">
-                Farklı tarih dene
+                {t("flow.tryDifferent")}
               </button>
             </div>
           ) : (
@@ -263,14 +282,14 @@ export default function BookingFlow() {
           <div className="lg:col-span-2 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
               <h3 className="font-heading text-2xl font-semibold text-dark m-0">
-                Misafir bilgileri
+                {t("flow.guestInfo")}
               </h3>
               <button
                 type="button"
                 onClick={() => setStep("select")}
                 className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4 transition-colors bg-transparent border-0 cursor-pointer p-0"
               >
-                ← Oda değiştir
+                {t("flow.changeRoom")}
               </button>
             </div>
             <BookingForm

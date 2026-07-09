@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Send, CheckCircle } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 export default function ContactForm() {
+  const t = useTranslations("contact.form");
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -21,15 +23,15 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} noValidate>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <label className="form-label">Ad Soyad</label>
+          <label className="form-label">{t("name")}</label>
           <input
             type="text"
             className="form-input"
-            placeholder="Adınız ve soyadınız"
+            placeholder={t("namePlaceholder")}
           />
         </div>
         <div>
-          <label className="form-label">Telefon</label>
+          <label className="form-label">{t("phone")}</label>
           <input
             type="tel"
             className="form-input"
@@ -38,32 +40,32 @@ export default function ContactForm() {
         </div>
       </div>
       <div className="mt-5">
-        <label className="form-label">E-posta</label>
+        <label className="form-label">{t("email")}</label>
         <input
           type="email"
           className="form-input"
-          placeholder="ornek@email.com"
+          placeholder={t("emailPlaceholder")}
         />
       </div>
       <div className="mt-5">
-        <label className="form-label">Konu</label>
+        <label className="form-label">{t("subject")}</label>
         <select className="form-input" defaultValue="">
           <option value="" disabled>
-            Konu seçin
+            {t("subjectPlaceholder")}
           </option>
-          <option>Genel Bilgi</option>
-          <option>Rezervasyon</option>
-          <option>Fiyat Bilgisi</option>
-          <option>Şikayet / Öneri</option>
-          <option>Diğer</option>
+          <option>{t("subjectGeneral")}</option>
+          <option>{t("subjectReservation")}</option>
+          <option>{t("subjectPrice")}</option>
+          <option>{t("subjectComplaint")}</option>
+          <option>{t("subjectOther")}</option>
         </select>
       </div>
       <div className="mt-5">
-        <label className="form-label">Mesajınız</label>
+        <label className="form-label">{t("message")}</label>
         <textarea
           className="form-input"
           rows={5}
-          placeholder="Mesajınızı buraya yazın..."
+          placeholder={t("messagePlaceholder")}
         />
       </div>
       <div className="mt-6">
@@ -79,12 +81,12 @@ export default function ContactForm() {
           {submitted ? (
             <>
               <CheckCircle className="inline w-4 h-4 mr-2" />
-              Mesajınız İletildi
+              {t("submitted")}
             </>
           ) : (
             <>
               <Send className="inline w-4 h-4 mr-2" />
-              Gönder
+              {t("submit")}
             </>
           )}
         </button>

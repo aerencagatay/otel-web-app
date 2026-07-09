@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Search, CalendarDays } from "lucide-react";
 import type { SearchParams } from "./booking-flow";
 import DateRangePicker from "./date-range-picker";
@@ -11,18 +12,20 @@ interface Props {
   prefill?: Partial<SearchParams>;
 }
 
-const roomTypes = [
-  { value: "", label: "Tüm Oda Tipleri" },
-  { value: "deluxe_sea_view", label: "Deluxe Tam Deniz Manzaralı" },
-  { value: "traditional_room", label: "Traditional Kısmi Deniz Manzaralı" },
-  { value: "premium_family", label: "Aile Suit Deniz Manzaralı" },
-];
-
 export default function AvailabilitySearch({
   onSearch,
   loading,
   prefill,
 }: Props) {
+  const t = useTranslations("booking.search");
+  const tr = useTranslations("roomTypes");
+
+  const roomTypes = [
+    { value: "", label: t("allRoomTypes") },
+    { value: "deluxe_sea_view", label: tr("deluxe_sea_view") },
+    { value: "traditional_room", label: tr("traditional_room") },
+    { value: "premium_family", label: tr("premium_family") },
+  ];
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const dayAfter = new Date();
@@ -70,15 +73,15 @@ export default function AvailabilitySearch({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
         <div>
           <p className="text-[10px] tracking-[0.28em] uppercase text-gold-dark font-semibold m-0 mb-2">
-            Adım 1
+            {t("step")}
           </p>
           <h3 className="type-section-title m-0 flex items-center gap-2.5">
             <CalendarDays className="w-5 h-5 text-gold shrink-0" strokeWidth={1.5} />
-            Müsaitlik ara
+            {t("title")}
           </h3>
         </div>
         <p className="type-lede m-0 max-w-xs sm:text-right">
-          Tarih ve kişi sayısı seçin; uygun odaları anında listeleyelim.
+          {t("lede")}
         </p>
       </div>
 
@@ -95,7 +98,7 @@ export default function AvailabilitySearch({
           renderTrigger={({ checkInLabel, checkOutLabel, open, openPicker }) => (
             <>
               <div className="form-field">
-                <label className="form-label">Giriş tarihi</label>
+                <label className="form-label">{t("checkInDate")}</label>
                 <button
                   type="button"
                   className="form-input text-left"
@@ -107,7 +110,7 @@ export default function AvailabilitySearch({
                 </button>
               </div>
               <div className="form-field">
-                <label className="form-label">Çıkış tarihi</label>
+                <label className="form-label">{t("checkOutDate")}</label>
                 <button
                   type="button"
                   className="form-input text-left"
@@ -122,7 +125,7 @@ export default function AvailabilitySearch({
           )}
         />
         <div className="form-field">
-          <label className="form-label">Yetişkin</label>
+          <label className="form-label">{t("adults")}</label>
           <select
             className="form-input"
             value={adults}
@@ -130,13 +133,13 @@ export default function AvailabilitySearch({
           >
             {[1, 2, 3, 4].map((n) => (
               <option key={n} value={n}>
-                {n} yetişkin
+                {t("adultsOption", { count: n })}
               </option>
             ))}
           </select>
         </div>
         <div className="form-field">
-          <label className="form-label">Çocuk</label>
+          <label className="form-label">{t("children")}</label>
           <select
             className="form-input"
             value={children}
@@ -144,7 +147,7 @@ export default function AvailabilitySearch({
           >
             {[0, 1, 2, 3].map((n) => (
               <option key={n} value={n}>
-                {n} çocuk
+                {t("childrenOption", { count: n })}
               </option>
             ))}
           </select>
@@ -153,7 +156,7 @@ export default function AvailabilitySearch({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
         <div className="form-field">
-          <label className="form-label">Oda tipi (isteğe bağlı)</label>
+          <label className="form-label">{t("roomTypeOptional")}</label>
           <select
             className="form-input"
             value={roomType}
@@ -173,14 +176,14 @@ export default function AvailabilitySearch({
             disabled={loading}
           >
             <Search className="w-4 h-4 shrink-0" strokeWidth={1.75} />
-            {loading ? "Aranıyor…" : "Müsaitlik ara"}
+            {loading ? t("searching") : t("submit")}
           </button>
         </div>
       </div>
 
       {checkIn >= checkOut && checkIn && checkOut && (
         <p className="text-red-700 text-[13px] mt-3 m-0">
-          Çıkış tarihi giriş tarihinden sonra olmalıdır.
+          {t("invalidDate")}
         </p>
       )}
     </form>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Loader2, Send } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
@@ -19,6 +20,7 @@ interface Props {
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function BookingForm({ onSubmit, submitting }: Props) {
+  const t = useTranslations("booking.form");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,19 +47,18 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
     <form onSubmit={handleSubmit} className="booking-card">
       <div className="mb-8 pb-8 border-b border-border">
         <p className="text-[10px] tracking-[0.28em] uppercase text-gold-dark font-semibold m-0 mb-2">
-          Adım 3
+          {t("step")}
         </p>
-        <h3 className="type-section-title m-0">İletişim bilgileri</h3>
+        <h3 className="type-section-title m-0">{t("title")}</h3>
         <p className="type-lede mt-3 mb-0 max-w-xl">
-          Bu bilgiler rezervasyon kaydı ve kapora talimatları için kullanılır. Lütfen
-          ulaşabileceğiniz bir telefon girin.
+          {t("lede")}
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
         <div className="form-field">
           <label className="form-label" htmlFor="bf-first">
-            Ad *
+            {t("firstName")}
           </label>
           <input
             id="bf-first"
@@ -65,14 +66,14 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
             className="form-input"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Adınız"
+            placeholder={t("firstNamePlaceholder")}
             required
             autoComplete="given-name"
           />
         </div>
         <div className="form-field">
           <label className="form-label" htmlFor="bf-last">
-            Soyad *
+            {t("lastName")}
           </label>
           <input
             id="bf-last"
@@ -80,14 +81,14 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
             className="form-input"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Soyadınız"
+            placeholder={t("lastNamePlaceholder")}
             required
             autoComplete="family-name"
           />
         </div>
         <div className="form-field">
           <label className="form-label" htmlFor="bf-email">
-            E-posta *
+            {t("email")}
           </label>
           <input
             id="bf-email"
@@ -95,15 +96,15 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
             className="form-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="ornek@email.com"
+            placeholder={t("emailPlaceholder")}
             required
             autoComplete="email"
           />
-          <p className="form-hint">Kapora ve onay bu adrese gönderilir.</p>
+          <p className="form-hint">{t("emailHint")}</p>
         </div>
         <div className="form-field">
           <label className="form-label" htmlFor="bf-phone">
-            Telefon *
+            {t("phone")}
           </label>
           <input
             id="bf-phone"
@@ -120,7 +121,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
 
       <div className="form-field mt-6">
         <label className="form-label" htmlFor="bf-notes">
-          Notlar <span className="text-text-light font-normal normal-case tracking-normal">(isteğe bağlı)</span>
+          {t("notes")} <span className="text-text-light font-normal normal-case tracking-normal">{t("notesOptional")}</span>
         </label>
         <textarea
           id="bf-notes"
@@ -128,7 +129,7 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           rows={3}
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          placeholder="Özel istek, varış saati…"
+          placeholder={t("notesPlaceholder")}
         />
       </div>
 
@@ -152,12 +153,12 @@ export default function BookingForm({ onSubmit, submitting }: Props) {
           {submitting ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Gönderiliyor…
+              {t("submitting")}
             </>
           ) : (
             <>
               <Send className="w-4 h-4" strokeWidth={1.75} />
-              Talebi gönder
+              {t("submit")}
             </>
           )}
         </button>

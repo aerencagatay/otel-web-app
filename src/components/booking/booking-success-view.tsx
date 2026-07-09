@@ -1,11 +1,13 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { CheckCircle2, Phone, ArrowLeft, Mail, Clock } from "lucide-react";
 import { HOTEL, RESERVATION_HOLD_HOURS } from "@/lib/config/hotel";
 
 export default function BookingSuccessView() {
+  const t = useTranslations("bookingSuccess");
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -19,20 +21,20 @@ export default function BookingSuccessView() {
             </div>
 
             <span className="inline-block text-[10px] tracking-[0.28em] uppercase font-semibold text-gold-dark mb-3">
-              Talep alındı
+              {t("badge")}
             </span>
             <h1
               className="font-heading font-semibold text-dark mb-4"
               style={{ fontSize: "clamp(1.75rem, 4vw, 2.35rem)" }}
             >
-              Rezervasyonunuz oluşturuldu
+              {t("title")}
             </h1>
 
             {id && (
               <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-border bg-warm rounded-[var(--radius-sm)]">
                 <Clock size={16} className="text-gold-dark" />
                 <span className="text-[11px] tracking-[0.12em] uppercase text-text-light">
-                  No
+                  {t("reservationNo")}
                 </span>
                 <span className="font-mono text-[15px] font-semibold text-dark">{id}</span>
               </div>
@@ -40,39 +42,39 @@ export default function BookingSuccessView() {
 
             <div className="text-left border border-amber-900/15 bg-amber-50/80 px-5 py-4 rounded-[var(--radius-sm)] mb-6">
               <p className="text-[11px] tracking-[0.2em] uppercase font-semibold text-amber-900/80 m-0 mb-2">
-                Kapora bekleniyor
+                {t("depositPendingLabel")}
               </p>
               <p className="text-[14px] text-text m-0 leading-relaxed">
-                Rezervasyonunuz <strong className="text-dark">kapora ödemesi onaylanana kadar</strong>{" "}
-                kesin değildir. Ödeme onaylandığında e-posta ile bilgilendirileceksiniz.
+                {t.rich("depositPendingText", {
+                  strong: (chunks) => <strong className="text-dark">{chunks}</strong>,
+                })}
               </p>
             </div>
 
             <p className="text-[15px] text-text leading-relaxed mb-8 text-left">
-              Özet ve talimatlar e-posta adresinize gönderilmiştir.{" "}
-              <strong className="text-dark">{RESERVATION_HOLD_HOURS} saat içinde</strong> aşağıdaki
-              IBAN&apos;a kapora göndermeniz gerekir. Havale açıklamasına rezervasyon numaranızı yazın.
-              Bu süre içinde onaylanmazsa rezervasyon otomatik iptal olur.
+              {t("instructions1")}{" "}
+              <strong className="text-dark">{t("withinHours", { hours: RESERVATION_HOLD_HOURS })}</strong>{" "}
+              {t("instructions2")}
             </p>
 
             <div className="text-left border border-border bg-white/80 p-6 mb-6 rounded-[var(--radius-sm)]">
               <h3 className="font-heading text-lg font-semibold text-dark m-0 mb-4">
-                Kapora bilgileri
+                {t("depositTitle")}
               </h3>
               <div className="space-y-3 text-[14px]">
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
-                  <span className="text-text-light">IBAN</span>
+                  <span className="text-text-light">{t("iban")}</span>
                   <span className="font-mono font-medium text-dark text-[13px]">
                     {HOTEL.iban}
                   </span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
-                  <span className="text-text-light">Alıcı</span>
+                  <span className="text-text-light">{t("recipient")}</span>
                   <span className="font-medium text-dark">{HOTEL.ibanHolder}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
-                  <span className="text-text-light">Açıklama</span>
-                  <span className="font-semibold text-gold-dark">Rezervasyon numaranız</span>
+                  <span className="text-text-light">{t("description")}</span>
+                  <span className="font-semibold text-gold-dark">{t("descriptionValue")}</span>
                 </div>
               </div>
             </div>
@@ -80,20 +82,20 @@ export default function BookingSuccessView() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link href="/" className="btn-gold text-center no-underline inline-flex items-center justify-center gap-2">
                 <ArrowLeft className="w-4 h-4" />
-                Anasayfa
+                {t("home")}
               </Link>
               <a
                 href="tel:+905010913417"
                 className="btn-dark-sq text-center no-underline inline-flex items-center justify-center gap-2"
               >
                 <Phone className="w-4 h-4" />
-                Bizi arayın
+                {t("callUs")}
               </a>
             </div>
 
             <p className="text-[12px] text-text-light mt-8 mb-0 flex items-center justify-center gap-2">
               <Mail size={14} />
-              E-postanızı kontrol edin; göremiyorsanız spam klasörüne bakın.
+              {t("checkEmail")}
             </p>
           </div>
         </div>
