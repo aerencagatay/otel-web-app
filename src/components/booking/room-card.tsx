@@ -45,7 +45,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
         <h3 className="font-heading text-xl md:text-2xl font-semibold text-dark m-0 mb-3 leading-snug tracking-tight">
           {roomLabel}
         </h3>
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-text mb-4">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text mb-4">
           <span className="inline-flex items-center gap-2">
             <BedDouble size={16} className="text-gold-dark shrink-0" strokeWidth={1.5} />
             {t("boutiqueRoom")}
@@ -55,7 +55,7 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
             {t("maxGuests", { count: room.maxGuests })}
           </span>
         </div>
-        <p className="text-[12px] text-text-light m-0 flex items-start gap-2 leading-relaxed max-w-prose">
+        <p className="text-[13px] text-text-light m-0 flex items-start gap-2 leading-relaxed max-w-prose">
           <Sparkles size={15} className="text-gold shrink-0 mt-0.5" strokeWidth={1.5} />
           {t("note")}
         </p>
@@ -63,30 +63,30 @@ export default function RoomCard({ room, checkIn, checkOut, onSelect }: Props) {
       <div className="room-select-card__aside">
         {stay.total != null ? (
           <>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-text-light mb-1 font-semibold">
+            <div className="text-[11px] uppercase tracking-[0.2em] text-text-light mb-1 font-semibold">
               {t("totalNights", { nights: stay.nights })}
             </div>
             <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-1 leading-none">
               {num(stay.total)} <span className="text-base font-body font-semibold">₺</span>
             </div>
-            <div className="text-[11px] text-text-light mb-1">
+            <div className="text-[12px] text-text-light mb-1">
               {stay.uniform && stay.fromPrice != null
                 ? t("perNight", { price: num(stay.fromPrice) })
                 : t("vatIncluded")}
             </div>
             {locale === "en" && (
-              <div className="text-[11px] text-text-light mb-3">
+              <div className="text-[12px] text-text-light mb-3">
                 {t("approxEur", { amount: num(approxEur(stay.total)) })}
               </div>
             )}
-            <div className="text-[11px] text-text-light mb-4">
+            <div className="text-[12px] text-text-light mb-4">
               {t("depositOneNight")}{" "}
               <span className="font-semibold text-dark">{num(depositAmount)} ₺</span>
             </div>
           </>
         ) : (
           <>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-text-light mb-2 font-semibold">
+            <div className="text-[11px] uppercase tracking-[0.2em] text-text-light mb-2 font-semibold">
               {t("deposit")}
             </div>
             <div className="font-heading text-[1.65rem] md:text-[1.85rem] font-semibold text-dark mb-5 leading-none">

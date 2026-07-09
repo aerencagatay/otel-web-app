@@ -1433,11 +1433,15 @@ img {
   color: var(--color-gold-light);
 }
 
-/* Room selection card (destination / place inspired) */
+/* Room selection card (destination / place inspired)
+   Flexbox with a fixed, non-shrinking media column: this is deliberate —
+   a CSS Grid track (minmax() + aspect-ratio on the media cell) was found to
+   mis-resolve around ~768-1023px viewport widths in real Chrome, letting the
+   photo visually bleed into the body column and cover the badge/title.
+   flex-shrink: 0 on the media column plus min-width: 0 on body/aside makes
+   that class of overlap structurally impossible regardless of viewport. */
 .room-select-card {
-  display: grid;
-  grid-template-columns: minmax(200px, 280px) 1fr auto;
-  gap: 0;
+  display: flex;
   align-items: stretch;
   background: #fff;
   border: 1px solid var(--color-border);
@@ -1450,10 +1454,15 @@ img {
   transform: translateY(-2px);
 }
 .room-select-card__media {
+  position: relative;
+  flex: 0 0 240px;
   aspect-ratio: 4/3;
   min-height: 160px;
+  overflow: hidden;
 }
 .room-select-card__body {
+  flex: 1 1 0%;
+  min-width: 0;
   padding: 1.5rem 1.75rem;
   border-left: 1px solid var(--color-border);
   display: flex;
@@ -1461,6 +1470,8 @@ img {
   justify-content: center;
 }
 .room-select-card__aside {
+  flex: 0 0 190px;
+  min-width: 0;
   padding: 1.5rem 1.5rem;
   background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-warm) 100%);
   border-left: 1px solid var(--color-border);
@@ -1468,7 +1479,6 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  min-width: 160px;
 }
 .room-select-card__tag {
   display: inline-flex;
@@ -1495,11 +1505,24 @@ img {
   height: 100%;
   object-fit: cover;
 }
+@media (max-width: 1023px) {
+  .room-select-card__media {
+    flex-basis: 190px;
+  }
+  .room-select-card__aside {
+    flex-basis: 170px;
+    padding: 1.25rem 1.25rem;
+  }
+  .room-select-card__body {
+    padding: 1.25rem 1.5rem;
+  }
+}
 @media (max-width: 767px) {
   .room-select-card {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   .room-select-card__media {
+    flex-basis: auto;
     aspect-ratio: 16/9;
     min-height: 0;
   }
