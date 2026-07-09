@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 
 const BASE = "https://karaduttasotel.com";
 
@@ -24,12 +25,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", changeFrequency: "weekly", priority: 1 },
     { path: "/about", changeFrequency: "monthly", priority: 0.8 },
     { path: "/rooms", changeFrequency: "weekly", priority: 0.9 },
+    // Task 05 oda detay sayfaları
+    ...Object.values(ROOM_TYPE_MAP).map((config) => ({
+      path: `/rooms/${config.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
     { path: "/reservation", changeFrequency: "weekly", priority: 0.9 },
     { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
     // Task 03 yasal sayfaları
     { path: "/kvkk", changeFrequency: "yearly", priority: 0.3 },
     { path: "/gizlilik", changeFrequency: "yearly", priority: 0.3 },
     { path: "/iptal-politikasi", changeFrequency: "yearly", priority: 0.3 },
+    // Rezervasyon sorgulama misafire özel/robots:noindex — sitemap'e eklenmez.
   ];
 
   // Her sayfa için TR ve EN girdisi; ikisi de hreflang alternates taşır.

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { availabilitySchema } from "@/lib/utils/validation";
-import { checkAvailability } from "@/lib/sheets/availability";
+import { checkAvailability, findNearestAvailability } from "@/lib/sheets/availability";
 import { isPastDate } from "@/lib/utils/dates";
 import {
   getClientIp,
@@ -45,6 +45,18 @@ export async function GET(request: NextRequest) {
       roomType,
       totalGuests
     );
+
+    if (rooms.length === 0) {
+      // Aynı uzunlukta ±1..±7 gün kaydırılmış pencerelerde alternatif ara.
+      // minGuests da geçirilir — misafir sayısına uymayan tarihler önerilmez.
+      const alternatives = await findNearestAvailability(
+        checkIn,
+        checkOut,
+        roomType,
+        totalGuests
+      );
+      return NextResponse.json({ rooms, alternatives });
+    }
 
     return NextResponse.json({ rooms });
   } catch (err) {

@@ -71,6 +71,45 @@ export function getStartingPriceLabel(
   return `₺${price.toLocaleString("tr-TR")}'den başlayan / gece · kahvaltı dahil`;
 }
 
+/**
+ * Lowest-priced room type across ROOM_PRICING (used when the pricing API is
+ * queried without a `roomType`, so the calendar can still show "from" prices).
+ */
+export function getCheapestRoomType(from: Date = new Date()): string | null {
+  let cheapest: { type: string; price: number } | null = null;
+  for (const type of Object.keys(ROOM_PRICING)) {
+    const price = getLowestUpcomingPrice(type, from);
+    if (price != null && (cheapest == null || price < cheapest.price)) {
+      cheapest = { type, price };
+    }
+  }
+  return cheapest?.type ?? null;
+}
+
+/**
+ * Day -> nightly price map for a room type across a list of "YYYY-MM" months.
+ * Used by GET /api/pricing to feed the date-range-picker's per-day labels.
+ * Months without a defined price are simply absent from the result (no key).
+ */
+export function getDailyPriceMap(
+  roomType: string,
+  months: string[]
+): Record<string, number> {
+  const table = ROOM_PRICING[roomType] ?? {};
+  const result: Record<string, number> = {};
+  for (const month of months) {
+    const price = table[month];
+    if (price == null) continue;
+    const [year, m] = month.split("-").map(Number);
+    const daysInMonth = new Date(year, m, 0).getDate();
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${month}-${String(day).padStart(2, "0")}`;
+      result[dateStr] = price;
+    }
+  }
+  return result;
+}
+
 export interface StayPrice {
   nights: number;
   /** Total stay price, or null if any night's month has no defined price. */

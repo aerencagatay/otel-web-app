@@ -37,6 +37,10 @@
     "iptal": {
       "title": "İptal ve İade Politikası",
       "description": "Assos Karadut Taş Otel iptal ve iade politikası — kapora, iptal süreleri ve mesafeli satış koşulları."
+    },
+    "reservationLookup": {
+      "title": "Rezervasyon Sorgula",
+      "description": "Rezervasyon numaranız ve e-posta adresinizle Assos Karadut Taş Otel rezervasyon durumunuzu sorgulayın."
     }
   },
   "pricing": {
@@ -69,6 +73,7 @@
     "reception": "7/24 Resepsiyon Hizmeti",
     "license": "© 2026 Assos Karadut Taş Otel · Turizm Lisans No: 24921",
     "legal": {
+      "lookup": "Rezervasyon Sorgula",
       "kvkk": "KVKK Aydınlatma Metni",
       "privacy": "Gizlilik Politikası",
       "cancellation": "İptal ve İade Politikası"
@@ -414,6 +419,17 @@
       "button": "Rezervasyon Nasıl Yapılır?"
     }
   },
+  "roomDetail": {
+    "backToRooms": "← Tüm Odalar",
+    "checkAvailability": "Müsaitlik Kontrol Et",
+    "invalidDate": "Çıkış tarihi giriş tarihinden sonra olmalıdır.",
+    "seasonPriceTitle": "Sezon Fiyatları",
+    "perNight": "/ gece",
+    "galleryTitle": "Fotoğraf Galerisi",
+    "similarRoomsEyebrow": "Diğer Seçenekler",
+    "similarRoomsTitle": "Diğer Odalarımız",
+    "viewDetails": "Detayları Gör"
+  },
   "reservation": {
     "hero": {
       "eyebrow": "Rezervasyon",
@@ -541,7 +557,8 @@
     "descriptionValue": "Rezervasyon numaranız",
     "home": "Anasayfa",
     "callUs": "Bizi arayın",
-    "checkEmail": "E-postanızı kontrol edin; göremiyorsanız spam klasörüne bakın."
+    "checkEmail": "E-postanızı kontrol edin; göremiyorsanız spam klasörüne bakın.",
+    "lookupLink": "Rezervasyon durumunuzu buradan takip edebilirsiniz"
   },
   "booking": {
     "progress": {
@@ -570,6 +587,7 @@
       "availableRooms": "Müsait odalar",
       "changeDates": "← Tarihleri değiştir",
       "noRooms": "Seçtiğiniz tarihler için müsait oda bulunamadı.",
+      "alternativesTitle": "Bu tarihler dolu — şu tarihlerde müsaitlik var:",
       "tryDifferent": "Farklı tarih dene",
       "guestInfo": "Misafir bilgileri",
       "changeRoom": "← Oda değiştir"
@@ -629,7 +647,9 @@
       "placeholder": "Tarih seçin",
       "dialogLabel": "Tarih seçin",
       "hint": "Giriş ve çıkış tarihini seçin.",
-      "close": "Kapat"
+      "close": "Kapat",
+      "summary": "{nights} gece · toplam {total} ₺",
+      "summaryEur": "(≈ {amount} €)"
     },
     "errors": {
       "availabilityFailed": "Müsaitlik kontrolü başarısız.",
@@ -652,12 +672,15 @@
     "contactUnavailable": "İletişim formu şu anda geçici olarak kullanılamıyor. Lütfen bizi telefonla arayın veya daha sonra tekrar deneyin.",
     "contactSendFailed": "Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin veya bizi telefonla arayın.",
     "contactError": "Mesajınız gönderilirken bir hata oluştu.",
+    "reservationNotFound": "Bu bilgilerle eşleşen bir rezervasyon bulunamadı.",
+    "lookupError": "Sorgulama sırasında bir hata oluştu.",
     "unknown": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
   },
   "validation": {
     "nameChars": "Ad yalnızca harf, boşluk ve tire içerebilir.",
     "surnameChars": "Soyad yalnızca harf, boşluk ve tire içerebilir.",
     "invalidPhone": "Geçerli bir telefon numarası girin.",
+    "invalidReservationId": "Geçerli bir rezervasyon numarası girin (örn. WEB-20260715-AB12).",
     "maxNights": "En fazla 21 gecelik rezervasyon yapılabilir.",
     "maxAdvance": "Giriş tarihi bugünden en fazla 365 gün sonrası olabilir.",
     "maxGuestsForRoom": "Seçilen oda tipi en fazla {max} misafir kabul eder.",
@@ -783,5 +806,41 @@
         "p": "İptal, değişiklik ve iade talepleriniz için lütfen bizi telefonla arayın: <phoneLink>{phone}</phoneLink> veya {email} adresine e-posta gönderin."
       }
     }
+  },
+  "whatsapp": {
+    "ariaLabel": "WhatsApp ile mesaj gönderin",
+    "genericMessage": "Merhaba, Assos Karadut Taş Otel hakkında bilgi almak istiyorum.",
+    "contextMessage": "Merhaba, {dates} tarihleri hakkında bilgi almak istiyorum.",
+    "contextMessageWithRoom": "Merhaba, {dates} tarihleri arası {room} hakkında bilgi almak istiyorum."
+  },
+  "reservationLookup": {
+    "hero": {
+      "eyebrow": "Rezervasyon Sorgula",
+      "title": "Rezervasyonunuzu Sorgulayın",
+      "text": "Rezervasyon numaranız ve e-posta adresinizle rezervasyon durumunuzu kontrol edin."
+    },
+    "reservationIdLabel": "Rezervasyon Numarası",
+    "reservationIdPlaceholder": "WEB-20260715-AB12",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "ornek@email.com",
+    "submit": "Sorgula",
+    "searching": "Sorgulanıyor…",
+    "notFound": "Bu bilgilerle eşleşen bir rezervasyon bulunamadı. Rezervasyon numaranızı ve e-postanızı kontrol edip tekrar deneyin.",
+    "connectionError": "Bağlantı hatası. Lütfen tekrar deneyin.",
+    "status": {
+      "pending": "Kapora Bekleniyor",
+      "confirmed": "Kesinleşti",
+      "cancelled": "İptal Edildi"
+    },
+    "room": "Oda",
+    "checkIn": "Giriş",
+    "checkOut": "Çıkış",
+    "nights": "Gece Sayısı",
+    "deposit": "Kapora",
+    "changeHint": "Rezervasyonunuzda değişiklik veya iptal için lütfen bizimle iletişime geçin — online iptal desteklenmemektedir.",
+    "callUs": "Bizi Arayın",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Merhaba, {reservationId} numaralı rezervasyonum hakkında bilgi almak istiyorum.",
+    "hint": "Rezervasyon numaranızı e-posta ile aldığınız onay mesajında bulabilirsiniz."
   }
 }

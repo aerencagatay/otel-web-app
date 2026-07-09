@@ -9,6 +9,7 @@ import RoomGalleryLightbox from "@/components/rooms/room-gallery-lightbox";
 import { getRoomImages } from "@/lib/config/room-images";
 import { getLowestUpcomingPrice } from "@/lib/config/pricing";
 import { approxEur } from "@/lib/config/hotel";
+import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { buildAlternates } from "@/i18n/seo";
 import { routing, type Locale } from "@/i18n/routing";
 import {
@@ -55,6 +56,7 @@ export default async function RoomsPage({
   setRequestLocale(locale);
   const t = await getTranslations("rooms");
   const tp = await getTranslations("pricing");
+  const td = await getTranslations("roomDetail");
   const tr = await getTranslations("roomTypes");
   const activeLocale: Locale = hasLocale(routing.locales, locale)
     ? locale
@@ -175,8 +177,9 @@ export default async function RoomsPage({
                       room.layout === "image-left" ? "480px 1fr" : "1fr 480px",
                   }}
                 >
-                  <div
-                    className="overflow-hidden min-h-[380px]"
+                  <Link
+                    href={`/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`}
+                    className="overflow-hidden min-h-[380px] block"
                     style={{ order: room.layout === "image-right" ? 2 : 0 }}
                   >
                     <Image
@@ -186,7 +189,7 @@ export default async function RoomsPage({
                       height={380}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </Link>
                   <div
                     className="p-8 md:px-9 flex flex-col justify-center"
                     style={{ order: room.layout === "image-right" ? 1 : 0 }}
@@ -195,7 +198,12 @@ export default async function RoomsPage({
                       className="mb-2"
                       style={{ fontSize: "clamp(20px, 2.5vw, 26px)" }}
                     >
-                      {room.name}
+                      <Link
+                        href={`/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`}
+                        className="text-dark no-underline hover:text-gold-dark transition-colors"
+                      >
+                        {room.name}
+                      </Link>
                     </h3>
                     <div className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase mb-4">
                       {priceLabel(room.roomType)}
@@ -214,10 +222,16 @@ export default async function RoomsPage({
                         </span>
                       ))}
                     </div>
-                    <div>
+                    <div className="flex flex-wrap gap-4 items-center">
                       <Link href="/reservation" className="btn-gold">
                         <Phone className="inline w-3.5 h-3.5 mr-2" />
                         {t("bookCta")}
+                      </Link>
+                      <Link
+                        href={`/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`}
+                        className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4"
+                      >
+                        {td("viewDetails")}
                       </Link>
                     </div>
                   </div>

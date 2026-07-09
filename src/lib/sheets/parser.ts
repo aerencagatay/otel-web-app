@@ -18,8 +18,17 @@ export interface ParsedMonth {
 }
 
 /**
- * Fetch and parse a specific sheet tab for a given month.
- * Sheet tab names expected like "Haziran 2026", "Temmuz 2026", etc.
+ * Fetch and parse a specific sheet tab for a given month. Sheet tab names
+ * expected like "Haziran 2026", "Temmuz 2026", etc.
+ *
+ * NOTE: this is the raw, uncached fetch — used directly by the reservation
+ * write path (`sheets/reservations.ts`) where stale data must never be
+ * trusted (it would defeat the post-write double-booking verification: two
+ * concurrent requests reading the same stale "room is free" snapshot could
+ * each target the same cell, and whichever writes last silently overwrites
+ * the other's already-verified reservation). Read-only call sites that can
+ * tolerate up to 60s of staleness (availability search, alternative-date
+ * scan) should go through `parseMonthSheetCached` in `./cache` instead.
  */
 export async function parseMonthSheet(
   tabName: string

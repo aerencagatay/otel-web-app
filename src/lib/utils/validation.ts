@@ -120,6 +120,18 @@ export const contactSchema = z.object({
   turnstileToken: z.string().optional(),
 });
 
+// Rezervasyon sorgulama (self-servis, Task 05). Reservation ID format comes
+// from `generateReservationId` (WEB-YYYYMMDD-XXXX); kept loose enough to
+// still validate old/legacy ids consistently while rejecting junk input.
+export const lookupSchema = z.object({
+  reservationId: z
+    .string()
+    .trim()
+    .toUpperCase()
+    .regex(/^[A-Z]{2,6}-\d{8}-[A-Z0-9]{4,8}$/, "validation.invalidReservationId"),
+  email: z.email("validation.invalidEmail").trim(),
+});
+
 export type AvailabilityInput = z.infer<typeof availabilitySchema>;
 export type ReservationInput = z.infer<typeof reservationSchema>;
 export type ContactInput = z.infer<typeof contactSchema>;
