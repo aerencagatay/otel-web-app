@@ -37,6 +37,10 @@
     "iptal": {
       "title": "Cancellation & Refund Policy",
       "description": "Assos Karadut Taş Otel cancellation and refund policy — deposit terms, cancellation windows and distance-sales conditions."
+    },
+    "reservationLookup": {
+      "title": "Look Up Reservation",
+      "description": "Look up your Assos Karadut Taş Otel reservation status with your reservation number and email address."
     }
   },
   "pricing": {
@@ -69,6 +73,7 @@
     "reception": "24/7 Reception",
     "license": "© 2026 Assos Karadut Taş Otel · Tourism Licence No: 24921",
     "legal": {
+      "lookup": "Look Up Reservation",
       "kvkk": "KVKK Privacy Notice",
       "privacy": "Privacy Policy",
       "cancellation": "Cancellation & Refund Policy"
@@ -414,6 +419,17 @@
       "button": "How to Book?"
     }
   },
+  "roomDetail": {
+    "backToRooms": "← All Rooms",
+    "checkAvailability": "Check Availability",
+    "invalidDate": "Check-out must be after check-in.",
+    "seasonPriceTitle": "Seasonal Prices",
+    "perNight": "/ night",
+    "galleryTitle": "Photo Gallery",
+    "similarRoomsEyebrow": "Other Options",
+    "similarRoomsTitle": "Our Other Rooms",
+    "viewDetails": "View Details"
+  },
   "reservation": {
     "hero": {
       "eyebrow": "Reservation",
@@ -541,7 +557,8 @@
     "descriptionValue": "Your reservation number",
     "home": "Home",
     "callUs": "Call us",
-    "checkEmail": "Check your email; if you don't see it, look in your spam folder."
+    "checkEmail": "Check your email; if you don't see it, look in your spam folder.",
+    "lookupLink": "Track your reservation status here"
   },
   "booking": {
     "progress": {
@@ -570,6 +587,7 @@
       "availableRooms": "Available rooms",
       "changeDates": "← Change dates",
       "noRooms": "No rooms are available for the dates you selected.",
+      "alternativesTitle": "Those dates are fully booked — availability found on:",
       "tryDifferent": "Try different dates",
       "guestInfo": "Guest details",
       "changeRoom": "← Change room"
@@ -629,7 +647,9 @@
       "placeholder": "Choose a date",
       "dialogLabel": "Choose dates",
       "hint": "Select your check-in and check-out dates.",
-      "close": "Close"
+      "close": "Close",
+      "summary": "{nights} nights · total ₺{total}",
+      "summaryEur": "(≈ €{amount})"
     },
     "errors": {
       "availabilityFailed": "Availability check failed.",
@@ -652,12 +672,15 @@
     "contactUnavailable": "The contact form is temporarily unavailable. Please call us by phone or try again later.",
     "contactSendFailed": "Your message could not be sent. Please try again later or call us by phone.",
     "contactError": "An error occurred while sending your message.",
+    "reservationNotFound": "No reservation was found matching these details.",
+    "lookupError": "An error occurred while looking up your reservation.",
     "unknown": "An unexpected error occurred. Please try again."
   },
   "validation": {
     "nameChars": "The first name may contain only letters, spaces and hyphens.",
     "surnameChars": "The surname may contain only letters, spaces and hyphens.",
     "invalidPhone": "Please enter a valid phone number.",
+    "invalidReservationId": "Please enter a valid reservation number (e.g. WEB-20260715-AB12).",
     "maxNights": "Reservations can be made for at most 21 nights.",
     "maxAdvance": "The check-in date can be at most 365 days from today.",
     "maxGuestsForRoom": "The selected room type accepts at most {max} guests.",
@@ -783,5 +806,41 @@
         "p": "For cancellation, change and refund requests, please call us at <phoneLink>{phone}</phoneLink> or email {email}."
       }
     }
+  },
+  "whatsapp": {
+    "ariaLabel": "Send us a WhatsApp message",
+    "genericMessage": "Hello, I'd like some information about Assos Karadut Taş Otel.",
+    "contextMessage": "Hello, I'd like some information about {dates}.",
+    "contextMessageWithRoom": "Hello, I'd like some information about the {room} for {dates}."
+  },
+  "reservationLookup": {
+    "hero": {
+      "eyebrow": "Look Up Reservation",
+      "title": "Look Up Your Reservation",
+      "text": "Check your reservation status with your reservation number and email address."
+    },
+    "reservationIdLabel": "Reservation Number",
+    "reservationIdPlaceholder": "WEB-20260715-AB12",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "submit": "Look Up",
+    "searching": "Looking up…",
+    "notFound": "No reservation was found matching these details. Please check your reservation number and email and try again.",
+    "connectionError": "Connection error. Please try again.",
+    "status": {
+      "pending": "Deposit Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "room": "Room",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "nights": "Nights",
+    "deposit": "Deposit",
+    "changeHint": "To change or cancel your reservation, please contact us directly — online cancellation is not supported.",
+    "callUs": "Call Us",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Hello, I'd like some information about my reservation {reservationId}.",
+    "hint": "You can find your reservation number in the confirmation email you received."
   }
 }
