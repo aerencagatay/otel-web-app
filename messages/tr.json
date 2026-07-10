@@ -702,7 +702,7 @@
         "address": "Adres",
         "email": "E-posta",
         "phone": "Telefon",
-        "mersis": "Unvan: YNDK Turizm Sağlık A.Ş. · Mersis / Vergi No: [OTEL SAHİBİ ONAYLAYACAK]"
+        "mersis": "Unvan: YNDK Turizm Sağlık A.Ş. · Vergi No: 9811574018"
       },
       "s2": {
         "h": "2. İşlenen Kişisel Veriler",
@@ -720,7 +720,7 @@
       },
       "s4": {
         "h": "4. Kişisel Verilerin Aktarılması",
-        "p": "Kişisel verileriniz, yasal yükümlülüklerimiz gereği yetkili kamu kurum ve kuruluşları ile; rezervasyon ve e-posta altyapımızı sağlayan hizmet sağlayıcılarımıza (sunucu/e-posta/ödeme altyapı sağlayıcıları) yalnızca hizmetin ifası amacıyla sınırlı olarak aktarılabilir. Verileriniz yurt dışına aktarılmaz; aktarım gerektiren bir altyapı kullanılması hâlinde bu metin güncellenecektir. [OTEL SAHİBİ ONAYLAYACAK]"
+        "p": "Kişisel verileriniz, yasal yükümlülüklerimiz gereği yetkili kamu kurum ve kuruluşları ile; rezervasyon ve e-posta altyapımızı sağlayan hizmet sağlayıcılarımıza (sunucu/e-posta/ödeme altyapı sağlayıcıları) yalnızca hizmetin ifası amacıyla sınırlı olarak aktarılabilir. Verileriniz yurt dışına aktarılmaz; aktarım gerektiren bir altyapı kullanılması hâlinde bu metin güncellenecektir."
       },
       "s5": {
         "h": "5. Saklama Süresi",
@@ -765,7 +765,7 @@
       },
       "s5": {
         "h": "5. Üçüncü Taraf Hizmetler",
-        "p": "E-posta gönderimi ve rezervasyon altyapısı için üçüncü taraf hizmet sağlayıcılar kullanılmaktadır. Bu sağlayıcılar verilerinizi yalnızca hizmetin ifası amacıyla işler. [OTEL SAHİBİ ONAYLAYACAK — kullanılan sağlayıcıların güncel listesi]"
+        "p": "E-posta gönderimi ve rezervasyon altyapısı için üçüncü taraf hizmet sağlayıcılar kullanılmaktadır. Bu sağlayıcılar verilerinizi yalnızca hizmetin ifası amacıyla işler."
       },
       "s6": {
         "h": "6. İletişim",
@@ -795,11 +795,11 @@
       },
       "s4": {
         "h": "4. Mesafeli Satış Sözleşmesi Kapsamında Cayma Hakkı",
-        "p": "6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği uyarınca; konaklama hizmetleri belirli bir tarihte ifa edilmek üzere sunulan hizmetler kapsamında değerlendirilebileceğinden, cayma hakkının kullanım koşulları için lütfen ilgili mevzuatı inceleyiniz veya bizimle iletişime geçiniz. Kesin koşullar: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+        "p": "6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği uyarınca; belirli bir tarihte ifa edilmek üzere sunulan konaklama hizmetleri, Yönetmelik kapsamındaki istisna gereği <strong>14 günlük cayma hakkının uygulanmadığı</strong> hizmetlerdendir. İptal talepleriniz, bu sayfada yer alan iptal ve iade koşullarına tabidir."
       },
       "s5": {
         "h": "5. İade Süreci",
-        "p": "Onaylanan iadeler, bildirim tarihinden itibaren <strong>[OTEL SAHİBİ ONAYLAYACAK] iş günü</strong> içinde kaporanın ödendiği hesaba yapılır."
+        "p": "Onaylanan iadeler, iptal onayını takiben <strong>aynı gün</strong> işleme alınır ve kaporanın ödendiği hesaba yapılır. Tutarın kartınıza/hesabınıza yansıması, bankanıza bağlı olarak birkaç iş günü sürebilir."
       },
       "s6": {
         "h": "6. İletişim",

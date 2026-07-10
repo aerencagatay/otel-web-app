@@ -702,7 +702,7 @@
         "address": "Address",
         "email": "Email",
         "phone": "Phone",
-        "mersis": "Legal entity: YNDK Turizm Sağlık A.Ş. · MERSIS / Tax No: [OTEL SAHİBİ ONAYLAYACAK]"
+        "mersis": "Legal entity: YNDK Turizm Sağlık A.Ş. · Tax No: 9811574018"
       },
       "s2": {
         "h": "2. Personal Data Processed",
@@ -720,7 +720,7 @@
       },
       "s4": {
         "h": "4. Transfer of Personal Data",
-        "p": "Your personal data may be transferred to authorised public institutions where required by our legal obligations, and to the service providers operating our reservation and email infrastructure (hosting/email/payment infrastructure providers), strictly limited to the performance of the service. Your data is not transferred abroad; should an infrastructure requiring such a transfer be used, this notice will be updated. [OTEL SAHİBİ ONAYLAYACAK]"
+        "p": "Your personal data may be transferred to authorised public institutions where required by our legal obligations, and to the service providers operating our reservation and email infrastructure (hosting/email/payment infrastructure providers), strictly limited to the performance of the service. Your data is not transferred abroad; should an infrastructure requiring such a transfer be used, this notice will be updated."
       },
       "s5": {
         "h": "5. Retention Period",
@@ -765,7 +765,7 @@
       },
       "s5": {
         "h": "5. Third-Party Services",
-        "p": "Third-party service providers are used for email delivery and the reservation infrastructure. These providers process your data solely for the performance of the service. [OTEL SAHİBİ ONAYLAYACAK — kullanılan sağlayıcıların güncel listesi]"
+        "p": "Third-party service providers are used for email delivery and the reservation infrastructure. These providers process your data solely for the performance of the service."
       },
       "s6": {
         "h": "6. Contact",
@@ -795,11 +795,11 @@
       },
       "s4": {
         "h": "4. Right of Withdrawal under Distance Sales Rules",
-        "p": "Under Turkish Consumer Protection Law No. 6502 and the Distance Contracts Regulation, accommodation services may be treated as services to be performed on a specific date; please review the applicable legislation or contact us regarding the conditions for exercising the right of withdrawal. Exact conditions: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+        "p": "Under Turkish Consumer Protection Law No. 6502 and the Distance Contracts Regulation, accommodation services to be performed on a specific date fall under an exemption in the Regulation, meaning the <strong>14-day right of withdrawal does not apply</strong>. Cancellation requests are subject to the cancellation and refund conditions set out on this page."
       },
       "s5": {
         "h": "5. Refund Process",
-        "p": "Approved refunds are made to the account the deposit was paid from within <strong>[OTEL SAHİBİ ONAYLAYACAK] business days</strong> of the notification date."
+        "p": "Approved refunds are processed on the <strong>same day</strong> the cancellation is confirmed, to the account the deposit was paid from. Depending on your bank, it may take a few business days for the amount to appear on your card or account."
       },
       "s6": {
         "h": "6. Contact",
