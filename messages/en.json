@@ -702,7 +702,7 @@
         "address": "Address",
         "email": "Email",
         "phone": "Phone",
-        "mersis": "MERSIS / Tax No: [OTEL SAHİBİ ONAYLAYACAK]"
+        "mersis": "Legal entity: YNDK Turizm Sağlık A.Ş. · MERSIS / Tax No: [OTEL SAHİBİ ONAYLAYACAK]"
       },
       "s2": {
         "h": "2. Personal Data Processed",
@@ -724,7 +724,7 @@
       },
       "s5": {
         "h": "5. Retention Period",
-        "p": "Your personal data is retained for the periods prescribed by applicable legislation (e.g. accommodation records under tax and accounting law) or for as long as the processing purpose requires. Exact retention periods: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+        "p": "Your personal data is retained for the periods prescribed by applicable legislation (e.g. accommodation records under tax and accounting law) or for as long as the processing purpose requires. Exact retention periods: <strong>general personal data is retained for 2 years; reservation records are retained for 10 years pursuant to applicable tax legislation.</strong>"
       },
       "s6": {
         "h": "6. Your Rights under KVKK",
@@ -784,8 +784,8 @@
         "h": "2. Cancellation Conditions",
         "intro": "When a reservation confirmed by deposit payment is cancelled by the guest, the following conditions apply:",
         "items": {
-          "1": "For cancellations made <strong>[OTEL SAHİBİ ONAYLAYACAK] days before</strong> the check-in date, the deposit is refunded in full.",
-          "2": "For cancellations made after that period, the deposit is partly or fully non-refundable according to the <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong> condition.",
+          "1": "For cancellations made at least <strong>3 days before</strong> the check-in date, the deposit is refunded in full, with no conditions.",
+          "2": "For cancellations made less than <strong>3 days before</strong> the check-in date, the deposit is non-refundable.",
           "3": "In the event of a no-show (failure to arrive without notice), the deposit is non-refundable."
         }
       },

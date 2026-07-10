@@ -702,7 +702,7 @@
         "address": "Adres",
         "email": "E-posta",
         "phone": "Telefon",
-        "mersis": "Mersis / Vergi No: [OTEL SAHİBİ ONAYLAYACAK]"
+        "mersis": "Unvan: YNDK Turizm Sağlık A.Ş. · Mersis / Vergi No: [OTEL SAHİBİ ONAYLAYACAK]"
       },
       "s2": {
         "h": "2. İşlenen Kişisel Veriler",
@@ -724,7 +724,7 @@
       },
       "s5": {
         "h": "5. Saklama Süresi",
-        "p": "Kişisel verileriniz, ilgili mevzuatta öngörülen süreler (örn. vergi ve muhasebe mevzuatı kapsamında konaklama kayıtları) boyunca veya işleme amacının gerektirdiği süre boyunca saklanır. Kesin saklama süreleri: <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong>."
+        "p": "Kişisel verileriniz, ilgili mevzuatta öngörülen süreler (örn. vergi ve muhasebe mevzuatı kapsamında konaklama kayıtları) boyunca veya işleme amacının gerektirdiği süre boyunca saklanır. Kesin saklama süreleri: <strong>genel kişisel verileriniz 2 yıl; rezervasyon kayıtlarınız ise ilgili vergi mevzuatı gereği 10 yıl boyunca saklanır.</strong>"
       },
       "s6": {
         "h": "6. KVKK Kapsamındaki Haklarınız",
@@ -784,8 +784,8 @@
         "h": "2. İptal Koşulları",
         "intro": "Kaporası ödenerek kesinleşmiş bir rezervasyonun misafir tarafından iptal edilmesi durumunda uygulanan koşullar aşağıdaki gibidir:",
         "items": {
-          "1": "Giriş tarihinden <strong>[OTEL SAHİBİ ONAYLAYACAK] gün önce</strong> yapılan iptallerde kapora tam olarak iade edilir.",
-          "2": "Bu süreden sonra yapılan iptallerde kapora <strong>[OTEL SAHİBİ ONAYLAYACAK]</strong> koşuluna göre kısmen veya tamamen iade edilmez.",
+          "1": "Giriş tarihinden en az <strong>3 gün önce</strong> yapılan iptallerde kapora koşulsuz olarak tam iade edilir.",
+          "2": "Giriş tarihine <strong>3 günden az</strong> kala yapılan iptallerde kapora iade edilmez.",
           "3": "No-show (bildirim yapılmadan gelinmemesi) durumunda kapora iade edilmez."
         }
       },
