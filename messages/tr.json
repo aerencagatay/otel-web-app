@@ -695,7 +695,7 @@
     "kvkk": {
       "heroTitle": "KVKK Aydınlatma Metni",
       "breadcrumb": "KVKK",
-      "lastUpdated": "Son güncelleme: [OTEL SAHİBİ ONAYLAYACAK]",
+      "lastUpdated": "Son güncelleme: 10 Temmuz 2026",
       "s1": {
         "h": "1. Veri Sorumlusu",
         "p": "6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") uyarınca, kişisel verileriniz veri sorumlusu sıfatıyla <strong>{hotelName}</strong> (\"Otel\") tarafından aşağıda açıklanan kapsamda işlenebilecektir.",
@@ -746,7 +746,7 @@
     "gizlilik": {
       "heroTitle": "Gizlilik Politikası",
       "breadcrumb": "Gizlilik",
-      "lastUpdated": "Son güncelleme: [OTEL SAHİBİ ONAYLAYACAK]",
+      "lastUpdated": "Son güncelleme: 10 Temmuz 2026",
       "s1": {
         "h": "1. Genel",
         "p": "Bu gizlilik politikası, {hotelName} web sitesini (\"Site\") kullanımınız sırasında toplanan bilgilerin nasıl işlendiğini açıklar. Kişisel verilerin işlenmesine ilişkin detaylı bilgi için <kvkkLink>KVKK Aydınlatma Metni'ne</kvkkLink> bakınız."
@@ -775,7 +775,7 @@
     "iptal": {
       "heroTitle": "İptal ve İade Politikası",
       "breadcrumb": "İptal Politikası",
-      "lastUpdated": "Son güncelleme: [OTEL SAHİBİ ONAYLAYACAK]",
+      "lastUpdated": "Son güncelleme: 10 Temmuz 2026",
       "s1": {
         "h": "1. Rezervasyon ve Kapora Modeli",
         "p": "{hotelName} rezervasyonları, web sitesi üzerinden oluşturulan bir talep ve ardından yapılan kapora ödemesi ile kesinleşir. Rezervasyon talebiniz oluşturulduktan sonra <strong>{hours} saat</strong> içinde kapora ödemesi yapılmazsa talebiniz otomatik olarak iptal edilir ve seçtiğiniz tarihler yeniden müsait hale gelir."

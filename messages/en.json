@@ -695,7 +695,7 @@
     "kvkk": {
       "heroTitle": "Personal Data Protection (KVKK) Notice",
       "breadcrumb": "KVKK",
-      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "lastUpdated": "Last updated: 10 July 2026",
       "s1": {
         "h": "1. Data Controller",
         "p": "Under Turkish Law No. 6698 on the Protection of Personal Data (\"KVKK\"), your personal data may be processed by <strong>{hotelName}</strong> (the \"Hotel\") acting as data controller, within the scope described below.",
@@ -746,7 +746,7 @@
     "gizlilik": {
       "heroTitle": "Privacy Policy",
       "breadcrumb": "Privacy",
-      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "lastUpdated": "Last updated: 10 July 2026",
       "s1": {
         "h": "1. General",
         "p": "This privacy policy explains how the information collected while you use the {hotelName} website (the \"Site\") is processed. For detailed information on the processing of personal data, please see the <kvkkLink>KVKK Privacy Notice</kvkkLink>."
@@ -775,7 +775,7 @@
     "iptal": {
       "heroTitle": "Cancellation & Refund Policy",
       "breadcrumb": "Cancellation Policy",
-      "lastUpdated": "Last updated: [OTEL SAHİBİ ONAYLAYACAK]",
+      "lastUpdated": "Last updated: 10 July 2026",
       "s1": {
         "h": "1. Reservation and Deposit Model",
         "p": "Reservations at {hotelName} are confirmed through a request created on the website followed by a deposit payment. If the deposit is not paid within <strong>{hours} hours</strong> of your reservation request being created, the request is cancelled automatically and your selected dates become available again."
