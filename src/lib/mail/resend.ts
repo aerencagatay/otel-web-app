@@ -13,11 +13,18 @@ export class ResendMailService implements MailService {
   }
 
   async send(options: SendMailOptions): Promise<void> {
-    await this.client.emails.send({
+    // Resend'in send() metodu API hatalarında (ör. doğrulanmamış gönderen
+    // domaini, geçersiz API key) throw ETMEZ — { data: null, error } döner.
+    // error kontrol edilmezse gönderim sessizce başarısız olur ve çağıran
+    // kod (route handler'lardaki try/catch) bunu asla göremez.
+    const { error } = await this.client.emails.send({
       from: this.from,
       to: options.to,
       subject: options.subject,
       html: options.html,
     });
+    if (error) {
+      throw new Error(`Resend gönderim hatası [${error.name}]: ${error.message}`);
+    }
   }
 }
