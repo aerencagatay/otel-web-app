@@ -72,10 +72,24 @@ export async function verifyTurnstileToken(
     });
 
     if (!res.ok) {
+      console.error(`[turnstile] siteverify HTTP ${res.status}`);
       return { success: false, reason: "verify-failed" };
     }
 
-    const data = (await res.json()) as { success?: boolean };
+    const data = (await res.json()) as {
+      success?: boolean;
+      "error-codes"?: string[];
+    };
+    if (!data.success) {
+      // Cloudflare'in asıl ret sebebini (ör. hostname_mismatch,
+      // timeout-or-duplicate, invalid-input-secret) logla — aksi halde
+      // her ret aynı genel "verify-failed" olarak görünür ve teşhis
+      // körlemesine kalır.
+      console.error(
+        "[turnstile] siteverify reddetti:",
+        data["error-codes"]?.join(", ") || "(kod yok)"
+      );
+    }
     return data.success
       ? { success: true }
       : { success: false, reason: "verify-failed" };
