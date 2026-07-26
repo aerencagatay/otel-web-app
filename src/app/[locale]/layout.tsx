@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 import JsonLd, { hotelJsonLd } from "@/components/seo/json-ld";
 import CookieBanner from "@/components/layout/cookie-banner";
 import { fontVariables } from "@/lib/fonts";
@@ -87,6 +88,7 @@ export default async function LocaleLayout({
           {children}
           <CookieBanner />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
