@@ -33,8 +33,6 @@ export default function BookingSummary({ search, room }: Props) {
 
   const nights = nightCount(search.checkIn, search.checkOut);
   const stay = calculateStayTotal(room.roomType, search.checkIn, search.checkOut);
-  // Deposit (kapora) = one night's price for the check-in season.
-  const deposit = stay.fromPrice ?? room.depositAmount;
   const roomLabel = tr.has(room.roomType) ? tr(room.roomType) : room.label;
 
   return (
@@ -127,16 +125,6 @@ export default function BookingSummary({ search, room }: Props) {
           </>
         ) : (
           <div className="text-[13px] text-text-light leading-relaxed">{t("noPrice")}</div>
-        )}
-      </div>
-
-      <div className="premium-trip-card__deposit">
-        <div className="premium-trip-card__deposit-label">{t("depositLabel")}</div>
-        <div className="premium-trip-card__deposit-amount">{num(deposit)} ₺</div>
-        {locale === "en" && (
-          <div className="text-[11px] opacity-80 mt-1">
-            {t("approxEur", { amount: num(approxEur(deposit)) })}
-          </div>
         )}
       </div>
 

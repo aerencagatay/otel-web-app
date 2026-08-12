@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { CheckCircle2, Phone, ArrowLeft, Mail, Clock } from "lucide-react";
-import { HOTEL, RESERVATION_HOLD_HOURS } from "@/lib/config/hotel";
+import { HOTEL } from "@/lib/config/hotel";
 
 export default function BookingSuccessView() {
   const t = useTranslations("bookingSuccess");
@@ -42,39 +42,38 @@ export default function BookingSuccessView() {
 
             <div className="text-left border border-amber-900/15 bg-amber-50/80 px-5 py-4 rounded-[var(--radius-sm)] mb-6">
               <p className="text-[11px] tracking-[0.2em] uppercase font-semibold text-amber-900/80 m-0 mb-2">
-                {t("depositPendingLabel")}
+                {t("confirmPendingLabel")}
               </p>
               <p className="text-[14px] text-text m-0 leading-relaxed">
-                {t.rich("depositPendingText", {
+                {t.rich("confirmPendingText", {
                   strong: (chunks) => <strong className="text-dark">{chunks}</strong>,
                 })}
               </p>
             </div>
 
             <p className="text-[15px] text-text leading-relaxed mb-8 text-left">
-              {t("instructions1")}{" "}
-              <strong className="text-dark">{t("withinHours", { hours: RESERVATION_HOLD_HOURS })}</strong>{" "}
-              {t("instructions2")}
+              {t("instructions1")} {t("instructions2")}
             </p>
 
             <div className="text-left border border-border bg-white/80 p-6 mb-6 rounded-[var(--radius-sm)]">
               <h3 className="font-heading text-lg font-semibold text-dark m-0 mb-4">
-                {t("depositTitle")}
+                {t("contactTitle")}
               </h3>
               <div className="space-y-3 text-[14px]">
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
-                  <span className="text-text-light">{t("iban")}</span>
-                  <span className="font-mono font-medium text-dark text-[13px]">
-                    {HOTEL.iban}
-                  </span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border pb-2">
-                  <span className="text-text-light">{t("recipient")}</span>
-                  <span className="font-medium text-dark">{HOTEL.ibanHolder}</span>
+                  <span className="text-text-light">{t("phoneLabel")}</span>
+                  <a
+                    href={`tel:${HOTEL.phone.replace(/\s/g, "")}`}
+                    className="font-medium text-dark"
+                  >
+                    {HOTEL.phone}
+                  </a>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
-                  <span className="text-text-light">{t("description")}</span>
-                  <span className="font-semibold text-gold-dark">{t("descriptionValue")}</span>
+                  <span className="text-text-light">{t("emailLabel")}</span>
+                  <a href={`mailto:${HOTEL.email}`} className="font-medium text-dark">
+                    {HOTEL.email}
+                  </a>
                 </div>
               </div>
             </div>

@@ -24,7 +24,7 @@
     },
     "bookingSuccess": {
       "title": "Rezervasyon Başarılı",
-      "description": "Rezervasyon talebiniz alındı. Kapora talimatları e-posta ile iletilir."
+      "description": "Rezervasyon talebiniz alındı. Ekibimiz sizi arayarak rezervasyonunuzu teyit edecek."
     },
     "kvkk": {
       "title": "KVKK Aydınlatma Metni",
@@ -36,7 +36,7 @@
     },
     "iptal": {
       "title": "İptal ve İade Politikası",
-      "description": "Assos Karadut Taş Otel iptal ve iade politikası — kapora, iptal süreleri ve mesafeli satış koşulları."
+      "description": "Assos Karadut Taş Otel iptal ve iade politikası — telefon teyidi, iptal süreleri ve mesafeli satış koşulları."
     },
     "reservationLookup": {
       "title": "Rezervasyon Sorgula",
@@ -434,8 +434,8 @@
     "hero": {
       "eyebrow": "Rezervasyon",
       "titleLine1": "Tarih seçin, odayı seçin,",
-      "titleLine2": "kapora ile kesinleştirin.",
-      "lede": "Müsaitlik anında kontrol edilir. Talebiniz kapora onayından sonra kesin rezervasyona dönüşür."
+      "titleLine2": "telefonla kesinleştirin.",
+      "lede": "Müsaitlik anında kontrol edilir. Talebiniz, ekibimizin sizi arayıp teyit etmesiyle kesin rezervasyona dönüşür."
     },
     "process": {
       "eyebrow": "Süreç",
@@ -443,7 +443,7 @@
       "text": "3 basit adımda rezervasyonunuzu tamamlayın.",
       "step1": { "title": "Tarih & Oda Seçin", "desc": "Giriş-çıkış tarihinizi ve oda tipini belirleyin. Müsaitliği anında görün." },
       "step2": { "title": "Bilgilerinizi Girin", "desc": "Ad, soyad, telefon ve e-posta bilgilerinizi doldurun." },
-      "step3": { "title": "Kapora Ödeyip Onaylayın", "desc": "IBAN'a kapora ödemesi yapın. Admin onayı ile rezervasyonunuz kesinleşir." },
+      "step3": { "title": "Aramamızı Bekleyin", "desc": "Ekibimiz sizi arayarak bilgilerinizi teyit eder ve rezervasyonunuzu kesinleştirir." },
       "loading": "Rezervasyon formu yükleniyor…"
     },
     "conditions": {
@@ -455,7 +455,7 @@
       "hoursTitle": "Giriş / Çıkış Saatleri",
       "hoursText": "Check-in: 14:00 · Check-out: 12:00\nErken giriş ve geç çıkış için müsaitlik durumuna göre destek sağlanır.",
       "cancelTitle": "İptal Politikası",
-      "cancelText": "Kapora ödemesi yapıldıktan sonra iptal ve değişiklik koşulları için bizi arayın.",
+      "cancelText": "İptal ve değişiklik koşulları için bizi arayın.",
       "childTitle": "Çocuk Politikası",
       "childText": "Çocuklu konaklamalarınız için fiyat ve uygunluk bilgisi almak üzere lütfen bizimle iletişime geçin."
     },
@@ -478,8 +478,8 @@
       "a2": "Evet, misafirlerimize özel ücretsiz otopark alanımız mevcuttur.",
       "q3": "Denize/plaja ne kadar yakınsınız?",
       "a3": "Kadırga Plajı'na yaklaşık 5 dakika, Assos Limanı'na ise 10 dakika mesafedeyiz. Araçla kolayca ulaşabilirsiniz.",
-      "q4": "Kapora ne zaman ödenmeli?",
-      "a4": "Rezervasyon oluşturduktan sonra {hours} saat içinde kapora ödemesini IBAN'a yapmanız beklenir. Bu süre içinde onaylanmazsa rezervasyon talebiniz otomatik iptal edilir. Ödeme onaylandıktan sonra rezervasyonunuz kesinleşir."
+      "q4": "Rezervasyonum ne zaman kesinleşir?",
+      "a4": "Rezervasyon talebiniz oluşturulduktan sonra ekibimiz sizi arayarak bilgilerinizi teyit eder ve rezervasyonunuzu kesinleştirir. Acil bir durumda bizi doğrudan arayabilirsiniz."
     }
   },
   "contact": {
@@ -545,16 +545,13 @@
     "badge": "Talep alındı",
     "title": "Rezervasyonunuz oluşturuldu",
     "reservationNo": "No",
-    "depositPendingLabel": "Kapora bekleniyor",
-    "depositPendingText": "Rezervasyonunuz <strong>kapora ödemesi onaylanana kadar</strong> kesin değildir. Ödeme onaylandığında e-posta ile bilgilendirileceksiniz.",
-    "instructions1": "Özet ve talimatlar e-posta adresinize gönderilmiştir.",
-    "instructions2": "aşağıdaki IBAN'a kapora göndermeniz gerekir. Havale açıklamasına rezervasyon numaranızı yazın. Bu süre içinde onaylanmazsa rezervasyon otomatik iptal olur.",
-    "withinHours": "{hours} saat içinde",
-    "depositTitle": "Kapora bilgileri",
-    "iban": "IBAN",
-    "recipient": "Alıcı",
-    "description": "Açıklama",
-    "descriptionValue": "Rezervasyon numaranız",
+    "confirmPendingLabel": "Teyit bekleniyor",
+    "confirmPendingText": "Rezervasyonunuz <strong>ekibimizin sizi araması ve teyit etmesiyle</strong> kesinleşir.",
+    "instructions1": "Rezervasyon özeti e-posta adresinize gönderilmiştir.",
+    "instructions2": "Kısa süre içinde ekibimiz sizi arayarak rezervasyonunuzu kesinleştirecek.",
+    "contactTitle": "Bize Ulaşın",
+    "phoneLabel": "Telefon",
+    "emailLabel": "E-posta",
     "home": "Anasayfa",
     "callUs": "Bizi arayın",
     "checkEmail": "E-postanızı kontrol edin; göremiyorsanız spam klasörüne bakın.",
@@ -564,7 +561,7 @@
     "progress": {
       "step1": "Tarih & misafir",
       "step2": "Oda seçimi",
-      "step3": "Bilgiler & kapora"
+      "step3": "Bilgiler & onay"
     },
     "search": {
       "step": "Adım 1",
@@ -596,26 +593,26 @@
       "roomsAvailable": "{count} oda müsait",
       "boutiqueRoom": "Butik oda",
       "maxGuests": "En fazla {count} misafir",
-      "note": "Rezervasyon talebiniz, kapora ödemesi onaylandıktan sonra kesinleşir.",
+      "note": "Rezervasyon talebiniz, ekibimizin sizi araması ve teyit etmesiyle kesinleşir.",
       "totalNights": "Toplam · {nights} gece",
       "perNight": "{price} ₺ / gece · KDV dahil",
       "vatIncluded": "KDV dahil",
-      "depositOneNight": "Kapora (1 gece):",
-      "deposit": "Kapora",
+      "depositOneNight": "Gecelik ücret (referans):",
+      "deposit": "Gecelik Ücret",
       "select": "Bu odayı seç",
       "approxEur": "≈ {amount} € (yaklaşık)"
     },
     "form": {
       "step": "Adım 3",
       "title": "İletişim bilgileri",
-      "lede": "Bu bilgiler rezervasyon kaydı ve kapora talimatları için kullanılır. Lütfen ulaşabileceğiniz bir telefon girin.",
+      "lede": "Bu bilgiler rezervasyon kaydı için kullanılır. Lütfen ulaşabileceğiniz bir telefon girin; ekibimiz sizi bu numaradan arayacaktır.",
       "firstName": "Ad *",
       "firstNamePlaceholder": "Adınız",
       "lastName": "Soyad *",
       "lastNamePlaceholder": "Soyadınız",
       "email": "E-posta *",
       "emailPlaceholder": "ornek@email.com",
-      "emailHint": "Kapora ve onay bu adrese gönderilir.",
+      "emailHint": "Rezervasyon onayı bu adrese gönderilir.",
       "phone": "Telefon *",
       "phonePlaceholder": "+90 5__ ___ __ __",
       "notes": "Notlar",
@@ -627,7 +624,7 @@
     },
     "summary": {
       "title": "Özet",
-      "intro": "Gönderimden önce bilgilerinizi kontrol edin. Kapora aşağıda vurgulanmıştır.",
+      "intro": "Gönderimden önce bilgilerinizi kontrol edin.",
       "room": "Oda",
       "stay": "Konaklama",
       "nights": "{count} gece",
@@ -638,9 +635,8 @@
       "nightsStay": "{nights} gece konaklama",
       "totalVat": "Toplam (KDV dahil)",
       "noPrice": "Bu tarihler için toplam fiyat bilgisi almak üzere lütfen bizi arayın.",
-      "depositLabel": "Ödenecek kapora (1 gecelik ücret)",
-      "confirmTitle": "Kesin rezervasyon:",
-      "confirmText": "IBAN kaporası onaylandıktan sonra oluşur. Talimatlar e-posta ile gider.",
+      "confirmTitle": "Rezervasyon süreci:",
+      "confirmText": "Talebiniz alındıktan sonra ekibimiz sizi arayarak teyit eder ve rezervasyonunuz kesinleşir.",
       "approxEur": "≈ {amount} € (yaklaşık)"
     },
     "datePicker": {
@@ -712,7 +708,7 @@
         "h": "3. Kişisel Verilerin İşlenme Amacı",
         "items": {
           "1": "Rezervasyon taleplerinin oluşturulması ve yönetilmesi",
-          "2": "Kapora/ödeme süreçlerinin takibi",
+          "2": "Rezervasyon süreçlerinin takibi",
           "3": "İletişim formu ve talepler üzerinden geri dönüş yapılması",
           "4": "Yasal yükümlülüklerin (konaklama vergisi, resmi bildirimler vb.) yerine getirilmesi",
           "5": "Hizmet kalitesinin ölçülmesi ve iyileştirilmesi"
@@ -777,21 +773,21 @@
       "breadcrumb": "İptal Politikası",
       "lastUpdated": "Son güncelleme: 10 Temmuz 2026",
       "s1": {
-        "h": "1. Rezervasyon ve Kapora Modeli",
-        "p": "{hotelName} rezervasyonları, web sitesi üzerinden oluşturulan bir talep ve ardından yapılan kapora ödemesi ile kesinleşir. Rezervasyon talebiniz oluşturulduktan sonra <strong>{hours} saat</strong> içinde kapora ödemesi yapılmazsa talebiniz otomatik olarak iptal edilir ve seçtiğiniz tarihler yeniden müsait hale gelir."
+        "h": "1. Rezervasyon Modeli",
+        "p": "{hotelName} rezervasyonları, web sitesi üzerinden oluşturulan bir talep ve ardından ekibimizin sizi arayarak yaptığı telefon teyidi ile kesinleşir. Şu an online ödeme veya kapora alınmamaktadır; rezervasyonunuz yalnızca telefon teyidi ile kesinleşir."
       },
       "s2": {
         "h": "2. İptal Koşulları",
-        "intro": "Kaporası ödenerek kesinleşmiş bir rezervasyonun misafir tarafından iptal edilmesi durumunda uygulanan koşullar aşağıdaki gibidir:",
+        "intro": "Şu an rezervasyonlar için online ödeme veya kapora alınmadığından, iptal ve değişiklik taleplerinde herhangi bir ücret kesintisi uygulanmamaktadır.",
         "items": {
-          "1": "Giriş tarihinden en az <strong>3 gün önce</strong> yapılan iptallerde kapora koşulsuz olarak tam iade edilir.",
-          "2": "Giriş tarihine <strong>3 günden az</strong> kala yapılan iptallerde kapora iade edilmez.",
-          "3": "No-show (bildirim yapılmadan gelinmemesi) durumunda kapora iade edilmez."
+          "1": "Rezervasyonunuzu iptal etmek veya değiştirmek için lütfen bizi telefonla arayın.",
+          "2": "İptal ve değişiklik taleplerinizde herhangi bir ücret talep edilmemektedir.",
+          "3": "No-show (bildirim yapılmadan gelinmemesi) durumunda rezervasyonunuz iptal edilebilir."
         }
       },
       "s3": {
         "h": "3. Otel Kaynaklı İptaller",
-        "p": "Mücbir sebep veya öngörülemeyen bir durum nedeniyle otelin rezervasyonu iptal etmesi hâlinde, ödenen kaporanın tamamı misafire iade edilir veya misafirin talebi doğrultusunda alternatif bir tarihe aktarılır."
+        "p": "Mücbir sebep veya öngörülemeyen bir durum nedeniyle otelin rezervasyonu iptal etmesi hâlinde, misafire durum en kısa sürede bildirilir ve talebi doğrultusunda alternatif bir tarih önerilir."
       },
       "s4": {
         "h": "4. Mesafeli Satış Sözleşmesi Kapsamında Cayma Hakkı",
@@ -799,7 +795,7 @@
       },
       "s5": {
         "h": "5. İade Süreci",
-        "p": "Onaylanan iadeler, iptal onayını takiben <strong>aynı gün</strong> işleme alınır ve kaporanın ödendiği hesaba yapılır. Tutarın kartınıza/hesabınıza yansıması, bankanıza bağlı olarak birkaç iş günü sürebilir."
+        "p": "Şu an rezervasyonlar için online ödeme alınmadığından bir iade süreci bulunmamaktadır. Ödeme, konaklama sırasında otelde tahsil edilir."
       },
       "s6": {
         "h": "6. İletişim",
@@ -828,7 +824,7 @@
     "notFound": "Bu bilgilerle eşleşen bir rezervasyon bulunamadı. Rezervasyon numaranızı ve e-postanızı kontrol edip tekrar deneyin.",
     "connectionError": "Bağlantı hatası. Lütfen tekrar deneyin.",
     "status": {
-      "pending": "Kapora Bekleniyor",
+      "pending": "Teyit Bekleniyor",
       "confirmed": "Kesinleşti",
       "cancelled": "İptal Edildi"
     },
@@ -836,7 +832,7 @@
     "checkIn": "Giriş",
     "checkOut": "Çıkış",
     "nights": "Gece Sayısı",
-    "deposit": "Kapora",
+    "deposit": "Gecelik Ücret",
     "changeHint": "Rezervasyonunuzda değişiklik veya iptal için lütfen bizimle iletişime geçin — online iptal desteklenmemektedir.",
     "callUs": "Bizi Arayın",
     "whatsapp": "WhatsApp",

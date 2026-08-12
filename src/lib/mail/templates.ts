@@ -25,19 +25,16 @@ const T = {
     pendingSubject: (id: string) => `Rezervasyon Alındı - ${id} | ${HOTEL.name}`,
     pendingHeading: "Rezervasyonunuz Alındı",
     dear: "Sayın",
-    pendingIntro: `Rezervasyon talebiniz başarıyla oluşturulmuştur. Kesinleşmesi için aşağıdaki kapora ödemesini <strong>${RESERVATION_HOLD_HOURS} saat içinde</strong> yapmanız gerekmektedir. Bu süre içinde kapora onaylanmazsa rezervasyonunuz otomatik olarak iptal edilir.`,
+    pendingIntro: `Rezervasyon talebiniz başarıyla oluşturulmuştur. Ekibimiz kısa süre içinde sizi arayarak rezervasyonunuzu teyit edecek ve kesinleştirecektir.`,
     resNo: "Rezervasyon No",
     room: "Oda",
     checkIn: "Giriş",
     checkOut: "Çıkış",
     duration: "Süre",
     nights: (n: number) => `${n} gece`,
-    depositTitle: "Kapora Bilgileri",
-    amount: "Tutar",
-    iban: "IBAN",
-    recipient: "Alıcı",
-    description: "Açıklama",
-    warnRef: "⚠ Havale açıklamasına mutlaka rezervasyon numaranızı yazınız.",
+    contactTitle: "Bize Ulaşın",
+    phoneLabel: "Telefon",
+    emailLabel: "E-posta",
     lookupLinkText: "Rezervasyon durumunuzu buradan takip edebilirsiniz:",
     questions: "Sorularınız için:",
     expiredSubject: (id: string) =>
@@ -55,27 +52,23 @@ const T = {
       `Rezervasyonunuz Kesinleşti - ${id} | ${HOTEL.name}`,
     confirmedHeading: "Rezervasyonunuz Kesinleşti!",
     confirmedIntro:
-      "Kapora ödemeniz onaylanmış ve rezervasyonunuz kesinleşmiştir. Sizi otelimizde ağırlamaktan mutluluk duyacağız.",
+      "Rezervasyonunuz teyit edilmiş ve kesinleşmiştir. Sizi otelimizde ağırlamaktan mutluluk duyacağız.",
     confirmedOutro: "İyi tatiller dileriz!",
   },
   en: {
     pendingSubject: (id: string) => `Reservation Received - ${id} | ${HOTEL.name}`,
     pendingHeading: "Your Reservation Has Been Received",
     dear: "Dear",
-    pendingIntro: `Your reservation request has been created successfully. To confirm it, you need to make the deposit payment below <strong>within ${RESERVATION_HOLD_HOURS} hours</strong>. If the deposit is not confirmed within that time, your reservation is cancelled automatically.`,
+    pendingIntro: `Your reservation request has been created successfully. Our team will call you shortly to confirm your details and finalize your reservation.`,
     resNo: "Reservation No.",
     room: "Room",
     checkIn: "Check-in",
     checkOut: "Check-out",
     duration: "Duration",
     nights: (n: number) => `${n} night${n === 1 ? "" : "s"}`,
-    depositTitle: "Deposit Details",
-    amount: "Amount",
-    iban: "IBAN",
-    recipient: "Recipient",
-    description: "Description",
-    warnRef:
-      "⚠ Please be sure to write your reservation number in the transfer description.",
+    contactTitle: "Contact Us",
+    phoneLabel: "Phone",
+    emailLabel: "Email",
     lookupLinkText: "You can track your reservation status here:",
     questions: "For questions:",
     expiredSubject: (id: string) =>
@@ -93,7 +86,7 @@ const T = {
       `Your Reservation Is Confirmed - ${id} | ${HOTEL.name}`,
     confirmedHeading: "Your Reservation Is Confirmed!",
     confirmedIntro:
-      "Your deposit payment has been approved and your reservation is confirmed. We look forward to welcoming you to our hotel.",
+      "Your reservation has been verified and is now confirmed. We look forward to welcoming you to our hotel.",
     confirmedOutro: "We wish you a pleasant stay!",
   },
 } as const;
@@ -147,17 +140,13 @@ export function pendingReservationEmail(data: {
             </table>
           </div>
 
-          <h3 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.depositTitle}</h3>
+          <h3 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.contactTitle}</h3>
           <div style="background:#faf8f5;padding:16px 20px;margin:12px 0;border:1px solid #e8e2d9;">
             <table style="width:100%;font-size:14px;">
-              <tr><td style="padding:4px 0;color:#888;">${m.amount}</td><td style="font-weight:700;color:#e4a00e;font-size:18px;">${data.depositAmount.toLocaleString("tr-TR")} ₺</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.iban}</td><td style="font-weight:700;color:#1a1a1a;font-family:monospace;">${HOTEL.iban}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.recipient}</td><td style="font-weight:700;color:#1a1a1a;">${HOTEL.ibanHolder}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.description}</td><td style="font-weight:700;color:#e4a00e;">${data.reservationId}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.phoneLabel}</td><td style="font-weight:700;color:#1a1a1a;"><a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#1a1a1a;">${HOTEL.phone}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.emailLabel}</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${HOTEL.email}" style="color:#1a1a1a;">${HOTEL.email}</a></td></tr>
             </table>
           </div>
-
-          <p style="color:#c00;font-size:13px;">${m.warnRef}</p>
 
           <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#e4a00e;">${lookupUrl}</a></p>
 
@@ -253,14 +242,14 @@ export function adminNotificationEmail(data: {
 }): { subject: string; html: string } {
   const adminUrl = `${HOTEL.website}/admin`;
   return {
-    subject: `🟢 Yeni Web Rezervasyonu - ${data.reservationId} (Kapora Bekleniyor)`,
+    subject: `🟢 Yeni Web Rezervasyonu - ${data.reservationId} (Teyit Bekleniyor)`,
     html: `
       <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
         <div style="background:#1a1a1a;padding:24px;text-align:center;">
           <h1 style="color:#e4a00e;font-family:'Playfair Display',Georgia,serif;margin:0;font-size:20px;">${HOTEL.name} · Yeni Rezervasyon</h1>
         </div>
         <div style="padding:28px;border:1px solid #e8e2d9;border-top:none;">
-          <p style="margin-top:0;">Web üzerinden yeni bir rezervasyon geldi. Kapora ödemesi tarafınıza ulaştığında admin panelinden onaylayın.</p>
+          <p style="margin-top:0;">Web üzerinden yeni bir rezervasyon geldi. Misafiri arayarak rezervasyonu teyit edin, ardından admin panelinden onaylayın.</p>
 
           <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
             <table style="width:100%;font-size:14px;">
@@ -273,7 +262,7 @@ export function adminNotificationEmail(data: {
               <tr><td style="padding:4px 0;color:#888;">Çıkış</td><td style="font-weight:700;color:#1a1a1a;">${formatDateTR(data.checkOut)}</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Süre</td><td style="font-weight:700;color:#1a1a1a;">${data.nights} gece</td></tr>
               <tr><td style="padding:4px 0;color:#888;">Kişi</td><td style="font-weight:700;color:#1a1a1a;">${data.adults} yetişkin${data.children ? `, ${data.children} çocuk` : ""}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Beklenen Kapora</td><td style="font-weight:700;color:#e4a00e;">${data.depositAmount.toLocaleString("tr-TR")} ₺</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Gecelik Ücret (referans)</td><td style="font-weight:700;color:#e4a00e;">${data.depositAmount.toLocaleString("tr-TR")} ₺</td></tr>
               ${data.notes ? `<tr><td style="padding:4px 0;color:#888;">Not</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.notes)}</td></tr>` : ""}
             </table>
           </div>
@@ -282,7 +271,7 @@ export function adminNotificationEmail(data: {
             <a href="${adminUrl}" style="display:inline-block;background:#1a1a1a;color:#fff;text-decoration:none;padding:12px 28px;font-weight:600;">Admin Panelini Aç</a>
           </div>
 
-          <p style="font-size:13px;color:#888;">Kapora bu rezervasyon için takvimde <strong style="color:#1a8a3a;">yeşil</strong> olarak işaretlendi. Onayladığınızda <strong style="color:#c0392b;">kırmızıya</strong> dönecek ve misafire kesinleşme maili gidecek.</p>
+          <p style="font-size:13px;color:#888;">Bu rezervasyon takvimde <strong style="color:#1a8a3a;">yeşil</strong> olarak işaretlendi. Onayladığınızda <strong style="color:#c0392b;">kırmızıya</strong> dönecek ve misafire kesinleşme maili gidecek.</p>
         </div>
         <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
           ${HOTEL.name} · ${HOTEL.address}

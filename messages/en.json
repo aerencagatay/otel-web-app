@@ -24,7 +24,7 @@
     },
     "bookingSuccess": {
       "title": "Reservation Received",
-      "description": "Your reservation request has been received. Deposit instructions are sent by email."
+      "description": "Your reservation request has been received. Our team will call you to confirm it."
     },
     "kvkk": {
       "title": "Personal Data Protection (KVKK) Notice",
@@ -36,7 +36,7 @@
     },
     "iptal": {
       "title": "Cancellation & Refund Policy",
-      "description": "Assos Karadut Taş Otel cancellation and refund policy — deposit terms, cancellation windows and distance-sales conditions."
+      "description": "Assos Karadut Taş Otel cancellation and refund policy — phone confirmation, cancellation windows and distance-sales conditions."
     },
     "reservationLookup": {
       "title": "Look Up Reservation",
@@ -434,8 +434,8 @@
     "hero": {
       "eyebrow": "Reservation",
       "titleLine1": "Choose your dates, pick a room,",
-      "titleLine2": "confirm with a deposit.",
-      "lede": "Availability is checked instantly. Your request becomes a firm reservation once the deposit is confirmed."
+      "titleLine2": "confirm it by phone.",
+      "lede": "Availability is checked instantly. Your request becomes a firm reservation once our team calls to confirm it."
     },
     "process": {
       "eyebrow": "The Process",
@@ -443,7 +443,7 @@
       "text": "Complete your reservation in 3 simple steps.",
       "step1": { "title": "Choose Dates & Room", "desc": "Set your check-in and check-out dates and room type. See availability instantly." },
       "step2": { "title": "Enter Your Details", "desc": "Fill in your first name, surname, phone and email." },
-      "step3": { "title": "Pay the Deposit & Confirm", "desc": "Send the deposit to the IBAN. Your reservation is confirmed once approved by our team." },
+      "step3": { "title": "We'll Call to Confirm", "desc": "Our team will call you to confirm your details and finalize your reservation." },
       "loading": "Loading the reservation form…"
     },
     "conditions": {
@@ -455,7 +455,7 @@
       "hoursTitle": "Check-in / Check-out Times",
       "hoursText": "Check-in: 14:00 · Check-out: 12:00\nEarly check-in and late check-out are supported subject to availability.",
       "cancelTitle": "Cancellation Policy",
-      "cancelText": "For cancellation and change conditions after the deposit is paid, please call us.",
+      "cancelText": "For cancellation and change conditions, please call us.",
       "childTitle": "Child Policy",
       "childText": "For pricing and availability for stays with children, please get in touch with us."
     },
@@ -478,8 +478,8 @@
       "a2": "Yes, we have a free car park reserved for our guests.",
       "q3": "How close are you to the sea/beach?",
       "a3": "We are about 5 minutes from Kadırga Beach and 10 minutes from Assos Harbour. Both are easily reached by car.",
-      "q4": "When should the deposit be paid?",
-      "a4": "After creating your reservation, you are expected to send the deposit to the IBAN within {hours} hours. If it is not confirmed within that time, your reservation request is cancelled automatically. Your reservation is finalised once the payment is confirmed."
+      "q4": "When is my reservation confirmed?",
+      "a4": "After you create a reservation request, our team will call you to confirm your details and finalize your reservation. For urgent matters, you can call us directly."
     }
   },
   "contact": {
@@ -545,16 +545,13 @@
     "badge": "Request received",
     "title": "Your reservation has been created",
     "reservationNo": "No.",
-    "depositPendingLabel": "Deposit pending",
-    "depositPendingText": "Your reservation is not confirmed <strong>until the deposit payment is approved</strong>. You will be notified by email once the payment is confirmed.",
-    "instructions1": "A summary and instructions have been sent to your email address.",
-    "instructions2": "you need to send the deposit to the IBAN below. Write your reservation number in the transfer description. If it is not confirmed within that time, the reservation is cancelled automatically.",
-    "withinHours": "Within {hours} hours",
-    "depositTitle": "Deposit details",
-    "iban": "IBAN",
-    "recipient": "Recipient",
-    "description": "Description",
-    "descriptionValue": "Your reservation number",
+    "confirmPendingLabel": "Confirmation pending",
+    "confirmPendingText": "Your reservation is confirmed <strong>once our team calls you to verify it</strong>.",
+    "instructions1": "A summary has been sent to your email address.",
+    "instructions2": "Our team will call you shortly to confirm your reservation.",
+    "contactTitle": "Contact Us",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
     "home": "Home",
     "callUs": "Call us",
     "checkEmail": "Check your email; if you don't see it, look in your spam folder.",
@@ -564,7 +561,7 @@
     "progress": {
       "step1": "Dates & guests",
       "step2": "Room selection",
-      "step3": "Details & deposit"
+      "step3": "Details & confirmation"
     },
     "search": {
       "step": "Step 1",
@@ -596,26 +593,26 @@
       "roomsAvailable": "{count} rooms available",
       "boutiqueRoom": "Boutique room",
       "maxGuests": "Up to {count} guests",
-      "note": "Your reservation request is finalised once the deposit payment is approved.",
+      "note": "Your reservation request is finalized once our team calls to confirm it.",
       "totalNights": "Total · {nights} nights",
       "perNight": "{price} ₺ / night · VAT included",
       "vatIncluded": "VAT included",
-      "depositOneNight": "Deposit (1 night):",
-      "deposit": "Deposit",
+      "depositOneNight": "Nightly rate (reference):",
+      "deposit": "Nightly Rate",
       "select": "Select this room",
       "approxEur": "≈ €{amount} (approx.)"
     },
     "form": {
       "step": "Step 3",
       "title": "Contact details",
-      "lede": "These details are used for your reservation record and deposit instructions. Please enter a phone number where we can reach you.",
+      "lede": "These details are used for your reservation record. Please enter a phone number where we can reach you — our team will call you on it.",
       "firstName": "First name *",
       "firstNamePlaceholder": "Your first name",
       "lastName": "Surname *",
       "lastNamePlaceholder": "Your surname",
       "email": "Email *",
       "emailPlaceholder": "example@email.com",
-      "emailHint": "The deposit and confirmation are sent to this address.",
+      "emailHint": "Your reservation confirmation is sent to this address.",
       "phone": "Phone *",
       "phonePlaceholder": "+90 5__ ___ __ __",
       "notes": "Notes",
@@ -627,7 +624,7 @@
     },
     "summary": {
       "title": "Summary",
-      "intro": "Review your details before sending. The deposit is highlighted below.",
+      "intro": "Review your details before sending.",
       "room": "Room",
       "stay": "Stay",
       "nights": "{count} nights",
@@ -638,9 +635,8 @@
       "nightsStay": "{nights}-night stay",
       "totalVat": "Total (VAT included)",
       "noPrice": "To get a total price for these dates, please call us.",
-      "depositLabel": "Deposit due (one night's rate)",
-      "confirmTitle": "Firm reservation:",
-      "confirmText": "created once the IBAN deposit is confirmed. Instructions are sent by email.",
+      "confirmTitle": "Reservation process:",
+      "confirmText": "Once your request is received, our team will call to confirm it and finalize your reservation.",
       "approxEur": "≈ €{amount} (approx.)"
     },
     "datePicker": {
@@ -712,7 +708,7 @@
         "h": "3. Purposes of Processing",
         "items": {
           "1": "Creating and managing reservation requests",
-          "2": "Tracking deposit/payment processes",
+          "2": "Tracking reservation processes",
           "3": "Responding to enquiries submitted via the contact form and other requests",
           "4": "Fulfilling legal obligations (accommodation tax, official notifications, etc.)",
           "5": "Measuring and improving service quality"
@@ -777,21 +773,21 @@
       "breadcrumb": "Cancellation Policy",
       "lastUpdated": "Last updated: 10 July 2026",
       "s1": {
-        "h": "1. Reservation and Deposit Model",
-        "p": "Reservations at {hotelName} are confirmed through a request created on the website followed by a deposit payment. If the deposit is not paid within <strong>{hours} hours</strong> of your reservation request being created, the request is cancelled automatically and your selected dates become available again."
+        "h": "1. Reservation Model",
+        "p": "Reservations at {hotelName} are confirmed through a request created on the website, followed by a phone call from our team to confirm it. We are not currently collecting online payments or deposits — your reservation is confirmed by phone only."
       },
       "s2": {
         "h": "2. Cancellation Conditions",
-        "intro": "When a reservation confirmed by deposit payment is cancelled by the guest, the following conditions apply:",
+        "intro": "As we are not currently collecting online payments or deposits, no charge applies to cancellation or change requests.",
         "items": {
-          "1": "For cancellations made at least <strong>3 days before</strong> the check-in date, the deposit is refunded in full, with no conditions.",
-          "2": "For cancellations made less than <strong>3 days before</strong> the check-in date, the deposit is non-refundable.",
-          "3": "In the event of a no-show (failure to arrive without notice), the deposit is non-refundable."
+          "1": "To cancel or change your reservation, please call us.",
+          "2": "No fee is charged for cancellation or change requests.",
+          "3": "In the event of a no-show (failure to arrive without notice), your reservation may be cancelled."
         }
       },
       "s3": {
         "h": "3. Cancellations by the Hotel",
-        "p": "If the hotel cancels a reservation due to force majeure or an unforeseeable circumstance, the deposit paid is refunded to the guest in full, or transferred to an alternative date at the guest's request."
+        "p": "If the hotel cancels a reservation due to force majeure or an unforeseeable circumstance, the guest is notified as soon as possible and offered an alternative date at their request."
       },
       "s4": {
         "h": "4. Right of Withdrawal under Distance Sales Rules",
@@ -799,7 +795,7 @@
       },
       "s5": {
         "h": "5. Refund Process",
-        "p": "Approved refunds are processed on the <strong>same day</strong> the cancellation is confirmed, to the account the deposit was paid from. Depending on your bank, it may take a few business days for the amount to appear on your card or account."
+        "p": "As we are not currently collecting online payments, there is no refund process. Payment is collected at the hotel during your stay."
       },
       "s6": {
         "h": "6. Contact",
@@ -828,7 +824,7 @@
     "notFound": "No reservation was found matching these details. Please check your reservation number and email and try again.",
     "connectionError": "Connection error. Please try again.",
     "status": {
-      "pending": "Deposit Pending",
+      "pending": "Confirmation Pending",
       "confirmed": "Confirmed",
       "cancelled": "Cancelled"
     },
@@ -836,7 +832,7 @@
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "nights": "Nights",
-    "deposit": "Deposit",
+    "deposit": "Nightly Rate",
     "changeHint": "To change or cancel your reservation, please contact us directly — online cancellation is not supported.",
     "callUs": "Call Us",
     "whatsapp": "WhatsApp",

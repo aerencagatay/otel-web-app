@@ -146,7 +146,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <div className="text-[11px] text-text-light uppercase tracking-[0.15em]">
-                  Kapora bekliyor
+                  Teyit bekliyor
                 </div>
                 <div className="font-heading text-[28px] font-semibold text-dark leading-none mt-1">
                   {pendingCount}
