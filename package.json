@@ -21,6 +21,7 @@
     "googleapis": "^171.4.0",
     "iron-session": "^8.0.4",
     "lucide-react": "^1.8.0",
+    "motion": "^13.2.0",
     "next": "16.2.3",
     "next-intl": "^4.13.1",
     "nodemailer": "^8.0.5",

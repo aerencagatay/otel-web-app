@@ -1,22 +1,57 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Assos Sessizliği: deniz & taş palette — tek vurgu (derin Ege mavisi) */
-  --color-gold: #2e4a5c;
-  --color-gold-dark: #223a49;
-  --color-gold-light: #4a6b80;
-  --color-olive: #3a4440;
-  --color-stone: #cfc8bb;
-  --color-ivory: #f4f2ee;
-  --color-dark: #22211f;
-  --color-dark-2: #2b2a27;
-  --color-text: #4a4842;
-  --color-text-light: #7a776d;
-  --color-warm: #efece6;
-  --color-border: #d9d2c5;
+  /* ===================================================================
+     "TAŞ VE IŞIK" — UI_UX_AUDIT.md §8.3
+     Palet, otelin gerçek malzemesinden türetildi: Assos andeziti sıcak
+     bej değil, gri-menekşe volkanik taştır. Bu yüzden zemin krem değil
+     kireç badanadır. Tek doygun renk denizden gelir; asıl rengi
+     fotoğraflar taşır.
 
-  --font-heading: "Cormorant Garamond", serif;
-  --font-body: "DM Sans", sans-serif;
+     KURAL: Koyu ton YALNIZCA ikidir — --ink (mürekkep) ve --sea-deep.
+     Önceki paletteki #3a4440 / #223a49 / #2b2a27 üçlüsü kaldırıldı.
+     =================================================================== */
+
+  /* --- Taş ölçeği (nötr, hafif soğuk) --- */
+  --color-stone-00: #fafaf8;  /* kireç badana — ana zemin */
+  --color-stone-05: #f1f0ec;  /* alternatif bölüm zemini */
+  --color-stone-15: #dedcd5;  /* ayraç, kart kenarı */
+  --color-stone-35: #b9b5ab;  /* devre dışı, ikincil ikon */
+  --color-stone-55: #827e74;  /* ikincil metin */
+  --color-stone-80: #3d3a34;  /* gövde metni */
+  --color-ink: #1d1b18;       /* başlık, footer, koyu bölümler */
+
+  /* --- Aksan: Kadırga'nın öğle vakti derin suyu --- */
+  --color-sea: #0f5a61;
+  --color-sea-deep: #0a4046;
+  --color-sea-wash: #e3eded;
+  --color-sea-light: #4e8f95;  /* koyu zemin üstünde okunur aksan */
+
+  /* --- Sinyal renkleri (yalnızca durum; dekorasyon değil) --- */
+  --color-olive-signal: #6e7a4f;  /* müsait / onaylandı */
+  --color-clay: #a6522f;          /* uyarı / dolu tarih */
+
+  /* --- Geriye dönük uyumluluk katmanı ---------------------------------
+     50 bileşen dosyası bu isimleri kullanıyor (text-gold, bg-dark,
+     border-border …). İsimler korunup DEĞERLER yeniden işaret edildi:
+     tek dosyada palet geçişi. Bulgu Y3'teki "gold adında mavi değişken"
+     yalanı, isimler bileşenlerden temizlendikçe kapanacak.
+     Yeni kod --color-sea / --color-ink / --color-stone-* kullanmalıdır. */
+  --color-gold: var(--color-sea);
+  --color-gold-dark: var(--color-sea-deep);
+  --color-gold-light: var(--color-sea-light);
+  --color-olive: var(--color-sea-deep);  /* 3. koyu ton kaldırıldı */
+  --color-stone: var(--color-stone-35);
+  --color-ivory: var(--color-stone-00);
+  --color-dark: var(--color-ink);
+  --color-dark-2: #2a2723;
+  --color-text: var(--color-stone-80);
+  --color-text-light: var(--color-stone-55);
+  --color-warm: var(--color-stone-05);
+  --color-border: var(--color-stone-15);
+
+  --font-heading: "Fraunces", Georgia, serif;
+  --font-body: "Archivo", system-ui, sans-serif;
 }
 
 /* Yumuşak radius / gölge dili — taş dokusu + Ege ışığı + sessiz lüks.
@@ -25,14 +60,44 @@
    Kural: tam genişlikte (edge-to-edge) section arka planları köşesiz kalır;
    yalnızca yüzen kart/panel/chip/buton/input bu token'ları kullanır. */
 :root {
-  --radius-xs: 6px;    /* chip içi küçük elemanlar */
-  --radius-sm: 10px;   /* input, select, küçük kart */
-  --radius-md: 16px;   /* kart, panel */
-  --radius-lg: 24px;   /* hero kart, büyük medya */
-  --radius-pill: 999px;/* buton, chip, arama barı */
+  /* --- Radius: kesme taş -------------------------------------------------
+     Önceki hap (999px) formları jenerik SaaS diline aitti ve taş mimarisiyle
+     çelişiyordu. Kesme taş mantığı: neredeyse keskin köşe. */
+  --radius-xs: 2px;
+  --radius-sm: 2px;    /* input, select, küçük kart */
+  --radius-md: 4px;    /* kart, panel */
+  --radius-lg: 6px;    /* büyük medya */
+  --radius-pill: 999px;/* YALNIZCA gerçekten hap formlu rozet/chip için */
+
   --shadow-soft: 0 1px 2px rgba(20,18,14,.05), 0 8px 28px rgba(20,18,14,.07);
   --shadow-lift: 0 2px 6px rgba(20,18,14,.06), 0 16px 48px rgba(20,18,14,.12);
-  --border-soft: 1px solid rgba(120,110,95,.18); /* sıcak, düşük kontrast */
+  --border-soft: 1px solid rgba(120,110,95,.18);
+
+  /* --- Boşluk ölçeği (§8.6) — 4px tabanlı, ara değer kullanılmaz --- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-6: 24px;  --space-8: 32px;  --space-12: 48px; --space-16: 64px;
+  --space-24: 96px; --space-32: 128px;
+
+  /* --- Hareket (§8.10) — tek easing, üç süre --- */
+  --ease: cubic-bezier(.2,.7,.3,1);
+  --dur-micro: 120ms;
+  --dur-sm: 180ms;
+  --dur-panel: 240ms;
+
+  /* Ölçülebilir sabitler: sabit katmanların çakışmaması için (bulgu K3).
+     Mobilde alt bar + WhatsApp balonu bu değerlerden konumlanır. */
+  --sticky-cta-h: 64px;
+  --nav-h: 76px;
+}
+
+/* Hareket azaltma tercihi: tüm süreler susar, sonuç durumu korunur. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ===== BASE ===== */
@@ -45,8 +110,18 @@ body {
   color: var(--color-text);
   background: var(--color-ivory);
   overflow-x: hidden;
-  line-height: 1.7;
+  /* §8.5: gövde 15px → 17px. Archivo'nun yüksek x-yüksekliğiyle birlikte
+     okunabilirlik belirgin artar (bulgu O4). */
+  font-size: 17px;
+  line-height: 1.65;
   font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fraunces değişken eksenleri: başlıklarda hafif yumuşaklık, düz "wonk"
+   kapalı — karakter var ama dekoratif değil. */
+h1, h2, h3, .type-display, .type-section-title {
+  font-variation-settings: "SOFT" 28, "WONK" 0;
 }
 
 /* In @layer base so Tailwind text-* utilities (e.g. text-white) can override
@@ -70,9 +145,43 @@ img {
 /* Quiet, consistent keyboard focus ring across the site. Components that set
    their own outline/box-shadow focus treatment (e.g. .form-input) override
    this by source order further down the file. */
+/* Bulgu Y7: tek renkli outline koyu zeminlerde (hero videosu, footer, koyu
+   CTA bandı) görünmüyordu. İki katmanlı halka her zeminde okunur: içte
+   mürekkep, dışta badana. */
 :focus-visible {
-  outline: 2px solid var(--color-gold-dark);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-stone-00),
+    0 0 0 4px var(--color-ink);
+  border-radius: var(--radius-xs);
+}
+/* Koyu bölümlerde katmanlar yer değiştirir. */
+.on-dark :focus-visible,
+.gallery-section :focus-visible,
+footer :focus-visible {
+  box-shadow:
+    0 0 0 2px var(--color-ink),
+    0 0 0 4px var(--color-stone-00);
+}
+
+/* Klavye kullanıcısı için içeriğe atlama — Tab'ın ilk durağı (bulgu Y7). */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-4);
+  z-index: 200;
+  transform: translateY(-200%);
+  background: var(--color-ink);
+  color: var(--color-stone-00);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--dur-sm) var(--ease);
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* Scrollbar */
@@ -81,19 +190,29 @@ img {
 ::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 10px; }
 
 /* ===== UTILITY CLASSES ===== */
+/* Bulgu Y5: harf aralıklı BÜYÜK HARF etiket, kod tabanında 53 kez
+   tekrarlanıyordu ve hiçbir bilgi taşımıyordu ("KONAKLAMA" etiketinin
+   altında "Odalar" başlığı). Kalan kullanımlar temizlenene kadar sınıf
+   sessizleştirildi: büyük harf ve 0.35em aralık kaldırıldı. */
 .eyebrow {
   display: inline-block;
-  font-size: 10px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--color-gold-dark);
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--color-stone-55);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
 }
 
-/* Vertical rhythm: boutique spacing scale */
-.section-py { padding: clamp(72px, 12vw, 112px) 0; }
-.section-sm { padding: clamp(48px, 8vw, 80px) 0; }
+/* Dikey ritim (§8.6): masaüstü tavanı yükseltildi, mobil tabanı düşürüldü —
+   mobilde sayfa uzunluğu sorununa (Y10) doğrudan katkı. */
+.section-py { padding: clamp(64px, 9vw, 128px) 0; }
+.section-sm { padding: clamp(44px, 6vw, 88px) 0; }
+
+/* Metin kapsayıcısı (§8.7 / bulgu O3): oda detayda satır 109 karaktere
+   çıkıyordu. Gövde metni asla tam grid genişliği kullanmaz. */
+.measure { max-width: 68ch; }
+.measure-tight { max-width: 46ch; }
 
 /* Typography scale (use with font-heading / body) */
 .type-display {
@@ -133,91 +252,89 @@ img {
   margin: 16px auto;
 }
 
-/* ===== BUTTONS ===== */
-.btn-gold {
-  display: inline-block;
-  background: var(--color-gold);
-  color: #fff;
-  border: 2px solid var(--color-gold);
-  border-radius: var(--radius-pill);
-  padding: 14px 34px;
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.btn-gold:hover {
-  background: transparent;
-  color: var(--color-gold);
-}
-
-.btn-outline-light {
-  display: inline-block;
-  background: transparent;
-  color: #fff;
-  border: 2px solid rgba(255,255,255,0.65);
-  border-radius: var(--radius-pill);
-  padding: 14px 34px;
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-.btn-outline-light:hover {
-  background: #fff;
-  color: var(--color-dark);
-  border-color: #fff;
-}
-
-.btn-dark-sq {
-  display: inline-block;
-  background: var(--color-dark);
-  color: #fff;
-  border: 2px solid var(--color-dark);
-  border-radius: var(--radius-pill);
-  padding: 13px 30px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-.btn-dark-sq:hover {
-  background: transparent;
-  color: var(--color-dark);
-}
-
-/* Primary conversion CTA — stays legible, no “disappearing” fill on hover */
+/* ===== BUTTONS (§8.8) =================================================
+   Değişiklikler: hap → kesme taş köşe; BÜYÜK HARF + 2.5px aralık → cümle
+   düzeni; 11px → 15px; min-height 52px (mobilde 56px) ile dokunma hedefi
+   sorunu (Y4) kaynağında çözülür. Ok işareti (→) buton metnine eklenmez.
+   ===================================================================== */
+.btn-gold,
+.btn-outline-light,
+.btn-dark-sq,
 .btn-cta-solid {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background: var(--color-dark);
-  color: #fff !important;
-  border: 2px solid var(--color-dark);
-  border-radius: var(--radius-pill);
-  padding: 15px 32px;
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 700;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding: var(--space-4) 28px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
   text-decoration: none;
-  transition: background 0.25s, border-color 0.25s, transform 0.2s;
   cursor: pointer;
+  transition: background var(--dur-micro) var(--ease),
+              border-color var(--dur-micro) var(--ease),
+              color var(--dur-micro) var(--ease),
+              transform var(--dur-micro) var(--ease);
+}
+@media (max-width: 767px) {
+  .btn-gold, .btn-outline-light, .btn-dark-sq, .btn-cta-solid { min-height: 56px; }
+}
+
+/* Birincil: deniz dolgu */
+.btn-gold {
+  background: var(--color-sea);
+  color: #fff;
+  border: 1px solid var(--color-sea);
+}
+.btn-gold:hover {
+  background: var(--color-sea-deep);
+  border-color: var(--color-sea-deep);
+  color: #fff;
+}
+
+/* Koyu zemin üstü ikincil */
+.btn-outline-light {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.btn-outline-light:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Açık zemin üstü ikincil */
+.btn-dark-sq {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-stone-35);
+}
+.btn-dark-sq:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+
+/* Birincil dönüşüm CTA'sı */
+.btn-cta-solid {
+  background: var(--color-ink);
+  color: #fff !important;
+  border: 1px solid var(--color-ink);
 }
 .btn-cta-solid:hover {
-  background: var(--color-olive);
-  border-color: var(--color-olive);
+  background: var(--color-sea);
+  border-color: var(--color-sea);
   color: #fff !important;
-  transform: translateY(-1px);
 }
+.btn-gold:active,
+.btn-dark-sq:active,
+.btn-outline-light:active,
+.btn-cta-solid:active { transform: translateY(1px); }
 
 /* Navbar / hero context CTA */
 .nav-cta {
@@ -819,41 +936,50 @@ img {
   max-width: 1280px;
   margin: 0 auto;
 }
-.gallery-mosaic .gallery-item {
-  aspect-ratio: auto;
-}
-.gallery-mosaic__hero {
+/* BULGU K5 — ÖZGÜLLÜK ÇAKIŞMASI DÜZELTMESİ
+   Eskiden `.gallery-mosaic .gallery-item { aspect-ratio: auto }` (özgüllük
+   0,2,0) tek sınıflı varyant kurallarını (0,1,0) eziyordu. Bileşen
+   <Image fill> kullandığı için görseller mutlak konumlu — aspect-ratio da
+   devre dışı kalınca kutuların yükseklik kaynağı kalmıyor ve hepsi 0px'e
+   çöküyordu (ölçülen: 637x6, 316x0, 316x0, 316x0).
+   Çözüm: varyant seçicileri de kapsayıcıyla nitelendirilerek özgüllük
+   eşitlendi (0,2,0) ve kaynak sırası kazanıyor. */
+.gallery-mosaic .gallery-mosaic__hero {
   grid-column: 1 / 3;
   grid-row: 1 / 3;
   aspect-ratio: 1;
 }
-.gallery-mosaic__a { grid-column: 3; grid-row: 1; aspect-ratio: 4 / 5; }
-.gallery-mosaic__b { grid-column: 4; grid-row: 1; aspect-ratio: 4 / 5; }
-.gallery-mosaic__c { grid-column: 3; grid-row: 2; aspect-ratio: 4 / 5; }
+.gallery-mosaic .gallery-mosaic__a { grid-column: 3; grid-row: 1; aspect-ratio: 4 / 5; }
+.gallery-mosaic .gallery-mosaic__b { grid-column: 4; grid-row: 1; aspect-ratio: 4 / 5; }
+.gallery-mosaic .gallery-mosaic__c { grid-column: 3; grid-row: 2; aspect-ratio: 4 / 5; }
 
+/* K5 notu: aşağıdaki kırılım kuralları da kapsayıcıyla nitelendirilmelidir —
+   aksi halde masaüstü varyantları (0,2,0) bu mobil kuralları (0,1,0) ezer ve
+   mozaik telefonlarda masaüstü yerleşiminde kalır. */
 @media (max-width: 991px) {
   .gallery-mosaic {
     grid-template-columns: repeat(2, 1fr);
   }
-  .gallery-mosaic__hero {
+  .gallery-mosaic .gallery-mosaic__hero {
     grid-column: 1 / -1;
     grid-row: auto;
     aspect-ratio: 16 / 9;
   }
-  .gallery-mosaic__a { grid-column: 1; grid-row: auto; aspect-ratio: 4 / 5; }
-  .gallery-mosaic__b { grid-column: 2; grid-row: auto; aspect-ratio: 4 / 5; }
-  .gallery-mosaic__c { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 9; }
+  .gallery-mosaic .gallery-mosaic__a { grid-column: 1; grid-row: auto; aspect-ratio: 4 / 5; }
+  .gallery-mosaic .gallery-mosaic__b { grid-column: 2; grid-row: auto; aspect-ratio: 4 / 5; }
+  .gallery-mosaic .gallery-mosaic__c { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 767px) {
   .gallery-mosaic {
     grid-template-columns: 1fr;
   }
-  .gallery-mosaic__hero,
-  .gallery-mosaic__a,
-  .gallery-mosaic__b,
-  .gallery-mosaic__c {
+  .gallery-mosaic .gallery-mosaic__hero,
+  .gallery-mosaic .gallery-mosaic__a,
+  .gallery-mosaic .gallery-mosaic__b,
+  .gallery-mosaic .gallery-mosaic__c {
     grid-column: 1;
+    grid-row: auto;
     aspect-ratio: 4 / 3;
   }
   /* Touch: always show caption band (no hover) */
