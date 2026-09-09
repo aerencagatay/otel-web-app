@@ -96,14 +96,14 @@ const lookupPageUrl = (locale: MailLocale) =>
   `${HOTEL.website}${locale === "en" ? "/en" : ""}/rezervasyon-sorgula`;
 
 const shell = (bodyHtml: string) => `
-      <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
-        <div style="background:#1a1a1a;padding:32px;text-align:center;">
-          <h1 style="color:#e4a00e;font-family:'Playfair Display',Georgia,serif;margin:0;">${HOTEL.name}</h1>
+      <div style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
+        <div style="background:#1d1b18;padding:32px;text-align:center;">
+          <h1 style="color:#4e8f95;font-family:Georgia,'Times New Roman',serif;margin:0;">${HOTEL.name}</h1>
         </div>
-        <div style="padding:32px;border:1px solid #e8e2d9;border-top:none;">
+        <div style="padding:32px;border:1px solid #dedcd5;border-top:none;">
           ${bodyHtml}
         </div>
-        <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
+        <div style="background:#2a2723;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
           ${HOTEL.name} · ${HOTEL.address}
         </div>
       </div>
@@ -126,31 +126,31 @@ export function pendingReservationEmail(data: {
   return {
     subject: m.pendingSubject(data.reservationId),
     html: shell(`
-          <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.pendingHeading}</h2>
+          <h2 style="color:#1d1b18;font-family:Georgia,'Times New Roman',serif;">${m.pendingHeading}</h2>
           <p>${m.dear} ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)},</p>
           <p>${m.pendingIntro}</p>
 
-          <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
+          <div style="background:#f1f0ec;border-left:3px solid #0f5a61;padding:16px 20px;margin:20px 0;">
             <table style="width:100%;font-size:14px;">
-              <tr><td style="padding:4px 0;color:#888;">${m.resNo}</td><td style="font-weight:700;color:#1a1a1a;">${data.reservationId}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.room}</td><td style="font-weight:700;color:#1a1a1a;">${data.roomLabel}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.checkIn}</td><td style="font-weight:700;color:#1a1a1a;">${formatDate(data.checkIn, locale)} · 14:00</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.checkOut}</td><td style="font-weight:700;color:#1a1a1a;">${formatDate(data.checkOut, locale)} · 12:00</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.duration}</td><td style="font-weight:700;color:#1a1a1a;">${m.nights(data.nights)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.resNo}</td><td style="font-weight:700;color:#1d1b18;">${data.reservationId}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.room}</td><td style="font-weight:700;color:#1d1b18;">${data.roomLabel}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.checkIn}</td><td style="font-weight:700;color:#1d1b18;">${formatDate(data.checkIn, locale)} · 14:00</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.checkOut}</td><td style="font-weight:700;color:#1d1b18;">${formatDate(data.checkOut, locale)} · 12:00</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.duration}</td><td style="font-weight:700;color:#1d1b18;">${m.nights(data.nights)}</td></tr>
             </table>
           </div>
 
-          <h3 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.contactTitle}</h3>
-          <div style="background:#faf8f5;padding:16px 20px;margin:12px 0;border:1px solid #e8e2d9;">
+          <h3 style="color:#1d1b18;font-family:Georgia,'Times New Roman',serif;">${m.contactTitle}</h3>
+          <div style="background:#f1f0ec;padding:16px 20px;margin:12px 0;border:1px solid #dedcd5;">
             <table style="width:100%;font-size:14px;">
-              <tr><td style="padding:4px 0;color:#888;">${m.phoneLabel}</td><td style="font-weight:700;color:#1a1a1a;"><a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#1a1a1a;">${HOTEL.phone}</a></td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.emailLabel}</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${HOTEL.email}" style="color:#1a1a1a;">${HOTEL.email}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.phoneLabel}</td><td style="font-weight:700;color:#1d1b18;"><a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#1d1b18;">${HOTEL.phone}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.emailLabel}</td><td style="font-weight:700;color:#1d1b18;"><a href="mailto:${HOTEL.email}" style="color:#1d1b18;">${HOTEL.email}</a></td></tr>
             </table>
           </div>
 
-          <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#e4a00e;">${lookupUrl}</a></p>
+          <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#0f5a61;">${lookupUrl}</a></p>
 
-          <p>${m.questions} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;">${HOTEL.phone}</a></p>
+          <p>${m.questions} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#0f5a61;">${HOTEL.phone}</a></p>
     `),
   };
 }
@@ -166,17 +166,17 @@ export function expiredReservationEmail(data: {
   return {
     subject: m.expiredSubject(data.reservationId),
     html: shell(`
-          <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.expiredHeading}</h2>
+          <h2 style="color:#1d1b18;font-family:Georgia,'Times New Roman',serif;">${m.expiredHeading}</h2>
           <p>${m.dear} ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)},</p>
           <p>${m.expiredIntro(data.reservationId)}</p>
 
-          <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
-            <p style="margin:0 0 6px;color:#1a1a1a;font-weight:700;">${m.expiredReassureTitle}</p>
+          <div style="background:#f1f0ec;border-left:3px solid #0f5a61;padding:16px 20px;margin:20px 0;">
+            <p style="margin:0 0 6px;color:#1d1b18;font-weight:700;">${m.expiredReassureTitle}</p>
             <p style="margin:0;">${m.expiredReassureText}</p>
           </div>
 
           <p>${m.expiredOutro}</p>
-          <p style="font-size:16px;">${m.callUs} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;font-weight:700;">${HOTEL.phone}</a></p>
+          <p style="font-size:16px;">${m.callUs} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#0f5a61;font-weight:700;">${HOTEL.phone}</a></p>
     `),
   };
 }
@@ -202,25 +202,25 @@ export function confirmedReservationEmail(data: {
               <span style="font-size:28px;color:#28a745;">✓</span>
             </div>
           </div>
-          <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;text-align:center;">${m.confirmedHeading}</h2>
+          <h2 style="color:#1d1b18;font-family:Georgia,'Times New Roman',serif;text-align:center;">${m.confirmedHeading}</h2>
           <p>${m.dear} ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)},</p>
           <p>${m.confirmedIntro}</p>
 
-          <div style="background:#faf8f5;border-left:3px solid #28a745;padding:16px 20px;margin:20px 0;">
+          <div style="background:#f1f0ec;border-left:3px solid #28a745;padding:16px 20px;margin:20px 0;">
             <table style="width:100%;font-size:14px;">
-              <tr><td style="padding:4px 0;color:#888;">${m.resNo}</td><td style="font-weight:700;color:#1a1a1a;">${data.reservationId}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.room}</td><td style="font-weight:700;color:#1a1a1a;">${data.roomLabel}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.checkIn}</td><td style="font-weight:700;color:#1a1a1a;">${formatDate(data.checkIn, locale)} · 14:00</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.checkOut}</td><td style="font-weight:700;color:#1a1a1a;">${formatDate(data.checkOut, locale)} · 12:00</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">${m.duration}</td><td style="font-weight:700;color:#1a1a1a;">${m.nights(data.nights)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.resNo}</td><td style="font-weight:700;color:#1d1b18;">${data.reservationId}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.room}</td><td style="font-weight:700;color:#1d1b18;">${data.roomLabel}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.checkIn}</td><td style="font-weight:700;color:#1d1b18;">${formatDate(data.checkIn, locale)} · 14:00</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.checkOut}</td><td style="font-weight:700;color:#1d1b18;">${formatDate(data.checkOut, locale)} · 12:00</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">${m.duration}</td><td style="font-weight:700;color:#1d1b18;">${m.nights(data.nights)}</td></tr>
             </table>
           </div>
 
           <p>${m.confirmedOutro}</p>
 
-          <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#e4a00e;">${lookupUrl}</a></p>
+          <p>${m.lookupLinkText} <a href="${lookupUrl}" style="color:#0f5a61;">${lookupUrl}</a></p>
 
-          <p>${m.questions} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;">${HOTEL.phone}</a></p>
+          <p>${m.questions} <a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#0f5a61;">${HOTEL.phone}</a></p>
     `),
   };
 }
@@ -244,36 +244,36 @@ export function adminNotificationEmail(data: {
   return {
     subject: `🟢 Yeni Web Rezervasyonu - ${data.reservationId} (Teyit Bekleniyor)`,
     html: `
-      <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
-        <div style="background:#1a1a1a;padding:24px;text-align:center;">
-          <h1 style="color:#e4a00e;font-family:'Playfair Display',Georgia,serif;margin:0;font-size:20px;">${HOTEL.name} · Yeni Rezervasyon</h1>
+      <div style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
+        <div style="background:#1d1b18;padding:24px;text-align:center;">
+          <h1 style="color:#4e8f95;font-family:Georgia,'Times New Roman',serif;margin:0;font-size:20px;">${HOTEL.name} · Yeni Rezervasyon</h1>
         </div>
-        <div style="padding:28px;border:1px solid #e8e2d9;border-top:none;">
+        <div style="padding:28px;border:1px solid #dedcd5;border-top:none;">
           <p style="margin-top:0;">Web üzerinden yeni bir rezervasyon geldi. Misafiri arayarak rezervasyonu teyit edin, ardından admin panelinden onaylayın.</p>
 
-          <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:20px 0;">
+          <div style="background:#f1f0ec;border-left:3px solid #0f5a61;padding:16px 20px;margin:20px 0;">
             <table style="width:100%;font-size:14px;">
-              <tr><td style="padding:4px 0;color:#888;">Rezervasyon No</td><td style="font-weight:700;color:#1a1a1a;">${data.reservationId}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Misafir</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1a1a1a;"><a href="tel:${encodeURIComponent(data.phone.replace(/\s/g, ""))}" style="color:#1a1a1a;">${escapeHtml(data.phone)}</a></td></tr>
-              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${encodeURIComponent(data.email)}" style="color:#1a1a1a;">${escapeHtml(data.email)}</a></td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Oda</td><td style="font-weight:700;color:#1a1a1a;">${data.roomLabel}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Giriş</td><td style="font-weight:700;color:#1a1a1a;">${formatDateTR(data.checkIn)}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Çıkış</td><td style="font-weight:700;color:#1a1a1a;">${formatDateTR(data.checkOut)}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Süre</td><td style="font-weight:700;color:#1a1a1a;">${data.nights} gece</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Kişi</td><td style="font-weight:700;color:#1a1a1a;">${data.adults} yetişkin${data.children ? `, ${data.children} çocuk` : ""}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">Gecelik Ücret (referans)</td><td style="font-weight:700;color:#e4a00e;">${data.depositAmount.toLocaleString("tr-TR")} ₺</td></tr>
-              ${data.notes ? `<tr><td style="padding:4px 0;color:#888;">Not</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.notes)}</td></tr>` : ""}
+              <tr><td style="padding:4px 0;color:#888;">Rezervasyon No</td><td style="font-weight:700;color:#1d1b18;">${data.reservationId}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Misafir</td><td style="font-weight:700;color:#1d1b18;">${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1d1b18;"><a href="tel:${encodeURIComponent(data.phone.replace(/\s/g, ""))}" style="color:#1d1b18;">${escapeHtml(data.phone)}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1d1b18;"><a href="mailto:${encodeURIComponent(data.email)}" style="color:#1d1b18;">${escapeHtml(data.email)}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Oda</td><td style="font-weight:700;color:#1d1b18;">${data.roomLabel}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Giriş</td><td style="font-weight:700;color:#1d1b18;">${formatDateTR(data.checkIn)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Çıkış</td><td style="font-weight:700;color:#1d1b18;">${formatDateTR(data.checkOut)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Süre</td><td style="font-weight:700;color:#1d1b18;">${data.nights} gece</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Kişi</td><td style="font-weight:700;color:#1d1b18;">${data.adults} yetişkin${data.children ? `, ${data.children} çocuk` : ""}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Gecelik Ücret (referans)</td><td style="font-weight:700;color:#0f5a61;">${data.depositAmount.toLocaleString("tr-TR")} ₺</td></tr>
+              ${data.notes ? `<tr><td style="padding:4px 0;color:#888;">Not</td><td style="font-weight:700;color:#1d1b18;">${escapeHtml(data.notes)}</td></tr>` : ""}
             </table>
           </div>
 
           <div style="text-align:center;margin:24px 0;">
-            <a href="${adminUrl}" style="display:inline-block;background:#1a1a1a;color:#fff;text-decoration:none;padding:12px 28px;font-weight:600;">Admin Panelini Aç</a>
+            <a href="${adminUrl}" style="display:inline-block;background:#1d1b18;color:#fff;text-decoration:none;padding:12px 28px;font-weight:600;">Admin Panelini Aç</a>
           </div>
 
           <p style="font-size:13px;color:#888;">Bu rezervasyon takvimde <strong style="color:#1a8a3a;">yeşil</strong> olarak işaretlendi. Onayladığınızda <strong style="color:#c0392b;">kırmızıya</strong> dönecek ve misafire kesinleşme maili gidecek.</p>
         </div>
-        <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
+        <div style="background:#2a2723;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
           ${HOTEL.name} · ${HOTEL.address}
         </div>
       </div>
@@ -291,23 +291,23 @@ export function contactAdminNotificationEmail(data: {
   return {
     subject: `Yeni İletişim Mesajı — ${data.subject} | ${HOTEL.name}`,
     html: `
-      <div style="font-family:'Montserrat',Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
-        <div style="background:#1a1a1a;padding:24px;text-align:center;">
-          <h1 style="color:#e4a00e;font-family:'Playfair Display',Georgia,serif;margin:0;font-size:20px;">${HOTEL.name} · İletişim Formu</h1>
+      <div style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:600px;margin:0 auto;color:#555;">
+        <div style="background:#1d1b18;padding:24px;text-align:center;">
+          <h1 style="color:#4e8f95;font-family:Georgia,'Times New Roman',serif;margin:0;font-size:20px;">${HOTEL.name} · İletişim Formu</h1>
         </div>
-        <div style="padding:28px;border:1px solid #e8e2d9;border-top:none;">
-          <div style="background:#faf8f5;border-left:3px solid #e4a00e;padding:16px 20px;margin:0 0 20px;">
+        <div style="padding:28px;border:1px solid #dedcd5;border-top:none;">
+          <div style="background:#f1f0ec;border-left:3px solid #0f5a61;padding:16px 20px;margin:0 0 20px;">
             <table style="width:100%;font-size:14px;">
-              <tr><td style="padding:4px 0;color:#888;">Ad Soyad</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.name)}</td></tr>
-              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1a1a1a;"><a href="mailto:${encodeURIComponent(data.email)}" style="color:#1a1a1a;">${escapeHtml(data.email)}</a></td></tr>
-              ${data.phone ? `<tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.phone)}</td></tr>` : ""}
-              <tr><td style="padding:4px 0;color:#888;">Konu</td><td style="font-weight:700;color:#1a1a1a;">${escapeHtml(data.subject)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">Ad Soyad</td><td style="font-weight:700;color:#1d1b18;">${escapeHtml(data.name)}</td></tr>
+              <tr><td style="padding:4px 0;color:#888;">E-posta</td><td style="font-weight:700;color:#1d1b18;"><a href="mailto:${encodeURIComponent(data.email)}" style="color:#1d1b18;">${escapeHtml(data.email)}</a></td></tr>
+              ${data.phone ? `<tr><td style="padding:4px 0;color:#888;">Telefon</td><td style="font-weight:700;color:#1d1b18;">${escapeHtml(data.phone)}</td></tr>` : ""}
+              <tr><td style="padding:4px 0;color:#888;">Konu</td><td style="font-weight:700;color:#1d1b18;">${escapeHtml(data.subject)}</td></tr>
             </table>
           </div>
           <p style="margin:0 0 6px;color:#888;font-size:13px;">Mesaj</p>
-          <p style="white-space:pre-wrap;font-size:14px;color:#1a1a1a;">${escapeHtml(data.message)}</p>
+          <p style="white-space:pre-wrap;font-size:14px;color:#1d1b18;">${escapeHtml(data.message)}</p>
         </div>
-        <div style="background:#252525;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
+        <div style="background:#2a2723;padding:16px;text-align:center;font-size:12px;color:rgba(255,255,255,0.45);">
           ${HOTEL.name} · ${HOTEL.address}
         </div>
       </div>
@@ -341,11 +341,11 @@ export function contactAutoReplyEmail(data: {
   return {
     subject: m.subject,
     html: shell(`
-          <h2 style="color:#1a1a1a;font-family:'Playfair Display',Georgia,serif;">${m.heading}</h2>
+          <h2 style="color:#1d1b18;font-family:Georgia,'Times New Roman',serif;">${m.heading}</h2>
           <p>${m.dear} ${escapeHtml(data.name)},</p>
           <p>${m.body}</p>
           <p>${m.urgent}</p>
-          <p style="font-size:16px;"><a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#e4a00e;font-weight:700;">${HOTEL.phone}</a></p>
+          <p style="font-size:16px;"><a href="tel:${HOTEL.phone.replace(/\s/g, "")}" style="color:#0f5a61;font-weight:700;">${HOTEL.phone}</a></p>
     `),
   };
 }

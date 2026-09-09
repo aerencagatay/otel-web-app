@@ -130,7 +130,7 @@
       "tag": "Assos · Çanakkale",
       "titleLine1": "Taşın kalbinde,",
       "titleLine2": "Assos'un gözdesi.",
-      "lede": "Butik konaklama · 28 oda · havuz · A La Carte · Kadırga'ya dakikalar",
+      "lede": "Taş mimari, sonsuzluk havuzu ve Ege manzarası. Kadırga Koyu'na beş dakika.",
       "ctaDates": "Tarih seç & müsaitlik",
       "ctaRooms": "Odaları incele",
       "scroll": "Kaydır"
@@ -191,17 +191,50 @@
       "title": "Otel Özellikleri",
       "lede": "Size en iyi konaklama deneyimini sunmak için tasarlanmış olanaklarımız.",
       "items": {
-        "pool": { "title": "Açık Havuz", "desc": "Deniz manzaralı yüzme havuzu" },
-        "kidsPool": { "title": "Çocuk Havuzu", "desc": "Küçük misafirlerimiz için ayrı havuz" },
-        "restaurant": { "title": "A La Carte Restoran", "desc": "Deniz manzaralı özgün Ege mutfağı" },
-        "breakfast": { "title": "Kahvaltı Dahil", "desc": "08:30–10:30 ısmarlamalı servis" },
-        "bar": { "title": "Bar", "desc": "Havuz başı ve lounge bar" },
-        "firepit": { "title": "Firepit Alanı", "desc": "Deniz manzaralı açık hava ateş köşesi" },
-        "wifi": { "title": "Ücretsiz Wi-Fi", "desc": "Tüm alanlarda kesintisiz internet" },
-        "parking": { "title": "Ücretsiz Otopark", "desc": "Geniş açık otopark alanı" },
-        "garden": { "title": "Bahçe", "desc": "Huzurlu peyzajlı bahçe alanı" },
-        "luggage": { "title": "Bagaj Muhafazası", "desc": "Erken/geç çıkışlar için emanet" },
-        "reception": { "title": "7/24 Resepsiyon", "desc": "Her an yanınızdayız" }
+        "pool": {
+          "title": "Açık Havuz",
+          "desc": "Deniz manzaralı yüzme havuzu"
+        },
+        "kidsPool": {
+          "title": "Çocuk Havuzu",
+          "desc": "Küçük misafirlerimiz için ayrı havuz"
+        },
+        "restaurant": {
+          "title": "A La Carte Restoran",
+          "desc": "Deniz manzaralı özgün Ege mutfağı"
+        },
+        "breakfast": {
+          "title": "Kahvaltı Dahil",
+          "desc": "08:30–10:30 ısmarlamalı servis"
+        },
+        "bar": {
+          "title": "Bar",
+          "desc": "Havuz başı ve lounge bar"
+        },
+        "firepit": {
+          "title": "Firepit Alanı",
+          "desc": "Deniz manzaralı açık hava ateş köşesi"
+        },
+        "wifi": {
+          "title": "Ücretsiz Wi-Fi",
+          "desc": "Tüm alanlarda kesintisiz internet"
+        },
+        "parking": {
+          "title": "Ücretsiz Otopark",
+          "desc": "Geniş açık otopark alanı"
+        },
+        "garden": {
+          "title": "Bahçe",
+          "desc": "Huzurlu peyzajlı bahçe alanı"
+        },
+        "luggage": {
+          "title": "Bagaj Muhafazası",
+          "desc": "Erken/geç çıkışlar için emanet"
+        },
+        "reception": {
+          "title": "7/24 Resepsiyon",
+          "desc": "Her an yanınızdayız"
+        }
       }
     },
     "cta": {
@@ -223,11 +256,26 @@
       "mapAlt": "Otel konumu - Harita",
       "mapAria": "Google Haritalar'da konumu aç",
       "items": {
-        "bay": { "title": "Kadırga Koyu", "desc": "km · Berrak Ege sularında serinleme" },
-        "assos": { "title": "Antik Assos (Behramkale)", "desc": "dk · Aristo'nun kenti, Athena Tapınağı" },
-        "harbor": { "title": "Assos Limanı", "desc": "dk · Balık restoranları ve tekneler" },
-        "town": { "title": "Ayvacık Merkez", "desc": "km · En yakın ilçe merkezi" },
-        "park": { "title": "Kazdağı Milli Parkı", "desc": "km · Ida Dağı doğa yürüyüşleri" }
+        "bay": {
+          "title": "Kadırga Koyu",
+          "desc": "km · Berrak Ege sularında serinleme"
+        },
+        "assos": {
+          "title": "Antik Assos (Behramkale)",
+          "desc": "dk · Aristo'nun kenti, Athena Tapınağı"
+        },
+        "harbor": {
+          "title": "Assos Limanı",
+          "desc": "dk · Balık restoranları ve tekneler"
+        },
+        "town": {
+          "title": "Ayvacık Merkez",
+          "desc": "km · En yakın ilçe merkezi"
+        },
+        "park": {
+          "title": "Kazdağı Milli Parkı",
+          "desc": "km · Ida Dağı doğa yürüyüşleri"
+        }
       }
     },
     "gallery": {
@@ -235,10 +283,26 @@
       "title": "Kareler",
       "lede": "Otelden ve çevreden seçilmiş kareler — odalar, manzara ve havuz.",
       "items": {
-        "venue": { "title": "Mekân", "desc": "Taş ve Ege ışığı", "alt": "Otel ve çevre" },
-        "family": { "title": "Aile Suit", "desc": "Geniş alan", "alt": "Aile Suit" },
-        "view": { "title": "Manzara", "desc": "Deniz ve gökyüzü", "alt": "Manzara" },
-        "pool": { "title": "Havuz", "desc": "Serinlik", "alt": "Havuz" }
+        "venue": {
+          "title": "Mekân",
+          "desc": "Taş ve Ege ışığı",
+          "alt": "Otel ve çevre"
+        },
+        "family": {
+          "title": "Aile Suit",
+          "desc": "Geniş alan",
+          "alt": "Aile Suit"
+        },
+        "view": {
+          "title": "Manzara",
+          "desc": "Deniz ve gökyüzü",
+          "alt": "Manzara"
+        },
+        "pool": {
+          "title": "Havuz",
+          "desc": "Serinlik",
+          "alt": "Havuz"
+        }
       }
     },
     "ambient": {
@@ -249,7 +313,10 @@
     }
   },
   "about": {
-    "hero": { "title": "Hakkımızda", "breadcrumb": "Hakkımızda" },
+    "hero": {
+      "title": "Hakkımızda",
+      "breadcrumb": "Hakkımızda"
+    },
     "ratings": {
       "google": "Google Puanı · 157 yorum",
       "tripadvisor": "TripAdvisor Puanı",
@@ -270,9 +337,18 @@
       "videoAria": "Assos Karadut Taş Otel tanıtım videosu"
     },
     "values": {
-      "mission": { "title": "Misyonumuz", "desc": "Misafirlerimize evlerinden uzakta ev sıcaklığı hissettirmek; Ege'nin doğasını ve Assos'un tarihini en iyi şekilde deneyimlemelerini sağlamak." },
-      "vision": { "title": "Vizyonumuz", "desc": "Assos bölgesinin en seçkin butik oteli olmak; geleneksel taş mimarisini yaşatarak sürdürülebilir turizme öncülük etmek." },
-      "certified": { "title": "Kültür Bakanlığı Belgeli", "desc": "T.C. Kültür ve Turizm Bakanlığı Turizm İşletme Belgesi'ne (No: 24921) sahip onaylı bir konaklama tesisiyiz." }
+      "mission": {
+        "title": "Misyonumuz",
+        "desc": "Misafirlerimize evlerinden uzakta ev sıcaklığı hissettirmek; Ege'nin doğasını ve Assos'un tarihini en iyi şekilde deneyimlemelerini sağlamak."
+      },
+      "vision": {
+        "title": "Vizyonumuz",
+        "desc": "Assos bölgesinin en seçkin butik oteli olmak; geleneksel taş mimarisini yaşatarak sürdürülebilir turizme öncülük etmek."
+      },
+      "certified": {
+        "title": "Kültür Bakanlığı Belgeli",
+        "desc": "T.C. Kültür ve Turizm Bakanlığı Turizm İşletme Belgesi'ne (No: 24921) sahip onaylı bir konaklama tesisiyiz."
+      }
     },
     "features": {
       "eyebrow": "Olanaklar",
@@ -334,12 +410,36 @@
       "eyebrow": "Çevrede Keşfedilecekler",
       "title": "Assos'un Hazineleri",
       "items": {
-        "bay": { "title": "Kadırga Koyu", "dist": "5 km", "desc": "Ege'nin berrak sularında yüzme ve güneşlenme. Otelden şezlong ve şemsiye ayrıcalığı." },
-        "assos": { "title": "Antik Assos (Behramkale)", "dist": "10 dk", "desc": "Aristo'nun yaşadığı antik kent. Athena Tapınağı ve Ege'ye hâkim akropol." },
-        "harbor": { "title": "Assos Limanı", "dist": "10 dk", "desc": "Tekneler, taze balık restoranları ve Ege manzaralı romantik akşamlar." },
-        "park": { "title": "Kazdağı Milli Parkı", "dist": "37 km", "desc": "Ida Dağı'nda doğa yürüyüşleri, şelale ve ormanlık alanlar." },
-        "museum": { "title": "Adatepe Zeytinyağı Müzesi", "dist": "", "desc": "Zeytinyağının tarihini anlatan özgün müze ve bölgenin geleneksel zanaatkârlığı." },
-        "kucukkuyu": { "title": "Küçükkuyu", "dist": "", "desc": "Şirin bir kıyı kasabası; yerel pazarlar, geleneksel Türk restoranları ve gözde plajlar." }
+        "bay": {
+          "title": "Kadırga Koyu",
+          "dist": "5 km",
+          "desc": "Ege'nin berrak sularında yüzme ve güneşlenme. Otelden şezlong ve şemsiye ayrıcalığı."
+        },
+        "assos": {
+          "title": "Antik Assos (Behramkale)",
+          "dist": "10 dk",
+          "desc": "Aristo'nun yaşadığı antik kent. Athena Tapınağı ve Ege'ye hâkim akropol."
+        },
+        "harbor": {
+          "title": "Assos Limanı",
+          "dist": "10 dk",
+          "desc": "Tekneler, taze balık restoranları ve Ege manzaralı romantik akşamlar."
+        },
+        "park": {
+          "title": "Kazdağı Milli Parkı",
+          "dist": "37 km",
+          "desc": "Ida Dağı'nda doğa yürüyüşleri, şelale ve ormanlık alanlar."
+        },
+        "museum": {
+          "title": "Adatepe Zeytinyağı Müzesi",
+          "dist": "",
+          "desc": "Zeytinyağının tarihini anlatan özgün müze ve bölgenin geleneksel zanaatkârlığı."
+        },
+        "kucukkuyu": {
+          "title": "Küçükkuyu",
+          "dist": "",
+          "desc": "Şirin bir kıyı kasabası; yerel pazarlar, geleneksel Türk restoranları ve gözde plajlar."
+        }
       }
     },
     "cta": {
@@ -350,7 +450,10 @@
     }
   },
   "rooms": {
-    "hero": { "title": "Odalarımız", "breadcrumb": "Odalarımız" },
+    "hero": {
+      "title": "Odalarımız",
+      "breadcrumb": "Odalarımız"
+    },
     "intro": {
       "eyebrow": "28 Oda · 3 Tip",
       "title": "Konforun Taştaki Adresi",
@@ -441,9 +544,18 @@
       "eyebrow": "Süreç",
       "title": "Nasıl Rezervasyon Yapılır?",
       "text": "3 basit adımda rezervasyonunuzu tamamlayın.",
-      "step1": { "title": "Tarih & Oda Seçin", "desc": "Giriş-çıkış tarihinizi ve oda tipini belirleyin. Müsaitliği anında görün." },
-      "step2": { "title": "Bilgilerinizi Girin", "desc": "Ad, soyad, telefon ve e-posta bilgilerinizi doldurun." },
-      "step3": { "title": "Aramamızı Bekleyin", "desc": "Ekibimiz sizi arayarak bilgilerinizi teyit eder ve rezervasyonunuzu kesinleştirir." },
+      "step1": {
+        "title": "Tarih & Oda Seçin",
+        "desc": "Giriş-çıkış tarihinizi ve oda tipini belirleyin. Müsaitliği anında görün."
+      },
+      "step2": {
+        "title": "Bilgilerinizi Girin",
+        "desc": "Ad, soyad, telefon ve e-posta bilgilerinizi doldurun."
+      },
+      "step3": {
+        "title": "Aramamızı Bekleyin",
+        "desc": "Ekibimiz sizi arayarak bilgilerinizi teyit eder ve rezervasyonunuzu kesinleştirir."
+      },
       "loading": "Rezervasyon formu yükleniyor…"
     },
     "conditions": {
@@ -483,7 +595,10 @@
     }
   },
   "contact": {
-    "hero": { "title": "İletişim", "breadcrumb": "İletişim" },
+    "hero": {
+      "title": "İletişim",
+      "breadcrumb": "İletişim"
+    },
     "cards": {
       "addressTitle": "Adres",
       "addressLink": "HARİTADA AÇ →",
@@ -536,9 +651,18 @@
     "nearby": {
       "eyebrow": "Çevrede",
       "title": "Yakın Aktiviteler",
-      "beach": { "title": "Kadırga Plajı", "desc": "Ege'nin berrak sularında yüzme ve güneşlenme imkânı. 5 dakika mesafe." },
-      "assos": { "title": "Antik Assos", "desc": "Aristo'nun yaşadığı tarihi antik kent ve Zeus Tapınağı kalıntıları. 7 dakika." },
-      "harbor": { "title": "Assos Limanı", "desc": "Tekneler, balık restoranları ve Ege manzarası eşliğinde romantik akşamlar. 10 dakika." }
+      "beach": {
+        "title": "Kadırga Plajı",
+        "desc": "Ege'nin berrak sularında yüzme ve güneşlenme imkânı. 5 dakika mesafe."
+      },
+      "assos": {
+        "title": "Antik Assos",
+        "desc": "Aristo'nun yaşadığı tarihi antik kent ve Zeus Tapınağı kalıntıları. 7 dakika."
+      },
+      "harbor": {
+        "title": "Assos Limanı",
+        "desc": "Tekneler, balık restoranları ve Ege manzarası eşliğinde romantik akşamlar. 10 dakika."
+      }
     }
   },
   "bookingSuccess": {
@@ -802,6 +926,9 @@
         "p": "İptal, değişiklik ve iade talepleriniz için lütfen bizi telefonla arayın: <phoneLink>{phone}</phoneLink> veya {email} adresine e-posta gönderin."
       }
     }
+  },
+  "a11y": {
+    "skipToContent": "İçeriğe geç"
   },
   "whatsapp": {
     "ariaLabel": "WhatsApp ile mesaj gönderin",
