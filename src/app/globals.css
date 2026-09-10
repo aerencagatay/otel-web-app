@@ -215,11 +215,15 @@ footer :focus-visible {
 .measure-tight { max-width: 46ch; }
 
 /* Typography scale (use with font-heading / body) */
+/* §8.5 display ölçeği: mobil 40px → masaüstü 76px, satır yük. 1.02,
+   harf ar. -0.02em. Boyut artık bileşende inline clamp ile EZİLMİYOR
+   (hero-home.tsx'te 2.65rem→5.15rem yazıyordu, yani 42→82px). */
 .type-display {
   font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
+  font-size: clamp(2.5rem, 8.5vw, 4.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.02;
 }
 .type-section-title {
   font-family: var(--font-heading);
@@ -527,7 +531,11 @@ footer :focus-visible {
    görünsün ki kaydırma daveti oluşsun. */
 .hero-home {
   min-height: 88svh;
-  background: url('/img/hero-poster.jpg') no-repeat center center / cover;
+  /* CSS `background: url(hero-poster.jpg)` KALDIRILDI: next/image zaten
+     optimize (AVIF/WebP) türevi servis ediyordu, bu kural ise HAM 344 KB'lik
+     JPEG'i herkese ek olarak indiriyor ve ikinci bir LCP adayı yaratıyordu.
+     Zemin, poster yüklenene kadar mürekkep kalır. */
+  background-color: var(--color-ink);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -538,16 +546,59 @@ footer :focus-visible {
 @media (min-width: 768px) {
   .hero-home { min-height: 100svh; }
 }
-/* Background video (autoplay/muted/loop) — sits under the dark overlay so
-   hero text stays legible. hero-poster.jpg shows while it loads / on failure. */
-.hero-video {
+/* Tam ekran zemin fotoğrafı (LCP elementi). Sınıf adı `.hero-video` idi ve
+   poster ile <video> AYNI sınıfı paylaşıyordu; aşağıdaki reduced-motion
+   kuralı ikisini birden gizlediği için hareket azaltma tercihi olan
+   kullanıcılar optimize posteri hiç görmüyordu. Poster artık `.hero-media`. */
+.hero-media {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Kaynak 1920x1280 (3:2). Eski `70% center` yatay ekranda hiçbir şey
+     yapmıyordu (viewport kaynaktan geniş olduğu için yatay taşma yok) ama
+     iPad portre / dar laptopta kadrajı sağdaki zeytin gövdesine kaydırıp
+     koyu çerçeve dışında bırakıyordu. Mobil için ayrı kadrajlı dosya var. */
+  object-position: 50% 50%;
   z-index: 0;
   pointer-events: none;
+}
+
+/* PENCERE (bulgu Y1/K4) — taş duvara açılmış bir boşluk gibi okunmalı.
+   Elde yatay master yok: üç klip de 720x1280 dikey ve gömülü yazılı.
+   Tam ekran yerine 7:8'lik küçük bir kadrajda gösterilince kaynak DPR2'de
+   0.89x KÜÇÜLTÜLÜYOR — bugünkü 2x büyütmenin tersi, görüntü ilk kez net.
+
+   z-index 1: scrim'in (z 2) ALTINDA. Böylece scrim'in sağ kuyruğu (~0.15)
+   pencerenin de üstünden geçer ve pencere yüzen bir UI kartı değil, aynı
+   duvarın parçası gibi durur. Gölge yok — gölge yalnızca gerçekten yüzen
+   öğelerde (§8.8), bu sahnede tek yüzen öğe arama kartı. */
+.hero-window {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 248px;
+  aspect-ratio: 720 / 820;
+  object-fit: cover;
+  /* Kesme taş radius (§8.8) + saç çizgisi. Cam/parlama efekti yok. */
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(250, 250, 248, 0.28);
+  pointer-events: none;
+  /* Sağ kenar 1120px kapsayıcıyla hizalı; dikeyde GÖĞE oturur.
+     Ölçüldü: 1440x900'de koyun kavisi y=400'de başlıyor. Pencere 248px
+     genişlikte 282px yüksek, y=117..399 — kıyı şeridine DEĞMİYOR.
+     İlk denemede 320px / 24vh idi ve koyun sağ üçte birini örtüyordu:
+     fotoğrafın ödülünü kapatan bir detay, detay olmaktan çıkar. */
+  top: clamp(96px, 13vh, 132px);
+  right: max(clamp(16px, 4vw, 48px), calc((100% - 1120px) / 2));
+}
+@media (max-width: 1279px) {
+  .hero-window { width: 216px; }
+}
+/* <1024px hiç render EDİLMEZ (hero-video.tsx), bu yalnızca güvenlik ağı. */
+@media (max-width: 1023px) {
+  .hero-window { display: none; }
 }
 
 /* BULGU K2 — DETERMİNİSTİK SCRIM
@@ -561,41 +612,66 @@ footer :focus-visible {
    yaşadığı sol %45'i her karede garanti altına alır; (2) alttan gelen
    dikey gradyan, hızlı arama kartına geçişi yumuşatır. Değerler video
    içeriğinden bağımsızdır. */
+/* ÖLÇÜM: beyaz metin için 4.5:1, zemin luminansı <= 0.183 demek. Metin
+   alanındaki EN PARLAK olası piksel gökyüzü (L ~ 0.62) — bu da --ink
+   üstünden en az 0.72 alfa gerektiriyor.
+
+   Eski duraklarla x=%45'te birleşik alfa 0.640 -> L 0.230 -> 3.75:1 (KALIYOR).
+   Yeni duraklarla                        0.769 -> L 0.152 -> 5.2:1  (geçiyor).
+   Metin sütunu 46rem'den 38rem'e daraltıldığı için lede (46ch) %45'i,
+   display tip de %53'ü aşmıyor; %53'te 4.3:1 — büyük metin AA eşiği 3:1.
+
+   Renk rgba(20,19,17) idi: bu palette OLMAYAN dördüncü koyu ton (Y3).
+   --ink #1d1b18 = rgb(29,27,24). */
 .hero-home::before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  /* z 1 -> 2: pencerenin (z 1) üstünde, içeriğin (z 3) altında. */
+  z-index: 2;
   background:
     linear-gradient(100deg,
-      rgba(20, 19, 17, 0.86) 0%,
-      rgba(20, 19, 17, 0.72) 30%,
-      rgba(20, 19, 17, 0.38) 56%,
-      rgba(20, 19, 17, 0.10) 78%,
-      transparent 100%),
+      rgba(29, 27, 24, 0.88) 0%,
+      rgba(29, 27, 24, 0.80) 30%,
+      rgba(29, 27, 24, 0.66) 50%,
+      rgba(29, 27, 24, 0.24) 72%,
+      transparent 90%),
     linear-gradient(180deg,
-      rgba(20, 19, 17, 0.55) 0%,
-      rgba(20, 19, 17, 0.15) 30%,
-      rgba(20, 19, 17, 0.30) 62%,
-      rgba(20, 19, 17, 0.88) 100%);
+      rgba(29, 27, 24, 0.55) 0%,
+      rgba(29, 27, 24, 0.15) 30%,
+      rgba(29, 27, 24, 0.30) 62%,
+      rgba(29, 27, 24, 0.88) 100%);
   pointer-events: none;
+  /* Tek orkestre edilmiş an (§8.10): scrim 0-350ms'de açılır. */
+  animation: hero-scrim-in 350ms var(--ease) both;
 }
 /* Mobilde metin tam genişliği kullandığı için yönlü gradyan yerine
    düz koyu bir taban gerekir. */
 @media (max-width: 767px) {
   .hero-home::before {
+    /* Dikey kadrajda metin %17'den %65'e kadar uzanıyor. Eski eğri o bantta
+       0.58-0.70 veriyordu — 0.72 tabanının ALTINDA, yani K2 mobilde tam
+       kapanmamıştı. Buna karşılık üst şerit 0.62 ile gereksiz ağırdı ve
+       gökyüzü/pergola hiç okunmuyordu: hem karanlık hem güvenli değil.
+       Yeni eğri metin bandında 0.72'yi sabit tutar, üst şeridi (yalnızca
+       navbar'ın olduğu yer) 0.42'ye açar — fotoğraf nefes alır. */
     background:
       linear-gradient(180deg,
-        rgba(20, 19, 17, 0.62) 0%,
-        rgba(20, 19, 17, 0.52) 34%,
-        rgba(20, 19, 17, 0.66) 70%,
-        rgba(20, 19, 17, 0.92) 100%);
+        rgba(29, 27, 24, 0.42) 0%,
+        rgba(29, 27, 24, 0.52) 9%,
+        rgba(29, 27, 24, 0.72) 17%,
+        rgba(29, 27, 24, 0.72) 64%,
+        rgba(29, 27, 24, 0.84) 82%,
+        rgba(29, 27, 24, 0.94) 100%);
   }
 }
 
-/* Respect reduced-motion: hide the video, fall back to the static hero image */
+/* Hareket azaltma: video hiç inmez (hero-video.tsx erken çıkar), pencere
+   kendi durağan karesini gösterir. Poster ARTIK GİZLENMİYOR — eskiden
+   `.hero-video` sınıfını paylaştığı için o da yok oluyordu. */
 @media (prefers-reduced-motion: reduce) {
-  .hero-video { display: none; }
+  .hero-home::before,
+  .hero-line { animation: none; }
 }
 /* Ortalanmış dekoratif ince çizgi kaldırıldı: metin sola alındığı için
    artık hiçbir şeyi hizalamıyordu ve yalnızca süstü ("bir aksesuarı
@@ -603,17 +679,32 @@ footer :focus-visible {
 
 .hero-home-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: 1120px;
   /* Sola hizalı: paragraflar hiçbir zaman ortalanmaz (§8.7). */
   text-align: left;
+  /* Başlık dışındaki her şey (etiket, lede, CTA'lar, telefon) scrim'le
+     AYNI 350ms'lik tek fade'i paylaşır — ayrı bir "an" değil. Eskiden
+     her biri 0.85s'lik ayrı animasyonlarla 1.2s'ye yayılıyordu. */
+  animation: hero-scrim-in 350ms var(--ease) both;
 }
 @media (min-width: 1024px) {
   /* Masaüstünde metin bloğu kapsayıcının sol sütununda kalır — sağ taraf
-     videonun kompozisyonuna bırakılır. */
-  .hero-home-inner { max-width: 46rem; }
+     fotoğrafın kompozisyonuna (koy kavisi) ve pencereye bırakılır.
+     46rem -> 38rem: 46rem 1440px'te viewport'un %62'sine uzanıyordu; orada
+     scrim 0.72 tabanının altına düşüyor VE koyun kavisinin üstüne biniyordu. */
+  .hero-home-inner { max-width: 38rem; }
 }
+
+/* Başlığın iki satırı: sahnedeki TEK hareket. 400ms arayla, opacity +
+   12px yukarı. Toplam 900ms'de sahne durur (§8.10). */
+.hero-line {
+  display: block;
+  animation: hero-line-in 400ms var(--ease) both;
+}
+.hero-line-1 { animation-delay: 100ms; }
+.hero-line-2 { animation-delay: 500ms; }
 
 /* Kutulu, 0.42em harf aralıklı BÜYÜK HARF rozet bırakıldı (§8.4 / Y5):
    bu kalıp üretilmiş sayfaların en yaygın işareti. Yerine konumu tek bir
@@ -643,7 +734,7 @@ footer :focus-visible {
    box no longer reads as a thin bar, so it shouldn't keep pill corners. */
 .hero-booking-shell {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: 1080px;
   margin: clamp(16px, 3vh, 32px) auto 0;
@@ -785,10 +876,24 @@ footer :focus-visible {
   }
 }
 
-/* Scroll indicator */
-@keyframes scrollPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+/* HERO — tek orkestre edilmiş an (§8.10). Toplam 900ms:
+   scrim + başlık dışı içerik 0-350ms · başlık 1. satır 100-500ms ·
+   başlık 2. satır 500-900ms. Başka giriş animasyonu yok.
+
+   `scrollPulse` KALDIRILDI: sonsuz döngüydü (§8.10'un yasak listesi),
+   metin sola alındığı hâlde ortada duruyordu, ve 8px / 0.4em harf
+   aralıklı BÜYÜK HARF rgba(255,255,255,.40) ile ~1.9:1 kontrasttaydı —
+   hem okunmuyor hem Y5'in tarif ettiği kalıbın ta kendisi. Kaydırma
+   daveti zaten yapısal: mobilde 88svh sonraki bölümü gösteriyor,
+   masaüstünde arama kartı alt kenara biniyor. */
+@keyframes hero-scrim-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hero-line-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== STATS BAR ===== */
@@ -1824,7 +1929,10 @@ footer :focus-visible {
 @media (max-width: 767px) {
   .section-py { padding: 64px 0; }
   .section-sm { padding: 44px 0; }
-  .hero-home { min-height: 100svh; }
+  /* `.hero-home { min-height: 100svh }` KALDIRILDI: bu geç gelen kural,
+     yukarıdaki 88svh niyetini (§8.11) sessizce eziyordu. 88svh mobilde
+     alttan bir sonraki bölümden şerit gösterir — kaydırma daveti bu,
+     ayrıca kaldırılan scroll göstergesinin yerini bu tutuyor. */
   .page-hero { height: 320px; }
   .gallery-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
   /* O3: prevent iOS Safari auto-zoom on focus (requires font-size >= 16px on mobile) */
