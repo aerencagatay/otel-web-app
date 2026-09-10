@@ -256,10 +256,16 @@ export default function ContactForm() {
         </a>
       </div>
 
-      <p className="text-[11.5px] text-text-light mt-6 text-center">
+      {/* Bulgu Y4: KVKK linki 12px yüksekliğindeydi — sitedeki en küçük
+          dokunma hedefi. Yasal onay metni olduğu için erişilebilir olması
+          ayrıca önemli. */}
+      <p className="text-[14px] text-stone-55 mt-6 text-center leading-relaxed">
         {t.rich("kvkkNote", {
           link: (chunks) => (
-            <Link href="/kvkk" className="text-gold-dark underline">
+            <Link
+              href="/kvkk"
+              className="inline-flex items-center min-h-[44px] text-sea underline underline-offset-4"
+            >
               {chunks}
             </Link>
           ),

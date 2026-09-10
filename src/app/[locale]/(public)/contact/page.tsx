@@ -6,7 +6,11 @@ import ContactForm from "@/components/contact-form";
 import JsonLd, { contactJsonLd } from "@/components/seo/json-ld";
 import { buildAlternates } from "@/i18n/seo";
 import { routing, type Locale } from "@/i18n/routing";
+import { HOTEL } from "@/lib/config/hotel";
 import { MapPin, Phone, Mail, Umbrella, Landmark, Ship } from "lucide-react";
+
+/** E-posta tek kaynaktan (AGENTS.md kanonik bölümü). */
+const MAIL_HREF = `mailto:${HOTEL.email}`;
 
 export async function generateMetadata({
   params,
@@ -66,7 +70,7 @@ export default async function ContactPage({
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[12px] text-gold no-underline tracking-wide font-semibold"
+                className="inline-flex items-center min-h-[44px] text-[14px] text-sea no-underline font-semibold"
               >
                 {t("cards.addressLink")}
               </a>
@@ -100,8 +104,8 @@ export default async function ContactPage({
                 {t("cards.emailTitle")}
               </h5>
               <div className="text-[14px] text-text">
-                <a href="mailto:karaduttas@gmail.com" className="text-dark no-underline">
-                  karaduttas@gmail.com
+                <a href={MAIL_HREF} className="inline-flex items-center min-h-[44px] text-ink no-underline">
+                  {HOTEL.email}
                 </a>
               </div>
               <p className="text-[12px] text-text-light -mt-2">{t("cards.emailSub")}</p>

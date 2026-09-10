@@ -104,12 +104,14 @@ export default function Footer() {
       <div className="border-t border-white/10 py-5 mt-13 text-center text-white/35 text-[12.5px]">
         <div className="max-w-7xl mx-auto px-4">
           <p className="footer-license mb-3">{tf("license")}</p>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px]">
+          {/* Bulgu Y4: yasal linkler 20px yüksekliğindeydi. Görsel boyut
+              küçük kalabilir ama dokunma alanı min 44px olmalı. */}
+          <div className="flex flex-wrap justify-center gap-x-5 text-[13px]">
             {legalLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white/45 no-underline hover:text-gold transition-colors"
+                className="inline-flex items-center min-h-[44px] text-white/45 no-underline hover:text-gold transition-colors"
               >
                 {link.label}
               </Link>
