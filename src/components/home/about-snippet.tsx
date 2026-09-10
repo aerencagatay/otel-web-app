@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { Waves, UtensilsCrossed, Coffee, CarFront, type LucideIcon } from "lucide-react";
+
+// Dört öne çıkan olanak (O2 ile aynı dörtlü: havuz, restoran, kahvaltı,
+// otopark) — küçük bir ikon, metni tarama kolaylığı için destekler.
+// Sıra, çeviri anahtarlarındaki highlight1..4 sırasıyla birebir eşleşir.
+const HIGHLIGHT_ICONS: LucideIcon[] = [Waves, UtensilsCrossed, Coffee, CarFront];
 
 export default function AboutSnippet() {
   const t = useTranslations("home.about");
@@ -16,18 +22,24 @@ export default function AboutSnippet() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="relative">
-            <Image
-              src="/img/hotel-web.jpg"
-              alt={t("imageAlt")}
-              width={600}
-              height={520}
-              className="w-full h-[520px] object-cover"
-            />
+            {/* Y11 düzeltmesi: sabit piksel yükseklik yerine tek bir oran
+                (aspect-[4/3]) + <Image fill> — width/height çelişkisi ve
+                Next.js uyarısı kaynağında kalkar. O1 düzeltmesi: iki kişinin
+                poz verdiği kare yerine otelin taş dış cephesi (mekânın
+                karakterini satan bir görsel) kullanıldı. */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-md)]">
+              <Image
+                src="/img/dis-cephe-web.jpg"
+                alt={t("imageAlt")}
+                fill
+                sizes="(max-width: 1023px) 100vw, 50vw"
+                className="object-cover object-top"
+              />
+            </div>
             <div className="about-accent" />
           </div>
 
           <div className="lg:pl-14">
-            <span className="eyebrow">{t("eyebrow")}</span>
             <h2
               className="mb-6 font-normal"
               style={{ fontSize: "clamp(28px, 4.2vw, 52px)", lineHeight: 1.18 }}
@@ -43,14 +55,18 @@ export default function AboutSnippet() {
               {t("p2")}
             </p>
             <ul className="list-none p-0 mb-9">
-              {highlights.map((h) => (
-                <li
-                  key={h}
-                  className="text-[13.5px] tracking-[0.04em] text-dark py-3 border-b border-border first:border-t first:border-border"
-                >
-                  {h}
-                </li>
-              ))}
+              {highlights.map((h, i) => {
+                const Icon = HIGHLIGHT_ICONS[i];
+                return (
+                  <li
+                    key={h}
+                    className="flex items-center gap-3 text-[14px] tracking-[0.01em] text-dark py-3 border-b border-border first:border-t first:border-border"
+                  >
+                    <Icon size={17} strokeWidth={1.5} className="text-stone-55 shrink-0" />
+                    {h}
+                  </li>
+                );
+              })}
             </ul>
             <Link
               href="/about"

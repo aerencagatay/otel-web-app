@@ -8,7 +8,7 @@ import JsonLd, { roomsJsonLd } from "@/components/seo/json-ld";
 import RoomGalleryLightbox from "@/components/rooms/room-gallery-lightbox";
 import { getRoomImages } from "@/lib/config/room-images";
 import { getLowestUpcomingPrice } from "@/lib/config/pricing";
-import { approxEur } from "@/lib/config/hotel";
+import { approxEur, HOTEL } from "@/lib/config/hotel";
 import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { buildAlternates } from "@/i18n/seo";
 import { routing, type Locale } from "@/i18n/routing";
@@ -29,6 +29,9 @@ import {
   Shield,
   Droplets,
 } from "lucide-react";
+
+/** tel: bağlantısı için boşluksuz numara — tek doğruluk kaynağı hotel.ts. */
+const TEL_HREF = `tel:${HOTEL.phone.replace(/\s/g, "")}`;
 
 export async function generateMetadata({
   params,
@@ -92,8 +95,6 @@ export default async function RoomsPage({
         { icon: Wine, text: t("feat.minibar") },
         { icon: Wind, text: t("feat.hairdryer") },
       ],
-      bg: "bg-white",
-      layout: "image-left",
     },
     {
       roomType: "traditional_room",
@@ -109,8 +110,6 @@ export default async function RoomsPage({
         { icon: Wine, text: t("feat.minibar") },
         { icon: Wind, text: t("feat.hairdryer") },
       ],
-      bg: "bg-warm",
-      layout: "image-right",
     },
     {
       roomType: "premium_family",
@@ -126,8 +125,6 @@ export default async function RoomsPage({
         { icon: Wine, text: t("feat.minibar") },
         { icon: Armchair, text: t("feat.outdoorTable") },
       ],
-      bg: "bg-white",
-      layout: "image-left",
     },
   ];
 
@@ -151,91 +148,92 @@ export default async function RoomsPage({
       <JsonLd data={roomsJsonLd(activeLocale)} />
       <PageHero title={t("hero.title")} breadcrumb={t("hero.breadcrumb")} />
 
-      {/* Intro */}
-      <section className="section-sm bg-warm">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <span className="eyebrow">{t("intro.eyebrow")}</span>
-          <h2>{t("intro.title")}</h2>
-          <div className="divider-gold-center" />
-          <p className="max-w-[640px] mx-auto text-[15px] text-text-light">
-            {t("intro.text")}
-          </p>
+      {/* Giriş — §8.7: paragraflar ortalanmaz, sola hizalı ve 68ch sınırlı. */}
+      <section className="section-sm bg-stone-05">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="type-section-title m-0 mb-4 text-ink">{t("intro.title")}</h2>
+          <div className="divider-gold" />
+          <p className="measure m-0 text-stone-80">{t("intro.text")}</p>
         </div>
       </section>
 
-      {/* Room Cards */}
+      {/* Oda listesi — dönüşümlü (görsel sol / sağ) editoryal satırlar.
+          K1 ile aynı kural burada da geçerli: oran GENİŞLİKTEN yüksekliğe
+          hesaplanır, her grid item min-w-0'dır ve kartın açık zemini vardır.
+          Eski `.room-list-card` + inline "480px 1fr" sabit sütunu kaldırıldı;
+          o kurulum <1024px'te sabit 480px'lik görsel sütunuyla taşma
+          üretiyordu (mobil için stack kuralı da yoktu). */}
       {rooms.map((room, i) => {
         const images = getRoomImages(room.roomType);
+        const detailHref = `/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`;
+        const imageRight = i % 2 === 1;
         return (
-          <div key={i}>
-            <section className={`section-py ${room.bg}`}>
-              <div className="max-w-7xl mx-auto px-4">
-                <div
-                  className="room-list-card"
-                  style={{
-                    gridTemplateColumns:
-                      room.layout === "image-left" ? "480px 1fr" : "1fr 480px",
-                  }}
-                >
+          <div key={room.roomType}>
+            <section className={`section-py ${imageRight ? "bg-stone-05" : "bg-white"}`}>
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <article className="grid min-w-0 grid-cols-1 overflow-hidden rounded-[var(--radius-md)] border border-stone-15 bg-white lg:grid-cols-2">
                   <Link
-                    href={`/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`}
-                    className="overflow-hidden min-h-[380px] block"
-                    style={{ order: room.layout === "image-right" ? 2 : 0 }}
+                    href={detailHref}
+                    aria-label={room.name}
+                    className={`relative block min-w-0 aspect-[4/3] lg:aspect-auto lg:min-h-[460px] ${
+                      imageRight ? "lg:order-2" : ""
+                    }`}
                   >
                     <Image
                       src={images.cover.src}
-                      alt={room.name}
-                      width={480}
-                      height={380}
-                      className="w-full h-full object-cover"
+                      alt={images.cover.alt}
+                      fill
+                      sizes="(max-width: 1023px) 100vw, 50vw"
+                      className="object-cover"
                     />
                   </Link>
-                  <div
-                    className="p-8 md:px-9 flex flex-col justify-center"
-                    style={{ order: room.layout === "image-right" ? 1 : 0 }}
-                  >
-                    <h3
-                      className="mb-2"
-                      style={{ fontSize: "clamp(20px, 2.5vw, 26px)" }}
-                    >
+
+                  <div className="flex min-w-0 flex-col justify-center p-6 md:p-10">
+                    <h3 className="m-0 mb-2 font-heading text-[clamp(1.35rem,2.4vw,1.75rem)] font-semibold">
                       <Link
-                        href={`/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`}
-                        className="text-dark no-underline hover:text-gold-dark transition-colors"
+                        href={detailHref}
+                        className="text-ink no-underline transition-colors hover:text-sea"
                       >
                         {room.name}
                       </Link>
                     </h3>
-                    <div className="text-gold-dark text-[11px] font-semibold tracking-[0.15em] uppercase mb-4">
+                    {/* Fiyat pricing.ts'ten; elle yazılmaz. */}
+                    <p className="m-0 mb-5 text-[14px] font-medium text-sea">
                       {priceLabel(room.roomType)}
-                    </div>
-                    <p className="text-[14px] text-text leading-[1.8] mb-6">
-                      {room.desc}
                     </p>
-                    <div className="flex flex-wrap gap-x-6 gap-y-2.5 mb-7 pt-5 border-t border-border">
-                      {room.features.map((f, j) => (
-                        <span
-                          key={j}
-                          className="text-[12.5px] text-text-light flex items-center gap-1.5"
+                    {/* O3: gövde metni 68ch ile sınırlı. */}
+                    <p className="measure m-0 mb-6 text-stone-80">{room.desc}</p>
+
+                    <ul className="m-0 mb-7 grid list-none grid-cols-1 gap-x-6 gap-y-2.5 border-t border-stone-15 p-0 pt-5 sm:grid-cols-2">
+                      {room.features.map((feature) => (
+                        <li
+                          key={feature.text}
+                          className="flex min-w-0 items-center gap-2 text-[14px] text-stone-55"
                         >
-                          <f.icon size={14} strokeWidth={1.5} className="text-gold-dark/70" />
-                          {f.text}
-                        </span>
+                          <feature.icon
+                            size={15}
+                            strokeWidth={1.5}
+                            className="shrink-0 text-sea"
+                          />
+                          {feature.text}
+                        </li>
                       ))}
-                    </div>
-                    <div className="flex flex-wrap gap-4 items-center">
-                      <Link href="/reservation" className="btn-gold">
-                        <Phone className="inline w-3.5 h-3.5 mr-2" />
+                    </ul>
+
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                      <Link href="/reservation" className="btn-gold no-underline">
+                        <Phone className="h-4 w-4" strokeWidth={1.8} />
                         {t("bookCta")}
                       </Link>
                       <Link
-                        href={`/rooms/${ROOM_TYPE_MAP[room.roomType].slug}`}
-                        className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4"
+                        href={detailHref}
+                        className="inline-flex min-h-[44px] items-center border-b border-sea/40 text-[14px] font-semibold text-sea no-underline transition-colors hover:border-sea"
                       >
                         {td("viewDetails")}
                       </Link>
                     </div>
                   </div>
-                </div>
+                </article>
               </div>
             </section>
 
@@ -245,49 +243,51 @@ export default async function RoomsPage({
         );
       })}
 
-      {/* All Room Amenities */}
-      <section className="section-sm bg-warm">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-15">
-            <span className="eyebrow">{t("amenities.eyebrow")}</span>
-            <h2>{t("amenities.title")}</h2>
-            <div className="divider-gold-center" />
-            <p className="text-text-light text-[15px]">{t("amenities.text")}</p>
+      {/* Tüm odalarda standart özellikler */}
+      <section className="section-sm bg-stone-05">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10">
+            <h2 className="type-section-title m-0 mb-4 text-ink">{t("amenities.title")}</h2>
+            <div className="divider-gold" />
+            <p className="measure m-0 text-stone-80">{t("amenities.text")}</p>
           </div>
-          <div className="text-center">
-            {allAmenities.map((a, i) => (
-              <span key={i} className="amenity-tag">
-                <a.icon size={14} className="text-gold" />
-                {a.text}
-              </span>
+          <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
+            {allAmenities.map((amenity) => (
+              <li
+                key={amenity.text}
+                className="flex min-w-0 items-center gap-2.5 border-b border-stone-15 py-3 text-[15px] text-stone-80"
+              >
+                <amenity.icon size={16} strokeWidth={1.5} className="shrink-0 text-sea" />
+                {amenity.text}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Check-in/out banner */}
-      <div className="bg-ivory border-y border-border py-10 md:py-11">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Giriş / çıkış bandı */}
+      <div className="border-y border-stone-15 bg-stone-00 py-10 md:py-11">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { label: t("checkinBanner.checkIn"), value: "14:00" },
-              { label: t("checkinBanner.checkOut"), value: "12:00" },
-              { label: t("checkinBanner.totalRooms"), value: "28" },
-            ].map((item, i) => (
+              { label: t("checkinBanner.checkIn"), value: HOTEL.checkIn },
+              { label: t("checkinBanner.checkOut"), value: HOTEL.checkOut },
+              { label: t("checkinBanner.totalRooms"), value: String(HOTEL.totalRooms) },
+            ].map((item) => (
               <div
-                key={i}
-                className="text-center py-4 px-3 border-r border-border last:border-r-0"
+                key={item.label}
+                className="min-w-0 border-r border-stone-15 px-3 py-4 text-center last:border-r-0"
               >
                 <span className="stat-number">{item.value}</span>
                 <span className="stat-label">{item.label}</span>
               </div>
             ))}
-            <div className="text-center py-4 px-3">
+            <div className="min-w-0 px-3 py-4 text-center">
               <a
-                href="tel:+905010913417"
-                className="font-heading text-[24px] text-gold no-underline font-semibold tracking-wide block leading-none hover:opacity-80 transition-opacity"
+                href={TEL_HREF}
+                className="block font-heading text-[22px] font-semibold leading-none text-sea no-underline transition-opacity hover:opacity-80"
               >
-                +90 501 091 34 17
+                {HOTEL.phone}
               </a>
               <span className="stat-label mt-2">{t("checkinBanner.reservation")}</span>
             </div>
@@ -295,21 +295,20 @@ export default async function RoomsPage({
         </div>
       </div>
 
-      {/* CTA */}
+      {/* Kapanış CTA'sı */}
       <section className="cta-banner">
-        <div className="max-w-7xl mx-auto px-4 relative z-2">
-          <span className="eyebrow text-gold-light">{t("cta.eyebrow")}</span>
+        <div className="relative z-2 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-white">
             {t("cta.titleLine1")}
             <br />
             {t("cta.titleLine2")}
           </h2>
-          <p className="text-white/70 text-[15px]">{t("cta.text")}</p>
-          <a href="tel:+905010913417" className="phone-display">
-            +90 501 091 34 17
+          <p className="measure-tight mx-auto text-white/70">{t("cta.text")}</p>
+          <a href={TEL_HREF} className="phone-display">
+            {HOTEL.phone}
           </a>
           <br />
-          <Link href="/reservation" className="btn-outline-light mt-2">
+          <Link href="/reservation" className="btn-outline-light mt-2 no-underline">
             {t("cta.button")}
           </Link>
         </div>

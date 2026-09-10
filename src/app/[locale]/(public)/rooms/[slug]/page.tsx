@@ -11,6 +11,7 @@ import RoomDetailBookingCta from "@/components/rooms/room-detail-booking-cta";
 import { getRoomImages } from "@/lib/config/room-images";
 import { ROOM_TYPE_MAP, getRoomTypeBySlug } from "@/lib/config/room-types";
 import { ROOM_PRICING } from "@/lib/config/pricing";
+import { HOTEL } from "@/lib/config/hotel";
 import { buildAlternates } from "@/i18n/seo";
 import { routing, type Locale } from "@/i18n/routing";
 import {
@@ -26,6 +27,9 @@ import {
   Armchair,
   Phone,
 } from "lucide-react";
+
+/** Telefon linki — kod tabanındaki `tel:` kalıbıyla aynı (boşluklar atılır). */
+const TEL_HREF = `tel:${HOTEL.phone.replace(/\s/g, "")}`;
 
 /** Static per-room content that isn't already covered by messages/*.json. */
 const ROOM_DETAIL_META: Record<
@@ -124,60 +128,72 @@ export default async function RoomDetailPage({
       <PageHero title={name} breadcrumb={name} />
 
       <section className="section-py bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-4">
-            <Link href="/rooms" className="text-gold-dark text-[11px] font-semibold tracking-[0.2em] uppercase hover:underline underline-offset-4">
+            <Link
+              href="/rooms"
+              className="inline-flex min-h-[44px] items-center text-[14px] font-semibold text-sea no-underline hover:underline underline-offset-4"
+            >
               {td("backToRooms")}
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <div className="lg:col-span-2">
-              <div className="overflow-hidden rounded-[var(--radius-md)] mb-6" style={{ aspectRatio: "16/10" }}>
+          {/* Her grid item min-w-0: uzun başlık/fiyat satırı sütunu genişletip
+              taşma üretemez (§8.7 zorunlu kuralı, K1'in kök nedeni). */}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+            <div className="min-w-0 lg:col-span-2">
+              {/* Oran genişlikten yüksekliğe: aspect-[16/10] + fill. Böylece
+                  <Image> width/height değerleriyle CSS çelişmiyor (Y11). */}
+              <div className="relative mb-6 w-full aspect-[16/10] overflow-hidden rounded-[var(--radius-md)] bg-stone-05">
                 <Image
                   src={images.cover.src}
                   alt={images.cover.alt}
-                  width={960}
-                  height={600}
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 66vw"
                   priority
-                  className="w-full h-full object-cover"
+                  className="object-cover"
                 />
               </div>
 
-              <h2 className="mb-4">{name}</h2>
-              <p className="text-[15px] text-text leading-[1.8] mb-6">
+              <h2 className="m-0 mb-4">{name}</h2>
+              {/* O3: satır uzunluğu 109 karakterdi; .measure ile 68ch'e indi. */}
+              <p className="measure m-0 mb-6 text-stone-80">
                 {t(DESC_KEY[roomType] as Parameters<typeof t>[0])}
               </p>
 
-              <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10 pt-6 border-t border-border">
-                {features.map((f, i) => (
-                  <span key={i} className="text-[13px] text-text flex items-center gap-2">
-                    <f.icon size={16} strokeWidth={1.5} className="text-gold-dark/70" />
+              <ul className="m-0 mb-10 grid list-none grid-cols-1 gap-x-8 gap-y-2.5 border-t border-stone-15 p-0 pt-6 sm:grid-cols-2 lg:grid-cols-3">
+                {features.map((f) => (
+                  <li
+                    key={f.text}
+                    className="flex min-w-0 items-center gap-2 text-[15px] text-stone-80"
+                  >
+                    <f.icon size={16} strokeWidth={1.5} className="shrink-0 text-sea" />
                     {f.text}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
               {priceRows.length > 0 && (
-                <div className="mb-10">
-                  <h3 className="font-heading text-xl font-semibold text-dark mb-4">
+                <div className="measure mb-10">
+                  <h3 className="m-0 mb-4 font-heading text-xl font-semibold text-ink">
                     {td("seasonPriceTitle")}
                   </h3>
-                  <div className="border border-border rounded-[var(--radius-sm)] overflow-hidden">
+                  {/* Fiyatlar pricing.ts'ten (ROOM_PRICING) okunur; elle yazılmaz. */}
+                  <div className="overflow-hidden rounded-[var(--radius-sm)] border border-stone-15 bg-white">
                     {priceRows.map(([month, price]) => (
                       <div
                         key={month}
-                        className="flex items-center justify-between px-5 py-3 border-b border-border last:border-b-0 text-[14px]"
+                        className="flex min-w-0 items-center justify-between gap-4 border-b border-stone-15 px-5 py-3 text-[15px] last:border-b-0"
                       >
-                        <span className="text-text-light capitalize">
+                        <span className="min-w-0 capitalize text-stone-55">
                           {new Date(`${month}-01T00:00:00`).toLocaleDateString(intlLocale, {
                             month: "long",
                             year: "numeric",
                           })}
                         </span>
-                        <span className="font-semibold text-dark">
+                        <span className="shrink-0 font-semibold text-ink">
                           {price.toLocaleString(intlLocale)} ₺{" "}
-                          <span className="text-text-light font-normal text-[12px]">
+                          <span className="text-[13px] font-normal text-stone-55">
                             {td("perNight")}
                           </span>
                         </span>
@@ -188,14 +204,14 @@ export default async function RoomDetailPage({
               )}
             </div>
 
-            <div>
+            <div className="min-w-0">
               <div className="booking-card sticky top-24">
                 <RoomDetailBookingCta roomType={roomType} />
                 <a
-                  href="tel:+905010913417"
-                  className="btn-dark-sq w-full justify-center mt-3 inline-flex items-center gap-2"
+                  href={TEL_HREF}
+                  className="btn-dark-sq mt-3 inline-flex w-full items-center justify-center gap-2 no-underline"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="h-4 w-4" strokeWidth={1.8} />
                   {t("bookCta")}
                 </a>
               </div>

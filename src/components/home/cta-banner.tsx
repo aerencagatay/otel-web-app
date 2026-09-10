@@ -6,9 +6,6 @@ export default function CtaBanner() {
   return (
     <section className="cta-banner">
       <div className="max-w-7xl mx-auto px-4 relative z-2">
-        <span className="eyebrow" style={{ color: "#f0b830" }}>
-          {t("eyebrow")}
-        </span>
         <h2
           className="text-white mb-3.5"
           style={{ fontSize: "clamp(26px, 4vw, 46px)" }}
