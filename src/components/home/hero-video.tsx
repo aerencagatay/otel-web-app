@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 
 /**
@@ -21,21 +21,33 @@ import Image from "next/image";
  */
 const VIDEO_MIN_WIDTH = 768;
 
+/**
+ * Medya sorgusunu React'in dış-kaynak aboneliği (useSyncExternalStore) ile
+ * okuruz. Effect içinde setState çağırmak React 19'da zincirleme render'a
+ * yol açtığı için önerilmiyor; bu API tam olarak matchMedia gibi harici
+ * kaynaklar için var. Sunucu anlık görüntüsü `false`: HTML'de <video> hiç
+ * bulunmaz, istemci geniş ekransa sonradan eklenir.
+ */
+const wideScreenStore = {
+  subscribe(onChange: () => void) {
+    const mq = window.matchMedia(`(min-width: ${VIDEO_MIN_WIDTH}px)`);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  },
+  getSnapshot: () => window.matchMedia(`(min-width: ${VIDEO_MIN_WIDTH}px)`).matches,
+  getServerSnapshot: () => false,
+};
+
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   /** Video DOM'a hiç girmez: `src` atanmadığı gibi <video> de render edilmez. */
-  const [allowVideo, setAllowVideo] = useState(false);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const mq = window.matchMedia(`(min-width: ${VIDEO_MIN_WIDTH}px)`);
-    setAllowVideo(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setAllowVideo(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const isWide = useSyncExternalStore(
+    wideScreenStore.subscribe,
+    wideScreenStore.getSnapshot,
+    wideScreenStore.getServerSnapshot
+  );
+  const allowVideo = isWide;
 
   useEffect(() => {
     if (!allowVideo) return;

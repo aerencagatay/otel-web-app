@@ -34,11 +34,10 @@ export default async function ReservationPage({
   setRequestLocale(locale);
   const t = await getTranslations("reservation");
 
-  const steps = [
-    { num: 1, title: t("process.step1.title"), desc: t("process.step1.desc") },
-    { num: 2, title: t("process.step2.title"), desc: t("process.step2.desc") },
-    { num: 3, title: t("process.step3.title"), desc: t("process.step3.desc") },
-  ];
+  /* `steps` dizisi kaldırıldı: onu render eden açıklama kartları bloğu
+     O7 gereği çıkarıldı (BookingFlow zaten fonksiyonel adım göstergesi
+     çiziyor). İlgili çeviri anahtarları messages/*.json içinde duruyor;
+     ileride süreç anlatımı geri istenirse hazır. */
 
   return (
     <>
@@ -46,7 +45,6 @@ export default async function ReservationPage({
       <div>
         <div className="res-hero relative z-[1]">
           <div className="max-w-7xl mx-auto px-4">
-            <span className="eyebrow text-white/70">{t("hero.eyebrow")}</span>
             <h1
               className="text-white mb-4 font-heading font-semibold tracking-tight"
               style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}
@@ -65,21 +63,19 @@ export default async function ReservationPage({
       {/* Booking Flow */}
       <section className="section-py bg-warm">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-15">
-            <span className="eyebrow">{t("process.eyebrow")}</span>
-            <h2>{t("process.title")}</h2>
-            <div className="divider-gold-center" />
-            <p className="text-text-light text-[15px]">{t("process.text")}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            {steps.map((step) => (
-              <div key={step.num} className="step-card">
-                <div className="step-number">{step.num}</div>
-                <h5 className="text-[16px] mb-2.5">{step.title}</h5>
-                <p className="text-[13.5px] text-text-light m-0">{step.desc}</p>
-              </div>
-            ))}
+          {/* BULGU O7: Buradaki 3 numaralı açıklama kartı bloğu KALDIRILDI.
+              Hemen altındaki BookingFlow zaten kendi fonksiyonel adım
+              göstergesini (1. Tarih & misafir / 2. Oda seçimi / 3. Bilgiler
+              & onay) çiziyordu; aynı üç adım arka arkaya iki kez
+              anlatılıyor ve asıl aksiyon (tarih formu) 1440px'de ~630px
+              derinliğe itiliyordu. Fonksiyonel gösterge kaldı çünkü
+              kullanıcının nerede olduğunu söylüyor — yani bilgi taşıyor;
+              açıklayıcı kartlar taşımıyordu. Süreç anlatımı SSS
+              bölümündeki "Rezervasyonum ne zaman kesinleşir?" maddesinde
+              zaten mevcut. */}
+          <div className="measure mb-10">
+            <h2 className="mb-3">{t("process.title")}</h2>
+            <p className="type-lede m-0">{t("process.text")}</p>
           </div>
 
           <Suspense
@@ -99,7 +95,6 @@ export default async function ReservationPage({
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
-              <span className="eyebrow">{t("conditions.eyebrow")}</span>
               <h2 className="mb-4">
                 {t("conditions.titleLine1")}
                 <br />
@@ -197,7 +192,6 @@ export default async function ReservationPage({
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">{t("faq.eyebrow")}</span>
             <h2>{t("faq.title")}</h2>
             <div className="divider-gold-center" />
           </div>

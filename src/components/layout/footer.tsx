@@ -1,5 +1,11 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { HOTEL } from "@/lib/config/hotel";
+
+/* İletişim bilgileri tek kaynaktan (AGENTS.md kanonik bölümü); footer'da
+   elle yazılı kopyaları vardı. */
+const TEL_HREF = `tel:${HOTEL.phone.replace(/\s/g, "")}`;
+const MAIL_HREF = `mailto:${HOTEL.email}`;
 
 export default function Footer() {
   const t = useTranslations("nav");
@@ -37,13 +43,13 @@ export default function Footer() {
                 href="https://www.instagram.com/karaduttasotel/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="no-underline hover:text-gold transition-colors"
+                className="inline-flex items-center min-h-[44px] no-underline hover:text-gold transition-colors"
               >
                 Instagram
               </a>
               <a
                 href="#"
-                className="no-underline hover:text-gold transition-colors"
+                className="inline-flex items-center min-h-[44px] no-underline hover:text-gold transition-colors"
               >
                 Facebook
               </a>
@@ -53,12 +59,12 @@ export default function Footer() {
           {/* Pages */}
           <div>
             <h6 className="footer-heading">{tf("pagesHeading")}</h6>
-            <ul className="list-none p-0 space-y-2.5">
+            <ul className="list-none p-0">
               {links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/55 no-underline text-[13.5px] hover:text-gold hover:pl-1 transition-all"
+                    className="inline-flex items-center min-h-[44px] text-white/55 no-underline text-[15px] hover:text-gold transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -70,24 +76,24 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h6 className="footer-heading">{tf("contactHeading")}</h6>
-            <ul className="list-none p-0 space-y-2.5">
+            <ul className="list-none p-0">
               <li>
                 <a
-                  href="tel:+905010913417"
-                  className="text-white/55 no-underline text-[13.5px] hover:text-gold transition-colors"
+                  href={TEL_HREF}
+                  className="inline-flex items-center min-h-[44px] text-white/55 no-underline text-[15px] hover:text-gold transition-colors"
                 >
-                  +90 501 091 34 17
+                  {HOTEL.phone}
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:karaduttas@gmail.com"
-                  className="text-white/55 no-underline text-[13.5px] hover:text-gold transition-colors"
+                  href={MAIL_HREF}
+                  className="inline-flex items-center min-h-[44px] text-white/55 no-underline text-[15px] hover:text-gold transition-colors"
                 >
-                  karaduttas@gmail.com
+                  {HOTEL.email}
                 </a>
               </li>
-              <li className="text-white/55 text-[13.5px]">
+              <li className="flex items-center min-h-[44px] text-white/55 text-[15px]">
                 {tf("reception")}
               </li>
             </ul>

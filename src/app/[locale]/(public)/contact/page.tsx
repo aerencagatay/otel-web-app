@@ -116,7 +116,6 @@ export default async function ContactPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
             {/* Form */}
             <div>
-              <span className="eyebrow">{t("form.eyebrow")}</span>
               <h2 className="mb-4">{t("form.title")}</h2>
               <p className="text-[14.5px] text-text-light mb-8">{t("form.text")}</p>
               <ContactForm />
@@ -124,7 +123,6 @@ export default async function ContactPage({
 
             {/* Map + Distances */}
             <div>
-              <span className="eyebrow">{t("map.eyebrow")}</span>
               <h2 className="mb-4">{t("map.title")}</h2>
 
               <div className="w-full h-[clamp(260px,32vw,340px)] bg-warm border border-border flex items-center justify-center mb-8">
@@ -176,7 +174,6 @@ export default async function ContactPage({
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">{t("nearby.eyebrow")}</span>
             <h2>{t("nearby.title")}</h2>
             <div className="divider-gold-center" />
           </div>

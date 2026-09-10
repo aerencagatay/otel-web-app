@@ -230,7 +230,6 @@ export default async function RoomDetailPage({
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-10">
-            <span className="eyebrow">{td("similarRoomsEyebrow")}</span>
             <h2>{td("similarRoomsTitle")}</h2>
             <div className="divider-gold-center" />
           </div>

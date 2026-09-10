@@ -57,10 +57,16 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  /* Rota değişince menü kapanmalı — aksi halde yeni sayfada açık kalıyor. */
-  useEffect(() => {
+  /* Rota değişince menü kapanmalı — aksi halde yeni sayfada açık kalıyor.
+     Effect yerine render sırasında düzeltme deseni kullanılıyor (React'in
+     "you might not need an effect" önerisi): effect içinde setState
+     çağırmak zincirleme render tetikliyor. Linkler zaten kendi
+     onClick'lerinde kapatıyor; bu, geri/ileri gezinmeyi de kapsıyor. */
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
     setMenuOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <div className="header-nav">

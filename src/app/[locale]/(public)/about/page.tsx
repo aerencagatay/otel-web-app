@@ -142,7 +142,6 @@ export default async function AboutPage({
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="eyebrow">{t("story.eyebrow")}</span>
               <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
                 {t("story.titleLine1")}
                 <br />
@@ -202,7 +201,6 @@ export default async function AboutPage({
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <span className="eyebrow">{t("features.eyebrow")}</span>
               <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
                 {t("features.titleLine1")}
                 <br />
@@ -353,7 +351,6 @@ export default async function AboutPage({
               </p>
             </div>
             <div className="lg:col-span-7">
-              <span className="eyebrow">{t("team.eyebrow")}</span>
               <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)" }}>
                 {t("team.titleLine1")}
                 <br />
@@ -374,7 +371,6 @@ export default async function AboutPage({
       <section className="section-sm bg-warm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">{t("gallery.eyebrow")}</span>
             <h2>{t("gallery.title")}</h2>
             <div className="divider-gold-center" />
           </div>
@@ -405,7 +401,6 @@ export default async function AboutPage({
       <section className="section-py bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-15">
-            <span className="eyebrow">{t("nearby.eyebrow")}</span>
             <h2>{t("nearby.title")}</h2>
             <div className="divider-gold-center" />
           </div>
