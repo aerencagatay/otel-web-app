@@ -50,10 +50,10 @@ export default function HeroBookingStrip() {
 
   return (
     <div className="hero-booking-shell animate-fade-up animate-fade-up-delay-3">
+      {/* Bulgu Y5: "HIZLI ARAMA" harf aralıklı büyük harf etiketi kaldırıldı.
+          Altındaki "Konaklama tarihleri" başlığı zaten aynı şeyi söylüyor;
+          etiket bilgi taşımıyordu. */}
       <div className="mb-4">
-        <p className="text-[10px] tracking-[0.3em] uppercase text-gold-dark font-semibold mb-1.5">
-          {t("eyebrow")}
-        </p>
         <h2 className="hero-booking-title m-0">{t("title")}</h2>
       </div>
 

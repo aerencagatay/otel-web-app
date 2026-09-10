@@ -229,10 +229,14 @@ footer :focus-visible {
   line-height: 1.15;
   color: var(--color-dark);
 }
+/* §8.5: taban 0.95rem (=15.2px) idi; mobilde gövde metni bu yüzden 17px'e
+   çıkmıyordu (bulgu O4). Taban 17px'e alındı. Renk de --color-text-light
+   yerine gövde rengine çekildi: açık gri, uzun açıklama metinleri için
+   ikincil metin rengi olmalıydı, birincil değil. */
 .type-lede {
-  font-size: clamp(0.95rem, 1.35vw, 1.0625rem);
-  line-height: 1.75;
-  color: var(--color-text-light);
+  font-size: clamp(1.0625rem, 1.2vw, 1.1875rem);
+  line-height: 1.65;
+  color: var(--color-stone-80);
   font-weight: 400;
 }
 
@@ -515,16 +519,24 @@ footer :focus-visible {
 .animate-fade-up-delay-3 { animation-delay: 0.36s; }
 
 /* ===== HERO HOME (cinematic) ===== */
+/* §8.11: hero metni ortadan SOLA alındı. İki gerekçe: (1) videonun içine
+   gömülü pazarlama yazısı kadrajın ortasında duruyor ve site başlığıyla
+   çakışıyordu (bulgu K4); (2) sola hizalı blok, yönlü bir scrim'le
+   kontrastı deterministik hale getirmeyi mümkün kılıyor (bulgu K2).
+   Mobilde tam yükseklik yerine 88svh: alttan bir sonraki bölümden şerit
+   görünsün ki kaydırma daveti oluşsun. */
 .hero-home {
-  min-height: 100svh;
-  min-height: 100vh;
+  min-height: 88svh;
   background: url('/img/hero-poster.jpg') no-repeat center center / cover;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   padding: clamp(104px, 15vh, 168px) clamp(16px, 4vw, 48px) clamp(24px, 5vh, 48px);
+}
+@media (min-width: 768px) {
+  .hero-home { min-height: 100svh; }
 }
 /* Background video (autoplay/muted/loop) — sits under the dark overlay so
    hero text stays legible. hero-poster.jpg shows while it loads / on failure. */
@@ -538,59 +550,90 @@ footer :focus-visible {
   pointer-events: none;
 }
 
+/* BULGU K2 — DETERMİNİSTİK SCRIM
+   Eski overlay, alt başlığın bulunduğu yükseklikte yalnızca
+   rgba(26,28,24,0.25) veriyordu; video karesi parlak bir yeşilliğe
+   geldiğinde ölçülen kontrast 1.41'e (mobilde 1.27) düşüyordu — AA için
+   4.5 gerekiyor. Kontrastın video karesine bağlı olması sorunun kendisi:
+   "bazen okunuyor" kabul edilebilir bir durum değil.
+
+   Çözüm iki katmanlı: (1) SOLDAN yönlü koyu gradyan — metin bloğunun
+   yaşadığı sol %45'i her karede garanti altına alır; (2) alttan gelen
+   dikey gradyan, hızlı arama kartına geçişi yumuşatır. Değerler video
+   içeriğinden bağımsızdır. */
 .hero-home::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(26, 28, 24, 0.5) 0%, rgba(26, 28, 24, 0.2) 32%, rgba(26, 28, 24, 0.25) 55%, rgba(26, 28, 24, 0.88) 100%),
-    radial-gradient(ellipse 100% 70% at 50% 100%, rgba(10, 12, 10, 0.75) 0%, transparent 55%);
+    linear-gradient(100deg,
+      rgba(20, 19, 17, 0.86) 0%,
+      rgba(20, 19, 17, 0.72) 30%,
+      rgba(20, 19, 17, 0.38) 56%,
+      rgba(20, 19, 17, 0.10) 78%,
+      transparent 100%),
+    linear-gradient(180deg,
+      rgba(20, 19, 17, 0.55) 0%,
+      rgba(20, 19, 17, 0.15) 30%,
+      rgba(20, 19, 17, 0.30) 62%,
+      rgba(20, 19, 17, 0.88) 100%);
   pointer-events: none;
+}
+/* Mobilde metin tam genişliği kullandığı için yönlü gradyan yerine
+   düz koyu bir taban gerekir. */
+@media (max-width: 767px) {
+  .hero-home::before {
+    background:
+      linear-gradient(180deg,
+        rgba(20, 19, 17, 0.62) 0%,
+        rgba(20, 19, 17, 0.52) 34%,
+        rgba(20, 19, 17, 0.66) 70%,
+        rgba(20, 19, 17, 0.92) 100%);
+  }
 }
 
 /* Respect reduced-motion: hide the video, fall back to the static hero image */
 @media (prefers-reduced-motion: reduce) {
   .hero-video { display: none; }
 }
-.hero-home::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: clamp(200px, 32vh, 340px);
-  width: min(120px, 18vw);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.9;
-}
-@media (max-width: 767px) {
-  .hero-home::after { bottom: clamp(240px, 38vh, 400px); }
-}
+/* Ortalanmış dekoratif ince çizgi kaldırıldı: metin sola alındığı için
+   artık hiçbir şeyi hizalamıyordu ve yalnızca süstü ("bir aksesuarı
+   çıkar"). Konum çizgisi görevini .hero-tag::before üstleniyor. */
 
 .hero-home-inner {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 1120px;
-  text-align: center;
+  /* Sola hizalı: paragraflar hiçbir zaman ortalanmaz (§8.7). */
+  text-align: left;
+}
+@media (min-width: 1024px) {
+  /* Masaüstünde metin bloğu kapsayıcının sol sütununda kalır — sağ taraf
+     videonun kompozisyonuna bırakılır. */
+  .hero-home-inner { max-width: 46rem; }
 }
 
+/* Kutulu, 0.42em harf aralıklı BÜYÜK HARF rozet bırakıldı (§8.4 / Y5):
+   bu kalıp üretilmiş sayfaların en yaygın işareti. Yerine konumu tek bir
+   sessiz satır olarak, ince bir çizgiyle bağlanmış biçimde veriyoruz. */
 .hero-tag {
-  display: inline-block;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 10px;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  padding: 8px 24px;
-  margin-bottom: 22px;
-  font-weight: 600;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+}
+.hero-tag::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  flex: none;
 }
 
 /* Floating booking bar (homepage) — one soft "pill" panel, no colored top bar.
@@ -1203,7 +1246,7 @@ footer :focus-visible {
   left: 32px;
   width: 46px;
   height: 46px;
-  background: rgba(26, 28, 24, 0.82);
+  background: rgba(29, 27, 24, 0.85);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
@@ -1220,50 +1263,24 @@ footer :focus-visible {
   background: var(--color-gold-dark);
   transform: translateY(-2px);
 }
-/* On mobile lift above the sticky reserve CTA; keep on the left (back-to-top is right) */
+/* Mobilde sabit rezervasyon barının ÜSTÜNE alınır; solda kalır (sağda
+   WhatsApp ve back-to-top var). Yükseklik artık --sticky-cta-h
+   token'ından okunuyor: bar yüksekliği değişirse burası da takip eder
+   (bulgu K3'teki çakışmanın nedeni sabit sayılarla hesaplanmasıydı). */
 @media (max-width: 1023px) {
   .ambient-toggle {
-    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(var(--sticky-cta-h) + 12px + env(safe-area-inset-bottom, 0px));
     left: 16px;
   }
 }
 
-/* ===== WHATSAPP FLOATING BUTTON (Task 05) ===== */
-.whatsapp-fab {
-  position: fixed;
-  right: 24px;
-  bottom: 96px;
-  width: 54px;
-  height: 54px;
-  background: #25d366;
-  color: #fff;
-  border-radius: var(--radius-pill);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-lift);
-  z-index: 1002;
-  text-decoration: none;
-  transition: transform 0.3s ease, opacity 0.3s ease, background 0.2s;
-}
-.whatsapp-fab:hover {
-  background: #1fb457;
-  color: #fff;
-  transform: translateY(-2px);
-}
-.whatsapp-fab--hidden {
-  opacity: 0;
-  transform: translateY(24px);
-  pointer-events: none;
-}
-@media (max-width: 1023px) {
-  .whatsapp-fab {
-    right: 16px;
-    bottom: calc(72px + 66px + env(safe-area-inset-bottom, 0px));
-    width: 48px;
-    height: 48px;
-  }
-}
+/* ===== WHATSAPP FLOATING BUTTON =====
+   `.whatsapp-fab` kuralları KALDIRILDI (ölü kod). Bileşen artık konumunu
+   --sticky-cta-h token'ından okuyan Tailwind sınıflarıyla kuruyor ve
+   dolgusu WhatsApp yeşili (#25d366) yerine --color-ink — bulgu O6:
+   sayfadaki en parlak öğe otelin kendi içeriği değil üçüncü taraf marka
+   rengiydi ve görsel hiyerarşinin tepesini işgal ediyordu.
+   Burada yalnızca gizleme yardımcısı kaldı. */
 
 /* ===== BACK TO TOP ===== */
 .back-to-top {
@@ -1821,6 +1838,18 @@ footer :focus-visible {
        72px clears the CTA bar on notch-less devices; the CTA bar's own
        growth on notched devices naturally pushes content up enough. */
     bottom: 72px;
+  }
+}
+
+/* Bulgu K3 (masaüstü ayağı): WhatsApp balonu lg kırılımında right:24px /
+   bottom:24px'e oturuyor; back-to-top ise 32/32'deydi ve ikisi 40x40px
+   üst üste biniyordu (ölçüldü). Back-to-top balonun ÜSTÜNE istiflendi;
+   right değeri, 46px'lik düğmenin merkezi 48px'lik balonunkiyle
+   hizalansın diye 25px. */
+@media (min-width: 1024px) {
+  .back-to-top {
+    right: 25px;
+    bottom: 84px;
   }
 }
 

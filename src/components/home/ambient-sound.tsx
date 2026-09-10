@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Volume2, VolumeX } from "lucide-react";
+import { useCookieConsentResolved } from "@/components/layout/cookie-banner";
 
 /**
  * User-controlled ambient nature sound (CC0 sea waves).
@@ -16,6 +17,10 @@ export default function AmbientSound() {
   const t = useTranslations("home.ambient");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
+  /* Bulgu K3: çerez bandı çözülmeden bu düğme bandın tam üstüne biniyordu
+     (ölçülen: bant 659-844, düğme 726-772). Sabit katmanların tamamı aynı
+     kurala tabi — karar verilene kadar yalnızca bant görünür. */
+  const consentResolved = useCookieConsentResolved();
 
   function toggle() {
     let audio = audioRef.current;
@@ -35,6 +40,8 @@ export default function AmbientSound() {
         .catch(() => setPlaying(false));
     }
   }
+
+  if (!consentResolved) return null;
 
   return (
     <>
