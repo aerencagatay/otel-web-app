@@ -104,6 +104,18 @@ export const contactLimiter = createLimiter({
   prefix: "contact-1h",
 });
 
+/**
+ * ALICI adresi başına günde 1 otomatik yanıt. Botlar IP değiştirip
+ * kurbanın adresini tekrar tekrar girse de o adrese bizden en fazla bir
+ * mail gider — "e-posta bombalama"ya aracılık etmeyiz, alan adı itibarı
+ * korunur. Admin bildirimi bu limitten etkilenmez.
+ */
+export const contactAutoReplyLimiter = createLimiter({
+  tokens: 1,
+  window: "1 d",
+  prefix: "contact-autoreply-1d",
+});
+
 /** IP başına 10 istek / saat — rezervasyon sorgulama (Task 05, self-servis). */
 export const lookupLimiter = createLimiter({
   tokens: 10,

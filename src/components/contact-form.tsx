@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Send, CheckCircle, AlertCircle, MessageCircle } from "lucide-react";
@@ -25,6 +25,12 @@ export default function ContactForm() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>(undefined);
+  // Spam katmanı (bkz. spam-guard.ts): gizli honeypot ve doldurma süresi.
+  const [website, setWebsite] = useState("");
+  const renderedAt = useRef(0);
+  useEffect(() => {
+    renderedAt.current = Date.now();
+  }, []);
 
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -72,6 +78,8 @@ export default function ContactForm() {
           message,
           turnstileToken,
           locale,
+          website,
+          elapsedMs: renderedAt.current ? Date.now() - renderedAt.current : undefined,
         }),
       });
 
@@ -210,6 +218,21 @@ export default function ContactForm() {
             required
             minLength={10}
             maxLength={1000}
+          />
+        </div>
+
+        {/* Honeypot: insanlar görmez (ekran dışı, tab sırası ve ekran
+            okuyucudan çıkarılmış); dolu gelirse bot sayılır. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+          <label htmlFor="cf-website">Website</label>
+          <input
+            id="cf-website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
           />
         </div>
 

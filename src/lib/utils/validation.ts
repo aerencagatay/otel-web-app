@@ -118,6 +118,10 @@ export const contactSchema = z.object({
     .transform((val) => stripControlChars(val.trim()))
     .pipe(z.string().min(10, "validation.messageMin").max(1000)),
   turnstileToken: z.string().optional(),
+  // Spam katmanı (spam-guard.ts): gizli honeypot alanı ve formun doldurulma
+  // süresi. Bilgi amaçlı — hatalı değer reddedilmez, yalnızca spam sayılır.
+  website: z.string().max(500).optional(),
+  elapsedMs: z.number().int().nonnegative().optional(),
 });
 
 // Rezervasyon sorgulama (self-servis, Task 05). Reservation ID format comes

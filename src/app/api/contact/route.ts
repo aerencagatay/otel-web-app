@@ -6,8 +6,13 @@ import {
   contactAutoReplyEmail,
 } from "@/lib/mail/templates";
 import { reportServerError } from "@/lib/monitoring";
-import { getClientIp, contactLimiter } from "@/lib/security/rate-limit";
+import {
+  getClientIp,
+  contactLimiter,
+  contactAutoReplyLimiter,
+} from "@/lib/security/rate-limit";
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
+import { detectContactSpam } from "@/lib/security/spam-guard";
 
 // Hatalar mesaj yerine KOD döndürür (client `apiErrors.*` ile çevirir) —
 // rezervasyon/availability route'larıyla aynı i18n yaklaşımı.
@@ -33,6 +38,14 @@ export async function POST(request: NextRequest) {
     const data = parsed.data;
     // Otomatik yanıt dili (payload'dan; varsayılan tr). Admin maili hep TR.
     const guestLocale: "tr" | "en" = body?.locale === "en" ? "en" : "tr";
+
+    // Spam sessizce düşürülür: bota başarı döneriz ki neyin yakalandığını
+    // öğrenmesin; hiçbir mail (admin ya da otomatik yanıt) gönderilmez.
+    const spamReason = detectContactSpam(data);
+    if (spamReason) {
+      console.warn(`[contact] spam düşürüldü (${spamReason}) ip=${ip}`);
+      return NextResponse.json({ ok: true });
+    }
 
     const turnstileResult = await verifyTurnstileToken(data.turnstileToken, ip);
     if (!turnstileResult.success) {
@@ -65,6 +78,15 @@ export async function POST(request: NextRequest) {
       // Admin mail failing is server-side; still tell the guest we failed so
       // they don't think their message went through when it may not have.
       return NextResponse.json({ error: "contactSendFailed" }, { status: 502 });
+    }
+
+    // Formdaki adres doğrulanmamış bir üçüncü kişiye ait olabilir: o adrese
+    // günde en fazla bir otomatik yanıt (bkz. contactAutoReplyLimiter).
+    const autoReplyAllowed = await contactAutoReplyLimiter.limit(
+      data.email.toLowerCase()
+    );
+    if (!autoReplyAllowed.success) {
+      return NextResponse.json({ ok: true });
     }
 
     try {
