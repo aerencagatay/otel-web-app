@@ -13,6 +13,7 @@ Bu bölüm iş bilgilerinin kanonik kaynağıdır. Bir agent tanımı veya sayfa
 - **Telefon:** +90 501 091 34 17
 - **E-posta:** karaduttas@gmail.com
 - **Check-in / Check-out:** 14:00 / 12:00
+- **Sezon:** 1 Mayıs – 30 Eylül açık; 1 Ekim – 30 Nisan kapalı (rezervasyon alınmaz). Kod kaynağı: `src/lib/config/season.ts`
 - **Toplam oda:** 28
 - **Başlangıç fiyatı:** `src/lib/config/pricing.ts`'ten dinamik hesaplanır (2026-07 itibarıyla yaklaşan min ₺9.000/gece) — NOT: fiyat/istatistik gibi değerlerde CANLI SİTEDEKİ (src/) değer esastır; bu dosya canlı siteyle çelişirse siteyi değiştirme, bu dosyayı güncelle
 - **Turizm Lisansı:** 24921

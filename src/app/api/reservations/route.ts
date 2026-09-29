@@ -6,6 +6,7 @@ import { ROOM_TYPE_MAP } from "@/lib/config/room-types";
 import { getNightlyPrice } from "@/lib/config/pricing";
 import { generateReservationId } from "@/lib/utils/ids";
 import { nightCount, isPastDate } from "@/lib/utils/dates";
+import { isStayInSeason } from "@/lib/config/season";
 import { getMailService } from "@/lib/mail";
 import { reportServerError } from "@/lib/monitoring";
 import {
@@ -66,6 +67,11 @@ export async function POST(request: NextRequest) {
         { error: "checkoutAfterCheckin" },
         { status: 400 }
       );
+    }
+
+    // Sezon dışı (1 Ekim – 30 Nisan) geceler rezerve edilemez.
+    if (!isStayInSeason(data.checkIn, data.checkOut)) {
+      return NextResponse.json({ error: "seasonClosed" }, { status: 400 });
     }
 
     const config = ROOM_TYPE_MAP[data.roomType];

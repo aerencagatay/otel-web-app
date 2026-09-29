@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { availabilitySchema } from "@/lib/utils/validation";
 import { checkAvailability, findNearestAvailability } from "@/lib/sheets/availability";
 import { isPastDate } from "@/lib/utils/dates";
+import { isStayInSeason } from "@/lib/config/season";
 import {
   getClientIp,
   availabilityLimiter,
@@ -36,6 +37,11 @@ export async function GET(request: NextRequest) {
         { error: "checkoutAfterCheckin" },
         { status: 400 }
       );
+    }
+
+    // Sezon dışı (1 Ekim – 30 Nisan) geceler rezerve edilemez.
+    if (!isStayInSeason(checkIn, checkOut)) {
+      return NextResponse.json({ error: "seasonClosed" }, { status: 400 });
     }
 
     const totalGuests = adults + children;

@@ -2,6 +2,7 @@ import { isCellOccupied } from "./parser";
 import { parseMonthSheetCached } from "./cache";
 import { ROOM_TYPE_MAP } from "../config/room-types";
 import { splitByMonth, getDateRange } from "../utils/dates";
+import { isStayInSeason } from "../config/season";
 
 export interface AvailableRoom {
   roomType: string;
@@ -176,6 +177,8 @@ export async function findNearestAvailability(
     if (candidateCheckIn < today) continue; // never suggest the past
 
     const candidateCheckOut = shiftDate(checkOut, offset);
+    // Sezon dışına taşan pencereyi önerme.
+    if (!isStayInSeason(candidateCheckIn, candidateCheckOut)) continue;
 
     queries++;
     const rooms = await checkAvailability(

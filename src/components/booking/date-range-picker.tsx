@@ -7,6 +7,11 @@ import { tr, enUS } from "react-day-picker/locale";
 import { useLocale, useTranslations } from "next-intl";
 import { calculateStayTotal } from "@/lib/config/pricing";
 import { approxEur } from "@/lib/config/hotel";
+import {
+  firstBookableDate,
+  isBookableNight,
+  isClosedPickerDay,
+} from "@/lib/config/season";
 import "react-day-picker/style.css";
 
 export interface DateRangeTriggerArgs {
@@ -109,7 +114,9 @@ export default function DateRangePicker({
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const [visibleMonth, setVisibleMonth] = useState<Date>(range.from ?? today);
+  // Sezon dışındaysak takvim bir sonraki sezonun ilk ayında açılır.
+  const initialMonth = range.from ?? firstBookableDate(today);
+  const [visibleMonth, setVisibleMonth] = useState<Date>(initialMonth);
   const [priceMap, setPriceMap] = useState<Record<string, number>>({});
   const [priceRoomType, setPriceRoomType] = useState<string | null>(null);
 
@@ -165,6 +172,8 @@ export default function DateRangePicker({
       return;
     }
     const from = toISO(next.from);
+    // 1 Ekim yalnızca çıkış günü olabilir: giriş olarak tıklanırsa yok say.
+    if (!next.to && !isBookableNight(from)) return;
     const to = next.to ? toISO(next.to) : "";
     onChange(from, to);
     if (next.from && next.to) {
@@ -213,8 +222,9 @@ export default function DateRangePicker({
             numberOfMonths={monthsToShow}
             selected={range}
             onSelect={handleSelect}
-            disabled={{ before: today }}
-            defaultMonth={range.from ?? today}
+            disabled={[{ before: today }, isClosedPickerDay]}
+            excludeDisabled
+            defaultMonth={initialMonth}
             onMonthChange={setVisibleMonth}
             components={{ DayButton: CustomDayButton }}
             autoFocus

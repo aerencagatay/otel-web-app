@@ -266,7 +266,7 @@
       "p3Mid": "ve TripAdvisor'daki",
       "p3Suffix": "puanı, sunduğumuz hizmetin ve mekânın en güzel yansımasıdır.",
       "seasonalLabel": "Sezonluk Otel:",
-      "seasonalText": "Nisan – Ekim ayları arasında hizmet vermekteyiz.",
+      "seasonalText": "1 Mayıs – 30 Eylül arasında hizmet vermekteyiz.",
       "videoAria": "Assos Karadut Taş Otel tanıtım videosu"
     },
     "values": {
@@ -345,7 +345,7 @@
     "cta": {
       "eyebrow": "Rezervasyon",
       "title": "Sizi Aramızda Görmek İstiyoruz",
-      "text": "Nisan – Ekim sezonu için yerinizi şimdiden ayırtın.",
+      "text": "Mayıs – Eylül sezonu için yerinizi şimdiden ayırtın.",
       "button": "Rezervasyon Bilgisi"
     }
   },
@@ -642,7 +642,7 @@
     "datePicker": {
       "placeholder": "Tarih seçin",
       "dialogLabel": "Tarih seçin",
-      "hint": "Giriş ve çıkış tarihini seçin.",
+      "hint": "Giriş ve çıkış tarihini seçin. Otelimiz 1 Mayıs – 30 Eylül arası açıktır.",
       "close": "Kapat",
       "summary": "{nights} gece · toplam {total} ₺",
       "summaryEur": "(≈ {amount} €)"
@@ -660,6 +660,7 @@
     "serviceUnavailable": "Rezervasyon sistemi şu anda geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin veya bizi telefonla arayın.",
     "securityFailed": "Güvenlik doğrulaması başarısız oldu. Lütfen sayfayı yenileyip tekrar deneyin.",
     "pastDate": "Giriş tarihi geçmişte olamaz.",
+    "seasonClosed": "Otelimiz 1 Mayıs – 30 Eylül arasında hizmet vermektedir. Lütfen sezon içinden tarih seçin.",
     "checkoutAfterCheckin": "Çıkış tarihi giriş tarihinden sonra olmalıdır.",
     "invalidRoomType": "Geçersiz oda tipi.",
     "noAvailability": "Seçtiğiniz tarihler için müsait oda kalmamıştır. Lütfen farklı tarih veya oda tipi deneyin.",

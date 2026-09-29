@@ -266,7 +266,7 @@
       "p3Mid": "on ZenHotels and",
       "p3Suffix": "on TripAdvisor is the finest reflection of the service and the setting we offer.",
       "seasonalLabel": "Seasonal Hotel:",
-      "seasonalText": "We are open from April to October.",
+      "seasonalText": "We are open from May 1 to September 30.",
       "videoAria": "Assos Karadut Taş Otel promotional video"
     },
     "values": {
@@ -345,7 +345,7 @@
     "cta": {
       "eyebrow": "Reservation",
       "title": "We'd Love to Welcome You",
-      "text": "Reserve your place now for the April–October season.",
+      "text": "Reserve your place now for the May–September season.",
       "button": "Reservation Information"
     }
   },
@@ -642,7 +642,7 @@
     "datePicker": {
       "placeholder": "Choose a date",
       "dialogLabel": "Choose dates",
-      "hint": "Select your check-in and check-out dates.",
+      "hint": "Select your check-in and check-out dates. We are open from May 1 to September 30.",
       "close": "Close",
       "summary": "{nights} nights · total ₺{total}",
       "summaryEur": "(≈ €{amount})"
@@ -660,6 +660,7 @@
     "serviceUnavailable": "The reservation system is temporarily unavailable. Please try again later or call us by phone.",
     "securityFailed": "Security verification failed. Please refresh the page and try again.",
     "pastDate": "The check-in date cannot be in the past.",
+    "seasonClosed": "We are open from May 1 to September 30. Please choose dates within the season.",
     "checkoutAfterCheckin": "Check-out must be after check-in.",
     "invalidRoomType": "Invalid room type.",
     "noAvailability": "No rooms remain available for the dates you selected. Please try different dates or a different room type.",
